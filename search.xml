@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>C/C++函数指针</title>
+    <url>/2020/02/25/C++/C-C-%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>指针</strong>是用来在程序中指向某一个变量的，实际上指针内存放的就是一个变量的相对内存地址（实际的物理地址还要加上一个偏移值）。</p>
+<p>在程序运行期间，每个函数都会占用一段连续的内存空间，而函数名就是该函数所占内存空间的起始地址（入口地址），我们可以将一个函数的起始地址赋值给一个指针，进而通过该指针来调用函数，这就是函数指针。</p>
+<p>函数指针可以像一般函数一样，用于调用函数、传递参数。在如 <code>C</code>这样的语言中，通过提供一个简单的选取、执行函数的方法，函数指针可以简化代码。函数指针只能指向具有特定特征的函数。因而所有被同一指针运用的函数必须具有<strong>相同的参数和返回类型</strong>。</p>
+<p>C语言标准规定，函数指示符（function designator，即函数名字）既不是左值，也不是右值。但C++语言标准规定函数指示符属于左值，因此函数指示符转换为函数指针的右值属于左值转换为右值。</p>
+<p>除了作为<code>sizeof</code>或取地址&amp;的操作数，函数指示符在表达式中自动转换为函数指针类型右值。因此通过一个函数指针调用所指的函数，不需要在函数指针前加取值或反引用（*）运算符。</p>
+<h1 id="定义形式"><a href="#定义形式" class="headerlink" title="定义形式"></a>定义形式</h1><p>对于一个函数指针，我们采用如下的定义方式：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">返回值 (* 指针变量名)(参数类型1，参数类型2，······)</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> (* pf)(<span class="keyword">int</span>,<span class="keyword">int</span>);</span><br></pre></td></tr></table></figure>
+<p>其中，</p>
+<p><strong>返回值</strong>：函数返回的数据类型</p>
+<p><strong>指针变量名</strong>:函数指针变量名</p>
+<p><strong>参数类型</strong>：函数的参数类型</p>
+<h1 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">min</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;<span class="comment">//返回两个数中的最小值函数</span></span><br><span class="line">	<span class="keyword">return</span> a &lt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//定义一个函数指针pf</span></span><br><span class="line">	<span class="keyword">int</span> (*pf)(<span class="keyword">int</span>, <span class="keyword">int</span>);</span><br><span class="line">	<span class="comment">//让pf指向min函数</span></span><br><span class="line">	pf = <span class="built_in">min</span>;</span><br><span class="line">	<span class="comment">//通过函数名调用min函数</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"min=%d\n"</span>, <span class="built_in">min</span>(<span class="number">10</span>, <span class="number">20</span>));</span><br><span class="line">	<span class="comment">//通过函数指针pf调用min函数</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"pf=%d\n"</span>, pf(<span class="number">10</span>, <span class="number">20</span>));</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过运行上面的程序，我们得到了以下结果</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">min=10</span><br><span class="line">pf=10</span><br></pre></td></tr></table></figure>
+<p>从结果中我们可以看出两种调用方式得到了一样的结果。接下来我们进而修改一下上面的代码</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">min</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;<span class="comment">//返回两个数中的最小值函数</span></span><br><span class="line">	<span class="keyword">return</span> a &lt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//定义一个函数指针pf</span></span><br><span class="line">	<span class="keyword">int</span> (*pf)(<span class="keyword">int</span>, <span class="keyword">int</span>);</span><br><span class="line">	<span class="comment">//让pf指向min函数</span></span><br><span class="line">	pf = <span class="built_in">min</span>;</span><br><span class="line">	<span class="comment">//获取min函数的地址</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"min=  %p\n"</span>, &amp;<span class="built_in">min</span>);</span><br><span class="line">	<span class="comment">//查看函数指针pf内的地址</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"pf=   %p\n"</span>, pf);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行上面的代码，我们得到下面的结果</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">min&#x3D;  001C1221</span><br><span class="line">pf&#x3D;   001C1221</span><br></pre></td></tr></table></figure>
+<p>从结果我们可以明显的看出<code>pf</code>函数中存放的确实是<code>min</code>的地址。</p>
+<h1 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h1><p>在<strong>C语言</strong>中，有一个常用的快速排序库函数，能够对任意的数组以任意规则进行排序，其形式如下：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">qsort</span><span class="params">(<span class="keyword">void</span> *base, <span class="keyword">size_t</span> nitems, <span class="keyword">size_t</span> <span class="built_in">size</span>, </span></span></span><br><span class="line"><span class="function"><span class="params"><span class="keyword">int</span> (*compar)(<span class="keyword">const</span> <span class="keyword">void</span> *, <span class="keyword">const</span> <span class="keyword">void</span>*))</span></span></span><br></pre></td></tr></table></figure>
+
+<p>其中，</p>
+<p><code>base</code>为将要排序的数组的首地址</p>
+<p><code>nitems</code>为由<code>base</code>指向的数组的元素个数</p>
+<p><code>size</code>为该数组中每个元素的大小</p>
+<p><code>compar</code>为排序规则函数，其形式如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int 函数名(const void *elem1,const void *elem2);</span><br></pre></td></tr></table></figure>
+
+<p>该函数的返回值有三种情况：</p>
+<p>1.返回<code>负整数</code>：<code>*elem1</code>排在<code>*elem2</code>前面</p>
+<p>2.返回<code>0</code>： <code>*elem1</code>和<code>*elem2</code>谁在前面都可以</p>
+<p>3.返回<code>正整数</code>：<code>*elem1</code>排在<code>*elem2</code>后面</p>
+<p>下面我们来考察一个实例</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">myCompar</span><span class="params">(<span class="keyword">const</span> <span class="keyword">void</span>* a, <span class="keyword">const</span> <span class="keyword">void</span>* b)</span></span>&#123;<span class="comment">//排序规则函数</span></span><br><span class="line">    <span class="comment">//由于*a和*b是两个无类型的地址，</span></span><br><span class="line">    <span class="comment">//在使用之前我们先将其强制类型转换为int*，</span></span><br><span class="line">    <span class="comment">//然后再取其值进行比较</span></span><br><span class="line">    <span class="keyword">return</span> (*(<span class="keyword">int</span>*)a - *(<span class="keyword">int</span>*)b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> values[] = &#123; <span class="number">23</span>, <span class="number">6</span>, <span class="number">100</span>, <span class="number">2</span>, <span class="number">25</span> &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"排序之前的列表：\n"</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d "</span>, values[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//调用qsort进行排序</span></span><br><span class="line">    qsort(values, <span class="number">5</span>, <span class="keyword">sizeof</span>(<span class="keyword">int</span>), myCompar);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n排序之后的列表：\n"</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d "</span>, values[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行以上程序，我们得到下面所示结果：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">排序之前的列表：</span><br><span class="line">23 6 100 2 25</span><br><span class="line">排序之后的列表：</span><br><span class="line">2 6 23 25 100</span><br></pre></td></tr></table></figure>
+<p>经过qsort调用mycompar函数后成功升序地将数组进行了排序</p>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>函数指针</tag>
+        <tag>c语言函数指针</tag>
+        <tag>c++函数指针</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C/C++位运算</title>
     <url>/2020/02/26/C++/C-C-%E4%BD%8D%E8%BF%90%E7%AE%97/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>数据在计算机中是按二进制的形式存在的，通过普通的四则运算我们能对这些数据做一些简单的运算。但当我们想修改某个数据中的某一位，我们就需要用到位运算。</p>
@@ -58,108 +111,6 @@
         <tag>按位或</tag>
         <tag>按位异或</tag>
         <tag>移位运算符</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C/C++函数指针</title>
-    <url>/2020/02/25/C++/C-C-%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>指针</strong>是用来在程序中指向某一个变量的，实际上指针内存放的就是一个变量的相对内存地址（实际的物理地址还要加上一个偏移值）。</p>
-<p>在程序运行期间，每个函数都会占用一段连续的内存空间，而函数名就是该函数所占内存空间的起始地址（入口地址），我们可以将一个函数的起始地址赋值给一个指针，进而通过该指针来调用函数，这就是函数指针。</p>
-<p>函数指针可以像一般函数一样，用于调用函数、传递参数。在如 <code>C</code>这样的语言中，通过提供一个简单的选取、执行函数的方法，函数指针可以简化代码。函数指针只能指向具有特定特征的函数。因而所有被同一指针运用的函数必须具有<strong>相同的参数和返回类型</strong>。</p>
-<p>C语言标准规定，函数指示符（function designator，即函数名字）既不是左值，也不是右值。但C++语言标准规定函数指示符属于左值，因此函数指示符转换为函数指针的右值属于左值转换为右值。</p>
-<p>除了作为<code>sizeof</code>或取地址&amp;的操作数，函数指示符在表达式中自动转换为函数指针类型右值。因此通过一个函数指针调用所指的函数，不需要在函数指针前加取值或反引用（*）运算符。</p>
-<h1 id="定义形式"><a href="#定义形式" class="headerlink" title="定义形式"></a>定义形式</h1><p>对于一个函数指针，我们采用如下的定义方式：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">返回值 (* 指针变量名)(参数类型1，参数类型2，······)</span><br></pre></td></tr></table></figure>
-<p>例如：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> (* pf)(<span class="keyword">int</span>,<span class="keyword">int</span>);</span><br></pre></td></tr></table></figure>
-<p>其中，</p>
-<p><strong>返回值</strong>：函数返回的数据类型</p>
-<p><strong>指针变量名</strong>:函数指针变量名</p>
-<p><strong>参数类型</strong>：函数的参数类型</p>
-<h1 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">min</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;<span class="comment">//返回两个数中的最小值函数</span></span><br><span class="line">	<span class="keyword">return</span> a &lt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//定义一个函数指针pf</span></span><br><span class="line">	<span class="keyword">int</span> (*pf)(<span class="keyword">int</span>, <span class="keyword">int</span>);</span><br><span class="line">	<span class="comment">//让pf指向min函数</span></span><br><span class="line">	pf = <span class="built_in">min</span>;</span><br><span class="line">	<span class="comment">//通过函数名调用min函数</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"min=%d\n"</span>, <span class="built_in">min</span>(<span class="number">10</span>, <span class="number">20</span>));</span><br><span class="line">	<span class="comment">//通过函数指针pf调用min函数</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"pf=%d\n"</span>, pf(<span class="number">10</span>, <span class="number">20</span>));</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>通过运行上面的程序，我们得到了以下结果</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">min=10</span><br><span class="line">pf=10</span><br></pre></td></tr></table></figure>
-<p>从结果中我们可以看出两种调用方式得到了一样的结果。接下来我们进而修改一下上面的代码</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">min</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;<span class="comment">//返回两个数中的最小值函数</span></span><br><span class="line">	<span class="keyword">return</span> a &lt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//定义一个函数指针pf</span></span><br><span class="line">	<span class="keyword">int</span> (*pf)(<span class="keyword">int</span>, <span class="keyword">int</span>);</span><br><span class="line">	<span class="comment">//让pf指向min函数</span></span><br><span class="line">	pf = <span class="built_in">min</span>;</span><br><span class="line">	<span class="comment">//获取min函数的地址</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"min=  %p\n"</span>, &amp;<span class="built_in">min</span>);</span><br><span class="line">	<span class="comment">//查看函数指针pf内的地址</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"pf=   %p\n"</span>, pf);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行上面的代码，我们得到下面的结果</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">min&#x3D;  001C1221</span><br><span class="line">pf&#x3D;   001C1221</span><br></pre></td></tr></table></figure>
-<p>从结果我们可以明显的看出<code>pf</code>函数中存放的确实是<code>min</code>的地址。</p>
-<h1 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h1><p>在<strong>C语言</strong>中，有一个常用的快速排序库函数，能够对任意的数组以任意规则进行排序，其形式如下：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">qsort</span><span class="params">(<span class="keyword">void</span> *base, <span class="keyword">size_t</span> nitems, <span class="keyword">size_t</span> <span class="built_in">size</span>, </span></span></span><br><span class="line"><span class="function"><span class="params"><span class="keyword">int</span> (*compar)(<span class="keyword">const</span> <span class="keyword">void</span> *, <span class="keyword">const</span> <span class="keyword">void</span>*))</span></span></span><br></pre></td></tr></table></figure>
-
-<p>其中，</p>
-<p><code>base</code>为将要排序的数组的首地址</p>
-<p><code>nitems</code>为由<code>base</code>指向的数组的元素个数</p>
-<p><code>size</code>为该数组中每个元素的大小</p>
-<p><code>compar</code>为排序规则函数，其形式如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int 函数名(const void *elem1,const void *elem2);</span><br></pre></td></tr></table></figure>
-
-<p>该函数的返回值有三种情况：</p>
-<p>1.返回<code>负整数</code>：<code>*elem1</code>排在<code>*elem2</code>前面</p>
-<p>2.返回<code>0</code>： <code>*elem1</code>和<code>*elem2</code>谁在前面都可以</p>
-<p>3.返回<code>正整数</code>：<code>*elem1</code>排在<code>*elem2</code>后面</p>
-<p>下面我们来考察一个实例</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">myCompar</span><span class="params">(<span class="keyword">const</span> <span class="keyword">void</span>* a, <span class="keyword">const</span> <span class="keyword">void</span>* b)</span></span>&#123;<span class="comment">//排序规则函数</span></span><br><span class="line">    <span class="comment">//由于*a和*b是两个无类型的地址，</span></span><br><span class="line">    <span class="comment">//在使用之前我们先将其强制类型转换为int*，</span></span><br><span class="line">    <span class="comment">//然后再取其值进行比较</span></span><br><span class="line">    <span class="keyword">return</span> (*(<span class="keyword">int</span>*)a - *(<span class="keyword">int</span>*)b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> values[] = &#123; <span class="number">23</span>, <span class="number">6</span>, <span class="number">100</span>, <span class="number">2</span>, <span class="number">25</span> &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"排序之前的列表：\n"</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d "</span>, values[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//调用qsort进行排序</span></span><br><span class="line">    qsort(values, <span class="number">5</span>, <span class="keyword">sizeof</span>(<span class="keyword">int</span>), myCompar);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n排序之后的列表：\n"</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d "</span>, values[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行以上程序，我们得到下面所示结果：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">排序之前的列表：</span><br><span class="line">23 6 100 2 25</span><br><span class="line">排序之后的列表：</span><br><span class="line">2 6 23 25 100</span><br></pre></td></tr></table></figure>
-<p>经过qsort调用mycompar函数后成功升序地将数组进行了排序</p>
-]]></content>
-      <categories>
-        <category>C++</category>
-      </categories>
-      <tags>
-        <tag>函数指针</tag>
-        <tag>c语言函数指针</tag>
-        <tag>c++函数指针</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C++动态内存分类(new/delete)</title>
-    <url>/2020/05/31/C++/C-%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E7%B1%BB-new-delete/</url>
-    <content><![CDATA[<h1 id="使用new运算符分配一个变量"><a href="#使用new运算符分配一个变量" class="headerlink" title="使用new运算符分配一个变量"></a>使用<code>new</code>运算符分配一个变量</h1><p>格式：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">P = <span class="keyword">new</span> T;</span><br></pre></td></tr></table></figure>
-
-<p>其中<code>T</code>是任意类型名，<code>P</code>是类型为<code>T*</code>的指针。</p>
-<p>使用该表达式动态分配出一片大小为<code>sizeof(T)</code>字节的内存空间。并且将该内存空间的其实地址赋值给<code>P</code>。</p>
-<p>例如：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line">	*p = <span class="number">5</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在上述程序中，为<code>p</code>动态分配了<code>sizeof(int)</code>大小的空间，并将起始地址赋值给了<code>p</code>。</p>
-<h1 id="使用new运算符分配一个数组"><a href="#使用new运算符分配一个数组" class="headerlink" title="使用new运算符分配一个数组"></a>使用<code>new</code>运算符分配一个数组</h1><p>格式：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">P = <span class="keyword">new</span> T[N];</span><br></pre></td></tr></table></figure>
-
-<p>其中<code>T</code>是任意类型名，<code>P</code>是类型为<code>T*</code>的指针，<code>N</code>是要分配的数组元素的个数，<code>N</code>可以是表达式。</p>
-<p>使用该表达式动态分配出<code>N*sizeof(T)</code>字节的内存空间，并将起始地址渎职给<code>P</code>。</p>
-<p>例如：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line">	p[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	p[<span class="number">9</span>] = <span class="number">10</span>;</span><br><span class="line">	p[<span class="number">10</span>] = <span class="number">10</span>;<span class="comment">//越界</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在上述程序中，为<code>p</code>动态分配了<code>10 * sizeof(int)</code>大小的空间，并将起始地址赋值给了<code>p</code>。</p>
-<p>为数组分配完空间后就可以像访问数组一样访问该指针。但是需要注意的是在执行<code>p[10] = 10;</code>时会导致数组越界，编译器又可能不会报错。</p>
-<h1 id="使用delete运算符释放动态分配的内存"><a href="#使用delete运算符释放动态分配的内存" class="headerlink" title="使用delete运算符释放动态分配的内存"></a>使用<code>delete</code>运算符释放动态分配的内存</h1><p>使用<code>new</code>运算符动态分配的内存空间，一定要使用<code>delete</code>运算符进行释放。</p>
-<h2 id="delete变量"><a href="#delete变量" class="headerlink" title="delete变量"></a><code>delete</code>变量</h2><p>格式：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">delete</span> 指针;<span class="comment">//该指针必须指向new出来的空间</span></span><br></pre></td></tr></table></figure>
-
-<p>例如：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line">	<span class="keyword">delete</span> p;</span><br><span class="line">	<span class="keyword">delete</span> p;<span class="comment">//报错，只能delete一次</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在使用<code>delete</code>时只能对同一片空间使用一次<code>delete</code>，否则将会报错，如上程序所示。</p>
-<h2 id="delete数组"><a href="#delete数组" class="headerlink" title="delete数组"></a><code>delete</code>数组</h2><p>格式：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">delete</span> []指针;<span class="comment">//该指针必须指向new出来的空间</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>使用<code>delete</code>释放动态分配的数组时，要添加<code>[]</code>。</strong></p>
-<p>例如：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line">	<span class="keyword">delete</span> []p;</span><br><span class="line">	<span class="keyword">delete</span> p;<span class="comment">//错误,只会释放第一个元素的空间</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>使用<code>delete []p;</code>来正确释放动态分配的内存空间，指针前有<code>[]</code>符；当使用<code>delete p;</code>时，将导致该数组的首元素空间被释放，而其余空间未被释放，形成“野指针”。</p>
-]]></content>
-      <categories>
-        <category>C++</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>内存分配</tag>
-        <tag>new关键字</tag>
-        <tag>delete关键字</tag>
       </tags>
   </entry>
   <entry>
@@ -257,28 +208,52 @@
       </tags>
   </entry>
   <entry>
-    <title>c++内联函数inline</title>
-    <url>/2020/06/01/C++/c-%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0inline/</url>
-    <content><![CDATA[<h1 id="inline概念"><a href="#inline概念" class="headerlink" title="inline概念"></a><code>inline</code>概念</h1><p>在<code>c++</code>中，函数调用是会产生额外的时间开销的，如果函数本身代码很短，执行很快，并且该函数被反复调用。相比之下调用函数所产生的开销就会很大，甚至超过执行代码所产生的开销。</p>
-<p>为了减少函数调用的开销，<code>c++</code>引入了<code>内联函数</code>的机制。编译器在处理内联函数的调用语句时，直接将整个内联函数代码插入到调用语句处，从而减少函数调用产生的开销。</p>
-<h1 id="inline定义"><a href="#inline定义" class="headerlink" title="inline定义"></a><code>inline</code>定义</h1><p><code>inline</code>关键字的使用比较简单，只需要在函数的定义头部加上<code>inline</code>关键字即可，如下所示：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> 返回值类型 函数名(参数)&#123;</span><br><span class="line">	函数体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <title>C++动态内存分类(new/delete)</title>
+    <url>/2020/05/31/C++/C-%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E7%B1%BB-new-delete/</url>
+    <content><![CDATA[<h1 id="使用new运算符分配一个变量"><a href="#使用new运算符分配一个变量" class="headerlink" title="使用new运算符分配一个变量"></a>使用<code>new</code>运算符分配一个变量</h1><p>格式：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">P = <span class="keyword">new</span> T;</span><br></pre></td></tr></table></figure>
 
-<p>内联函数的具体使用如下代码所示：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//返回两数中的最大值</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="built_in">max</span>(<span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中<code>T</code>是任意类型名，<code>P</code>是类型为<code>T*</code>的指针。</p>
+<p>使用该表达式动态分配出一片大小为<code>sizeof(T)</code>字节的内存空间。并且将该内存空间的其实地址赋值给<code>P</code>。</p>
+<p>例如：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line">	*p = <span class="number">5</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>如上代码所示，定义一个内联函数<code>max</code>，该函数返回两个数中的最大值，只需要在函数定义时加入<code>inline</code>关键字即可，在对<code>max</code>函数进行调用时，编译器直接将<code>max</code>的函数代码嵌入到调用的地方，以此来节省函数调用产生的额外开销。</p>
-<h1 id="inline函数注意事项"><a href="#inline函数注意事项" class="headerlink" title="inline函数注意事项"></a><code>inline</code>函数注意事项</h1><p>通过上面的例子，我们了解了<code>inline</code>关键字的基本使用方法，内联函数虽然节省了函数调用产生的开销，但并不是所有的地方都能使用内联函数定义。</p>
-<p>当函数代码过长时，使用内联函数会使得程序变得臃肿。此时就不应该使用内联函数。</p>
-<p>另外，当函数中包含循环控制语句时，也不应该使用内联函数。</p>
+<p>在上述程序中，为<code>p</code>动态分配了<code>sizeof(int)</code>大小的空间，并将起始地址赋值给了<code>p</code>。</p>
+<h1 id="使用new运算符分配一个数组"><a href="#使用new运算符分配一个数组" class="headerlink" title="使用new运算符分配一个数组"></a>使用<code>new</code>运算符分配一个数组</h1><p>格式：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">P = <span class="keyword">new</span> T[N];</span><br></pre></td></tr></table></figure>
+
+<p>其中<code>T</code>是任意类型名，<code>P</code>是类型为<code>T*</code>的指针，<code>N</code>是要分配的数组元素的个数，<code>N</code>可以是表达式。</p>
+<p>使用该表达式动态分配出<code>N*sizeof(T)</code>字节的内存空间，并将起始地址渎职给<code>P</code>。</p>
+<p>例如：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line">	p[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	p[<span class="number">9</span>] = <span class="number">10</span>;</span><br><span class="line">	p[<span class="number">10</span>] = <span class="number">10</span>;<span class="comment">//越界</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上述程序中，为<code>p</code>动态分配了<code>10 * sizeof(int)</code>大小的空间，并将起始地址赋值给了<code>p</code>。</p>
+<p>为数组分配完空间后就可以像访问数组一样访问该指针。但是需要注意的是在执行<code>p[10] = 10;</code>时会导致数组越界，编译器又可能不会报错。</p>
+<h1 id="使用delete运算符释放动态分配的内存"><a href="#使用delete运算符释放动态分配的内存" class="headerlink" title="使用delete运算符释放动态分配的内存"></a>使用<code>delete</code>运算符释放动态分配的内存</h1><p>使用<code>new</code>运算符动态分配的内存空间，一定要使用<code>delete</code>运算符进行释放。</p>
+<h2 id="delete变量"><a href="#delete变量" class="headerlink" title="delete变量"></a><code>delete</code>变量</h2><p>格式：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">delete</span> 指针;<span class="comment">//该指针必须指向new出来的空间</span></span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line">	<span class="keyword">delete</span> p;</span><br><span class="line">	<span class="keyword">delete</span> p;<span class="comment">//报错，只能delete一次</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在使用<code>delete</code>时只能对同一片空间使用一次<code>delete</code>，否则将会报错，如上程序所示。</p>
+<h2 id="delete数组"><a href="#delete数组" class="headerlink" title="delete数组"></a><code>delete</code>数组</h2><p>格式：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">delete</span> []指针;<span class="comment">//该指针必须指向new出来的空间</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>使用<code>delete</code>释放动态分配的数组时，要添加<code>[]</code>。</strong></p>
+<p>例如：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line">	<span class="keyword">delete</span> []p;</span><br><span class="line">	<span class="keyword">delete</span> p;<span class="comment">//错误,只会释放第一个元素的空间</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>delete []p;</code>来正确释放动态分配的内存空间，指针前有<code>[]</code>符；当使用<code>delete p;</code>时，将导致该数组的首元素空间被释放，而其余空间未被释放，形成“野指针”。</p>
 ]]></content>
       <categories>
         <category>C++</category>
       </categories>
       <tags>
         <tag>c++</tag>
-        <tag>inline函数</tag>
-        <tag>内联函数</tag>
+        <tag>内存分配</tag>
+        <tag>new关键字</tag>
+        <tag>delete关键字</tag>
       </tags>
   </entry>
   <entry>
@@ -342,78 +317,6 @@
       </tags>
   </entry>
   <entry>
-    <title>c++函数的缺省参数</title>
-    <url>/2020/06/01/C++/c-%E5%87%BD%E6%95%B0%E7%9A%84%E7%BC%BA%E7%9C%81%E5%8F%82%E6%95%B0/</url>
-    <content><![CDATA[<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>c++中，定义函数的时候可以让<strong>最右边的连续若干个</strong>参数有缺省值，在调用函数的时候，如果不写相应位置的参数，则调用的参数就为缺省值。</p>
-<p>例如：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b = <span class="number">1</span>, <span class="keyword">int</span> c = <span class="number">2</span>)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"a="</span> &lt;&lt; a &lt;&lt; <span class="string">"\tb="</span> &lt;&lt; b &lt;&lt; <span class="string">"\tc="</span> &lt;&lt; c &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在调用时，如果参数<code>b</code>和<code>c</code>的参数没有给出，则默认为缺省值。</p>
-<p>函数缺省参数的作用在于提高程序的<strong>可扩充性</strong>。比如某个以及写好的函数需要添加新的参数，而原先调用函数的的那些语句未必需要新增加的参数，为了避免对原来所有调用该函数的地方进行修改，就可以使用函数缺省参数了。</p>
-<h1 id="全缺省"><a href="#全缺省" class="headerlink" title="全缺省"></a>全缺省</h1><p>顾名思义，全缺省就是参数的所有值都为缺省参数，如下代码所示：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> a=<span class="number">1</span>, <span class="keyword">int</span> b = <span class="number">2</span>, <span class="keyword">int</span> c = <span class="number">3</span>)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"a="</span> &lt;&lt; a &lt;&lt; <span class="string">"\tb="</span> &lt;&lt; b &lt;&lt; <span class="string">"\tc="</span> &lt;&lt; c &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	fun();</span><br><span class="line">    fun(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>执行该程序，输出：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">a=1     b=2     c=3</span><br><span class="line">a=4     b=5     c=6</span><br></pre></td></tr></table></figure>
-
-<p>需要注意的是，我们在调用函数时，只能缺省<strong>最右边的若干个参数</strong>，形如：<code>fun(4, , 6);</code>这种调用是错误的调用方法。</p>
-<h1 id="半缺省"><a href="#半缺省" class="headerlink" title="半缺省"></a>半缺省</h1><p>半缺省指的是参数中有一部分为缺省参数，有一部分为非缺省参数。</p>
-<p>值得注意的是，缺省参数只能为<strong>最右边的若干个</strong>。</p>
-<p>例如：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b = <span class="number">2</span>, <span class="keyword">int</span> c = <span class="number">3</span>)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"a="</span> &lt;&lt; a &lt;&lt; <span class="string">"\tb="</span> &lt;&lt; b &lt;&lt; <span class="string">"\tc="</span> &lt;&lt; c &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	fun(<span class="number">1</span>);</span><br><span class="line">	fun(<span class="number">1</span>, <span class="number">4</span>);</span><br><span class="line">	fun(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>执行上面程序，输出如下：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">a=1     b=2     c=3</span><br><span class="line">a=1     b=4     c=3</span><br><span class="line">a=4     b=5     c=6</span><br></pre></td></tr></table></figure>
-
-<p>形如：<code>void fun(int a=1, int b, int c = 3) { }</code>这样的语句是错误的用法。</p>
-<p>形如：<code>fun(1, ,3)</code>这种调用也是错误的。</p>
-<p>总之记住，缺省参数只能为最右边的若干个参数。</p>
-]]></content>
-      <categories>
-        <category>c++</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>参数缺省</tag>
-        <tag>函数参数缺省</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>c++函数重载</title>
-    <url>/2020/06/01/C++/c-%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD/</url>
-    <content><![CDATA[<h1 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h1><p>假设如下函数来比较两个<code>int</code>型数据的大小</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>当我们需要再增加一个比较两个<code>double</code>或<code>char</code>类型的数据时，我们的函数名会变得臃肿，如下所示：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max_int</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max_double</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max_char</span><span class="params">(<span class="keyword">char</span> a, <span class="keyword">char</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>当我们需要比较更多类型数据的大小时，我们的<code>max_xxx</code>函数会变得越来越多。在进行调用时会越来越麻烦。</p>
-<h1 id="函数重载定义"><a href="#函数重载定义" class="headerlink" title="函数重载定义"></a>函数重载定义</h1><p>函数重载指的是一个或多个函数，名字相同，然而参数个数以及参数类型不同，我们就称之为函数重载。</p>
-<p>将上面的代码改写为如下形势：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">char</span> a, <span class="keyword">char</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这是我们在调用函数时就不需要用函数名去区分该调用哪个函数，此时程序会根据我们的参数个数以及参数类型去选择调用的函数。</p>
-<p>如下函数调用代码所示：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;<span class="comment">// 1</span></span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span> </span>&#123;<span class="comment">// 2</span></span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">char</span> a, <span class="keyword">char</span> b)</span> </span>&#123;<span class="comment">// 3</span></span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">max</span>(<span class="number">2</span>, <span class="number">3</span>);<span class="comment">//调用 1</span></span><br><span class="line">	<span class="built_in">max</span>(<span class="string">'a'</span>, <span class="string">'b'</span>);<span class="comment">//调用 3</span></span><br><span class="line">	<span class="built_in">max</span>(<span class="number">2.3</span>, <span class="number">3.2</span>);<span class="comment">//调用 2</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如上程序，在执行<code>max(2, 3);</code>时，参数为两个<code>int</code>类型的，所以自动匹配到调用第1个<code>max</code>函数。其他两次调用类似。</p>
-<p>函数重载使得函数的命名变得简单，调用过程也变得简洁。</p>
-<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>考察如下函数调用语句：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">max</span>(<span class="number">2</span>, <span class="number">3.1</span>);</span><br></pre></td></tr></table></figure>
-
-<p>当我们进行上述的函数调用时，就会产生二义性。</p>
-<p>此时编译器不知道是将<code>3.1</code>转换为<code>int</code>去调用<code>max(int a, int b)</code> ，还是将<code>2</code>转化为<code>double</code>去调用 <code>max(double a, double b)</code>。</p>
-<p>因此，在调用重载函数时要注意去避免产生二义性。</p>
-]]></content>
-      <categories>
-        <category>C++</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>函数重载</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>hexo博客next主题插入图片问题</title>
     <url>/2019/07/12/hexo%E5%8D%9A%E5%AE%A2/%E8%A7%A3%E5%86%B3hexo%E5%8D%9A%E5%AE%A2next%E4%B8%BB%E9%A2%98%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E6%8F%8F%E8%BF%B0/</url>
     <content><![CDATA[<h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>最近在使用hexo博客next主题的时候发现kramed渲染器在处理插入的图片时不显示标题描述，仅仅显示图片。例如我通过<code>![描述](url连接)</code>的形式插入一张图片，kramed渲染器将其渲染为下面这样：</p>
@@ -464,6 +367,148 @@
         <tag>图片问题</tag>
         <tag>markdown插入图片</tag>
         <tag>hexo优化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>c++函数的缺省参数</title>
+    <url>/2020/06/01/C++/c-%E5%87%BD%E6%95%B0%E7%9A%84%E7%BC%BA%E7%9C%81%E5%8F%82%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>c++中，定义函数的时候可以让<strong>最右边的连续若干个</strong>参数有缺省值，在调用函数的时候，如果不写相应位置的参数，则调用的参数就为缺省值。</p>
+<p>例如：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b = <span class="number">1</span>, <span class="keyword">int</span> c = <span class="number">2</span>)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"a="</span> &lt;&lt; a &lt;&lt; <span class="string">"\tb="</span> &lt;&lt; b &lt;&lt; <span class="string">"\tc="</span> &lt;&lt; c &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在调用时，如果参数<code>b</code>和<code>c</code>的参数没有给出，则默认为缺省值。</p>
+<p>函数缺省参数的作用在于提高程序的<strong>可扩充性</strong>。比如某个以及写好的函数需要添加新的参数，而原先调用函数的的那些语句未必需要新增加的参数，为了避免对原来所有调用该函数的地方进行修改，就可以使用函数缺省参数了。</p>
+<h1 id="全缺省"><a href="#全缺省" class="headerlink" title="全缺省"></a>全缺省</h1><p>顾名思义，全缺省就是参数的所有值都为缺省参数，如下代码所示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> a=<span class="number">1</span>, <span class="keyword">int</span> b = <span class="number">2</span>, <span class="keyword">int</span> c = <span class="number">3</span>)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"a="</span> &lt;&lt; a &lt;&lt; <span class="string">"\tb="</span> &lt;&lt; b &lt;&lt; <span class="string">"\tc="</span> &lt;&lt; c &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	fun();</span><br><span class="line">    fun(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行该程序，输出：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">a=1     b=2     c=3</span><br><span class="line">a=4     b=5     c=6</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，我们在调用函数时，只能缺省<strong>最右边的若干个参数</strong>，形如：<code>fun(4, , 6);</code>这种调用是错误的调用方法。</p>
+<h1 id="半缺省"><a href="#半缺省" class="headerlink" title="半缺省"></a>半缺省</h1><p>半缺省指的是参数中有一部分为缺省参数，有一部分为非缺省参数。</p>
+<p>值得注意的是，缺省参数只能为<strong>最右边的若干个</strong>。</p>
+<p>例如：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b = <span class="number">2</span>, <span class="keyword">int</span> c = <span class="number">3</span>)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"a="</span> &lt;&lt; a &lt;&lt; <span class="string">"\tb="</span> &lt;&lt; b &lt;&lt; <span class="string">"\tc="</span> &lt;&lt; c &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	fun(<span class="number">1</span>);</span><br><span class="line">	fun(<span class="number">1</span>, <span class="number">4</span>);</span><br><span class="line">	fun(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行上面程序，输出如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">a=1     b=2     c=3</span><br><span class="line">a=1     b=4     c=3</span><br><span class="line">a=4     b=5     c=6</span><br></pre></td></tr></table></figure>
+
+<p>形如：<code>void fun(int a=1, int b, int c = 3) { }</code>这样的语句是错误的用法。</p>
+<p>形如：<code>fun(1, ,3)</code>这种调用也是错误的。</p>
+<p>总之记住，缺省参数只能为最右边的若干个参数。</p>
+]]></content>
+      <categories>
+        <category>c++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>参数缺省</tag>
+        <tag>函数参数缺省</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>c++内联函数inline</title>
+    <url>/2020/06/01/C++/c-%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0inline/</url>
+    <content><![CDATA[<h1 id="inline概念"><a href="#inline概念" class="headerlink" title="inline概念"></a><code>inline</code>概念</h1><p>在<code>c++</code>中，函数调用是会产生额外的时间开销的，如果函数本身代码很短，执行很快，并且该函数被反复调用。相比之下调用函数所产生的开销就会很大，甚至超过执行代码所产生的开销。</p>
+<p>为了减少函数调用的开销，<code>c++</code>引入了<code>内联函数</code>的机制。编译器在处理内联函数的调用语句时，直接将整个内联函数代码插入到调用语句处，从而减少函数调用产生的开销。</p>
+<h1 id="inline定义"><a href="#inline定义" class="headerlink" title="inline定义"></a><code>inline</code>定义</h1><p><code>inline</code>关键字的使用比较简单，只需要在函数的定义头部加上<code>inline</code>关键字即可，如下所示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> 返回值类型 函数名(参数)&#123;</span><br><span class="line">	函数体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>内联函数的具体使用如下代码所示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//返回两数中的最大值</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="built_in">max</span>(<span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如上代码所示，定义一个内联函数<code>max</code>，该函数返回两个数中的最大值，只需要在函数定义时加入<code>inline</code>关键字即可，在对<code>max</code>函数进行调用时，编译器直接将<code>max</code>的函数代码嵌入到调用的地方，以此来节省函数调用产生的额外开销。</p>
+<h1 id="inline函数注意事项"><a href="#inline函数注意事项" class="headerlink" title="inline函数注意事项"></a><code>inline</code>函数注意事项</h1><p>通过上面的例子，我们了解了<code>inline</code>关键字的基本使用方法，内联函数虽然节省了函数调用产生的开销，但并不是所有的地方都能使用内联函数定义。</p>
+<p>当函数代码过长时，使用内联函数会使得程序变得臃肿。此时就不应该使用内联函数。</p>
+<p>另外，当函数中包含循环控制语句时，也不应该使用内联函数。</p>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>inline函数</tag>
+        <tag>内联函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>c++函数重载</title>
+    <url>/2020/06/01/C++/c-%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD/</url>
+    <content><![CDATA[<h1 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h1><p>假设如下函数来比较两个<code>int</code>型数据的大小</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当我们需要再增加一个比较两个<code>double</code>或<code>char</code>类型的数据时，我们的函数名会变得臃肿，如下所示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max_int</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max_double</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max_char</span><span class="params">(<span class="keyword">char</span> a, <span class="keyword">char</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当我们需要比较更多类型数据的大小时，我们的<code>max_xxx</code>函数会变得越来越多。在进行调用时会越来越麻烦。</p>
+<h1 id="函数重载定义"><a href="#函数重载定义" class="headerlink" title="函数重载定义"></a>函数重载定义</h1><p>函数重载指的是一个或多个函数，名字相同，然而参数个数以及参数类型不同，我们就称之为函数重载。</p>
+<p>将上面的代码改写为如下形势：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">char</span> a, <span class="keyword">char</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是我们在调用函数时就不需要用函数名去区分该调用哪个函数，此时程序会根据我们的参数个数以及参数类型去选择调用的函数。</p>
+<p>如下函数调用代码所示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;<span class="comment">// 1</span></span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span> </span>&#123;<span class="comment">// 2</span></span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">char</span> a, <span class="keyword">char</span> b)</span> </span>&#123;<span class="comment">// 3</span></span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">max</span>(<span class="number">2</span>, <span class="number">3</span>);<span class="comment">//调用 1</span></span><br><span class="line">	<span class="built_in">max</span>(<span class="string">'a'</span>, <span class="string">'b'</span>);<span class="comment">//调用 3</span></span><br><span class="line">	<span class="built_in">max</span>(<span class="number">2.3</span>, <span class="number">3.2</span>);<span class="comment">//调用 2</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如上程序，在执行<code>max(2, 3);</code>时，参数为两个<code>int</code>类型的，所以自动匹配到调用第1个<code>max</code>函数。其他两次调用类似。</p>
+<p>函数重载使得函数的命名变得简单，调用过程也变得简洁。</p>
+<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>考察如下函数调用语句：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">max</span>(<span class="number">2</span>, <span class="number">3.1</span>);</span><br></pre></td></tr></table></figure>
+
+<p>当我们进行上述的函数调用时，就会产生二义性。</p>
+<p>此时编译器不知道是将<code>3.1</code>转换为<code>int</code>去调用<code>max(int a, int b)</code> ，还是将<code>2</code>转化为<code>double</code>去调用 <code>max(double a, double b)</code>。</p>
+<p>因此，在调用重载函数时要注意去避免产生二义性。</p>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>函数重载</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数列极限的定义及应用</title>
+    <url>/2020/06/04/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%8A%E5%BA%94%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="数列极限的定义"><a href="#数列极限的定义" class="headerlink" title="数列极限的定义"></a>数列极限的定义</h1><h2 id="概念引入"><a href="#概念引入" class="headerlink" title="概念引入"></a>概念引入</h2><p>我们先来看一个数列$x_n=\frac{1}{n}$</p>
+<p>当$n=1$时，$x_1=\frac{1}{1}=1$</p>
+<p>当$n=2$时，$x_2=\frac{1}{2}$</p>
+<p>$\cdots$</p>
+<p>当$n=1000$时，$x_{1000}=\frac{1}{1000}$</p>
+<p>$\cdots$</p>
+<p>当$n\to\infty$时，数列$x_n$的值无限接近$0$。如下图所示：</p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200604165314460.png" alt="image-20200604165314460"></p>
+<p>此时我们就可以说$\underset{n\to \infty }{\text{lim}}\frac{1}{n}=0$。这样我们就可以给出数列极限的一个直观定义：<br>$$<br>\underset{n\to \infty }{\text{lim}}x_n=A\Longleftrightarrow n\to \infty ,x_n\rightarrow A<br>$$</p>
+<blockquote>
+<p>当$n$趋近于无穷大时，数列极限$x_n$<strong>无限接近</strong>于一个值$A$。</p>
+</blockquote>
+<p>用<strong>无限接近</strong>来描述这个定义是不严谨的，我们需要找到一种更加精确的语言来描述这段话。那么如何用数学语言来描述这一变化呢？？</p>
+<h2 id="数列极限定义"><a href="#数列极限定义" class="headerlink" title="数列极限定义"></a>数列极限定义</h2><h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><p>分析数列$a_n=\frac{(-1)^n }{n}\sin \left(\frac{1}{n}\right)$的变化趋势</p>
+<p>我们任意给定一个$\varepsilon&gt;0$，$\varepsilon$为一个任意小的值，总存在一个$N$(这里的$N$指数列的第$N$项)，当$n&gt;N$时，总存在$|a_n-0|&lt;\frac{1}{n}$，如下</p>
+<ul>
+<li>取$\varepsilon=\frac{1}{2}$，当$n&gt;2$，有$|a_n-0|&lt;\frac{1}{n}&lt;\varepsilon\Longrightarrow n&gt;N_1=2,|a_n-0|&lt;\frac{1}{2}$。</li>
+<li>取$\varepsilon=\frac{1}{2^2}$，当$n&gt;2^2$，有$|a_n-0|&lt;\frac{1}{n}&lt;\varepsilon\Longrightarrow n&gt;N_2=2^2,|a_n-0|&lt;\frac{1}{2^2}$。</li>
+<li>取$\varepsilon=\frac{1}{2^k}$，当$n&gt;2^k$，有$|a_n-0|&lt;\frac{1}{n}&lt;\varepsilon\Longrightarrow n&gt;N_k=2^k,|a_n-0|&lt;\frac{1}{2^k}$。</li>
+</ul>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>给定数列$\left{a_n \right}$，$a$为常数，如果对于任意的$\varepsilon&gt;0$，都存在一个自然数$N$，使得当$n&gt;N$时，成立<br>$$<br>|a_n-a|&lt;\varepsilon<br>$$<br>则称数列$\left{a_n \right}$以$a$为极限，记作$\underset{n\to \infty }{\text{lim}}a_n=a$</p>
+<p>如果该数列没有极限，则称该数列是<strong>发散</strong>的。</p>
+<p>需要注意</p>
+<ul>
+<li>定义中的$\varepsilon$刻画了$x_n$与$a$的逼近程度，定义中的$\varepsilon$可以限制$\varepsilon &lt; a$</li>
+<li>定义中的$N$和$\varepsilon$有关，仅要求存在，一般$\varepsilon$越小，$N$越大。</li>
+</ul>
+<h3 id="数学符号描述"><a href="#数学符号描述" class="headerlink" title="数学符号描述"></a>数学符号描述</h3><p>$$<br>\forall \varepsilon &gt; 0,\exist N(\varepsilon)\in N^*,\forall n&gt;N:|x_n-a|&lt;\varepsilon<br>$$</p>
+<p>其中“$\forall$”表示任意的，“$\exist$”表示存在，“$:$”表示满足</p>
+<h3 id="几何解释"><a href="#几何解释" class="headerlink" title="几何解释"></a>几何解释</h3><p>推论$\underset{n\to \infty }{\text{lim}}a_n=a\Longleftrightarrow$当$n&gt;N$时，所有的点$x_n$都落在$(a-\varepsilon,a+\varepsilon)$内，只有有限个(最多$N$个落在其外)。</p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200605001400184.png" alt="image-20200605001400184"></p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200605001429236.png" alt="image-20200605001429236"></p>
+]]></content>
+      <categories>
+        <category>数学分析</category>
+      </categories>
+      <tags>
+        <tag>数列极限</tag>
+        <tag>数列极限定义</tag>
+        <tag>数列极限应用</tag>
       </tags>
   </entry>
   <entry>
@@ -600,94 +645,6 @@
       </tags>
   </entry>
   <entry>
-    <title>WEB-UI管理面板Cockpit(轻量简单)安装与使用</title>
-    <url>/2019/12/28/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/6%E3%80%81WEB-UI%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BFCockpit(%E8%BD%BB%E9%87%8F%E7%AE%80%E5%8D%95)%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>在前面我们介绍了管理面板Webmin的安装与使用，这次我们来看Cockpit的安装与使用，Webmin与Cockoit都属于轻量级的管理面板，但是Cockpit的功能较Webmin有了更多的减少，提供了更多的图表可视化功能，对中文的支持也比Webmin要好得多。</p>
-<p>cockpit提供了几乎所有Linux发行版本的安装包，对各个Linux平台支持都很好，这在官方的宣传里可以看到。该软件为开源软件，并在官网提供了详细的开发者文档。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20141709.jpg" alt="cockpit"></p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>cockpit的官网提供了各平台的安装方法以及相关的的使用文档，并且在Ubuntu17.04以及之后的Ubuntu版本中加入了官方的软件源中，这意味这我们可以很容易地安装Cockpit。</p>
-<p>只需要在终端中执行以下命令即可安装</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt -y install cockpit</span><br></pre></td></tr></table></figure>
-<p>安装完成后没有给出任何地提示信息，我们只需要用浏览器打开<code>https://服务器IP:9090</code>即可打开监控界面，然后输入ubuntu的用户名密码就可以登录它。<br>（打开过程中浏览器可能会拦截该页面，允许访问即可）</p>
-<h1 id="功能介绍"><a href="#功能介绍" class="headerlink" title="功能介绍"></a>功能介绍</h1><p>在浏览器中打开<code>https://服务器IP:9090</code>后我们可以看到如下画面，输入用户名、密码登录即可。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20141314.jpg" alt="cockpit登录界面"></p>
-<p>登录成功后我们就进入道路cockpit的管理界面，在这里可以直观的看到NAS的运行状态，包括CPU使用率、内存使用率、硬盘使用率等。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20141354.jpg" alt="cockpit仪表盘"></p>
-<p>下面我们来看看cockpit中有那些功能。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97.jpg" alt="系统日志"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86.jpg" alt="存储管理"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86.jpg" alt="网络管理"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1.jpg" alt="系统服务"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E4%BB%AA%E8%A1%A8%E7%9B%98.jpg" alt="仪表盘"></p>
-<h1 id="cockpit使用"><a href="#cockpit使用" class="headerlink" title="cockpit使用"></a>cockpit使用</h1><p>在cockpit中我们可以很方便的管理各系统服务，下面将介绍一些基本的管理功能</p>
-<h2 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h2><p>在磁盘管理中，为我们提供了图形化创建RAID设备，可支持RAID0、1、4、5、6、10。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20143552.jpg" alt="创建RAID设备"></p>
-<p>可以图形化创建磁盘分区表，格式化磁盘。可支持GPT以及MBR分区方式。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20143743.jpg" alt="创建磁盘分区表"></p>
-<p>更改磁盘挂载点等</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144009.jpg" alt="磁盘挂载点"></p>
-<h2 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h2><p>可以添加绑定、添加网桥、划分vlan的网络操作。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%B7%BB%E5%8A%A0%E7%BB%91%E5%AE%9A.jpg" alt="添加绑定"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144216.jpg" alt="添加网桥"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144227.jpg" alt="VLAN划分"></p>
-<p>还可以进行ipv4、ipv6等设置，支持管理连接状态，实时日志查看等</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/ipv4.jpg" alt="IPV4设置"></p>
-<h2 id="系统服务"><a href="#系统服务" class="headerlink" title="系统服务"></a>系统服务</h2><p>支持查看相关系统服务进程，并支持启用、禁用相关进程。支持定时任务管理等</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144606.jpg" alt="系统服务管理"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144730.jpg" alt="定时任务"></p>
-<p>除此之外，还提供了一个终端的功能，可直接在网页中打开终端</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144908.jpg" alt="终端"></p>
-<h1 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h1><p>cockpit比webmin要精简很多，去除了很多感觉不要的东西，在我看来是最适合做NAS管理面板的软件，其使用起来也很方便，不需要很复杂的操作就可以管理系统相关服务。对各种数据监控提供了很好的图形可视化支持，能很好的查看系统使用状态</p>
-<h1 id="专栏目录"><a href="#专栏目录" class="headerlink" title="专栏目录"></a>专栏目录</h1>]]></content>
-      <categories>
-        <category>家庭NAS、HTPC服务器</category>
-      </categories>
-      <tags>
-        <tag>NAS系统</tag>
-        <tag>家庭影音</tag>
-        <tag>HTPC服务器</tag>
-        <tag>linux管理面板</tag>
-        <tag>Cockpit</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SSH工具Xshell的安装以及使用</title>
-    <url>/2019/12/26/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/4%E3%80%81SSH%E5%B7%A5%E5%85%B7Xshell%E7%9A%84%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>在原本的计划中并没有准备专门写一篇关于SSH远程连接的教程，但想了想，该专栏文章应该致力于让所有读者都能看懂，即使你是从未使用过Linux操作系统的小白。</p>
-<p>当然，本文仅介绍了XShell的试用，你也可以选择其他软件，这都一样，并不影响你的使用。</p>
-<p>如果你已经有相关的使用经验，那么你可以直接跳过本章，毕竟下面的内容会浪费你宝贵生命中的几分钟。</p>
-<p>就这样，请拥有，并享受。</p>
-<h1 id="下载Xshell"><a href="#下载Xshell" class="headerlink" title="下载Xshell"></a>下载Xshell</h1><p>首先到XShell的官网：<a href="https://www.netsarang.com/zh/xshell/" target="_blank" rel="noopener">点击这里</a>点击<strong>下载</strong>按钮，之后会跳转到一个信息填写页面，可以申请30天的免费试用。作为学校和家庭用户，点击右边的<a href="https://www.netsarang.com/zh/free-for-home-school/" target="_blank" rel="noopener"><strong>免费授权页面</strong></a>可以申请免费使用。</p>
-<p>填写完信息后下载链接会发送到你所填写的邮箱中，点击里面的下载链接即可下载。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20060647.jpg" alt="Xshell主页"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20060720.jpg" alt="信息填写"></p>
-<h1 id="使用Xshell"><a href="#使用Xshell" class="headerlink" title="使用Xshell"></a>使用Xshell</h1><p>下载完成安装后，打开软件可以看到下图所示的页面。<br>（我这里以及添加有很多连接，可以忽略）</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/Xshell%E5%90%AF%E5%8A%A8%E7%95%8C%E9%9D%A2.jpg" alt="XShell软件启动"></p>
-<p>然后点击对话框左上角添加按钮，在弹出的对话框<strong>名称</strong>处输入你想要的名称，<strong>主机</strong>一栏输入你在<strong>第一篇文章中</strong>所查看的主机<strong>IP</strong></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%B7%BB%E5%8A%A0%E4%B8%BB%E6%9C%BA.jpg" alt="IP输入"></p>
-<p>然后点击界面左边的<strong>用户身份验证</strong>，进入后输入<strong>用户名</strong>和<strong>密码</strong>，该用户名和密码为你在安装Ubuntu时设置的用户名以及密码。</p>
-<p>然后点击连接，中途会跳出是否保存用户名密码，自己根据情况选择；在跳出密钥接收保存询问框的时候选择接收并保存。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81.jpg" alt="用户名密码输入"></p>
-<p>然后看到下如所示的提示信息即说明连接成功。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20062918.jpg" alt="连接成功"></p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>整个NAS的前期准备工作到此就结束了，在接下来的文章中我们将一同探讨大家比较关心的影音服务、管理面板、网盘工具等内容的搭建了。</p>
-<p>前面的文章看起来多少有些无趣，但这却是整个系统管理中不可获缺的。如上面提到的基本命令，这将是你使用频率非常高的命令，甚至可以说这些是你进行接下来的工作不可少的东西，如果你还没有掌握它的话，应该利用闲余的几分钟去了解一下它。</p>
-<p>使用Ubuntu的过程中，你或多或少会在搜索引擎中查找相应技术文章，再次过程中你将会感受到计算机专业的开源精神。</p>
-<p>但是，在寻求解决方案的时候<strong>请不要轻易尝试别人给你的命令，除非你想把之前的工作从头再来一遍</strong>。执行任何含有<strong>rm</strong>的命令你都应当十分小心地确认你的操作，尤其是在你的数据盘中。</p>
-<p>请牢记好上面的内容，<strong>必要的时候请先在虚拟机中验证它的正确性</strong>。</p>
-<h1 id="专栏导航"><a href="#专栏导航" class="headerlink" title="专栏导航"></a>专栏导航</h1>]]></content>
-      <categories>
-        <category>家庭NAS、HTPC服务器</category>
-      </categories>
-      <tags>
-        <tag>NAS系统</tag>
-        <tag>家庭影音</tag>
-        <tag>HTPC服务器</tag>
-        <tag>xshell配置</tag>
-        <tag>ssh安装及使用</tag>
-        <tag>xshell安装</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ubuntu安装基本工具及基本命令的使用</title>
     <url>/2019/12/25/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/3%E3%80%81%E5%AE%89%E8%A3%85%E5%9F%BA%E6%9C%AC%E5%B7%A5%E5%85%B7%E5%8F%8A%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p>在上期文章中，我们完成了Ubuntu的硬盘安装，本期文章将说明基本linux的命令使用以及基本基本工具的安装使用。如果你有过相关linux的使用经验，那么本文纯属在浪费你的时间，你可以选择跳过此篇文章。</p>
@@ -779,6 +736,94 @@
         <tag>HTPC服务器</tag>
         <tag>Ubuntu18.04配置</tag>
         <tag>Ubuntu配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SSH工具Xshell的安装以及使用</title>
+    <url>/2019/12/26/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/4%E3%80%81SSH%E5%B7%A5%E5%85%B7Xshell%E7%9A%84%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>在原本的计划中并没有准备专门写一篇关于SSH远程连接的教程，但想了想，该专栏文章应该致力于让所有读者都能看懂，即使你是从未使用过Linux操作系统的小白。</p>
+<p>当然，本文仅介绍了XShell的试用，你也可以选择其他软件，这都一样，并不影响你的使用。</p>
+<p>如果你已经有相关的使用经验，那么你可以直接跳过本章，毕竟下面的内容会浪费你宝贵生命中的几分钟。</p>
+<p>就这样，请拥有，并享受。</p>
+<h1 id="下载Xshell"><a href="#下载Xshell" class="headerlink" title="下载Xshell"></a>下载Xshell</h1><p>首先到XShell的官网：<a href="https://www.netsarang.com/zh/xshell/" target="_blank" rel="noopener">点击这里</a>点击<strong>下载</strong>按钮，之后会跳转到一个信息填写页面，可以申请30天的免费试用。作为学校和家庭用户，点击右边的<a href="https://www.netsarang.com/zh/free-for-home-school/" target="_blank" rel="noopener"><strong>免费授权页面</strong></a>可以申请免费使用。</p>
+<p>填写完信息后下载链接会发送到你所填写的邮箱中，点击里面的下载链接即可下载。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20060647.jpg" alt="Xshell主页"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20060720.jpg" alt="信息填写"></p>
+<h1 id="使用Xshell"><a href="#使用Xshell" class="headerlink" title="使用Xshell"></a>使用Xshell</h1><p>下载完成安装后，打开软件可以看到下图所示的页面。<br>（我这里以及添加有很多连接，可以忽略）</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/Xshell%E5%90%AF%E5%8A%A8%E7%95%8C%E9%9D%A2.jpg" alt="XShell软件启动"></p>
+<p>然后点击对话框左上角添加按钮，在弹出的对话框<strong>名称</strong>处输入你想要的名称，<strong>主机</strong>一栏输入你在<strong>第一篇文章中</strong>所查看的主机<strong>IP</strong></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%B7%BB%E5%8A%A0%E4%B8%BB%E6%9C%BA.jpg" alt="IP输入"></p>
+<p>然后点击界面左边的<strong>用户身份验证</strong>，进入后输入<strong>用户名</strong>和<strong>密码</strong>，该用户名和密码为你在安装Ubuntu时设置的用户名以及密码。</p>
+<p>然后点击连接，中途会跳出是否保存用户名密码，自己根据情况选择；在跳出密钥接收保存询问框的时候选择接收并保存。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81.jpg" alt="用户名密码输入"></p>
+<p>然后看到下如所示的提示信息即说明连接成功。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20062918.jpg" alt="连接成功"></p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>整个NAS的前期准备工作到此就结束了，在接下来的文章中我们将一同探讨大家比较关心的影音服务、管理面板、网盘工具等内容的搭建了。</p>
+<p>前面的文章看起来多少有些无趣，但这却是整个系统管理中不可获缺的。如上面提到的基本命令，这将是你使用频率非常高的命令，甚至可以说这些是你进行接下来的工作不可少的东西，如果你还没有掌握它的话，应该利用闲余的几分钟去了解一下它。</p>
+<p>使用Ubuntu的过程中，你或多或少会在搜索引擎中查找相应技术文章，再次过程中你将会感受到计算机专业的开源精神。</p>
+<p>但是，在寻求解决方案的时候<strong>请不要轻易尝试别人给你的命令，除非你想把之前的工作从头再来一遍</strong>。执行任何含有<strong>rm</strong>的命令你都应当十分小心地确认你的操作，尤其是在你的数据盘中。</p>
+<p>请牢记好上面的内容，<strong>必要的时候请先在虚拟机中验证它的正确性</strong>。</p>
+<h1 id="专栏导航"><a href="#专栏导航" class="headerlink" title="专栏导航"></a>专栏导航</h1>]]></content>
+      <categories>
+        <category>家庭NAS、HTPC服务器</category>
+      </categories>
+      <tags>
+        <tag>NAS系统</tag>
+        <tag>家庭影音</tag>
+        <tag>HTPC服务器</tag>
+        <tag>xshell配置</tag>
+        <tag>ssh安装及使用</tag>
+        <tag>xshell安装</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WEB-UI管理面板Cockpit(轻量简单)安装与使用</title>
+    <url>/2019/12/28/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/6%E3%80%81WEB-UI%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BFCockpit(%E8%BD%BB%E9%87%8F%E7%AE%80%E5%8D%95)%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>在前面我们介绍了管理面板Webmin的安装与使用，这次我们来看Cockpit的安装与使用，Webmin与Cockoit都属于轻量级的管理面板，但是Cockpit的功能较Webmin有了更多的减少，提供了更多的图表可视化功能，对中文的支持也比Webmin要好得多。</p>
+<p>cockpit提供了几乎所有Linux发行版本的安装包，对各个Linux平台支持都很好，这在官方的宣传里可以看到。该软件为开源软件，并在官网提供了详细的开发者文档。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20141709.jpg" alt="cockpit"></p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>cockpit的官网提供了各平台的安装方法以及相关的的使用文档，并且在Ubuntu17.04以及之后的Ubuntu版本中加入了官方的软件源中，这意味这我们可以很容易地安装Cockpit。</p>
+<p>只需要在终端中执行以下命令即可安装</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt -y install cockpit</span><br></pre></td></tr></table></figure>
+<p>安装完成后没有给出任何地提示信息，我们只需要用浏览器打开<code>https://服务器IP:9090</code>即可打开监控界面，然后输入ubuntu的用户名密码就可以登录它。<br>（打开过程中浏览器可能会拦截该页面，允许访问即可）</p>
+<h1 id="功能介绍"><a href="#功能介绍" class="headerlink" title="功能介绍"></a>功能介绍</h1><p>在浏览器中打开<code>https://服务器IP:9090</code>后我们可以看到如下画面，输入用户名、密码登录即可。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20141314.jpg" alt="cockpit登录界面"></p>
+<p>登录成功后我们就进入道路cockpit的管理界面，在这里可以直观的看到NAS的运行状态，包括CPU使用率、内存使用率、硬盘使用率等。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20141354.jpg" alt="cockpit仪表盘"></p>
+<p>下面我们来看看cockpit中有那些功能。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97.jpg" alt="系统日志"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86.jpg" alt="存储管理"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86.jpg" alt="网络管理"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1.jpg" alt="系统服务"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E4%BB%AA%E8%A1%A8%E7%9B%98.jpg" alt="仪表盘"></p>
+<h1 id="cockpit使用"><a href="#cockpit使用" class="headerlink" title="cockpit使用"></a>cockpit使用</h1><p>在cockpit中我们可以很方便的管理各系统服务，下面将介绍一些基本的管理功能</p>
+<h2 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h2><p>在磁盘管理中，为我们提供了图形化创建RAID设备，可支持RAID0、1、4、5、6、10。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20143552.jpg" alt="创建RAID设备"></p>
+<p>可以图形化创建磁盘分区表，格式化磁盘。可支持GPT以及MBR分区方式。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20143743.jpg" alt="创建磁盘分区表"></p>
+<p>更改磁盘挂载点等</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144009.jpg" alt="磁盘挂载点"></p>
+<h2 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h2><p>可以添加绑定、添加网桥、划分vlan的网络操作。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%B7%BB%E5%8A%A0%E7%BB%91%E5%AE%9A.jpg" alt="添加绑定"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144216.jpg" alt="添加网桥"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144227.jpg" alt="VLAN划分"></p>
+<p>还可以进行ipv4、ipv6等设置，支持管理连接状态，实时日志查看等</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/ipv4.jpg" alt="IPV4设置"></p>
+<h2 id="系统服务"><a href="#系统服务" class="headerlink" title="系统服务"></a>系统服务</h2><p>支持查看相关系统服务进程，并支持启用、禁用相关进程。支持定时任务管理等</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144606.jpg" alt="系统服务管理"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144730.jpg" alt="定时任务"></p>
+<p>除此之外，还提供了一个终端的功能，可直接在网页中打开终端</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144908.jpg" alt="终端"></p>
+<h1 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h1><p>cockpit比webmin要精简很多，去除了很多感觉不要的东西，在我看来是最适合做NAS管理面板的软件，其使用起来也很方便，不需要很复杂的操作就可以管理系统相关服务。对各种数据监控提供了很好的图形可视化支持，能很好的查看系统使用状态</p>
+<h1 id="专栏目录"><a href="#专栏目录" class="headerlink" title="专栏目录"></a>专栏目录</h1>]]></content>
+      <categories>
+        <category>家庭NAS、HTPC服务器</category>
+      </categories>
+      <tags>
+        <tag>NAS系统</tag>
+        <tag>家庭影音</tag>
+        <tag>HTPC服务器</tag>
+        <tag>linux管理面板</tag>
+        <tag>Cockpit</tag>
       </tags>
   </entry>
   <entry>
@@ -944,6 +989,141 @@
       </tags>
   </entry>
   <entry>
+    <title>影音服务jellyfin安装与使用</title>
+    <url>/2020/01/01/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/9%E3%80%81%E5%BD%B1%E9%9F%B3%E6%9C%8D%E5%8A%A1jellyfin%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>关于的jellyfin影音服务，已经有很多人对其做过介绍了，但在这里我任然要为其写一篇相关安装与使用的文章，因为在别的贴子里，很多人容易忽视掉设置硬件加速的一些必要步骤。</p>
+<p>本篇文章将会从本机安装以及docker安装两种安装方式来向大家介绍jellyfin的安装以及基本使用方法。</p>
+<p>注意：你应该在看完文章后再决定你选用的安装方式</p>
+<p>就这样，请拥有，并享受</p>
+<h1 id="jellyfin介绍"><a href="#jellyfin介绍" class="headerlink" title="jellyfin介绍"></a>jellyfin介绍</h1><p>jellyfin是一个免费的媒体系统软件，可以让你控制媒体的管理和流式传输，是emby和plex的替代产品，可以通过多个应用程序将媒体从专用服务器提供给最终用户设备。Jellyfin是Emby 3.5.2发行版的衍生版本，并移植到.NET Core框架以实现全面的跨平台支持。</p>
+<p>jellyfin目前支持的平台有：Android、Android TV、Amazon Fire TV、UWP、 Apple iOS（目前正在测试阶段）等等平台，你可以参见<a href="http://jellyfin.org/docs/general/clients/index.html" target="_blank" rel="noopener">jellyfin支持平台</a>获得更多的信息。</p>
+<h1 id="查看是设备是否支持硬件加速"><a href="#查看是设备是否支持硬件加速" class="headerlink" title="查看是设备是否支持硬件加速"></a>查看是设备是否支持硬件加速</h1><p>Jellyfin支持使用<code>FFMpeg</code>的视频编码/解码的硬件加速。<code>FFMpeg</code>可通过视频加速<code>API（VAAPI）</code>支持多种硬件加速实现，例如<code>Intel Quicksync（QSV）</code>，<code>AMD AMF</code>，<code>OpenMax OMX</code>，<code>nVidia NVENC / NVDEC</code>等。<br>|操作系统|推荐的硬件加速|<br>|-|-|<br>|Linux / GNU|VAAPI（推荐），NVENC，QSV，AMF|<br>|Windows|QSV，NVENC，AMF，VAAPI|<br>|MacOS|None (videotoolbox support coming)|<br>|Android|MediaCodec, OMX|<br>|RPi|OMX|<br><a href="https://developer.nvidia.com/ffmpeg" target="_blank" rel="noopener">NVIDIA使用ffmpeg官方名单</a>，建议将这些<a href="https://github.com/keylase/nvidia-patch" target="_blank" rel="noopener">驱动程序</a>用于<code>Linux / GNU</code>和<code>Windows</code>。这是支持的编解码器的<a href="https://developer.nvidia.com/video-encode-decode-gpu-support-matrix" target="_blank" rel="noopener">NVIDIA图形卡</a>的官方列表。</p>
+<p>VAAPI支持的编解码器列表：<a href="http://jellyfin.org/docs/general/administration/hardware-acceleration.html" target="_blank" rel="noopener">点击这里查看</a><br>支持QSV的Intel处理器列表。<a href="https://ark.intel.com/content/www/us/en/ark.html#@Processors" target="_blank" rel="noopener">点击这里查看</a><br>FFmpeg硬件加速支持列表。<a href="https://trac.ffmpeg.org/wiki/HWAccelIntro" target="_blank" rel="noopener">点击这里查看</a><br>Ubuntu使用NVENC的示例。<a href="https://www.reddit.com/r/jellyfin/comments/amuyba/nvenc_nvdec_working_in_jellyfin_on_ubuntu_server/" target="_blank" rel="noopener">点击这里查看</a></p>
+<h2 id="启用硬件加速"><a href="#启用硬件加速" class="headerlink" title="启用硬件加速"></a>启用硬件加速</h2><p>硬件加速选项可在“管理仪表板”的“ 转码”部分下找到。从下拉菜单中选择有效的硬件加速选项，指示设备（如果适用），并检查enable hardware encoding以启用编码以及解码（如果您的硬件支持）。</p>
+<p>硬件加速可立即用于媒体播放。无需重新启动服务器。</p>
+<p>每种硬件加速类型以及每种Jellyfin安装类型在使用前都需要不同的设置选项。始终最好参考您选择的加速度类型的FFMpeg文档以获取最新信息。</p>
+<h3 id="Debian-Ubuntu上配置VAAPI加速"><a href="#Debian-Ubuntu上配置VAAPI加速" class="headerlink" title="Debian / Ubuntu上配置VAAPI加速"></a>Debian / Ubuntu上配置VAAPI加速</h3><p>在Debian / Ubuntu上配置VAAPI需要进行一些其他配置，以确保权限正确。</p>
+<ol>
+<li>验证render设备现在在中/dev/dri，并记下可写入该设备的权限和组，在这种情况下render：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ls -l &#x2F;dev&#x2F;dri</span><br></pre></td></tr></table></figure>
+查看是否有如下输出：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">total 0</span><br><span class="line">drwxr-xr-x 2 root root 100 Apr 13 16:37 by-path</span><br><span class="line">crw-rw---- 1 root video 226, 0 Apr 13 16:37 card0</span><br><span class="line">crw-rw---- 1 root video 226, 1 Apr 13 16:37 card1</span><br><span class="line">crw-rw---- 1 root render 226, 128 Apr 13 16:37 renderD128</span><br></pre></td></tr></table></figure>
+如果没有，在确保你的设备支持硬件加速的情况下通过<a href="http://jellyfin.org/docs/general/administration/hardware-acceleration.html" target="_blank" rel="noopener">指导文件</a>来进行相关设备的配置以及验证。不同的硬件平台配置方法不一样，在此不展开详述。</li>
+</ol>
+<ol start="2">
+<li>将Jellyfin服务用户添加到上述组中，以允许Jellyfin的FFMpeg进程访问该设备，然后重新启动Jellyfin：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo usermod -aG render jellyfin</span><br><span class="line">sudo systemctl restart jellyfin</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>注意：在这里执行完第一条语句后可能会出现报错，这是因为在某些发行版本中，该组可能为video而不是render，将其更改过来即可。<br>在看了很多相关文章后，发现大家都没有配置这一步，这可能导致硬件转码没有办法正常工作。</p>
+<p>注意：以下两点请在安装完成jellyfin后在来看<br>3. 在管理控制台的“代码转换”页面中配置VAAPI加速。输入/dev/dri/renderD128上面的设备作为VA API Device值。</p>
+<ol start="4">
+<li>观看电影，并通过使用或类似工具观看ffmpeg-transcode-*.txt日志来验证是否正在进行转码。</li>
+</ol>
+<h1 id="Ubuntu安装jellyfin"><a href="#Ubuntu安装jellyfin" class="headerlink" title="Ubuntu安装jellyfin"></a>Ubuntu安装jellyfin</h1><p>文章存在时效性，具体可参考<a href="http://jellyfin.org/docs/general/administration/installing.html#ubuntu" target="_blank" rel="noopener">官方指南</a></p>
+<h2 id="迁移至新仓库"><a href="#迁移至新仓库" class="headerlink" title="迁移至新仓库"></a>迁移至新仓库</h2><p>早期的jellyfin在ubuntu的官方<code>apt-get</code>源中，现在已将其拆分成自己的存储库，以更好地处理单独的二进制程序包。如果遇到ubuntu找不到该发行版的错误，并且以前配置了<code>ubuntu jellyfin.list</code>文件，请按照以下步骤操作。</p>
+<ol>
+<li>删除旧的<code>/etc/apt/sources.list.d/jellyfin.list</code>文件<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo rm &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;jellyfin.list</span><br></pre></td></tr></table></figure></li>
+<li>按照下面的方法步骤继续操作</li>
+</ol>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>Jellyfin团队提供了一个Ubuntu存储库，可以在<code>Ubuntu Xenial/Bionic/Cosmic/Disco</code>上进行安装。支持的架构<code>amd64、arm64</code>和<code>armhf</code>。<code>Ubuntu Xenial</code> 仅支持 <code>amd64</code>。</p>
+<p>注意：Microsoft不为32位x86 Linux系统提供.NET，因此<code>i386</code>体系结构不支持Jellyfin 。</p>
+<ol>
+<li><p>如果尚未安装APT的HTTPS传输，请执行以下操作：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install apt-transport-https</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启用Universe存储库以获取所有FFMpeg依赖项：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo add-apt-repository universe</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>导入GPG签名密钥：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget -O - https:&#x2F;&#x2F;repo.jellyfin.org&#x2F;ubuntu&#x2F;jellyfin_team.gpg.key | sudo apt-key add -</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在以下位置添加存储库配置<code>/etc/apt/sources.list.d/jellyfin.list</code>：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">echo &quot;deb [arch&#x3D;$( dpkg --print-architecture )] https:&#x2F;&#x2F;repo.jellyfin.org&#x2F;ubuntu $( lsb_release -c -s ) main&quot; | sudo tee &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;jellyfin.list</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>注意：支持的版本是：<code>xenial</code>，<code>bionic</code>，<code>cosmic</code>，和<code>disco</code>。</p>
+<ol start="5">
+<li>更新APT存储库：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<ol start="6">
+<li><p>安装Jellyfin：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install jellyfin</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用您选择的工具管理Jellyfin系统服务：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo systemctl restart jellyfin</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="Docker安装jellyfin"><a href="#Docker安装jellyfin" class="headerlink" title="Docker安装jellyfin"></a>Docker安装jellyfin</h1><p>你可以到<a href="https://registry.hub.docker.com/r/jellyfin/jellyfin" target="_blank" rel="noopener">jellyfin官方docker hub</a>查看该项目的最新动态以及获得相关支持。</p>
+<ol>
+<li>获取docker镜像<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker pull jellyfin&#x2F;jellyfin</span><br></pre></td></tr></table></figure></li>
+<li>运行jellyfin<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">-p 8096:8096 \</span><br><span class="line">--name jellyfin \</span><br><span class="line">--restart always \</span><br><span class="line">-v 配置文件路径:&#x2F;config \</span><br><span class="line">-v 缓存文件路径:&#x2F;cache \</span><br><span class="line">-v 媒体路径1:&#x2F;media \</span><br><span class="line">-v 媒体路径2:&#x2F;media \</span><br><span class="line">--device &#x2F;dev&#x2F;dri&#x2F;renderD128:&#x2F;dev&#x2F;dri&#x2F;renderD128 \</span><br><span class="line">--device &#x2F;dev&#x2F;dri&#x2F;card0:&#x2F;dev&#x2F;dri&#x2F;card0 \</span><br><span class="line">--privileged&#x3D;true \</span><br><span class="line">--env GIDLIST&#x3D;44 \</span><br><span class="line">jellyfin&#x2F;jellyfin:latest</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>到此，jellyfin的安装工作就算完成了。接下来进行相关的配置工作。</p>
+<h1 id="jellyfin配置与使用"><a href="#jellyfin配置与使用" class="headerlink" title="jellyfin配置与使用"></a>jellyfin配置与使用</h1><h2 id="启动配置"><a href="#启动配置" class="headerlink" title="启动配置"></a>启动配置</h2><p>在浏览器中输入<code>服务器IP:8096</code>即可进入到jellyfin的web端。</p>
+<ol>
+<li><p>选择语言<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174755.jpg" alt="选择语言"></p>
+</li>
+<li><p>用户设置<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174819.jpg" alt="添加用户"></p>
+</li>
+<li><p>设置媒体库<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174832.jpg" alt="媒体库设置"></p>
+</li>
+<li><p>选择地区与语言<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174851.jpg" alt="选择地区与语言"></p>
+</li>
+<li><p>远程访问（默认即可）<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174902.jpg" alt="远程访问权限"></p>
+</li>
+<li><p>完成配置<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174912.jpg" alt="完成配置"></p>
+</li>
+<li><p>登录<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174925.jpg" alt="用户登录"></p>
+</li>
+<li><p>进入界面<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174936.jpg" alt="主页面"></p>
+</li>
+</ol>
+<h2 id="界面配置"><a href="#界面配置" class="headerlink" title="界面配置"></a>界面配置</h2><p>点击右上角小人，进入如下界面</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20181402.jpg" alt="个人设置"></p>
+<p>选择显示菜单</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20181423.jpg" alt="显示配置"></p>
+<p>这里选择自己喜欢的主题可以进行配置在上个页面中你也可以进行更多配置</p>
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><p>选择左上角的<strong>三横图标</strong> –&gt; <strong>控制台</strong> –&gt; <strong>往下找到插件</strong> 来到下图所示的界面<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182002.jpg" alt="插件"></p>
+<p>我这里以及安装了很多插件了，如果你没有安装过，这里将显示空白。点击上方的目录可进入到插件目录</p>
+<h3 id="字幕插件"><a href="#字幕插件" class="headerlink" title="字幕插件"></a>字幕插件</h3><p>在元素据中找到Open Subtitles，进去点击安装</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182159.jpg" alt="字幕插件"></p>
+<p>然后回到我的插件，点开Open Subtitles进入配置页面</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182318.jpg" alt="Open Subtitles配置"><br>输入用户名密码登录，没有的话可以到<a href="http://www.opensubtitles.org/" target="_blank" rel="noopener">opensubtitles官网</a>进行注册。</p>
+<h3 id="KODI串流"><a href="#KODI串流" class="headerlink" title="KODI串流"></a>KODI串流</h3><p>在插件目录的常规栏目找到Kodi Sync Queue进行安装<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182711.jpg" alt="KODI"></p>
+<p>然后回到我的插件，进入KODI配置，全勾选上即可<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182644.jpg" alt="KODI"></p>
+<p>关于kodi的使用将在后期文章中进行介绍</p>
+<h3 id="其他插件"><a href="#其他插件" class="headerlink" title="其他插件"></a>其他插件</h3><p>其他插件可以根据自己的需要进行安装，可以参考其他同类文章，在此不进行详述。</p>
+<h2 id="添加媒体库"><a href="#添加媒体库" class="headerlink" title="添加媒体库"></a>添加媒体库</h2><p>在控制台中进入到媒体库，可以看到添加媒体库的按钮，如下图<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20183340.jpg" alt="媒体库管理"><br>然后点击添加媒体库<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20183444.jpg" alt="添加媒体库"><br>选择对应的类型与名称，在文件夹处选择刚才对应的媒体库，docker安装的话媒体目录被映射到/media目录下。</p>
+<p>点击左上角的显示高级设置<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20183808.jpg" alt="设置"></p>
+<p>把除了上图没勾选的之外的全面勾选上。然后确认。之后会自动扫描和下载字幕，该过程有些漫长。<br>然后在主页就可以看到添加的媒体了<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20184026.jpg" alt="媒体"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20184239.jpg" alt="电影"></p>
+<p>对于某些电影，会识别失败，这时我们需要手动识别，进入电影详情页面。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20184406.jpg" alt="电影详情"></p>
+<p>然后点击播放 预告片后面的更多<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20184517.jpg" alt="更多"><br>然后选择对应的菜单进入操作即可。</p>
+<h1 id="jellyfin播放设置"><a href="#jellyfin播放设置" class="headerlink" title="jellyfin播放设置"></a>jellyfin播放设置</h1><h2 id="硬件加速"><a href="#硬件加速" class="headerlink" title="硬件加速"></a>硬件加速</h2><p>硬件播放可以到控制台 –&gt; 播放进行设置<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20202112.jpg" alt="硬件加速"></p>
+<p>可以参考上面的平台推荐加速器进行相关设置，我这里设置为VAAPI<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20202312.jpg" alt="加速方式"></p>
+<p>VAAPI选择对应的硬件设备，确保你已依照上面的过程进行了相关的驱动设置。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20202427.jpg" alt="加速设备"></p>
+<p>其他参数可依照说明按需进行更改</p>
+<h2 id="流媒体传输设置"><a href="#流媒体传输设置" class="headerlink" title="流媒体传输设置"></a>流媒体传输设置</h2><p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20202647.jpg" alt="流媒体传输设置"><br>可依据自己的网络情况进行传输设置，这对于防止设备请求比 internet 连接所能处理的更高的比特率非常有用。这可能会导致服务器上的 CPU 负载增加, 以便将视频转码到较低的比特率。</p>
+<h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>本来想在一篇文章中对jellyfin做个详细的说明，但是发现那样文章就显得太过于长了。<br>下篇文章将对jellyfin的其他使用技巧做一个介绍，比如电影命名规范，格式选择等。<br>除此之外还会对jellyfin的使用过程中遇到的一些问题进行介绍，以及如何获取解决方案。</p>
+]]></content>
+      <categories>
+        <category>家庭NAS、HTPC服务器</category>
+      </categories>
+      <tags>
+        <tag>NAS系统</tag>
+        <tag>家庭影音</tag>
+        <tag>HTPC服务器</tag>
+        <tag>jellyfin</tag>
+        <tag>影音服务</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>1、向量及其运算</title>
     <url>/2020/06/01/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/1%E3%80%81%E5%90%91%E9%87%8F%E5%8F%8A%E5%85%B6%E8%BF%90%E7%AE%97/</url>
     <content><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>线性代数的中心问题是求解线性方程组。</p>
@@ -1084,186 +1264,6 @@
       <categories>
         <category>线性代数</category>
       </categories>
-  </entry>
-  <entry>
-    <title>数列极限的定义及应用</title>
-    <url>/2020/06/04/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%8A%E5%BA%94%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="数列极限的定义"><a href="#数列极限的定义" class="headerlink" title="数列极限的定义"></a>数列极限的定义</h1><h2 id="概念引入"><a href="#概念引入" class="headerlink" title="概念引入"></a>概念引入</h2><p>我们先来看一个数列$x_n=\frac{1}{n}$</p>
-<p>当$n=1$时，$x_1=\frac{1}{1}=1$</p>
-<p>当$n=2$时，$x_2=\frac{1}{2}$</p>
-<p>$\cdots$</p>
-<p>当$n=1000$时，$x_{1000}=\frac{1}{1000}$</p>
-<p>$\cdots$</p>
-<p>当$n\to\infty$时，数列$x_n$的值无限接近$0$。如下图所示：</p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200604165314460.png" alt="image-20200604165314460"></p>
-<p>此时我们就可以说$\underset{n\to \infty }{\text{lim}}\frac{1}{n}=0$。这样我们就可以给出数列极限的一个直观定义：<br>$$<br>\underset{n\to \infty }{\text{lim}}x_n=A\Longleftrightarrow n\to \infty ,x_n\rightarrow A<br>$$</p>
-<blockquote>
-<p>当$n$趋近于无穷大时，数列极限$x_n$<strong>无限接近</strong>于一个值$A$。</p>
-</blockquote>
-<p>用<strong>无限接近</strong>来描述这个定义是不严谨的，我们需要找到一种更加精确的语言来描述这段话。那么如何用数学语言来描述这一变化呢？？</p>
-<h2 id="数列极限定义"><a href="#数列极限定义" class="headerlink" title="数列极限定义"></a>数列极限定义</h2><h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><p>分析数列$a_n=\frac{(-1)^n }{n}\sin \left(\frac{1}{n}\right)$的变化趋势</p>
-<p>我们任意给定一个$\varepsilon&gt;0$，$\varepsilon$为一个任意小的值，总存在一个$N$(这里的$N$指数列的第$N$项)，当$n&gt;N$时，总存在$|a_n-0|&lt;\frac{1}{n}$，如下</p>
-<ul>
-<li>取$\varepsilon=\frac{1}{2}$，当$n&gt;2$，有$|a_n-0|&lt;\frac{1}{n}&lt;\varepsilon\Longrightarrow n&gt;N_1=2,|a_n-0|&lt;\frac{1}{2}$。</li>
-<li>取$\varepsilon=\frac{1}{2^2}$，当$n&gt;2^2$，有$|a_n-0|&lt;\frac{1}{n}&lt;\varepsilon\Longrightarrow n&gt;N_2=2^2,|a_n-0|&lt;\frac{1}{2^2}$。</li>
-<li>取$\varepsilon=\frac{1}{2^k}$，当$n&gt;2^k$，有$|a_n-0|&lt;\frac{1}{n}&lt;\varepsilon\Longrightarrow n&gt;N_k=2^k,|a_n-0|&lt;\frac{1}{2^k}$。</li>
-</ul>
-<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>给定数列$\left{a_n \right}$，$a$为常数，如果对于任意的$\varepsilon&gt;0$，都存在一个自然数$N$，使得当$n&gt;N$时，成立<br>$$<br>|a_n-a|&lt;\varepsilon<br>$$<br>则称数列$\left{a_n \right}$以$a$为极限，记作$\underset{n\to \infty }{\text{lim}}a_n=a$</p>
-<p>如果该数列没有极限，则称该数列是<strong>发散</strong>的。</p>
-<p>需要注意</p>
-<ul>
-<li>定义中的$\varepsilon$刻画了$x_n$与$a$的逼近程度，定义中的$\varepsilon$可以限制$\varepsilon &lt; a$</li>
-<li>定义中的$N$和$\varepsilon$有关，仅要求存在，一般$\varepsilon$越小，$N$越大。</li>
-</ul>
-<h3 id="数学符号描述"><a href="#数学符号描述" class="headerlink" title="数学符号描述"></a>数学符号描述</h3><p>$$<br>\forall \varepsilon &gt; 0,\exist N(\varepsilon)\in N^*,\forall n&gt;N:|x_n-a|&lt;\varepsilon<br>$$</p>
-<p>其中“$\forall$”表示任意的，“$\exist$”表示存在，“$:$”表示满足</p>
-<h3 id="几何解释"><a href="#几何解释" class="headerlink" title="几何解释"></a>几何解释</h3><p>推论$\underset{n\to \infty }{\text{lim}}a_n=a\Longleftrightarrow$当$n&gt;N$时，所有的点$x_n$都落在$(a-\varepsilon,a+\varepsilon)$内，只有有限个(最多$N$个落在其外)。</p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200605001400184.png" alt="image-20200605001400184"></p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200605001429236.png" alt="image-20200605001429236"></p>
-]]></content>
-      <categories>
-        <category>数学分析</category>
-      </categories>
-      <tags>
-        <tag>数列极限</tag>
-        <tag>数列极限定义</tag>
-        <tag>数列极限应用</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>影音服务jellyfin安装与使用</title>
-    <url>/2020/01/01/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/9%E3%80%81%E5%BD%B1%E9%9F%B3%E6%9C%8D%E5%8A%A1jellyfin%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>关于的jellyfin影音服务，已经有很多人对其做过介绍了，但在这里我任然要为其写一篇相关安装与使用的文章，因为在别的贴子里，很多人容易忽视掉设置硬件加速的一些必要步骤。</p>
-<p>本篇文章将会从本机安装以及docker安装两种安装方式来向大家介绍jellyfin的安装以及基本使用方法。</p>
-<p>注意：你应该在看完文章后再决定你选用的安装方式</p>
-<p>就这样，请拥有，并享受</p>
-<h1 id="jellyfin介绍"><a href="#jellyfin介绍" class="headerlink" title="jellyfin介绍"></a>jellyfin介绍</h1><p>jellyfin是一个免费的媒体系统软件，可以让你控制媒体的管理和流式传输，是emby和plex的替代产品，可以通过多个应用程序将媒体从专用服务器提供给最终用户设备。Jellyfin是Emby 3.5.2发行版的衍生版本，并移植到.NET Core框架以实现全面的跨平台支持。</p>
-<p>jellyfin目前支持的平台有：Android、Android TV、Amazon Fire TV、UWP、 Apple iOS（目前正在测试阶段）等等平台，你可以参见<a href="http://jellyfin.org/docs/general/clients/index.html" target="_blank" rel="noopener">jellyfin支持平台</a>获得更多的信息。</p>
-<h1 id="查看是设备是否支持硬件加速"><a href="#查看是设备是否支持硬件加速" class="headerlink" title="查看是设备是否支持硬件加速"></a>查看是设备是否支持硬件加速</h1><p>Jellyfin支持使用<code>FFMpeg</code>的视频编码/解码的硬件加速。<code>FFMpeg</code>可通过视频加速<code>API（VAAPI）</code>支持多种硬件加速实现，例如<code>Intel Quicksync（QSV）</code>，<code>AMD AMF</code>，<code>OpenMax OMX</code>，<code>nVidia NVENC / NVDEC</code>等。<br>|操作系统|推荐的硬件加速|<br>|-|-|<br>|Linux / GNU|VAAPI（推荐），NVENC，QSV，AMF|<br>|Windows|QSV，NVENC，AMF，VAAPI|<br>|MacOS|None (videotoolbox support coming)|<br>|Android|MediaCodec, OMX|<br>|RPi|OMX|<br><a href="https://developer.nvidia.com/ffmpeg" target="_blank" rel="noopener">NVIDIA使用ffmpeg官方名单</a>，建议将这些<a href="https://github.com/keylase/nvidia-patch" target="_blank" rel="noopener">驱动程序</a>用于<code>Linux / GNU</code>和<code>Windows</code>。这是支持的编解码器的<a href="https://developer.nvidia.com/video-encode-decode-gpu-support-matrix" target="_blank" rel="noopener">NVIDIA图形卡</a>的官方列表。</p>
-<p>VAAPI支持的编解码器列表：<a href="http://jellyfin.org/docs/general/administration/hardware-acceleration.html" target="_blank" rel="noopener">点击这里查看</a><br>支持QSV的Intel处理器列表。<a href="https://ark.intel.com/content/www/us/en/ark.html#@Processors" target="_blank" rel="noopener">点击这里查看</a><br>FFmpeg硬件加速支持列表。<a href="https://trac.ffmpeg.org/wiki/HWAccelIntro" target="_blank" rel="noopener">点击这里查看</a><br>Ubuntu使用NVENC的示例。<a href="https://www.reddit.com/r/jellyfin/comments/amuyba/nvenc_nvdec_working_in_jellyfin_on_ubuntu_server/" target="_blank" rel="noopener">点击这里查看</a></p>
-<h2 id="启用硬件加速"><a href="#启用硬件加速" class="headerlink" title="启用硬件加速"></a>启用硬件加速</h2><p>硬件加速选项可在“管理仪表板”的“ 转码”部分下找到。从下拉菜单中选择有效的硬件加速选项，指示设备（如果适用），并检查enable hardware encoding以启用编码以及解码（如果您的硬件支持）。</p>
-<p>硬件加速可立即用于媒体播放。无需重新启动服务器。</p>
-<p>每种硬件加速类型以及每种Jellyfin安装类型在使用前都需要不同的设置选项。始终最好参考您选择的加速度类型的FFMpeg文档以获取最新信息。</p>
-<h3 id="Debian-Ubuntu上配置VAAPI加速"><a href="#Debian-Ubuntu上配置VAAPI加速" class="headerlink" title="Debian / Ubuntu上配置VAAPI加速"></a>Debian / Ubuntu上配置VAAPI加速</h3><p>在Debian / Ubuntu上配置VAAPI需要进行一些其他配置，以确保权限正确。</p>
-<ol>
-<li>验证render设备现在在中/dev/dri，并记下可写入该设备的权限和组，在这种情况下render：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ls -l &#x2F;dev&#x2F;dri</span><br></pre></td></tr></table></figure>
-查看是否有如下输出：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">total 0</span><br><span class="line">drwxr-xr-x 2 root root 100 Apr 13 16:37 by-path</span><br><span class="line">crw-rw---- 1 root video 226, 0 Apr 13 16:37 card0</span><br><span class="line">crw-rw---- 1 root video 226, 1 Apr 13 16:37 card1</span><br><span class="line">crw-rw---- 1 root render 226, 128 Apr 13 16:37 renderD128</span><br></pre></td></tr></table></figure>
-如果没有，在确保你的设备支持硬件加速的情况下通过<a href="http://jellyfin.org/docs/general/administration/hardware-acceleration.html" target="_blank" rel="noopener">指导文件</a>来进行相关设备的配置以及验证。不同的硬件平台配置方法不一样，在此不展开详述。</li>
-</ol>
-<ol start="2">
-<li>将Jellyfin服务用户添加到上述组中，以允许Jellyfin的FFMpeg进程访问该设备，然后重新启动Jellyfin：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo usermod -aG render jellyfin</span><br><span class="line">sudo systemctl restart jellyfin</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>注意：在这里执行完第一条语句后可能会出现报错，这是因为在某些发行版本中，该组可能为video而不是render，将其更改过来即可。<br>在看了很多相关文章后，发现大家都没有配置这一步，这可能导致硬件转码没有办法正常工作。</p>
-<p>注意：以下两点请在安装完成jellyfin后在来看<br>3. 在管理控制台的“代码转换”页面中配置VAAPI加速。输入/dev/dri/renderD128上面的设备作为VA API Device值。</p>
-<ol start="4">
-<li>观看电影，并通过使用或类似工具观看ffmpeg-transcode-*.txt日志来验证是否正在进行转码。</li>
-</ol>
-<h1 id="Ubuntu安装jellyfin"><a href="#Ubuntu安装jellyfin" class="headerlink" title="Ubuntu安装jellyfin"></a>Ubuntu安装jellyfin</h1><p>文章存在时效性，具体可参考<a href="http://jellyfin.org/docs/general/administration/installing.html#ubuntu" target="_blank" rel="noopener">官方指南</a></p>
-<h2 id="迁移至新仓库"><a href="#迁移至新仓库" class="headerlink" title="迁移至新仓库"></a>迁移至新仓库</h2><p>早期的jellyfin在ubuntu的官方<code>apt-get</code>源中，现在已将其拆分成自己的存储库，以更好地处理单独的二进制程序包。如果遇到ubuntu找不到该发行版的错误，并且以前配置了<code>ubuntu jellyfin.list</code>文件，请按照以下步骤操作。</p>
-<ol>
-<li>删除旧的<code>/etc/apt/sources.list.d/jellyfin.list</code>文件<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo rm &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;jellyfin.list</span><br></pre></td></tr></table></figure></li>
-<li>按照下面的方法步骤继续操作</li>
-</ol>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>Jellyfin团队提供了一个Ubuntu存储库，可以在<code>Ubuntu Xenial/Bionic/Cosmic/Disco</code>上进行安装。支持的架构<code>amd64、arm64</code>和<code>armhf</code>。<code>Ubuntu Xenial</code> 仅支持 <code>amd64</code>。</p>
-<p>注意：Microsoft不为32位x86 Linux系统提供.NET，因此<code>i386</code>体系结构不支持Jellyfin 。</p>
-<ol>
-<li><p>如果尚未安装APT的HTTPS传输，请执行以下操作：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install apt-transport-https</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>启用Universe存储库以获取所有FFMpeg依赖项：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo add-apt-repository universe</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>导入GPG签名密钥：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget -O - https:&#x2F;&#x2F;repo.jellyfin.org&#x2F;ubuntu&#x2F;jellyfin_team.gpg.key | sudo apt-key add -</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在以下位置添加存储库配置<code>/etc/apt/sources.list.d/jellyfin.list</code>：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">echo &quot;deb [arch&#x3D;$( dpkg --print-architecture )] https:&#x2F;&#x2F;repo.jellyfin.org&#x2F;ubuntu $( lsb_release -c -s ) main&quot; | sudo tee &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;jellyfin.list</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>注意：支持的版本是：<code>xenial</code>，<code>bionic</code>，<code>cosmic</code>，和<code>disco</code>。</p>
-<ol start="5">
-<li>更新APT存储库：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ol>
-<ol start="6">
-<li><p>安装Jellyfin：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install jellyfin</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用您选择的工具管理Jellyfin系统服务：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo systemctl restart jellyfin</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h1 id="Docker安装jellyfin"><a href="#Docker安装jellyfin" class="headerlink" title="Docker安装jellyfin"></a>Docker安装jellyfin</h1><p>你可以到<a href="https://registry.hub.docker.com/r/jellyfin/jellyfin" target="_blank" rel="noopener">jellyfin官方docker hub</a>查看该项目的最新动态以及获得相关支持。</p>
-<ol>
-<li>获取docker镜像<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker pull jellyfin&#x2F;jellyfin</span><br></pre></td></tr></table></figure></li>
-<li>运行jellyfin<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">-p 8096:8096 \</span><br><span class="line">--name jellyfin \</span><br><span class="line">--restart always \</span><br><span class="line">-v 配置文件路径:&#x2F;config \</span><br><span class="line">-v 缓存文件路径:&#x2F;cache \</span><br><span class="line">-v 媒体路径1:&#x2F;media \</span><br><span class="line">-v 媒体路径2:&#x2F;media \</span><br><span class="line">--device &#x2F;dev&#x2F;dri&#x2F;renderD128:&#x2F;dev&#x2F;dri&#x2F;renderD128 \</span><br><span class="line">--device &#x2F;dev&#x2F;dri&#x2F;card0:&#x2F;dev&#x2F;dri&#x2F;card0 \</span><br><span class="line">--privileged&#x3D;true \</span><br><span class="line">--env GIDLIST&#x3D;44 \</span><br><span class="line">jellyfin&#x2F;jellyfin:latest</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>到此，jellyfin的安装工作就算完成了。接下来进行相关的配置工作。</p>
-<h1 id="jellyfin配置与使用"><a href="#jellyfin配置与使用" class="headerlink" title="jellyfin配置与使用"></a>jellyfin配置与使用</h1><h2 id="启动配置"><a href="#启动配置" class="headerlink" title="启动配置"></a>启动配置</h2><p>在浏览器中输入<code>服务器IP:8096</code>即可进入到jellyfin的web端。</p>
-<ol>
-<li><p>选择语言<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174755.jpg" alt="选择语言"></p>
-</li>
-<li><p>用户设置<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174819.jpg" alt="添加用户"></p>
-</li>
-<li><p>设置媒体库<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174832.jpg" alt="媒体库设置"></p>
-</li>
-<li><p>选择地区与语言<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174851.jpg" alt="选择地区与语言"></p>
-</li>
-<li><p>远程访问（默认即可）<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174902.jpg" alt="远程访问权限"></p>
-</li>
-<li><p>完成配置<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174912.jpg" alt="完成配置"></p>
-</li>
-<li><p>登录<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174925.jpg" alt="用户登录"></p>
-</li>
-<li><p>进入界面<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174936.jpg" alt="主页面"></p>
-</li>
-</ol>
-<h2 id="界面配置"><a href="#界面配置" class="headerlink" title="界面配置"></a>界面配置</h2><p>点击右上角小人，进入如下界面</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20181402.jpg" alt="个人设置"></p>
-<p>选择显示菜单</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20181423.jpg" alt="显示配置"></p>
-<p>这里选择自己喜欢的主题可以进行配置在上个页面中你也可以进行更多配置</p>
-<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><p>选择左上角的<strong>三横图标</strong> –&gt; <strong>控制台</strong> –&gt; <strong>往下找到插件</strong> 来到下图所示的界面<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182002.jpg" alt="插件"></p>
-<p>我这里以及安装了很多插件了，如果你没有安装过，这里将显示空白。点击上方的目录可进入到插件目录</p>
-<h3 id="字幕插件"><a href="#字幕插件" class="headerlink" title="字幕插件"></a>字幕插件</h3><p>在元素据中找到Open Subtitles，进去点击安装</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182159.jpg" alt="字幕插件"></p>
-<p>然后回到我的插件，点开Open Subtitles进入配置页面</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182318.jpg" alt="Open Subtitles配置"><br>输入用户名密码登录，没有的话可以到<a href="http://www.opensubtitles.org/" target="_blank" rel="noopener">opensubtitles官网</a>进行注册。</p>
-<h3 id="KODI串流"><a href="#KODI串流" class="headerlink" title="KODI串流"></a>KODI串流</h3><p>在插件目录的常规栏目找到Kodi Sync Queue进行安装<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182711.jpg" alt="KODI"></p>
-<p>然后回到我的插件，进入KODI配置，全勾选上即可<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182644.jpg" alt="KODI"></p>
-<p>关于kodi的使用将在后期文章中进行介绍</p>
-<h3 id="其他插件"><a href="#其他插件" class="headerlink" title="其他插件"></a>其他插件</h3><p>其他插件可以根据自己的需要进行安装，可以参考其他同类文章，在此不进行详述。</p>
-<h2 id="添加媒体库"><a href="#添加媒体库" class="headerlink" title="添加媒体库"></a>添加媒体库</h2><p>在控制台中进入到媒体库，可以看到添加媒体库的按钮，如下图<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20183340.jpg" alt="媒体库管理"><br>然后点击添加媒体库<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20183444.jpg" alt="添加媒体库"><br>选择对应的类型与名称，在文件夹处选择刚才对应的媒体库，docker安装的话媒体目录被映射到/media目录下。</p>
-<p>点击左上角的显示高级设置<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20183808.jpg" alt="设置"></p>
-<p>把除了上图没勾选的之外的全面勾选上。然后确认。之后会自动扫描和下载字幕，该过程有些漫长。<br>然后在主页就可以看到添加的媒体了<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20184026.jpg" alt="媒体"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20184239.jpg" alt="电影"></p>
-<p>对于某些电影，会识别失败，这时我们需要手动识别，进入电影详情页面。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20184406.jpg" alt="电影详情"></p>
-<p>然后点击播放 预告片后面的更多<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20184517.jpg" alt="更多"><br>然后选择对应的菜单进入操作即可。</p>
-<h1 id="jellyfin播放设置"><a href="#jellyfin播放设置" class="headerlink" title="jellyfin播放设置"></a>jellyfin播放设置</h1><h2 id="硬件加速"><a href="#硬件加速" class="headerlink" title="硬件加速"></a>硬件加速</h2><p>硬件播放可以到控制台 –&gt; 播放进行设置<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20202112.jpg" alt="硬件加速"></p>
-<p>可以参考上面的平台推荐加速器进行相关设置，我这里设置为VAAPI<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20202312.jpg" alt="加速方式"></p>
-<p>VAAPI选择对应的硬件设备，确保你已依照上面的过程进行了相关的驱动设置。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20202427.jpg" alt="加速设备"></p>
-<p>其他参数可依照说明按需进行更改</p>
-<h2 id="流媒体传输设置"><a href="#流媒体传输设置" class="headerlink" title="流媒体传输设置"></a>流媒体传输设置</h2><p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20202647.jpg" alt="流媒体传输设置"><br>可依据自己的网络情况进行传输设置，这对于防止设备请求比 internet 连接所能处理的更高的比特率非常有用。这可能会导致服务器上的 CPU 负载增加, 以便将视频转码到较低的比特率。</p>
-<h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>本来想在一篇文章中对jellyfin做个详细的说明，但是发现那样文章就显得太过于长了。<br>下篇文章将对jellyfin的其他使用技巧做一个介绍，比如电影命名规范，格式选择等。<br>除此之外还会对jellyfin的使用过程中遇到的一些问题进行介绍，以及如何获取解决方案。</p>
-]]></content>
-      <categories>
-        <category>家庭NAS、HTPC服务器</category>
-      </categories>
-      <tags>
-        <tag>NAS系统</tag>
-        <tag>家庭影音</tag>
-        <tag>HTPC服务器</tag>
-        <tag>jellyfin</tag>
-        <tag>影音服务</tag>
-      </tags>
   </entry>
   <entry>
     <title>计算机浮点数表示</title>
