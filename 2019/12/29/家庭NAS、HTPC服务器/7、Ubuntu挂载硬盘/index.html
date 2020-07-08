@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
   <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
@@ -91,6 +91,7 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="余睿的博客" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -276,20 +277,14 @@
       
         <p>在开始下篇文章之前我觉得有必要讲解一下在linux中的硬盘挂载。这和Windows不同，Windows会自动扫描本地硬盘并为你自动挂载，但是linux不会值么做，它需要你自己去挂载硬盘到系统中。</p>
 <p>如果你是新硬盘，你需要对硬盘进行格式化才能正常使用，linux支持ext4、NTFS等文件系统，在此建议将硬盘格式化为NTFS格式，这样就算你把硬盘从linux移动Windows环境下也可以正常使用，Windows不知EXT4文件系统。</p>
-<p>但是格式化NTFS也会带来一个弊端，就是你无法对文件进行权限操作，这样你在使用的时候应该小心一些，避免误操作删除硬盘数据。</p>
+<p>但是格式化NTFS也会带来一个弊端，就是你无法对文件进行权限操作，这样你在使用的时候应该小心一些，避免误操作删除硬盘数据。<br><a id="more"></a></p>
 <h1 id="格式化硬盘"><a href="#格式化硬盘" class="headerlink" title="格式化硬盘"></a>格式化硬盘</h1><p>如果你的硬盘已经格式化过存有数据的话，你应该跳过这一小节的内容，直接跳转到下一小节参考硬盘挂载操作。</p>
 <p>首先你需要查看设备位置，输入</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo fdisk -l</span><br></pre></td></tr></table></figure>
 <p>然后找到你需要挂载的硬盘，例如我在这里要挂载<strong>Disk /dev/sdb: 7.3 TiB</strong>这块磁盘，记下它的位置，这里为/dev/sdb</p>
 <p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20160129.jpg" alt="查看硬盘设备"></p>
-<h2 id="格式化为EXT4格式"><a href="#格式化为EXT4格式" class="headerlink" title="格式化为EXT4格式"></a>格式化为EXT4格式</h2><p>如果需要格式化为EXT4格式，只需要执行下面语句即可，将/dev/sdb换成你需要进行格式化操作的设备路径。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkfs.ext4  &#x2F;dev&#x2F;sdb</span><br></pre></td></tr></table></figure>
-
-<h2 id="格式化为NTFS"><a href="#格式化为NTFS" class="headerlink" title="格式化为NTFS"></a>格式化为NTFS</h2><p>NTFS是windows的文件系统，在进行格式化操作之前需要安装一个工具，输入下面命令进行安装。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt -y install ntfsprogs</span><br></pre></td></tr></table></figure>
-<p>安装完成后执行格式化语句，这里同样将/dev/sdb更改为你要执行格式化操作的设备路径。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkntfs -f &#x2F;dev&#x2F;sdb</span><br></pre></td></tr></table></figure>
-<p>到此就将硬盘格式化完成了，接下来进行挂载操作</p>
+<h2 id="格式化为EXT4格式"><a href="#格式化为EXT4格式" class="headerlink" title="格式化为EXT4格式"></a>格式化为EXT4格式</h2><p>如果需要格式化为EXT4格式，只需要执行下面语句即可，将/dev/sdb换成你需要进行格式化操作的设备路径。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkfs.ext4  &#x2F;dev&#x2F;sdb</span><br></pre></td></tr></table></figure></p>
+<h2 id="格式化为NTFS"><a href="#格式化为NTFS" class="headerlink" title="格式化为NTFS"></a>格式化为NTFS</h2><p>NTFS是windows的文件系统，在进行格式化操作之前需要安装一个工具，输入下面命令进行安装。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt -y install ntfsprogs</span><br></pre></td></tr></table></figure><br>安装完成后执行格式化语句，这里同样将/dev/sdb更改为你要执行格式化操作的设备路径。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkntfs -f &#x2F;dev&#x2F;sdb</span><br></pre></td></tr></table></figure><br>到此就将硬盘格式化完成了，接下来进行挂载操作</p>
 <h1 id="挂载硬盘"><a href="#挂载硬盘" class="headerlink" title="挂载硬盘"></a>挂载硬盘</h1><p>在进行挂载操作之前需要先查看硬盘的UUID值，输入sudo blkid进行查看</p>
 <p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20162314.jpg" alt="UUID值"></p>
 <p>这里假设我们要挂载/dev/sdb1: LABEL=”mybook” UUID=”21B724CC1FE1D190” TYPE=”ntfs” ···这块硬盘，我们选中UUID后面的值（不要双引号），在xshell中可以右键复制下来。</p>
@@ -343,6 +338,25 @@
   </li>
 </ul>
 </div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
 
 
       <footer class="post-footer">
@@ -518,16 +532,32 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">45k</span>
+    <span title="站点总字数">44k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">41 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f0498d985a42554" async="async"></script>
+  </div><div class="translate-style">
+繁/简：<a id="translateLink" href="javascript:translatePage();">繁体
+</a>
+</div>
+<script type="text/javascript" src="/js/tw_cn.js"></script>
+<script type="text/javascript">
+var defaultEncoding = 2; //网站编写字体是否繁体，1-繁体，2-简体
+var translateDelay = 0; //延迟时间,若不在前, 要设定延迟翻译时间, 如100表示100ms,默认为0
+var cookieDomain = "http://yurui.tech/"; //Cookie地址, 一定要设定, 通常为你的网址
+var msgToTraditionalChinese = "繁体"; //此处可以更改为你想要显示的文字
+var msgToSimplifiedChinese = "简体"; //同上，但两处均不建议更改
+var translateButtonId = "translateLink"; //默认互换id
+translateInitilization();
+</script>
 
         
 
@@ -653,6 +683,13 @@ window.addEventListener('pjax:success', () => {
   
 
   
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
 
     </div>
 </body>

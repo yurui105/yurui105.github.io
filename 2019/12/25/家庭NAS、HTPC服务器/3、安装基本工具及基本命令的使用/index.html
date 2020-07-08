@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
   <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
@@ -89,6 +89,7 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="余睿的博客" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -273,20 +274,16 @@
 
       
         <p>在上期文章中，我们完成了Ubuntu的硬盘安装，本期文章将说明基本linux的命令使用以及基本基本工具的安装使用。如果你有过相关linux的使用经验，那么本文纯属在浪费你的时间，你可以选择跳过此篇文章。</p>
-<p>就这样，请拥有，并享受。</p>
+<p>就这样，请拥有，并享受。<br><a id="more"></a></p>
 <h1 id="开始之前"><a href="#开始之前" class="headerlink" title="开始之前"></a>开始之前</h1><p>安装完成后开启电脑，会进入到ubuntu的桌面，我们在屏幕任意位置点击右键，选择Open Terminal来打开一个终端，以后我们的所有工作将在这个终端内完成。</p>
 <p>本系列文章不探讨相关实现原理，仅为演示，如何关注的话可以去看linux系统的相关知识。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20214716.jpg" alt="terminal"></p>
 <p>更改软件源<br>step1.在终端中敲入命令</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br></pre></td></tr></table></figure>
-
-
 <p>然后输入密码，将权限切换到root权限。（输入的密码不会显示，该密码为用户密码）</p>
 <p>完成后你会发现前面的提示符由用户名变为了root，这样就可以了。</p>
 <p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20215409.jpg" alt="切换权限"></p>
 <p>然后输入</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gedit &#x2F;etc&#x2F;apt&#x2F;sources.list</span><br></pre></td></tr></table></figure>
-
-
 <h2 id="更换软件源"><a href="#更换软件源" class="headerlink" title="更换软件源"></a>更换软件源</h2><p>然后将打开的文本替换为网站<a href="https://developer.aliyun.com/mirror中ubuntu" target="_blank" rel="noopener">https://developer.aliyun.com/mirror中ubuntu</a> 18.04(bionic) 配置的内容，注意选择对应的版本。然后保存。</p>
 <p>（注！！在ubuntu中粘贴快捷键为Shift+Insert）<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E9%98%BF%E9%87%8C%E4%BA%91%E8%BD%AF%E4%BB%B6%E5%9B%AD.jpg" alt="阿里云软件源"></p>
 <h2 id="基本工具安装"><a href="#基本工具安装" class="headerlink" title="基本工具安装"></a>基本工具安装</h2><p>完成后回到终端，依次执行以下语句，在此对语句做简要说明，如不关注可忽略，直接执行即可。</p>
@@ -294,24 +291,14 @@
 <p>apt是ubuntu中的包管理工具，通过apt命令来管理软件。</p>
 <p>step1.更新软件源</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
-
-
 <p>step2.升级软件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt -y upgrade</span><br></pre></td></tr></table></figure>
-
-
 <p>step3.安装vim文本编辑器</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install -y vim</span><br></pre></td></tr></table></figure>
-
-
 <p>step4.安装ssh远程连接工具</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install -y openssh-server</span><br></pre></td></tr></table></figure>
-
-
 <p>step5.安装网络工具</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install -y net-tools</span><br></pre></td></tr></table></figure>
-
-
 <p>step6.查看IP地址</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
 <p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20222141.jpg" alt="查看ip"></p>
@@ -393,6 +380,25 @@
   </li>
 </ul>
 </div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
 
 
       <footer class="post-footer">
@@ -568,16 +574,32 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">45k</span>
+    <span title="站点总字数">44k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">41 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f0498d985a42554" async="async"></script>
+  </div><div class="translate-style">
+繁/简：<a id="translateLink" href="javascript:translatePage();">繁体
+</a>
+</div>
+<script type="text/javascript" src="/js/tw_cn.js"></script>
+<script type="text/javascript">
+var defaultEncoding = 2; //网站编写字体是否繁体，1-繁体，2-简体
+var translateDelay = 0; //延迟时间,若不在前, 要设定延迟翻译时间, 如100表示100ms,默认为0
+var cookieDomain = "http://yurui.tech/"; //Cookie地址, 一定要设定, 通常为你的网址
+var msgToTraditionalChinese = "繁体"; //此处可以更改为你想要显示的文字
+var msgToSimplifiedChinese = "简体"; //同上，但两处均不建议更改
+var translateButtonId = "translateLink"; //默认互换id
+translateInitilization();
+</script>
 
         
 
@@ -703,6 +725,13 @@ window.addEventListener('pjax:success', () => {
   
 
   
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
 
     </div>
 </body>

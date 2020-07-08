@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
   <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
@@ -80,6 +80,7 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="余睿的博客" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -243,7 +244,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.6k</span>
+              <span>1.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -267,34 +268,15 @@
 <p>当$n=2$时，$x_2=\frac{1}{2}$</p>
 <p>$\cdots$</p>
 <p>当$n=1000$时，$x_{1000}=\frac{1}{1000}$</p>
-<p>$\cdots$</p>
-<p>当$n\to\infty$时，数列$x_n$的值无限接近$0$。如下图所示：</p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200604165314460.png" alt="image-20200604165314460"></p>
-<p>此时我们就可以说$\underset{n\to \infty }{\text{lim}}\frac{1}{n}=0$。这样我们就可以给出数列极限的一个直观定义：<br>$$<br>\underset{n\to \infty }{\text{lim}}x_n=A\Longleftrightarrow n\to \infty ,x_n\rightarrow A<br>$$</p>
-<blockquote>
-<p>当$n$趋近于无穷大时，数列极限$x_n$<strong>无限接近</strong>于一个值$A$。</p>
-</blockquote>
-<p>用<strong>无限接近</strong>来描述这个定义是不严谨的，我们需要找到一种更加精确的语言来描述这段话。那么如何用数学语言来描述这一变化呢？？</p>
-<h2 id="数列极限定义"><a href="#数列极限定义" class="headerlink" title="数列极限定义"></a>数列极限定义</h2><h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><p>分析数列$a_n=\frac{(-1)^n }{n}\sin \left(\frac{1}{n}\right)$的变化趋势</p>
-<p>我们任意给定一个$\varepsilon&gt;0$，$\varepsilon$为一个任意小的值，总存在一个$N$(这里的$N$指数列的第$N$项)，当$n&gt;N$时，总存在$|a_n-0|&lt;\frac{1}{n}$，如下</p>
-<ul>
-<li>取$\varepsilon=\frac{1}{2}$，当$n&gt;2$，有$|a_n-0|&lt;\frac{1}{n}&lt;\varepsilon\Longrightarrow n&gt;N_1=2,|a_n-0|&lt;\frac{1}{2}$。</li>
-<li>取$\varepsilon=\frac{1}{2^2}$，当$n&gt;2^2$，有$|a_n-0|&lt;\frac{1}{n}&lt;\varepsilon\Longrightarrow n&gt;N_2=2^2,|a_n-0|&lt;\frac{1}{2^2}$。</li>
-<li>取$\varepsilon=\frac{1}{2^k}$，当$n&gt;2^k$，有$|a_n-0|&lt;\frac{1}{n}&lt;\varepsilon\Longrightarrow n&gt;N_k=2^k,|a_n-0|&lt;\frac{1}{2^k}$。</li>
-</ul>
-<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>给定数列$\left{a_n \right}$，$a$为常数，如果对于任意的$\varepsilon&gt;0$，都存在一个自然数$N$，使得当$n&gt;N$时，成立<br>$$<br>|a_n-a|&lt;\varepsilon<br>$$<br>则称数列$\left{a_n \right}$以$a$为极限，记作$\underset{n\to \infty }{\text{lim}}a_n=a$</p>
-<p>如果该数列没有极限，则称该数列是<strong>发散</strong>的。</p>
-<p>需要注意</p>
-<ul>
-<li>定义中的$\varepsilon$刻画了$x_n$与$a$的逼近程度，定义中的$\varepsilon$可以限制$\varepsilon &lt; a$</li>
-<li>定义中的$N$和$\varepsilon$有关，仅要求存在，一般$\varepsilon$越小，$N$越大。</li>
-</ul>
-<h3 id="数学符号描述"><a href="#数学符号描述" class="headerlink" title="数学符号描述"></a>数学符号描述</h3><p>$$<br>\forall \varepsilon &gt; 0,\exist N(\varepsilon)\in N^*,\forall n&gt;N:|x_n-a|&lt;\varepsilon<br>$$</p>
-<p>其中“$\forall$”表示任意的，“$\exist$”表示存在，“$:$”表示满足</p>
-<h3 id="几何解释"><a href="#几何解释" class="headerlink" title="几何解释"></a>几何解释</h3><p>推论$\underset{n\to \infty }{\text{lim}}a_n=a\Longleftrightarrow$当$n&gt;N$时，所有的点$x_n$都落在$(a-\varepsilon,a+\varepsilon)$内，只有有限个(最多$N$个落在其外)。</p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200605001400184.png" alt="image-20200605001400184"></p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200605001429236.png" alt="image-20200605001429236"></p>
-
+<p>$\cdots$<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/04/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%8A%E5%BA%94%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -355,7 +337,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>7.7k</span>
+              <span>7.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -375,140 +357,20 @@
 
       
           <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>线性代数的中心问题是求解线性方程组。</p>
-<p>假设给定一个线性方程组：<br>$$<br>x_1+2x_2=4\<br>2x_1-3x_2=-2<br>$$<br>我们将$x_1$、$x_2$的系数以及结果单独提取出来，它能表示为：<br>$$<br>x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}<br>$$</p>
-<p>由此可得此方程可解$\Longleftrightarrow$$\binom{4}{-2}$可表示为$\binom{1}{2}$和$\binom{2}{-3}$的线性组合。</p>
-<p>线性代数是建立在向量的加法和数乘这两种所谓<strong>线性运算</strong>上的.</p>
-<h1 id="n-维空间中的点"><a href="#n-维空间中的点" class="headerlink" title="$n$维空间中的点"></a>$n$维空间中的点</h1><h2 id="表示"><a href="#表示" class="headerlink" title="表示"></a>表示</h2><p>在一条直线上取定坐标原点后，每个实数一一对应表示直线上的一个点。</p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200601225945203.png" alt="image-20200601225945203"></p>
-<p>一个二元的有序数组$(x_1,x_2)$一一对应表示平面上的一个点。</p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200601230654410.png" alt="image-20200601230654410"></p>
-<p>一个三维有序数组$(x_1,x_2,x_3)$一一对应表示三维空间中的一个点。</p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200601231634293.png" alt="image-20200601231634293"></p>
-<p>同理，定义$n$维空间的点为一个$n$元有序数组$x=(x_1,\dots,x_n)$，称$x_i$为点$x$的第$i$个坐标.</p>
-<h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><ol>
-<li><p><strong>相等</strong></p>
-<p>对于$n$维空间的两个点$x=(x_1,\dots,x_n)$与$y=(y_1,\dots,y_n)$，若<br>$$<br>x_i=y_i, \forall1\leq i \leq n.<br>$$<br>则称$x$与$y$相等。</p>
-</li>
-</ol>
-<ol start="2">
-<li><p><strong>相加</strong></p>
-<p>对于$n$维空间的两个点$x=(x_1,\dots,x_n)$与$y=(y_1,\dots,y_n)$，其<strong>加法</strong>规则为：<br>$$<br>x+y:=(x_1+y_1,\dots,x_n+y_n)<br>$$</p>
-</li>
-<li><p><strong>数乘运算</strong></p>
-<p>对于$n$维空间的点$x=(x_1,\dots,x_n)$，以及$c\in R$其<strong>数乘运算</strong>规则为：<br>$$<br>cx:=(cx_1,\dots,cx_n)<br>$$</p>
-</li>
-</ol>
-<p>这样定义的加法及数乘运算对于任意$n$维空间中的点$x,y,z$满足以下8条性质:</p>
-<ol>
-<li>$(x+y)+z=x+(y+z)$</li>
-<li>$x+y=y+x$</li>
-<li>若令$0=(0,\dots,0)$为一个点，则$0+x=x+0=x$</li>
-<li>若以$-x$表示$(-1)x$，则$x+(-x)=0$</li>
-<li>$1·x=x$</li>
-<li>$(c_1·c_2)x=c_1(c_2x)$</li>
-<li>$(c_1+c_2)x=c_1x+c_2x$</li>
-<li>$c(x+y)=cx+xy$</li>
-</ol>
-<h1 id="向量"><a href="#向量" class="headerlink" title="向量"></a>向量</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>向量指空间中具有一定<strong>长度</strong>及<strong>方向</strong>的直线段。通常记起点为$A$，终点为$B$的向量为$\overrightarrow{AB}$。</p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200602000139541.png" alt="image-20200602000139541"></p>
-<p>力、位移、速度、加速度等都是物理学中常出现的向量.</p>
-<p><strong>两个向量相等$\Longleftrightarrow$二者长度相等，方向相同。</strong></p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200602000520092.png" alt="image-20200602000520092"></p>
-<h2 id="向量的运算"><a href="#向量的运算" class="headerlink" title="向量的运算"></a>向量的运算</h2><h3 id="向量的加法-addition"><a href="#向量的加法-addition" class="headerlink" title="向量的加法(addition):"></a>向量的加法(addition):</h3><p>对于两个向量$\vec{a}=\overrightarrow{OA}$以及$b=\overrightarrow{OB}$，$\vec{a}+\vec{b}$的和为以向量$\vec{a}，\vec{b}$为邻边的平行四边形的对角线$\overrightarrow{OC}$代表的向量（平行四边形法则）。如下图所示：</p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200602001500849.png" alt="image-20200602001500849"></p>
-<p>向量的加法又满足三角形法则：<br>$$<br>\overrightarrow{OA}+\overrightarrow{AC}=\overrightarrow{OC}<br>$$</p>
-<h3 id="向量的数乘-scalar-multiplication-："><a href="#向量的数乘-scalar-multiplication-：" class="headerlink" title="向量的数乘(scalar multiplication)："></a>向量的数乘(scalar multiplication)：</h3><p>向量的数乘即向量的方向不变，大小变为原来的$c(c\in R)$倍。如下图所示：</p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200602090359154.png" alt="image-20200602090359154"></p>
-<h3 id="向量的性质"><a href="#向量的性质" class="headerlink" title="向量的性质"></a>向量的性质</h3><ol>
-<li><p>向量的加法满足结合律，即对于任意的向量$\vec{a},\vec{b},\vec{c}$<br>$$<br>\vec{a}+(\vec{b}+\vec{c})=(\vec{a}+\vec{b})+\vec{c}<br>$$</p>
-</li>
-<li><p>向量的加法满足交换律，即对于任意的向量$\vec{a},\vec{b}$<br>$$<br>\vec{a}+\vec{b}=\vec{b}+\vec{a}<br>$$</p>
-</li>
-<li><p>当$A=B$时，称向量$\overrightarrow{AB}$为零向量，记作$\vec{0}$，则<br>$$<br>\overrightarrow{AA}+\overrightarrow{AB}=\overrightarrow{AB}可表示为0+\vec{a}=\vec{a}对于任意向量\vec{a}成立<br>$$</p>
-</li>
-<li><p>对向量$a=\overrightarrow{AB}$，记向量$\overrightarrow{BA}=-a$，则$\overrightarrow{AB}+\overrightarrow{BA}=\overrightarrow{AA}$，即<br>$$<br>\vec{a}+(-\vec{a})=0,\forall \vec{a}<br>$$</p>
-</li>
-<li><p>$1·\vec{a}=\vec{a}$</p>
-</li>
-<li><p>$(c_1·c_2)\vec{a}=c_1(c_2)\vec{a}$</p>
-</li>
-<li><p>$(c_1+c_2)\vec{a}=c_1\vec{a}+c_2\vec{a}$</p>
-</li>
-<li><p>$c(\vec{a}+\vec{b})=c\vec{a}+c\vec{b}$</p>
-</li>
-</ol>
-<h2 id="向量的表示"><a href="#向量的表示" class="headerlink" title="向量的表示"></a>向量的表示</h2><p>如果固定向量的起点，如记之为原点，则向量由其终点唯一确定，于是我们可以等同：</p>
-<ol>
-<li>$n$维空间中的点</li>
-<li>$n$元有序数组</li>
-<li>$n$维空间中由原点出发的向量</li>
-</ol>
-<p>我们将不加区分地使用向量的这三个身份。</p>
-<p>记$\vec{a}=\begin{pmatrix}a_1\\vdots \a_n \end{pmatrix}$为列向量，其中$a_i$为向量$\vec{a}$的第$i$个分量。</p>
-<p>则有向量的加法：<br>$$<br>\vec{a}+\vec{b}:=\begin{pmatrix}a_1+b_! \\vdots \a_n+b_n\end{pmatrix}.<br>$$<br>数乘：<br>$$<br>c\vec{a}:=\begin{pmatrix}c\vec{a_1} \\vdots \c\vec{a_n}\end{pmatrix}.<br>$$</p>
-<h1 id="向量的空间定义"><a href="#向量的空间定义" class="headerlink" title="向量的空间定义"></a>向量的空间定义</h1><p>在由称为”向量“的元素构成的非空集合$V$中，若定义了加法和数乘运算，且对任意向量$\vec{a},\vec{b},\vec{c}$及数$k,l\in F$满足以下8条性质：</p>
-<ol>
-<li>$\vec{a}+(\vec{b}+\vec{c})=(\vec{a}+\vec{b})+\vec{c}$</li>
-<li>$\vec{a}+\vec{b}=\vec{b}+\vec{a}$</li>
-<li>存在$\vec{0}$，$\vec{a}+\vec{0}=\vec{a}$</li>
-<li>对于任意向量$\vec{a}$，存在唯一相反向量$-\vec{a}$，使得$\vec{a}+(-\vec{a})=\vec{0}$</li>
-<li>$1·\vec{a}=\vec{a}$</li>
-<li>$(kl)\vec{a}=k(l\vec{a})$</li>
-<li>$k(\vec{a}+\vec{b})=k\vec{a}+k\vec{b}$</li>
-<li>$(k+l)\vec{a}=k\vec{a}+l\vec{a}$</li>
-</ol>
-<p>则称$V$为定义在数域$F$上的向量空间(vector space).</p>
-<h1 id="向量的线性组合"><a href="#向量的线性组合" class="headerlink" title="向量的线性组合"></a>向量的线性组合</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>设$\vec{v_1},\cdots,\vec{v_m}$为$m$个$n$维向量，$c_1,\cdots,c_m \in R$，则称$c_1v_1,\cdots,c_mv_m$为向量$\vec{v_1},\cdots,\vec{v_m}$的一个线性组合。</p>
-<p>例：给定$\vec{i}=\begin{pmatrix}1 \0 \0\end{pmatrix}\vec{j}=\begin{pmatrix}0 \1 \0\end{pmatrix},\vec{k}=\begin{pmatrix}0 \0 \1\end{pmatrix}$，</p>
-<p>则$\vec{u}=\begin{pmatrix}1 \-1 \1\end{pmatrix}=\vec{i}-\vec{j}+\vec{k}$是向量$\vec{i},\vec{j},\vec{k}$的一个线性组合。</p>
-<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p>Q：给定一组向量$\vec{v_1},\cdots,\vec{v_m}$，则$\vec{v_1},\cdots,\vec{v_m}$的全部线性组合是怎样的集合？</p>
-<p>例1：向量$\vec{u}=\begin{pmatrix}1 \1 \1\end{pmatrix}$的全部线性组合$\left{c\vec{u}|c\in R\right}$为以$\vec{u}$为方向的一条直线。</p>
-<p>例2：向量$\vec{u}=\begin{pmatrix}1 \1 \0\end{pmatrix}$和$\vec{v}=\begin{pmatrix}0 \1 \1\end{pmatrix}$的全部线性组合为$c\vec{u}+d\vec{v}=\begin{pmatrix}c \c+d \d\end{pmatrix}$，其中$c,d$为任意实数，这是平面$x-y+z=0$。</p>
-<p>例3：向量$\vec{u}=\begin{pmatrix}1 \1 \0\end{pmatrix}$和$\vec{v}=\begin{pmatrix}\sqrt{2} \\sqrt{2} \0\end{pmatrix}$的全部线性组合为$c\vec{u}+d\vec{v}=\begin{pmatrix}c+\sqrt{2}d \c+\sqrt{2}d\0\end{pmatrix}$，其中$c,d$为任意实数，这是直线$\left{\begin{aligned}x = y \z = 0\end{aligned}\right.$</p>
-<p>例4：向量$\vec{u}=\begin{pmatrix}1 \1 \0\end{pmatrix}$，$\vec{v}=\begin{pmatrix}0 \1 \1\end{pmatrix}$，$\vec{w}=\begin{pmatrix}1 \0 \1\end{pmatrix}$的全部线性组合$\left{c\vec{u}+d\vec{v}+e\vec{w}|c,d,e \in R\right}$为整个三维空间.</p>
-<p>这是因为，任意三维向量$\begin{pmatrix}x \y \z\end{pmatrix}$都可以表示为$\vec{u},\vec{v},\vec{w}$的下列线性组合：<br>$$<br>\begin{pmatrix}x \y \z\end{pmatrix}=\frac{x+y-z}{2}\vec{u}+\frac{y+z-x}{2}\vec{v}+\frac{z+x-y}{2}\vec{w}.<br>$$<br>例5：向量$\vec{u}=\begin{pmatrix}1 \1 \0\end{pmatrix}$，$\vec{v}=\begin{pmatrix}0 \1 \1\end{pmatrix}$，$\vec{w}=\begin{pmatrix}1 \2 \1\end{pmatrix}$的全部线性组合$\left{c\vec{u}+d\vec{v}+e\vec{w}=(c+e)\vec{u}+(d+e)\vec{v}|c,d,e \in R\right}$为向量$\vec{u},\vec{w}$张成的平面$x-y+z=0$，这是因为$\vec{w}=\vec{u}|\vec{v}$在$\vec{u},\vec{v}$所张成的这张平面上。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在3维空间中， 一般而言，向量$\vec{u},\vec{u}和\vec{v},或\vec{u}、\vec{v}和\vec{w}$的所有线性组合分别是一条直线、一张平面或整个3维空间。</p>
-<h1 id="向量的点积、长度"><a href="#向量的点积、长度" class="headerlink" title="向量的点积、长度"></a>向量的点积、长度</h1><h2 id="向量长度"><a href="#向量长度" class="headerlink" title="向量长度"></a>向量长度</h2><p>向量$\vec{v}$的长度(length)或模(norm)定义为<br>$$<br>|\vec{v}|=\sqrt{\vec{v}·\vec{v}}<br>$$<br>若$\vec{v}=(v_1,\cdots,v_n)$，则$|\vec{v}|=\sqrt{v_1^2+\cdots+v_n^2}$。</p>
-<p>例：$\vec{v}=(1，2，3)$，则$|\vec{v}|=\sqrt{1+4+9}=\sqrt{14}$。</p>
-<h2 id="向量点积"><a href="#向量点积" class="headerlink" title="向量点积"></a>向量点积</h2><p>定义：若$|\vec{v}|=1$，则称$\vec{v}$为单位向量(unit vector)。</p>
-<p>单位化：任给一非零向量$\vec{v}$，则$\frac{\vec{v}}{|\vec{v}|}$是沿$\vec{v}$方向的单位向量。</p>
-<p>例1：$\vec{v}=(\cos\theta,\sin\theta)$，则$|\vec{v}|=1$。</p>
-<p>例2：$\vec{v}=(1，2，3)$，则沿$\vec{v}$方向的单位向量为$\frac{\vec{v}}{|\vec{v}|}=\frac{1}{\sqrt{14}}(1,2,3)$.</p>
-<p>向量点积的性质：</p>
-<ol>
-<li>$\vec{v}\cdot\vec{w}=\vec{w}\cdot\vec{v}$（对称性）</li>
-<li>$\vec{u}\cdot(c\vec{v}+d\vec{w})=c\vec{u}\cdot\vec{v}+d\vec{u}\cdot\vec{w}$（线性性）</li>
-<li>$\vec{v}\cdot\vec{v}=|\vec{v}|^2\ge0$，且等号成立当且仅当$\vec{v}=0$（正定性）</li>
-</ol>
-<h1 id="向量的夹角"><a href="#向量的夹角" class="headerlink" title="向量的夹角"></a>向量的夹角</h1><h2 id="向量垂直"><a href="#向量垂直" class="headerlink" title="向量垂直"></a>向量垂直</h2><p>若$\vec{v}\cdot\vec{w}=0$，则称向量$\vec{v}$和$\vec{w}$垂直(perpendicular)(或者称为正交(orthogonal))。记作$\vec{v}\perp\vec{w}$或$\vec{w}\perp\vec{v}$。</p>
-<p>在此规定，$\vec{0}$和任意向量垂直。</p>
-<p>这样定义的垂直的概念与几何直观是一致的，即<br>$$<br>\vec{v}\perp\vec{w}\Longleftrightarrow\vec{v}\cdot\vec{w}=0<br>$$<br>证明：设$\vec{v}\perp\vec{w}$，则$\vec{v},\vec{w},\vec{v}-\vec{w}$构成直角三角形的三条边，如下如所示：</p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200602144024402.png" alt="image-20200602144024402"></p>
-<p>于是由勾股定理可得：$|\vec{v}-\vec{w}|^2=|\vec{v}|^2+|\vec{w}|^2$，将式子左边展开得：<br>$$<br>|\vec{v}-\vec{w}|^2=(\vec{v}-\vec{w})\cdot(\vec{v}-\vec{w})=|\vec{v}|^2-\vec{v}\cdot\vec{w}-\vec{w}\cdot\vec{v}+|\vec{w}|^2<br>$$<br>故得 $\vec{v}\cdot\vec{w}=0$，反之亦然。</p>
-<h2 id="向量的夹角-1"><a href="#向量的夹角-1" class="headerlink" title="向量的夹角"></a>向量的夹角</h2><p>命题：两非零向量$\vec{v},\vec{w}$的夹角$\theta$满足$\cos\theta=\frac{\vec{v}\cdot\vec{w}}{|\vec{v}||\vec{w}|}$。</p>
-<p>证明：一般的，向量$\vec{v},\vec{w},\vec{v}-\vec{w}$构成三角形的三条边，由<strong>余弦定理</strong>得<br>$$<br>|\vec{v}-\vec{w}|^2=|\vec{v}|^2+|\vec{w}|^2-2|\vec{v}||\vec{w}|\cos\theta<br>$$<br>故有：<br>$$<br>\cos\theta=\frac{|\vec{v}|^2+|\vec{w}|^2-|\vec{v}-\vec{w}|^2}{2|\vec{v}||\vec{w}|}=\frac{\vec{v}\cdot\vec{w}}{|\vec{v}||\vec{w}|}<br>$$</p>
-<ul>
-<li>若$\vec{v}\cdot\vec{w}&gt;0$，则$\cos\theta&gt;0$，取$0\leq\theta\leq\frac{\pi}{2}$</li>
-<li>若$\vec{v}\cdot\vec{w}&lt;0$，则$\cos\theta&lt;0$，取$\frac{\pi}{2}\leq\theta\leq\pi$</li>
-</ul>
-<p>例题：$\vec{v}=(1,1),\vec{w}=(-1,0)$，则$\cos\theta=\frac{\vec{v}\cdot\vec{w}}{|\vec{v}||\vec{w}|}=-\frac{1}{\sqrt{2}}$，则$\vec{v},\vec{w}$夹角$\theta=\frac{3}{4}\pi$</p>
-<h1 id="两个不等式"><a href="#两个不等式" class="headerlink" title="两个不等式"></a>两个不等式</h1><h2 id="Cauchy-Schwarz不等式"><a href="#Cauchy-Schwarz不等式" class="headerlink" title="Cauchy-Schwarz不等式"></a>Cauchy-Schwarz不等式</h2><p>Cauchy-Schwarz不等式首先由法国数学家Augustin-LouisCauchy(1789-1857)于1821年发现,再由俄国数学家Viktor YakovychBunyakovsky(1804-1889)于1859年重新发现, 后由德国数学家HermanSchwarz(1843-1921)于1886年再次重新发现.</p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200602151346208.png" alt="image-20200602151346208"></p>
-<p>该不等式为：<br>$$<br>|\vec{v}\cdot\vec{w}|\leq|\vec{v}||\vec{w}|<br>$$<br>等号成立当且仅当一个向量是另一个向量得倍数。</p>
-<h2 id="三角不等式-Triangle-inequality"><a href="#三角不等式-Triangle-inequality" class="headerlink" title="三角不等式(Triangle inequality)"></a>三角不等式(Triangle inequality)</h2><p>$$<br>|\vec{v}+\vec{w}|\leq|\vec{v}|+|\vec{w}|<br>$$</p>
-<p>等号成立当且仅当$\vec{v},\vec{w}$之一为另一向量得非负倍数</p>
-<p>证明：<br>$$<br>\begin{aligned}<br>|\vec{v}+\vec{w}|&amp;=(\vec{v}+\vec{w})\cdot(\vec{v}+\vec{w})=|\vec{v}|^2+2\vec{v}\cdot\vec{w}+|\vec{w}|^2 \<br>&amp;\leq|\vec{v}|^2+|\vec{w}|^2+2|\vec{v}\cdot\vec{w}| \<br>&amp;\leq|\vec{v}|^2+|\vec{w}|^2+2|\vec{v}|\cdot|\vec{w}| \<br>&amp;=(|\vec{v}|+|\vec{w}|)^2<br>\end{aligned}<br>$$</p>
-<p>等号成立当且仅当$\vec{v}\cdot\vec{w}=|\vec{v}|\cdot|\vec{w}|$，这等价于$\vec{v},\vec{w}$之一为另一个向量得非负倍数。</p>
-<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><ol>
-<li><p>设$\vec{v}=(a,b),\vec{w}=(b,a)$,则由Cauchy-Schwarz不等式得<br>$$<br>\vec{v}\cdot\vec{w}=2ab\leq a^2+b^2=|\vec{v}||\vec{w}|<br>$$<br>若令$x=a^2,y=b^2$，则得到<strong>几何平均不大于算术平均</strong>：<br>$$<br>\sqrt{xy}\leq\frac{x+y}{2}<br>$$</p>
-</li>
-<li><p>设$|\vec{v}|=5,|\vec{w}=3|$，求$|\vec{v}-\vec{w}|$的最小和最大可能长度</p>
-<p>解：首先，$|\vec{v}-\vec{w}|^2=|\vec{v}|^2-2\vec{v}\cdot\vec{w}+|\vec{w}|^2$,由Cauchy-Schwarz不等式得$-|\vec{v}||\vec{w}|\leq\vec{v}\cdot\vec{w}\leq|\vec{v}||\vec{w}|$，</p>
-<p>故$(|\vec{v}|-|\vec{w}|)^2\leq|\vec{v}-\vec{w}|^2\leq(|\vec{v}+\vec{w}|)^2$</p>
-<p>所以，$2\leq|\vec{v}-\vec{w}|\leq8$</p>
-</li>
-</ol>
-
+<p>假设给定一个线性方程组：</p>
+<script type="math/tex; mode=display">
+x_1+2x_2=4\\
+2x_1-3x_2=-2</script><p>我们将$x_1$、$x_2$的系数以及结果单独提取出来，它能表示为：</p>
+<script type="math/tex; mode=display">
+x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}</script>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/01/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/1%E3%80%81%E5%90%91%E9%87%8F%E5%8F%8A%E5%85%B6%E8%BF%90%E7%AE%97/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1118,48 +980,15 @@
       
           <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>数据在计算机中是按二进制的形式存在的，通过普通的四则运算我们能对这些数据做一些简单的运算。但当我们想修改某个数据中的某一位，我们就需要用到位运算。</p>
 <p>例如：<code>666</code>的二进制为<code>‭0001101000001010‬</code>，如果我们需要知道或者修改最高位，此时我们就无法通过一般的方法来对其进行操作，就需要用到位运算符。</p>
-<p>在许多古老的微处理器上，位运算比加减运算略快，通常位运算比乘除法运算要快很多。在现代架构中，情况并非如此：位运算的运算速度通常与加法运算相同（仍然快于乘法运算）。</p>
-<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p> 用于对程序变量(int、char、long)中的某一位(bit)或多位进行操作,位运算有两种常用的方式如下：</p>
-<ol>
-<li><p>判断某一位是否为0/1</p>
-</li>
-<li><p>只改变其中某一位或多位，而其他位不变</p>
-<p><code>c/c++</code>提供了六种位运算符来进行位操作：</p>
-</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th align="center">运算符</th>
-<th align="center">运算方法</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">&amp;</td>
-<td align="center">按位与(双目运算符)</td>
-</tr>
-<tr>
-<td align="center">|</td>
-<td align="center">按位或</td>
-</tr>
-<tr>
-<td align="center">^</td>
-<td align="center">按位异或</td>
-</tr>
-<tr>
-<td align="center">~</td>
-<td align="center">按位非(取反)</td>
-</tr>
-<tr>
-<td align="center">&lt;&lt;</td>
-<td align="center">左移</td>
-</tr>
-<tr>
-<td align="center">&gt;&gt;</td>
-<td align="center">右移</td>
-</tr>
-</tbody></table>
-
+<p>在许多古老的微处理器上，位运算比加减运算略快，通常位运算比乘除法运算要快很多。在现代架构中，情况并非如此：位运算的运算速度通常与加法运算相同（仍然快于乘法运算）。<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/26/C++/C-C-%E4%BD%8D%E8%BF%90%E7%AE%97/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1243,43 +1072,15 @@
 <p>在程序运行期间，每个函数都会占用一段连续的内存空间，而函数名就是该函数所占内存空间的起始地址（入口地址），我们可以将一个函数的起始地址赋值给一个指针，进而通过该指针来调用函数，这就是函数指针。</p>
 <p>函数指针可以像一般函数一样，用于调用函数、传递参数。在如 <code>C</code>这样的语言中，通过提供一个简单的选取、执行函数的方法，函数指针可以简化代码。函数指针只能指向具有特定特征的函数。因而所有被同一指针运用的函数必须具有<strong>相同的参数和返回类型</strong>。</p>
 <p>C语言标准规定，函数指示符（function designator，即函数名字）既不是左值，也不是右值。但C++语言标准规定函数指示符属于左值，因此函数指示符转换为函数指针的右值属于左值转换为右值。</p>
-<p>除了作为<code>sizeof</code>或取地址&amp;的操作数，函数指示符在表达式中自动转换为函数指针类型右值。因此通过一个函数指针调用所指的函数，不需要在函数指针前加取值或反引用（*）运算符。</p>
-<h1 id="定义形式"><a href="#定义形式" class="headerlink" title="定义形式"></a>定义形式</h1><p>对于一个函数指针，我们采用如下的定义方式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">返回值 (* 指针变量名)(参数类型1，参数类型2，······)</span><br></pre></td></tr></table></figure>
-<p>例如：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> (* pf)(<span class="keyword">int</span>,<span class="keyword">int</span>);</span><br></pre></td></tr></table></figure>
-<p>其中，</p>
-<p><strong>返回值</strong>：函数返回的数据类型</p>
-<p><strong>指针变量名</strong>:函数指针变量名</p>
-<p><strong>参数类型</strong>：函数的参数类型</p>
-<h1 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">min</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;<span class="comment">//返回两个数中的最小值函数</span></span><br><span class="line">	<span class="keyword">return</span> a &lt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//定义一个函数指针pf</span></span><br><span class="line">	<span class="keyword">int</span> (*pf)(<span class="keyword">int</span>, <span class="keyword">int</span>);</span><br><span class="line">	<span class="comment">//让pf指向min函数</span></span><br><span class="line">	pf = <span class="built_in">min</span>;</span><br><span class="line">	<span class="comment">//通过函数名调用min函数</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"min=%d\n"</span>, <span class="built_in">min</span>(<span class="number">10</span>, <span class="number">20</span>));</span><br><span class="line">	<span class="comment">//通过函数指针pf调用min函数</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"pf=%d\n"</span>, pf(<span class="number">10</span>, <span class="number">20</span>));</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>通过运行上面的程序，我们得到了以下结果</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">min=10</span><br><span class="line">pf=10</span><br></pre></td></tr></table></figure>
-<p>从结果中我们可以看出两种调用方式得到了一样的结果。接下来我们进而修改一下上面的代码</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">min</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;<span class="comment">//返回两个数中的最小值函数</span></span><br><span class="line">	<span class="keyword">return</span> a &lt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//定义一个函数指针pf</span></span><br><span class="line">	<span class="keyword">int</span> (*pf)(<span class="keyword">int</span>, <span class="keyword">int</span>);</span><br><span class="line">	<span class="comment">//让pf指向min函数</span></span><br><span class="line">	pf = <span class="built_in">min</span>;</span><br><span class="line">	<span class="comment">//获取min函数的地址</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"min=  %p\n"</span>, &amp;<span class="built_in">min</span>);</span><br><span class="line">	<span class="comment">//查看函数指针pf内的地址</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"pf=   %p\n"</span>, pf);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行上面的代码，我们得到下面的结果</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">min&#x3D;  001C1221</span><br><span class="line">pf&#x3D;   001C1221</span><br></pre></td></tr></table></figure>
-<p>从结果我们可以明显的看出<code>pf</code>函数中存放的确实是<code>min</code>的地址。</p>
-<h1 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h1><p>在<strong>C语言</strong>中，有一个常用的快速排序库函数，能够对任意的数组以任意规则进行排序，其形式如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">qsort</span><span class="params">(<span class="keyword">void</span> *base, <span class="keyword">size_t</span> nitems, <span class="keyword">size_t</span> <span class="built_in">size</span>, </span></span></span><br><span class="line"><span class="function"><span class="params"><span class="keyword">int</span> (*compar)(<span class="keyword">const</span> <span class="keyword">void</span> *, <span class="keyword">const</span> <span class="keyword">void</span>*))</span></span></span><br></pre></td></tr></table></figure>
-
-<p>其中，</p>
-<p><code>base</code>为将要排序的数组的首地址</p>
-<p><code>nitems</code>为由<code>base</code>指向的数组的元素个数</p>
-<p><code>size</code>为该数组中每个元素的大小</p>
-<p><code>compar</code>为排序规则函数，其形式如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int 函数名(const void *elem1,const void *elem2);</span><br></pre></td></tr></table></figure>
-
-<p>该函数的返回值有三种情况：</p>
-<p>1.返回<code>负整数</code>：<code>*elem1</code>排在<code>*elem2</code>前面</p>
-<p>2.返回<code>0</code>： <code>*elem1</code>和<code>*elem2</code>谁在前面都可以</p>
-<p>3.返回<code>正整数</code>：<code>*elem1</code>排在<code>*elem2</code>后面</p>
-<p>下面我们来考察一个实例</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">myCompar</span><span class="params">(<span class="keyword">const</span> <span class="keyword">void</span>* a, <span class="keyword">const</span> <span class="keyword">void</span>* b)</span></span>&#123;<span class="comment">//排序规则函数</span></span><br><span class="line">    <span class="comment">//由于*a和*b是两个无类型的地址，</span></span><br><span class="line">    <span class="comment">//在使用之前我们先将其强制类型转换为int*，</span></span><br><span class="line">    <span class="comment">//然后再取其值进行比较</span></span><br><span class="line">    <span class="keyword">return</span> (*(<span class="keyword">int</span>*)a - *(<span class="keyword">int</span>*)b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> values[] = &#123; <span class="number">23</span>, <span class="number">6</span>, <span class="number">100</span>, <span class="number">2</span>, <span class="number">25</span> &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"排序之前的列表：\n"</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d "</span>, values[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//调用qsort进行排序</span></span><br><span class="line">    qsort(values, <span class="number">5</span>, <span class="keyword">sizeof</span>(<span class="keyword">int</span>), myCompar);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n排序之后的列表：\n"</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d "</span>, values[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行以上程序，我们得到下面所示结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">排序之前的列表：</span><br><span class="line">23 6 100 2 25</span><br><span class="line">排序之后的列表：</span><br><span class="line">2 6 23 25 100</span><br></pre></td></tr></table></figure>
-<p>经过qsort调用mycompar函数后成功升序地将数组进行了排序</p>
-
+<p>除了作为<code>sizeof</code>或取地址&amp;的操作数，函数指示符在表达式中自动转换为函数指针类型右值。因此通过一个函数指针调用所指的函数，不需要在函数指针前加取值或反引用（*）运算符。<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/25/C++/C-C-%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1441,16 +1242,32 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">45k</span>
+    <span title="站点总字数">44k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">41 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f0498d985a42554" async="async"></script>
+  </div><div class="translate-style">
+繁/简：<a id="translateLink" href="javascript:translatePage();">繁体
+</a>
+</div>
+<script type="text/javascript" src="/js/tw_cn.js"></script>
+<script type="text/javascript">
+var defaultEncoding = 2; //网站编写字体是否繁体，1-繁体，2-简体
+var translateDelay = 0; //延迟时间,若不在前, 要设定延迟翻译时间, 如100表示100ms,默认为0
+var cookieDomain = "http://yurui.tech/"; //Cookie地址, 一定要设定, 通常为你的网址
+var msgToTraditionalChinese = "繁体"; //此处可以更改为你想要显示的文字
+var msgToSimplifiedChinese = "简体"; //同上，但两处均不建议更改
+var translateButtonId = "translateLink"; //默认互换id
+translateInitilization();
+</script>
 
         
 
@@ -1631,6 +1448,13 @@ window.addEventListener('pjax:success', () => {
     
 
   
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
 
     </div>
 </body>

@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
   <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
@@ -87,6 +87,7 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="余睿的博客" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -273,10 +274,9 @@
         <h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>最近在使用hexo博客next主题的时候发现kramed渲染器在处理插入的图片时不显示标题描述，仅仅显示图片。例如我通过<code>![描述](url连接)</code>的形式插入一张图片，kramed渲染器将其渲染为下面这样：</p>
 <figure><img src="https://raw.githubusercontent.com/yurui105/image/master/blogs_image/%E6%9C%AA%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0.jpg" alt="未显示图片描述.jpg"><figcaption>"未显示图片描述"</figcaption></figure>
 
-<p>并未将图片的描述显示在下方，这对于在文中想要引用插入的图片变得尤为困难，搜索引擎也没有找到相关的问题以及解决办法（也许是我搜索引擎用的不是很好^^）。<br>在查看了渲染出来的网页后，发现kramed在渲染图片时将<code>[]</code>中的的图片描述渲染为了 <code>alt</code>属性，这是图片加载错误时显示的替补文字，按照 <a href="https://github.com/iissnan/hexo-theme-next/issues/436" target="_blank" rel="noopener">hexo-theme-next #436</a>中的方法找到<code>var imageTitle = $image.attr(&#39;title&#39;);</code>，将其中的<code>title</code>改为<code>alt</code>，但是任然无法解决问题。</p>
-<p>#分析<br>查看其它网站的图片对于的<code>html</code>源码发现，在插入图片之后，图片的部分代码为：<br><code>&lt;figure&gt;&lt;img src=&quot;URL&quot; alt=&quot;未正常显示图片描述&quot;&gt;&lt;figcaption&gt;&quot;图片描述&quot;&lt;/figcaption&gt;&lt;figure&gt;</code>而kramed渲染出来的格式为：<br><code>&lt;img src=&quot;URL&quot; alt=&quot;未显示图片描述&quot;&gt;</code><br>发现少了一对<code>&lt;figure&gt;</code>和一对<code>&lt;figcaption&gt;</code>标签，从这个思路出发，Google后发现，<code>&lt;figure&gt;</code> 标签是 <code>HTML5</code> 中的新标签，用作文档中插图的图形，其基本用法为：</p>
+<p>并未将图片的描述显示在下方，这对于在文中想要引用插入的图片变得尤为困难，搜索引擎也没有找到相关的问题以及解决办法（也许是我搜索引擎用的不是很好^^）。<br>在查看了渲染出来的网页后，发现kramed在渲染图片时将<code>[]</code>中的的图片描述渲染为了 <code>alt</code>属性，这是图片加载错误时显示的替补文字，按照 <a href="https://github.com/iissnan/hexo-theme-next/issues/436" target="_blank" rel="noopener">hexo-theme-next #436</a>中的方法找到<code>var imageTitle = $image.attr(&#39;title&#39;);</code>，将其中的<code>title</code>改为<code>alt</code>，但是任然无法解决问题。<br><a id="more"></a></p>
+<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>查看其它网站的图片对于的<code>html</code>源码发现，在插入图片之后，图片的部分代码为：<br><code>&lt;figure&gt;&lt;img src=&quot;URL&quot; alt=&quot;未正常显示图片描述&quot;&gt;&lt;figcaption&gt;&quot;图片描述&quot;&lt;/figcaption&gt;&lt;figure&gt;</code>而kramed渲染出来的格式为：<br><code>&lt;img src=&quot;URL&quot; alt=&quot;未显示图片描述&quot;&gt;</code><br>发现少了一对<code>&lt;figure&gt;</code>和一对<code>&lt;figcaption&gt;</code>标签，从这个思路出发，Google后发现，<code>&lt;figure&gt;</code> 标签是 <code>HTML5</code> 中的新标签，用作文档中插图的图形，其基本用法为：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">figure</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"url"</span> <span class="attr">width</span>=<span class="string">"350"</span> <span class="attr">height</span>=<span class="string">"234"</span> <span class="attr">alt</span>=<span class="string">"未显示图片描述"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><code>src</code>为图片的地址。</li>
 <li><code>width</code>为图片显示宽度。</li>
@@ -285,19 +285,15 @@
 </ul>
 <p><code>width</code>和<code>height</code>参数可以不写，这样会保持图片原有比例，进一步查看后了解到，<code>&lt;figcaption&gt;</code> 标签也是 <code>HTML5</code> 中的新标签，是与其相关联的图片的说明/标题，用于描述其父节点 <code>&lt;figure&gt;</code> 元素里的其他数据。基本用法为：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">figure</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"URL"</span> <span class="attr">width</span>=<span class="string">"350"</span> <span class="attr">height</span>=<span class="string">"234"</span> <span class="attr">alt</span>=<span class="string">"未显示图片描述"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">figcaption</span>&gt;</span>图片描述/说明<span class="tag">&lt;/<span class="name">figcaption</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><h2 id="更改图片插入格式"><a href="#更改图片插入格式" class="headerlink" title="更改图片插入格式"></a>更改图片插入格式</h2><p>有了这些概念后，既然markdown支持<code>html</code>语法，通过改变图片的插入方式以及增加适当的标签，就可以正常地渲染出图片描述了，通过这个构思，开始着手改进。我用的编辑器是<code>visual studio code</code>，markdown文件也是在里面编辑，图片通过PicGo上传至GitHub图床。<br>首先设置PicGo的输出格式，先来看PicGo的说明</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Picgo:</span> <span class="string">Custom</span> <span class="string">Output</span> <span class="string">Format</span></span><br><span class="line"><span class="string">Customize</span> <span class="string">the</span> <span class="string">output</span> <span class="string">format</span> <span class="string">of</span> <span class="string">the</span> <span class="string">uploaded</span> <span class="string">image.</span></span><br><span class="line"><span class="string">$&#123;url&#125;:</span> <span class="string">the</span> <span class="string">url</span> <span class="string">of</span> <span class="string">the</span> <span class="string">uploaded</span> <span class="string">image.</span></span><br><span class="line"><span class="string">$&#123;uploadedName&#125;:</span> <span class="string">the</span> <span class="string">name</span> <span class="string">of</span> <span class="string">the</span> <span class="string">uploaded</span> <span class="string">image,</span> <span class="attr">see Picgo:</span> <span class="string">Custom</span> <span class="string">Upload</span> <span class="string">Name.</span></span><br><span class="line"><span class="attr">Examples:</span></span><br><span class="line"><span class="string">![$&#123;uploadedName&#125;]($&#123;url&#125;)</span> <span class="string">-&gt;</span> <span class="string">![picName-2016-07-25](https://example.com/xxx.jpg)</span></span><br><span class="line"><span class="string">&lt;img</span> <span class="string">src="$&#123;url&#125;"</span> <span class="string">alt="$&#123;uploadedName&#125;"&gt;</span> <span class="string">-&gt;</span> <span class="string">&lt;img</span> <span class="string">src="https://example.com/xxx.jpg"</span> <span class="string">alt="picName-2016-07-25"&gt;</span></span><br></pre></td></tr></table></figure>
 <p>有几个参数要注意，<code>url</code>是图片的地址，<code>uploadedName</code>是图片上传时的图片标题，上面给出了基本使用样例。我们想得到的一个格式为：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">figure</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"图片URL"</span> <span class="attr">alt</span>=<span class="string">"未显示图片时的描述"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">figcaption</span>&gt;</span>图片描述/说明<span class="tag">&lt;/<span class="name">figcaption</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>我们需要一个这样的基本格式，于是将输出格式改为下面这样：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">figure</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"$&#123;url&#125;"</span> <span class="attr">alt</span>=<span class="string">"$&#123;uploadedName&#125;"</span>&gt;</span><span class="tag">&lt;<span class="name">figcaption</span>&gt;</span>"$&#123;uploadedName&#125;"<span class="tag">&lt;/<span class="name">figcaption</span>&gt;</span><span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>增加一对<code>&lt;figure&gt;</code>标签和一对<code>&lt;figcaption&gt;</code>标签，将图片名用作描述/说明文字，这样就解决了插入格式问题，只要通过PicGo上传图片，就自动导出连接格式。</p>
 <h2 id="修改主题配置"><a href="#修改主题配置" class="headerlink" title="修改主题配置"></a>修改主题配置</h2><p>但是还有一个问题是，图片增加了两队标签，看似可以解决问题，然而hexo是通过渲染器（我用的是kramed）将markdown文件渲染为html文件。在渲染的时候渲染器将无法通过CSS渲染<code>&lt;figcaption&gt;</code>标签，这样最终显示出来的图片虽然显示了描述/说明，但是描述和普通文本并没有什么区别，不会在图片下方居中，看不出和图片有啥联系。这时候通过修改<code>themes\next\source\css\_common\components\post\post.styl</code>文件，往里面增加<code>&lt;figcaption&gt;</code>的css样式为：</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">figcaption</span> <span class="string">&#123;</span></span><br><span class="line">    <span class="attr">color:</span> <span class="comment">#808080;</span></span><br><span class="line">    <span class="attr">font:</span> <span class="string">italic</span> <span class="string">16px</span> <span class="string">arial</span> <span class="string">smaller</span> <span class="string">sans-serif;</span></span><br><span class="line">    <span class="attr">padding:</span> <span class="string">0px;</span></span><br><span class="line">    <span class="attr">text-align:</span> <span class="string">center;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><code>color</code>为描述文字的颜色</li>
 <li><code>font</code>为字体属性</li>
@@ -350,6 +346,25 @@
   </li>
 </ul>
 </div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
 
 
       <footer class="post-footer">
@@ -433,7 +448,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#描述"><span class="nav-number">1.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解决"><span class="nav-number">2.</span> <span class="nav-text">解决</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#更改图片插入格式"><span class="nav-number">2.1.</span> <span class="nav-text">更改图片插入格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改主题配置"><span class="nav-number">2.2.</span> <span class="nav-text">修改主题配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考内容"><span class="nav-number">3.</span> <span class="nav-text">参考内容</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#描述"><span class="nav-number">1.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分析"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解决"><span class="nav-number">3.</span> <span class="nav-text">解决</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#更改图片插入格式"><span class="nav-number">3.1.</span> <span class="nav-text">更改图片插入格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改主题配置"><span class="nav-number">3.2.</span> <span class="nav-text">修改主题配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考内容"><span class="nav-number">4.</span> <span class="nav-text">参考内容</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -525,16 +540,32 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">45k</span>
+    <span title="站点总字数">44k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">41 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f0498d985a42554" async="async"></script>
+  </div><div class="translate-style">
+繁/简：<a id="translateLink" href="javascript:translatePage();">繁体
+</a>
+</div>
+<script type="text/javascript" src="/js/tw_cn.js"></script>
+<script type="text/javascript">
+var defaultEncoding = 2; //网站编写字体是否繁体，1-繁体，2-简体
+var translateDelay = 0; //延迟时间,若不在前, 要设定延迟翻译时间, 如100表示100ms,默认为0
+var cookieDomain = "http://yurui.tech/"; //Cookie地址, 一定要设定, 通常为你的网址
+var msgToTraditionalChinese = "繁体"; //此处可以更改为你想要显示的文字
+var msgToSimplifiedChinese = "简体"; //同上，但两处均不建议更改
+var translateButtonId = "translateLink"; //默认互换id
+translateInitilization();
+</script>
 
         
 
@@ -660,6 +691,13 @@ window.addEventListener('pjax:success', () => {
   
 
   
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
 
     </div>
 </body>

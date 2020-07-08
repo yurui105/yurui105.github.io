@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
   <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
@@ -83,6 +83,7 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="余睿的博客" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -268,38 +269,29 @@
       
         <h1 id="使用new运算符分配一个变量"><a href="#使用new运算符分配一个变量" class="headerlink" title="使用new运算符分配一个变量"></a>使用<code>new</code>运算符分配一个变量</h1><p>格式：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">P = <span class="keyword">new</span> T;</span><br></pre></td></tr></table></figure>
-
 <p>其中<code>T</code>是任意类型名，<code>P</code>是类型为<code>T*</code>的指针。</p>
-<p>使用该表达式动态分配出一片大小为<code>sizeof(T)</code>字节的内存空间。并且将该内存空间的其实地址赋值给<code>P</code>。</p>
-<p>例如：</p>
+<p>使用该表达式动态分配出一片大小为<code>sizeof(T)</code>字节的内存空间。并且将该内存空间的其实地址赋值给<code>P</code>。<br><a id="more"></a><br>例如：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line">	*p = <span class="number">5</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>在上述程序中，为<code>p</code>动态分配了<code>sizeof(int)</code>大小的空间，并将起始地址赋值给了<code>p</code>。</p>
 <h1 id="使用new运算符分配一个数组"><a href="#使用new运算符分配一个数组" class="headerlink" title="使用new运算符分配一个数组"></a>使用<code>new</code>运算符分配一个数组</h1><p>格式：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">P = <span class="keyword">new</span> T[N];</span><br></pre></td></tr></table></figure>
-
 <p>其中<code>T</code>是任意类型名，<code>P</code>是类型为<code>T*</code>的指针，<code>N</code>是要分配的数组元素的个数，<code>N</code>可以是表达式。</p>
 <p>使用该表达式动态分配出<code>N*sizeof(T)</code>字节的内存空间，并将起始地址渎职给<code>P</code>。</p>
 <p>例如：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line">	p[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	p[<span class="number">9</span>] = <span class="number">10</span>;</span><br><span class="line">	p[<span class="number">10</span>] = <span class="number">10</span>;<span class="comment">//越界</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>在上述程序中，为<code>p</code>动态分配了<code>10 * sizeof(int)</code>大小的空间，并将起始地址赋值给了<code>p</code>。</p>
 <p>为数组分配完空间后就可以像访问数组一样访问该指针。但是需要注意的是在执行<code>p[10] = 10;</code>时会导致数组越界，编译器又可能不会报错。</p>
 <h1 id="使用delete运算符释放动态分配的内存"><a href="#使用delete运算符释放动态分配的内存" class="headerlink" title="使用delete运算符释放动态分配的内存"></a>使用<code>delete</code>运算符释放动态分配的内存</h1><p>使用<code>new</code>运算符动态分配的内存空间，一定要使用<code>delete</code>运算符进行释放。</p>
 <h2 id="delete变量"><a href="#delete变量" class="headerlink" title="delete变量"></a><code>delete</code>变量</h2><p>格式：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> 指针;<span class="comment">//该指针必须指向new出来的空间</span></span><br></pre></td></tr></table></figure>
-
 <p>例如：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line">	<span class="keyword">delete</span> p;</span><br><span class="line">	<span class="keyword">delete</span> p;<span class="comment">//报错，只能delete一次</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>在使用<code>delete</code>时只能对同一片空间使用一次<code>delete</code>，否则将会报错，如上程序所示。</p>
 <h2 id="delete数组"><a href="#delete数组" class="headerlink" title="delete数组"></a><code>delete</code>数组</h2><p>格式：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> []指针;<span class="comment">//该指针必须指向new出来的空间</span></span><br></pre></td></tr></table></figure>
-
 <p><strong>使用<code>delete</code>释放动态分配的数组时，要添加<code>[]</code>。</strong></p>
 <p>例如：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line">	<span class="keyword">delete</span> []p;</span><br><span class="line">	<span class="keyword">delete</span> p;<span class="comment">//错误,只会释放第一个元素的空间</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>使用<code>delete []p;</code>来正确释放动态分配的内存空间，指针前有<code>[]</code>符；当使用<code>delete p;</code>时，将导致该数组的首元素空间被释放，而其余空间未被释放，形成“野指针”。</p>
 
     </div>
@@ -343,6 +335,25 @@
   </li>
 </ul>
 </div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
 
 
       <footer class="post-footer">
@@ -517,16 +528,32 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">45k</span>
+    <span title="站点总字数">44k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">41 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f0498d985a42554" async="async"></script>
+  </div><div class="translate-style">
+繁/简：<a id="translateLink" href="javascript:translatePage();">繁体
+</a>
+</div>
+<script type="text/javascript" src="/js/tw_cn.js"></script>
+<script type="text/javascript">
+var defaultEncoding = 2; //网站编写字体是否繁体，1-繁体，2-简体
+var translateDelay = 0; //延迟时间,若不在前, 要设定延迟翻译时间, 如100表示100ms,默认为0
+var cookieDomain = "http://yurui.tech/"; //Cookie地址, 一定要设定, 通常为你的网址
+var msgToTraditionalChinese = "繁体"; //此处可以更改为你想要显示的文字
+var msgToSimplifiedChinese = "简体"; //同上，但两处均不建议更改
+var translateButtonId = "translateLink"; //默认互换id
+translateInitilization();
+</script>
 
         
 
@@ -652,6 +679,13 @@ window.addEventListener('pjax:success', () => {
   
 
   
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
 
     </div>
 </body>

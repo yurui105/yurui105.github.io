@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>余睿的博客</title>
+  <icon>http://www.yurui.tech/icon.png</icon>
+  <subtitle>浮生若梦，别多会少，不如莫遇</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://www.yurui.tech/"/>
+  <updated>2020-06-04T08:31:36.000Z</updated>
+  <id>http://www.yurui.tech/</id>
+  
+  <author>
+    <name>余睿</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数列极限的定义及应用</title>
+    <link href="http://www.yurui.tech/2020/06/04/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%8A%E5%BA%94%E7%94%A8/"/>
+    <id>http://www.yurui.tech/2020/06/04/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%8A%E5%BA%94%E7%94%A8/</id>
+    <published>2020-06-04T08:31:36.000Z</published>
+    <updated>2020-06-04T08:31:36.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;数列极限的定义&quot;&gt;&lt;a href=&quot;#数列极限的定义&quot; class=&quot;headerlink&quot; title=&quot;数列极限的定义&quot;&gt;&lt;/a&gt;数列极限的定义&lt;/h1&gt;&lt;h2 id=&quot;概念引入&quot;&gt;&lt;a href=&quot;#概念引入&quot; class=&quot;headerlink&quot; title=&quot;概念引入&quot;&gt;&lt;/a&gt;概念引入&lt;/h2&gt;&lt;p&gt;我们先来看一个数列$x_n=\frac{1}{n}$&lt;/p&gt;
+&lt;p&gt;当$n=1$时，$x_1=\frac{1}{1}=1$&lt;/p&gt;
+&lt;p&gt;当$n=2$时，$x_2=\frac{1}{2}$&lt;/p&gt;
+&lt;p&gt;$\cdots$&lt;/p&gt;
+&lt;p&gt;当$n=1000$时，$x_{1000}=\frac{1}{1000}$&lt;/p&gt;
+&lt;p&gt;$\cdots$&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="数学分析" scheme="http://www.yurui.tech/categories/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/"/>
+    
+    
+      <category term="数列极限" scheme="http://www.yurui.tech/tags/%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90/"/>
+    
+      <category term="数列极限定义" scheme="http://www.yurui.tech/tags/%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90%E5%AE%9A%E4%B9%89/"/>
+    
+      <category term="数列极限应用" scheme="http://www.yurui.tech/tags/%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90%E5%BA%94%E7%94%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>1、向量及其运算</title>
+    <link href="http://www.yurui.tech/2020/06/01/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/1%E3%80%81%E5%90%91%E9%87%8F%E5%8F%8A%E5%85%B6%E8%BF%90%E7%AE%97/"/>
+    <id>http://www.yurui.tech/2020/06/01/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/1%E3%80%81%E5%90%91%E9%87%8F%E5%8F%8A%E5%85%B6%E8%BF%90%E7%AE%97/</id>
+    <published>2020-06-01T14:15:24.000Z</published>
+    <updated>2020-06-01T14:15:24.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h1&gt;&lt;p&gt;线性代数的中心问题是求解线性方程组。&lt;/p&gt;
+&lt;p&gt;假设给定一个线性方程组：&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+x_1+2x_2=4\\
+2x_1-3x_2=-2&lt;/script&gt;&lt;p&gt;我们将$x_1$、$x_2$的系数以及结果单独提取出来，它能表示为：&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}&lt;/script&gt;
+    
+    </summary>
+    
+    
+      <category term="线性代数" scheme="http://www.yurui.tech/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>c++函数的缺省参数</title>
+    <link href="http://www.yurui.tech/2020/06/01/C++/c-%E5%87%BD%E6%95%B0%E7%9A%84%E7%BC%BA%E7%9C%81%E5%8F%82%E6%95%B0/"/>
+    <id>http://www.yurui.tech/2020/06/01/C++/c-%E5%87%BD%E6%95%B0%E7%9A%84%E7%BC%BA%E7%9C%81%E5%8F%82%E6%95%B0/</id>
+    <published>2020-06-01T03:31:00.000Z</published>
+    <updated>2020-06-01T03:31:00.000Z</updated>
+    
+    <summary type="html">
+    
+      介绍c++函数的参数缺省
+    
+    </summary>
+    
+    
+      <category term="c++" scheme="http://www.yurui.tech/categories/c/"/>
+    
+    
+      <category term="c++" scheme="http://www.yurui.tech/tags/c/"/>
+    
+      <category term="参数缺省" scheme="http://www.yurui.tech/tags/%E5%8F%82%E6%95%B0%E7%BC%BA%E7%9C%81/"/>
+    
+      <category term="函数参数缺省" scheme="http://www.yurui.tech/tags/%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E7%BC%BA%E7%9C%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>c++函数重载</title>
+    <link href="http://www.yurui.tech/2020/06/01/C++/c-%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD/"/>
+    <id>http://www.yurui.tech/2020/06/01/C++/c-%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD/</id>
+    <published>2020-06-01T03:01:27.000Z</published>
+    <updated>2020-06-01T03:01:27.000Z</updated>
+    
+    <summary type="html">
+    
+      介绍c++函数重载基本概念
+    
+    </summary>
+    
+    
+      <category term="C++" scheme="http://www.yurui.tech/categories/C/"/>
+    
+    
+      <category term="c++" scheme="http://www.yurui.tech/tags/c/"/>
+    
+      <category term="函数重载" scheme="http://www.yurui.tech/tags/%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>c++内联函数inline</title>
+    <link href="http://www.yurui.tech/2020/06/01/C++/c-%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0inline/"/>
+    <id>http://www.yurui.tech/2020/06/01/C++/c-%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0inline/</id>
+    <published>2020-06-01T02:21:30.000Z</published>
+    <updated>2020-06-01T02:21:30.000Z</updated>
+    
+    <summary type="html">
+    
+      介绍c++内联函数inline关键字的使用。
+    
+    </summary>
+    
+    
+      <category term="C++" scheme="http://www.yurui.tech/categories/C/"/>
+    
+    
+      <category term="c++" scheme="http://www.yurui.tech/tags/c/"/>
+    
+      <category term="inline函数" scheme="http://www.yurui.tech/tags/inline%E5%87%BD%E6%95%B0/"/>
+    
+      <category term="内联函数" scheme="http://www.yurui.tech/tags/%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C++动态内存分类(new/delete)</title>
+    <link href="http://www.yurui.tech/2020/05/31/C++/C-%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E7%B1%BB-new-delete/"/>
+    <id>http://www.yurui.tech/2020/05/31/C++/C-%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E7%B1%BB-new-delete/</id>
+    <published>2020-05-31T08:11:58.000Z</published>
+    <updated>2020-05-31T08:11:58.000Z</updated>
+    
+    <summary type="html">
+    
+      介绍c++动态内存分类。new关键字以及delete关键字的使用以及注意事项
+    
+    </summary>
+    
+    
+      <category term="C++" scheme="http://www.yurui.tech/categories/C/"/>
+    
+    
+      <category term="c++" scheme="http://www.yurui.tech/tags/c/"/>
+    
+      <category term="内存分配" scheme="http://www.yurui.tech/tags/%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/"/>
+    
+      <category term="new关键字" scheme="http://www.yurui.tech/tags/new%E5%85%B3%E9%94%AE%E5%AD%97/"/>
+    
+      <category term="delete关键字" scheme="http://www.yurui.tech/tags/delete%E5%85%B3%E9%94%AE%E5%AD%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C++ const关键字使用</title>
+    <link href="http://www.yurui.tech/2020/05/31/C++/C-const%E5%85%B3%E9%94%AE%E5%AD%97%E4%BD%BF%E7%94%A8/"/>
+    <id>http://www.yurui.tech/2020/05/31/C++/C-const%E5%85%B3%E9%94%AE%E5%AD%97%E4%BD%BF%E7%94%A8/</id>
+    <published>2020-05-31T07:44:03.000Z</published>
+    <updated>2020-05-31T07:44:03.000Z</updated>
+    
+    <summary type="html">
+    
+      介绍c++ const关键字的使用
+    
+    </summary>
+    
+    
+      <category term="C++" scheme="http://www.yurui.tech/categories/C/"/>
+    
+    
+      <category term="c++" scheme="http://www.yurui.tech/tags/c/"/>
+    
+      <category term="const" scheme="http://www.yurui.tech/tags/const/"/>
+    
+      <category term="const关键字" scheme="http://www.yurui.tech/tags/const%E5%85%B3%E9%94%AE%E5%AD%97/"/>
+    
+      <category term="常引用" scheme="http://www.yurui.tech/tags/%E5%B8%B8%E5%BC%95%E7%94%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C++引用</title>
+    <link href="http://www.yurui.tech/2020/05/31/C++/C-%E5%BC%95%E7%94%A8/"/>
+    <id>http://www.yurui.tech/2020/05/31/C++/C-%E5%BC%95%E7%94%A8/</id>
+    <published>2020-05-31T06:34:24.000Z</published>
+    <updated>2020-05-31T06:34:24.000Z</updated>
+    
+    <summary type="html">
+    
+      介绍 c++ 引用的使用方法以及注意事项
+    
+    </summary>
+    
+    
+      <category term="C++" scheme="http://www.yurui.tech/categories/C/"/>
+    
+    
+      <category term="C++" scheme="http://www.yurui.tech/tags/C/"/>
+    
+      <category term="c++引用" scheme="http://www.yurui.tech/tags/c-%E5%BC%95%E7%94%A8/"/>
+    
+      <category term="函数返回值引用" scheme="http://www.yurui.tech/tags/%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%80%BC%E5%BC%95%E7%94%A8/"/>
+    
+      <category term="变量引用" scheme="http://www.yurui.tech/tags/%E5%8F%98%E9%87%8F%E5%BC%95%E7%94%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C/C++位运算</title>
+    <link href="http://www.yurui.tech/2020/02/26/C++/C-C-%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
+    <id>http://www.yurui.tech/2020/02/26/C++/C-C-%E4%BD%8D%E8%BF%90%E7%AE%97/</id>
+    <published>2020-02-26T02:44:19.000Z</published>
+    <updated>2020-02-26T02:44:19.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;数据在计算机中是按二进制的形式存在的，通过普通的四则运算我们能对这些数据做一些简单的运算。但当我们想修改某个数据中的某一位，我们就需要用到位运算。&lt;/p&gt;
+&lt;p&gt;例如：&lt;code&gt;666&lt;/code&gt;的二进制为&lt;code&gt;‭0001101000001010‬&lt;/code&gt;，如果我们需要知道或者修改最高位，此时我们就无法通过一般的方法来对其进行操作，就需要用到位运算符。&lt;/p&gt;
+&lt;p&gt;在许多古老的微处理器上，位运算比加减运算略快，通常位运算比乘除法运算要快很多。在现代架构中，情况并非如此：位运算的运算速度通常与加法运算相同（仍然快于乘法运算）。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="C++" scheme="http://www.yurui.tech/categories/C/"/>
+    
+    
+      <category term="c语言位运算" scheme="http://www.yurui.tech/tags/c%E8%AF%AD%E8%A8%80%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
+    
+      <category term="c++位运算" scheme="http://www.yurui.tech/tags/c-%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
+    
+      <category term="按位运算" scheme="http://www.yurui.tech/tags/%E6%8C%89%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
+    
+      <category term="按位与" scheme="http://www.yurui.tech/tags/%E6%8C%89%E4%BD%8D%E4%B8%8E/"/>
+    
+      <category term="按位或" scheme="http://www.yurui.tech/tags/%E6%8C%89%E4%BD%8D%E6%88%96/"/>
+    
+      <category term="按位异或" scheme="http://www.yurui.tech/tags/%E6%8C%89%E4%BD%8D%E5%BC%82%E6%88%96/"/>
+    
+      <category term="移位运算符" scheme="http://www.yurui.tech/tags/%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AC%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C/C++函数指针</title>
+    <link href="http://www.yurui.tech/2020/02/25/C++/C-C-%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88/"/>
+    <id>http://www.yurui.tech/2020/02/25/C++/C-C-%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88/</id>
+    <published>2020-02-25T06:32:17.000Z</published>
+    <updated>2020-02-25T06:32:17.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;指针&lt;/strong&gt;是用来在程序中指向某一个变量的，实际上指针内存放的就是一个变量的相对内存地址（实际的物理地址还要加上一个偏移值）。&lt;/p&gt;
+&lt;p&gt;在程序运行期间，每个函数都会占用一段连续的内存空间，而函数名就是该函数所占内存空间的起始地址（入口地址），我们可以将一个函数的起始地址赋值给一个指针，进而通过该指针来调用函数，这就是函数指针。&lt;/p&gt;
+&lt;p&gt;函数指针可以像一般函数一样，用于调用函数、传递参数。在如 &lt;code&gt;C&lt;/code&gt;这样的语言中，通过提供一个简单的选取、执行函数的方法，函数指针可以简化代码。函数指针只能指向具有特定特征的函数。因而所有被同一指针运用的函数必须具有&lt;strong&gt;相同的参数和返回类型&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;C语言标准规定，函数指示符（function designator，即函数名字）既不是左值，也不是右值。但C++语言标准规定函数指示符属于左值，因此函数指示符转换为函数指针的右值属于左值转换为右值。&lt;/p&gt;
+&lt;p&gt;除了作为&lt;code&gt;sizeof&lt;/code&gt;或取地址&amp;amp;的操作数，函数指示符在表达式中自动转换为函数指针类型右值。因此通过一个函数指针调用所指的函数，不需要在函数指针前加取值或反引用（*）运算符。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="C++" scheme="http://www.yurui.tech/categories/C/"/>
+    
+    
+      <category term="函数指针" scheme="http://www.yurui.tech/tags/%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88/"/>
+    
+      <category term="c语言函数指针" scheme="http://www.yurui.tech/tags/c%E8%AF%AD%E8%A8%80%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88/"/>
+    
+      <category term="c++函数指针" scheme="http://www.yurui.tech/tags/c-%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>影音服务jellyfin安装与使用</title>
+    <link href="http://www.yurui.tech/2020/01/01/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/9%E3%80%81%E5%BD%B1%E9%9F%B3%E6%9C%8D%E5%8A%A1jellyfin%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
+    <id>http://www.yurui.tech/2020/01/01/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/9%E3%80%81%E5%BD%B1%E9%9F%B3%E6%9C%8D%E5%8A%A1jellyfin%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</id>
+    <published>2020-01-01T04:49:49.000Z</published>
+    <updated>2020-01-01T04:49:49.000Z</updated>
+    
+    <summary type="html">
+    
+      Jellyfin puts you in control of managing and streaming your media. There are no strings attached, no premium licenses or features, and no hidden agendas.
+    
+    </summary>
+    
+    
+      <category term="家庭NAS、HTPC服务器" scheme="http://www.yurui.tech/categories/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    
+      <category term="NAS系统" scheme="http://www.yurui.tech/tags/NAS%E7%B3%BB%E7%BB%9F/"/>
+    
+      <category term="家庭影音" scheme="http://www.yurui.tech/tags/%E5%AE%B6%E5%BA%AD%E5%BD%B1%E9%9F%B3/"/>
+    
+      <category term="HTPC服务器" scheme="http://www.yurui.tech/tags/HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+      <category term="jellyfin" scheme="http://www.yurui.tech/tags/jellyfin/"/>
+    
+      <category term="影音服务" scheme="http://www.yurui.tech/tags/%E5%BD%B1%E9%9F%B3%E6%9C%8D%E5%8A%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu下Docker的安装与使用</title>
+    <link href="http://www.yurui.tech/2019/12/30/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/8%E3%80%81Ubuntu%E4%B8%8BDocker%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
+    <id>http://www.yurui.tech/2019/12/30/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/8%E3%80%81Ubuntu%E4%B8%8BDocker%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</id>
+    <published>2019-12-30T04:49:49.000Z</published>
+    <updated>2019-12-30T04:49:49.000Z</updated>
+    
+    <summary type="html">
+    
+      Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的镜像中，然后发布到任何流行的 Linux或Windows 机器上，也可以实现虚拟化。容器是完全使用沙箱机制，相互之间不会有任何接口。
+    
+    </summary>
+    
+    
+      <category term="家庭NAS、HTPC服务器" scheme="http://www.yurui.tech/categories/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    
+      <category term="NAS系统" scheme="http://www.yurui.tech/tags/NAS%E7%B3%BB%E7%BB%9F/"/>
+    
+      <category term="家庭影音" scheme="http://www.yurui.tech/tags/%E5%AE%B6%E5%BA%AD%E5%BD%B1%E9%9F%B3/"/>
+    
+      <category term="HTPC服务器" scheme="http://www.yurui.tech/tags/HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+      <category term="docker" scheme="http://www.yurui.tech/tags/docker/"/>
+    
+      <category term="ubuntu安装docker" scheme="http://www.yurui.tech/tags/ubuntu%E5%AE%89%E8%A3%85docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu挂载硬盘</title>
+    <link href="http://www.yurui.tech/2019/12/29/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/7%E3%80%81Ubuntu%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/"/>
+    <id>http://www.yurui.tech/2019/12/29/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/7%E3%80%81Ubuntu%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/</id>
+    <published>2019-12-29T04:49:49.000Z</published>
+    <updated>2019-12-29T04:49:49.000Z</updated>
+    
+    <summary type="html">
+    
+      介绍在ubuntu18.04下硬盘的挂载方法
+    
+    </summary>
+    
+    
+      <category term="家庭NAS、HTPC服务器" scheme="http://www.yurui.tech/categories/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    
+      <category term="NAS系统" scheme="http://www.yurui.tech/tags/NAS%E7%B3%BB%E7%BB%9F/"/>
+    
+      <category term="家庭影音" scheme="http://www.yurui.tech/tags/%E5%AE%B6%E5%BA%AD%E5%BD%B1%E9%9F%B3/"/>
+    
+      <category term="HTPC服务器" scheme="http://www.yurui.tech/tags/HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+      <category term="linux硬盘挂载" scheme="http://www.yurui.tech/tags/linux%E7%A1%AC%E7%9B%98%E6%8C%82%E8%BD%BD/"/>
+    
+      <category term="ubuntu挂载硬盘" scheme="http://www.yurui.tech/tags/ubuntu%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>WEB-UI管理面板Cockpit(轻量简单)安装与使用</title>
+    <link href="http://www.yurui.tech/2019/12/28/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/6%E3%80%81WEB-UI%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BFCockpit(%E8%BD%BB%E9%87%8F%E7%AE%80%E5%8D%95)%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
+    <id>http://www.yurui.tech/2019/12/28/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/6%E3%80%81WEB-UI%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BFCockpit(%E8%BD%BB%E9%87%8F%E7%AE%80%E5%8D%95)%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</id>
+    <published>2019-12-28T04:49:49.000Z</published>
+    <updated>2019-12-28T04:49:49.000Z</updated>
+    
+    <summary type="html">
+    
+      Cockpit makes GNU/Linux discoverable. See your server in a web browser and perform system tasks with a mouse. It’s easy to start containers, administer storage, configure networks, and inspect logs.
+    
+    </summary>
+    
+    
+      <category term="家庭NAS、HTPC服务器" scheme="http://www.yurui.tech/categories/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    
+      <category term="NAS系统" scheme="http://www.yurui.tech/tags/NAS%E7%B3%BB%E7%BB%9F/"/>
+    
+      <category term="家庭影音" scheme="http://www.yurui.tech/tags/%E5%AE%B6%E5%BA%AD%E5%BD%B1%E9%9F%B3/"/>
+    
+      <category term="HTPC服务器" scheme="http://www.yurui.tech/tags/HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+      <category term="linux管理面板" scheme="http://www.yurui.tech/tags/linux%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BF/"/>
+    
+      <category term="Cockpit" scheme="http://www.yurui.tech/tags/Cockpit/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>WEB-UI管理面板webmin（轻量级较全面）安装及使用</title>
+    <link href="http://www.yurui.tech/2019/12/27/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/5%E3%80%81WEB-UI%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BFwebmin%EF%BC%88%E8%BD%BB%E9%87%8F%E7%BA%A7%E8%BE%83%E5%85%A8%E9%9D%A2%EF%BC%89%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/"/>
+    <id>http://www.yurui.tech/2019/12/27/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/5%E3%80%81WEB-UI%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BFwebmin%EF%BC%88%E8%BD%BB%E9%87%8F%E7%BA%A7%E8%BE%83%E5%85%A8%E9%9D%A2%EF%BC%89%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</id>
+    <published>2019-12-27T04:49:49.000Z</published>
+    <updated>2019-12-27T04:49:49.000Z</updated>
+    
+    <summary type="html">
+    
+      Webmin是目前功能最强大的基于Web的Unix系统管理工具。管理员通过浏览器访问Webmin的各种管理功能并完成相应的管理动作。目前Webmin支持绝大多数的Unix系统，这些系统除了各种版本的linux以外还包括：AIX、HPUX、Solaris、Unixware、Irix和FreeBSD等。
+    
+    </summary>
+    
+    
+      <category term="家庭NAS、HTPC服务器" scheme="http://www.yurui.tech/categories/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    
+      <category term="NAS系统" scheme="http://www.yurui.tech/tags/NAS%E7%B3%BB%E7%BB%9F/"/>
+    
+      <category term="家庭影音" scheme="http://www.yurui.tech/tags/%E5%AE%B6%E5%BA%AD%E5%BD%B1%E9%9F%B3/"/>
+    
+      <category term="HTPC服务器" scheme="http://www.yurui.tech/tags/HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+      <category term="linux管理面板" scheme="http://www.yurui.tech/tags/linux%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BF/"/>
+    
+      <category term="WEB-UI管理面板" scheme="http://www.yurui.tech/tags/WEB-UI%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BF/"/>
+    
+      <category term="webmin" scheme="http://www.yurui.tech/tags/webmin/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SSH工具Xshell的安装以及使用</title>
+    <link href="http://www.yurui.tech/2019/12/26/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/4%E3%80%81SSH%E5%B7%A5%E5%85%B7Xshell%E7%9A%84%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/"/>
+    <id>http://www.yurui.tech/2019/12/26/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/4%E3%80%81SSH%E5%B7%A5%E5%85%B7Xshell%E7%9A%84%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/</id>
+    <published>2019-12-26T04:49:49.000Z</published>
+    <updated>2019-12-26T04:49:49.000Z</updated>
+    
+    <summary type="html">
+    
+      Xshell 是一个强大的安全终端模拟软件，它支持SSH1, SSH2, 以及Microsoft Windows 平台的TELNET 协议。Xshell 通过互联网到远程主机的安全连接以及它创新性的设计和特色帮助用户在复杂的网络环境中享受他们的工作。
+    
+    </summary>
+    
+    
+      <category term="家庭NAS、HTPC服务器" scheme="http://www.yurui.tech/categories/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    
+      <category term="NAS系统" scheme="http://www.yurui.tech/tags/NAS%E7%B3%BB%E7%BB%9F/"/>
+    
+      <category term="家庭影音" scheme="http://www.yurui.tech/tags/%E5%AE%B6%E5%BA%AD%E5%BD%B1%E9%9F%B3/"/>
+    
+      <category term="HTPC服务器" scheme="http://www.yurui.tech/tags/HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+      <category term="xshell配置" scheme="http://www.yurui.tech/tags/xshell%E9%85%8D%E7%BD%AE/"/>
+    
+      <category term="ssh安装及使用" scheme="http://www.yurui.tech/tags/ssh%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/"/>
+    
+      <category term="xshell安装" scheme="http://www.yurui.tech/tags/xshell%E5%AE%89%E8%A3%85/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu安装基本工具及基本命令的使用</title>
+    <link href="http://www.yurui.tech/2019/12/25/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/3%E3%80%81%E5%AE%89%E8%A3%85%E5%9F%BA%E6%9C%AC%E5%B7%A5%E5%85%B7%E5%8F%8A%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://www.yurui.tech/2019/12/25/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/3%E3%80%81%E5%AE%89%E8%A3%85%E5%9F%BA%E6%9C%AC%E5%B7%A5%E5%85%B7%E5%8F%8A%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
+    <published>2019-12-25T04:49:49.000Z</published>
+    <updated>2019-12-25T04:49:49.000Z</updated>
+    
+    <summary type="html">
+    
+      介绍家庭nas操作系统ubuntu18.04的基本配置
+    
+    </summary>
+    
+    
+      <category term="家庭NAS、HTPC服务器" scheme="http://www.yurui.tech/categories/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    
+      <category term="NAS系统" scheme="http://www.yurui.tech/tags/NAS%E7%B3%BB%E7%BB%9F/"/>
+    
+      <category term="家庭影音" scheme="http://www.yurui.tech/tags/%E5%AE%B6%E5%BA%AD%E5%BD%B1%E9%9F%B3/"/>
+    
+      <category term="HTPC服务器" scheme="http://www.yurui.tech/tags/HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+      <category term="Ubuntu18.04配置" scheme="http://www.yurui.tech/tags/Ubuntu18-04%E9%85%8D%E7%BD%AE/"/>
+    
+      <category term="Ubuntu配置" scheme="http://www.yurui.tech/tags/Ubuntu%E9%85%8D%E7%BD%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu18.04安装</title>
+    <link href="http://www.yurui.tech/2019/12/24/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/2%E3%80%81Ubuntu18.04%E7%9A%84%E5%AE%89%E8%A3%85/"/>
+    <id>http://www.yurui.tech/2019/12/24/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/2%E3%80%81Ubuntu18.04%E7%9A%84%E5%AE%89%E8%A3%85/</id>
+    <published>2019-12-24T06:10:49.000Z</published>
+    <updated>2019-12-24T06:10:49.000Z</updated>
+    
+    <summary type="html">
+    
+      介绍家庭nas操作系统ubuntu18.04的基本安装
+    
+    </summary>
+    
+    
+      <category term="家庭NAS、HTPC服务器" scheme="http://www.yurui.tech/categories/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    
+      <category term="Ubuntu18.04安装" scheme="http://www.yurui.tech/tags/Ubuntu18-04%E5%AE%89%E8%A3%85/"/>
+    
+      <category term="Ubuntu安装" scheme="http://www.yurui.tech/tags/Ubuntu%E5%AE%89%E8%A3%85/"/>
+    
+      <category term="NAS系统" scheme="http://www.yurui.tech/tags/NAS%E7%B3%BB%E7%BB%9F/"/>
+    
+      <category term="家庭影音" scheme="http://www.yurui.tech/tags/%E5%AE%B6%E5%BA%AD%E5%BD%B1%E9%9F%B3/"/>
+    
+      <category term="HTPC服务器" scheme="http://www.yurui.tech/tags/HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C++中cin.getline和cin.get函数的使用</title>
+    <link href="http://www.yurui.tech/2019/09/16/C++/C-%E4%B8%ADgetline%E5%92%8Cget%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://www.yurui.tech/2019/09/16/C++/C-%E4%B8%ADgetline%E5%92%8Cget%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
+    <published>2019-09-16T06:10:49.000Z</published>
+    <updated>2019-09-16T06:10:49.000Z</updated>
+    
+    <summary type="html">
+    
+      解释C++中cin.get()和cin.getline()输入函数的使用方法及注意事项
+    
+    </summary>
+    
+    
+      <category term="C++" scheme="http://www.yurui.tech/categories/C/"/>
+    
+    
+      <category term="cin.get函数" scheme="http://www.yurui.tech/tags/cin-get%E5%87%BD%E6%95%B0/"/>
+    
+      <category term="cin.getline函数" scheme="http://www.yurui.tech/tags/cin-getline%E5%87%BD%E6%95%B0/"/>
+    
+      <category term="cin.get()" scheme="http://www.yurui.tech/tags/cin-get/"/>
+    
+      <category term="cin.getline()" scheme="http://www.yurui.tech/tags/cin-getline/"/>
+    
+      <category term="C++" scheme="http://www.yurui.tech/tags/C/"/>
+    
+      <category term="字符串输入" scheme="http://www.yurui.tech/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BE%93%E5%85%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo博客next主题插入图片问题</title>
+    <link href="http://www.yurui.tech/2019/07/12/hexo%E5%8D%9A%E5%AE%A2/%E8%A7%A3%E5%86%B3hexo%E5%8D%9A%E5%AE%A2next%E4%B8%BB%E9%A2%98%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E6%8F%8F%E8%BF%B0/"/>
+    <id>http://www.yurui.tech/2019/07/12/hexo%E5%8D%9A%E5%AE%A2/%E8%A7%A3%E5%86%B3hexo%E5%8D%9A%E5%AE%A2next%E4%B8%BB%E9%A2%98%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E6%8F%8F%E8%BF%B0/</id>
+    <published>2019-07-11T16:49:52.000Z</published>
+    <updated>2019-07-11T16:49:52.000Z</updated>
+    
+    <summary type="html">
+    
+      解决hexo博客next主题在markdown中插入图片之后不显示图片描述问题。
+    
+    </summary>
+    
+    
+      <category term="hexo博客" scheme="http://www.yurui.tech/categories/hexo%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="hexo博客" scheme="http://www.yurui.tech/tags/hexo%E5%8D%9A%E5%AE%A2/"/>
+    
+      <category term="next主题" scheme="http://www.yurui.tech/tags/next%E4%B8%BB%E9%A2%98/"/>
+    
+      <category term="图片问题" scheme="http://www.yurui.tech/tags/%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/"/>
+    
+      <category term="markdown插入图片" scheme="http://www.yurui.tech/tags/markdown%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/"/>
+    
+      <category term="hexo优化" scheme="http://www.yurui.tech/tags/hexo%E4%BC%98%E5%8C%96/"/>
+    
+  </entry>
+  
+</feed>

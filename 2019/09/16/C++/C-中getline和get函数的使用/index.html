@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
   <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
@@ -85,6 +85,7 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="余睿的博客" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -268,42 +269,29 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>在C++中，我们通常使用<code>cin</code>作为输入函数来读取用户键盘输入的数据，由于不能通过键盘来输入空字符，因此<code>cin</code>需要用别的方法来确定字符串结尾位置。<code>cin</code>使用空白、空格、制表符和换行符来确定字符串的结束位置，这意味着<code>cin</code>在读入数据的时候只能截取上述结束符前的数据，对于结束符后的数据讲不能读入程序中。我们来考一个<code>cin</code>读入字符串的实例。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">30</span>];</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的姓名："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; name;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的名字是："</span> &lt;&lt; name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+        <h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>在C++中，我们通常使用<code>cin</code>作为输入函数来读取用户键盘输入的数据，由于不能通过键盘来输入空字符，因此<code>cin</code>需要用别的方法来确定字符串结尾位置。<code>cin</code>使用空白、空格、制表符和换行符来确定字符串的结束位置，这意味着<code>cin</code>在读入数据的时候只能截取上述结束符前的数据，对于结束符后的数据讲不能读入程序中。我们来考一个<code>cin</code>读入字符串的实例。<br><a id="more"></a><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">30</span>];</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的姓名："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; name;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的名字是："</span> &lt;&lt; name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>运行上面的程序，当我们输入<code>woody allen</code>时，程序会得到下面的结果：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">请输入您的姓名：woody allen</span><br><span class="line">您的名字是：woody</span><br></pre></td></tr></table></figure>
-
 <p>我们发现<code>cin</code>函数读入的数据并不完整，在上述样例中输入的名字被空格键截断了，所以cin只读入了一个单词就结束了读入操作。再来考察一个类似实例看看输入缓冲区内发生了什么？</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">30</span>];</span><br><span class="line">	<span class="keyword">char</span> addr[<span class="number">50</span>];</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的姓名："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; name;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的地址："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; addr;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的名字是："</span> &lt;&lt; name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的地址为："</span> &lt;&lt; addr &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>运行上述程序，我们发现，还没对地址输入提示做出反应，程序就把他显示出来了。然后立即显示最后一行。运行结果如下所示：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">请输入您的姓名：woody allen</span><br><span class="line">请输入您的地址：您的名字是：woody</span><br><span class="line">您的地址为：allen</span><br></pre></td></tr></table></figure>
-
-
-<p>#解决</p>
-<h2 id="面向行输入：getline"><a href="#面向行输入：getline" class="headerlink" title="面向行输入：getline()"></a>面向行输入：getline()</h2><p><code>getline()</code>函数读取输入的整行，它使用通过回车键输入的换行符来作为结束符。要调用这种方法可以使用<code>cin.getline()</code>，该函数有两个参数，第一个参数是用来存储输入行的数组名称，另一个参数是要读取的字符串长度，如果参数为30，则最多读取29各字符，最后一个用来存储在字符串末尾的空字符。<br>例如，假设要使用<code>cin.getline()</code>将姓名读入到一个包含30各元素的<code>name</code>数组中，可使用下面这样的函数调用：</p>
+<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><h2 id="面向行输入：getline"><a href="#面向行输入：getline" class="headerlink" title="面向行输入：getline()"></a>面向行输入：getline()</h2><p><code>getline()</code>函数读取输入的整行，它使用通过回车键输入的换行符来作为结束符。要调用这种方法可以使用<code>cin.getline()</code>，该函数有两个参数，第一个参数是用来存储输入行的数组名称，另一个参数是要读取的字符串长度，如果参数为30，则最多读取29各字符，最后一个用来存储在字符串末尾的空字符。<br>例如，假设要使用<code>cin.getline()</code>将姓名读入到一个包含30各元素的<code>name</code>数组中，可使用下面这样的函数调用：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cin</span>.getline(name,<span class="number">30</span>);</span><br></pre></td></tr></table></figure>
-
 <p>这样就可以将一行读入到数组中————如果这一行不超过29个字符(<code>getline()</code>成员函数还可以接受第三个可选参数，在此不做讨论)。现在对上述样例进行修改如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">30</span>];</span><br><span class="line">	<span class="keyword">char</span> addr[<span class="number">50</span>];</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的姓名："</span>;</span><br><span class="line">	<span class="built_in">cin</span>.getline(name,<span class="number">30</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的地址："</span>;</span><br><span class="line">	<span class="built_in">cin</span>.getline(addr,<span class="number">50</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的名字是："</span> &lt;&lt; name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的地址为："</span> &lt;&lt; addr &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>上述程序中将<code>cin</code>换成了<code>cin.getline()</code>，我们得到了正确的输入如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">请输入您的姓名：woody allen</span><br><span class="line">请输入您的地址：Guizhou China</span><br><span class="line">您的名字是：woody allen</span><br><span class="line">您的地址为：Guizhou China</span><br></pre></td></tr></table></figure>
-
 <p><code>getline()</code>函数每次读取一行，它通过回车键输入的换行符来确定行尾，但是不保存换行符。相反，在存储字符串时，它用空字符来替换换行符。</p>
 <h2 id="面向行的输入get"><a href="#面向行的输入get" class="headerlink" title="面向行的输入get()"></a>面向行的输入get()</h2><p>另外还有一种方法。<code>istream</code>类有另一个名为<code>get()</code>的成员函数，该函数有几种变体，其中一种与<code>getline()</code>类似，他们接受相同的参数，解释参数的方式也相同，都读取到行尾。单<code>get()</code>不再读取并丢弃换行符，而是将其留在输入队列中，假设我们连续两次调用<code>get()</code>：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(name,arrSize);</span><br><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(addr,arrSize);</span><br></pre></td></tr></table></figure>
-
 <p>运行上诉代码，我们会发现第二行代码并没有读入数据，原因是当第二行代码在读取数据时，把第一行读取的回车符当成了第二个字符串的结束标志，所以接下来的数据都没有读入，一个解决办法是将上诉代码改为：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(name,arrSize);</span><br><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>();</span><br><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(addr,arrSize);</span><br></pre></td></tr></table></figure>
-
 <p>通过新增的<code>cin.get();</code>先读取上一行留下来的换行符，然后再读取下一个字符串。</p>
 <p>另一种使用<code>get()</code>的方法是将两个类成员函数拼接起来使用，如下代码所示：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(name,addr).<span class="built_in">get</span>();</span><br></pre></td></tr></table></figure>
 <p>之所以这样做，是由于<code>cin.get(name,addr)</code>返回一个<code>cin</code>对象，该对象随后将被用来调用<code>get()</code>函数，同样，下面语句也能将输入的两行分别读到数组<code>name</code>和<code>addr</code>中，其效果与两次调用<code>cin.getline()</code>相同：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cin</span>.getline(name,ArSize).getline(addr,ArSize);</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -346,6 +334,25 @@
   </li>
 </ul>
 </div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
 
 
       <footer class="post-footer">
@@ -430,7 +437,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#描述"><span class="nav-number">1.</span> <span class="nav-text">描述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#面向行输入：getline"><span class="nav-number">1.1.</span> <span class="nav-text">面向行输入：getline()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向行的输入get"><span class="nav-number">1.2.</span> <span class="nav-text">面向行的输入get()</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#描述"><span class="nav-number">1.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解决"><span class="nav-number">2.</span> <span class="nav-text">解决</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#面向行输入：getline"><span class="nav-number">2.1.</span> <span class="nav-text">面向行输入：getline()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向行的输入get"><span class="nav-number">2.2.</span> <span class="nav-text">面向行的输入get()</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -522,16 +529,32 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">45k</span>
+    <span title="站点总字数">44k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">41 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f0498d985a42554" async="async"></script>
+  </div><div class="translate-style">
+繁/简：<a id="translateLink" href="javascript:translatePage();">繁体
+</a>
+</div>
+<script type="text/javascript" src="/js/tw_cn.js"></script>
+<script type="text/javascript">
+var defaultEncoding = 2; //网站编写字体是否繁体，1-繁体，2-简体
+var translateDelay = 0; //延迟时间,若不在前, 要设定延迟翻译时间, 如100表示100ms,默认为0
+var cookieDomain = "http://yurui.tech/"; //Cookie地址, 一定要设定, 通常为你的网址
+var msgToTraditionalChinese = "繁体"; //此处可以更改为你想要显示的文字
+var msgToSimplifiedChinese = "简体"; //同上，但两处均不建议更改
+var translateButtonId = "translateLink"; //默认互换id
+translateInitilization();
+</script>
 
         
 
@@ -657,6 +680,13 @@ window.addEventListener('pjax:success', () => {
   
 
   
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
 
     </div>
 </body>

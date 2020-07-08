@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
   <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
@@ -23,12 +23,12 @@
     var CONFIG = {"hostname":"www.yurui.tech","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="引言线性代数的中心问题是求解线性方程组。 假设给定一个线性方程组：$$x_1+2x_2&#x3D;4\2x_1-3x_2&#x3D;-2$$我们将$x_1$、$x_2$的系数以及结果单独提取出来，它能表示为：$$x_1\binom{1}{2}+x_2\binom{2}{-3}&#x3D;\binom{4}{-2}$$ 由此可得此方程可解$\Longleftrightarrow$$\binom{4}{-2}$可表示为$\bino">
+  <meta name="description" content="引言线性代数的中心问题是求解线性方程组。 假设给定一个线性方程组：  x_1+2x_2&#x3D;4\\ 2x_1-3x_2&#x3D;-2我们将$x_1$、$x_2$的系数以及结果单独提取出来，它能表示为：  x_1\binom{1}{2}+x_2\binom{2}{-3}&#x3D;\binom{4}{-2}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="1、向量及其运算">
 <meta property="og:url" content="http://www.yurui.tech/2020/06/01/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/1%E3%80%81%E5%90%91%E9%87%8F%E5%8F%8A%E5%85%B6%E8%BF%90%E7%AE%97/index.html">
 <meta property="og:site_name" content="余睿的博客">
-<meta property="og:description" content="引言线性代数的中心问题是求解线性方程组。 假设给定一个线性方程组：$$x_1+2x_2&#x3D;4\2x_1-3x_2&#x3D;-2$$我们将$x_1$、$x_2$的系数以及结果单独提取出来，它能表示为：$$x_1\binom{1}{2}+x_2\binom{2}{-3}&#x3D;\binom{4}{-2}$$ 由此可得此方程可解$\Longleftrightarrow$$\binom{4}{-2}$可表示为$\bino">
+<meta property="og:description" content="引言线性代数的中心问题是求解线性方程组。 假设给定一个线性方程组：  x_1+2x_2&#x3D;4\\ 2x_1-3x_2&#x3D;-2我们将$x_1$、$x_2$的系数以及结果单独提取出来，它能表示为：  x_1\binom{1}{2}+x_2\binom{2}{-3}&#x3D;\binom{4}{-2}">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200601225945203.png">
 <meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200601230654410.png">
@@ -92,6 +92,7 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="余睿的博客" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -255,7 +256,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>7.7k</span>
+              <span>7.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -275,7 +276,12 @@
 
       
         <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>线性代数的中心问题是求解线性方程组。</p>
-<p>假设给定一个线性方程组：<br>$$<br>x_1+2x_2=4\<br>2x_1-3x_2=-2<br>$$<br>我们将$x_1$、$x_2$的系数以及结果单独提取出来，它能表示为：<br>$$<br>x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}<br>$$</p>
+<p>假设给定一个线性方程组：</p>
+<script type="math/tex; mode=display">
+x_1+2x_2=4\\
+2x_1-3x_2=-2</script><p>我们将$x_1$、$x_2$的系数以及结果单独提取出来，它能表示为：</p>
+<script type="math/tex; mode=display">
+x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}</script><a id="more"></a>
 <p>由此可得此方程可解$\Longleftrightarrow$$\binom{4}{-2}$可表示为$\binom{1}{2}$和$\binom{2}{-3}$的线性组合。</p>
 <p>线性代数是建立在向量的加法和数乘这两种所谓<strong>线性运算</strong>上的.</p>
 <h1 id="n-维空间中的点"><a href="#n-维空间中的点" class="headerlink" title="$n$维空间中的点"></a>$n$维空间中的点</h1><h2 id="表示"><a href="#表示" class="headerlink" title="表示"></a>表示</h2><p>在一条直线上取定坐标原点后，每个实数一一对应表示直线上的一个点。</p>
@@ -287,16 +293,20 @@
 <p>同理，定义$n$维空间的点为一个$n$元有序数组$x=(x_1,\dots,x_n)$，称$x_i$为点$x$的第$i$个坐标.</p>
 <h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><ol>
 <li><p><strong>相等</strong></p>
-<p>对于$n$维空间的两个点$x=(x_1,\dots,x_n)$与$y=(y_1,\dots,y_n)$，若<br>$$<br>x_i=y_i, \forall1\leq i \leq n.<br>$$<br>则称$x$与$y$相等。</p>
+<p>对于$n$维空间的两个点$x=(x_1,\dots,x_n)$与$y=(y_1,\dots,y_n)$，若</p>
+<script type="math/tex; mode=display">
+x_i=y_i, \forall1\leq i \leq n.</script><p>则称$x$与$y$相等。</p>
 </li>
 </ol>
-<ol start="2">
+<ol>
 <li><p><strong>相加</strong></p>
-<p>对于$n$维空间的两个点$x=(x_1,\dots,x_n)$与$y=(y_1,\dots,y_n)$，其<strong>加法</strong>规则为：<br>$$<br>x+y:=(x_1+y_1,\dots,x_n+y_n)<br>$$</p>
-</li>
+<p>对于$n$维空间的两个点$x=(x_1,\dots,x_n)$与$y=(y_1,\dots,y_n)$，其<strong>加法</strong>规则为：</p>
+<script type="math/tex; mode=display">
+x+y:=(x_1+y_1,\dots,x_n+y_n)</script></li>
 <li><p><strong>数乘运算</strong></p>
-<p>对于$n$维空间的点$x=(x_1,\dots,x_n)$，以及$c\in R$其<strong>数乘运算</strong>规则为：<br>$$<br>cx:=(cx_1,\dots,cx_n)<br>$$</p>
-</li>
+<p>对于$n$维空间的点$x=(x_1,\dots,x_n)$，以及$c\in R$其<strong>数乘运算</strong>规则为：</p>
+<script type="math/tex; mode=display">
+cx:=(cx_1,\dots,cx_n)</script></li>
 </ol>
 <p>这样定义的加法及数乘运算对于任意$n$维空间中的点$x,y,z$满足以下8条性质:</p>
 <ol>
@@ -316,18 +326,23 @@
 <p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200602000520092.png" alt="image-20200602000520092"></p>
 <h2 id="向量的运算"><a href="#向量的运算" class="headerlink" title="向量的运算"></a>向量的运算</h2><h3 id="向量的加法-addition"><a href="#向量的加法-addition" class="headerlink" title="向量的加法(addition):"></a>向量的加法(addition):</h3><p>对于两个向量$\vec{a}=\overrightarrow{OA}$以及$b=\overrightarrow{OB}$，$\vec{a}+\vec{b}$的和为以向量$\vec{a}，\vec{b}$为邻边的平行四边形的对角线$\overrightarrow{OC}$代表的向量（平行四边形法则）。如下图所示：</p>
 <p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200602001500849.png" alt="image-20200602001500849"></p>
-<p>向量的加法又满足三角形法则：<br>$$<br>\overrightarrow{OA}+\overrightarrow{AC}=\overrightarrow{OC}<br>$$</p>
-<h3 id="向量的数乘-scalar-multiplication-："><a href="#向量的数乘-scalar-multiplication-：" class="headerlink" title="向量的数乘(scalar multiplication)："></a>向量的数乘(scalar multiplication)：</h3><p>向量的数乘即向量的方向不变，大小变为原来的$c(c\in R)$倍。如下图所示：</p>
+<p>向量的加法又满足三角形法则：</p>
+<script type="math/tex; mode=display">
+\overrightarrow{OA}+\overrightarrow{AC}=\overrightarrow{OC}</script><h3 id="向量的数乘-scalar-multiplication-："><a href="#向量的数乘-scalar-multiplication-：" class="headerlink" title="向量的数乘(scalar multiplication)："></a>向量的数乘(scalar multiplication)：</h3><p>向量的数乘即向量的方向不变，大小变为原来的$c(c\in R)$倍。如下图所示：</p>
 <p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200602090359154.png" alt="image-20200602090359154"></p>
 <h3 id="向量的性质"><a href="#向量的性质" class="headerlink" title="向量的性质"></a>向量的性质</h3><ol>
-<li><p>向量的加法满足结合律，即对于任意的向量$\vec{a},\vec{b},\vec{c}$<br>$$<br>\vec{a}+(\vec{b}+\vec{c})=(\vec{a}+\vec{b})+\vec{c}<br>$$</p>
-</li>
-<li><p>向量的加法满足交换律，即对于任意的向量$\vec{a},\vec{b}$<br>$$<br>\vec{a}+\vec{b}=\vec{b}+\vec{a}<br>$$</p>
-</li>
-<li><p>当$A=B$时，称向量$\overrightarrow{AB}$为零向量，记作$\vec{0}$，则<br>$$<br>\overrightarrow{AA}+\overrightarrow{AB}=\overrightarrow{AB}可表示为0+\vec{a}=\vec{a}对于任意向量\vec{a}成立<br>$$</p>
-</li>
-<li><p>对向量$a=\overrightarrow{AB}$，记向量$\overrightarrow{BA}=-a$，则$\overrightarrow{AB}+\overrightarrow{BA}=\overrightarrow{AA}$，即<br>$$<br>\vec{a}+(-\vec{a})=0,\forall \vec{a}<br>$$</p>
-</li>
+<li><p>向量的加法满足结合律，即对于任意的向量$\vec{a},\vec{b},\vec{c}$</p>
+<script type="math/tex; mode=display">
+\vec{a}+(\vec{b}+\vec{c})=(\vec{a}+\vec{b})+\vec{c}</script></li>
+<li><p>向量的加法满足交换律，即对于任意的向量$\vec{a},\vec{b}$</p>
+<script type="math/tex; mode=display">
+\vec{a}+\vec{b}=\vec{b}+\vec{a}</script></li>
+<li><p>当$A=B$时，称向量$\overrightarrow{AB}$为零向量，记作$\vec{0}$，则</p>
+<script type="math/tex; mode=display">
+\overrightarrow{AA}+\overrightarrow{AB}=\overrightarrow{AB}可表示为0+\vec{a}=\vec{a}对于任意向量\vec{a}成立</script></li>
+<li><p>对向量$a=\overrightarrow{AB}$，记向量$\overrightarrow{BA}=-a$，则$\overrightarrow{AB}+\overrightarrow{BA}=\overrightarrow{AA}$，即</p>
+<script type="math/tex; mode=display">
+\vec{a}+(-\vec{a})=0,\forall \vec{a}</script></li>
 <li><p>$1·\vec{a}=\vec{a}$</p>
 </li>
 <li><p>$(c_1·c_2)\vec{a}=c_1(c_2)\vec{a}$</p>
@@ -344,9 +359,12 @@
 <li>$n$维空间中由原点出发的向量</li>
 </ol>
 <p>我们将不加区分地使用向量的这三个身份。</p>
-<p>记$\vec{a}=\begin{pmatrix}a_1\\vdots \a_n \end{pmatrix}$为列向量，其中$a_i$为向量$\vec{a}$的第$i$个分量。</p>
-<p>则有向量的加法：<br>$$<br>\vec{a}+\vec{b}:=\begin{pmatrix}a_1+b_! \\vdots \a_n+b_n\end{pmatrix}.<br>$$<br>数乘：<br>$$<br>c\vec{a}:=\begin{pmatrix}c\vec{a_1} \\vdots \c\vec{a_n}\end{pmatrix}.<br>$$</p>
-<h1 id="向量的空间定义"><a href="#向量的空间定义" class="headerlink" title="向量的空间定义"></a>向量的空间定义</h1><p>在由称为”向量“的元素构成的非空集合$V$中，若定义了加法和数乘运算，且对任意向量$\vec{a},\vec{b},\vec{c}$及数$k,l\in F$满足以下8条性质：</p>
+<p>记$\vec{a}=\begin{pmatrix}a_1\\\vdots \\a_n \end{pmatrix}$为列向量，其中$a_i$为向量$\vec{a}$的第$i$个分量。</p>
+<p>则有向量的加法：</p>
+<script type="math/tex; mode=display">
+\vec{a}+\vec{b}:=\begin{pmatrix}a_1+b_! \\\vdots \\a_n+b_n\end{pmatrix}.</script><p>数乘：</p>
+<script type="math/tex; mode=display">
+c\vec{a}:=\begin{pmatrix}c\vec{a_1} \\\vdots \\c\vec{a_n}\end{pmatrix}.</script><h1 id="向量的空间定义"><a href="#向量的空间定义" class="headerlink" title="向量的空间定义"></a>向量的空间定义</h1><p>在由称为”向量“的元素构成的非空集合$V$中，若定义了加法和数乘运算，且对任意向量$\vec{a},\vec{b},\vec{c}$及数$k,l\in F$满足以下8条性质：</p>
 <ol>
 <li>$\vec{a}+(\vec{b}+\vec{c})=(\vec{a}+\vec{b})+\vec{c}$</li>
 <li>$\vec{a}+\vec{b}=\vec{b}+\vec{a}$</li>
@@ -359,16 +377,20 @@
 </ol>
 <p>则称$V$为定义在数域$F$上的向量空间(vector space).</p>
 <h1 id="向量的线性组合"><a href="#向量的线性组合" class="headerlink" title="向量的线性组合"></a>向量的线性组合</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>设$\vec{v_1},\cdots,\vec{v_m}$为$m$个$n$维向量，$c_1,\cdots,c_m \in R$，则称$c_1v_1,\cdots,c_mv_m$为向量$\vec{v_1},\cdots,\vec{v_m}$的一个线性组合。</p>
-<p>例：给定$\vec{i}=\begin{pmatrix}1 \0 \0\end{pmatrix}\vec{j}=\begin{pmatrix}0 \1 \0\end{pmatrix},\vec{k}=\begin{pmatrix}0 \0 \1\end{pmatrix}$，</p>
-<p>则$\vec{u}=\begin{pmatrix}1 \-1 \1\end{pmatrix}=\vec{i}-\vec{j}+\vec{k}$是向量$\vec{i},\vec{j},\vec{k}$的一个线性组合。</p>
+<p>例：给定$\vec{i}=\begin{pmatrix}1 \\0 \\0\end{pmatrix}\vec{j}=\begin{pmatrix}0 \\1 \\0\end{pmatrix},\vec{k}=\begin{pmatrix}0 \\0 \\1\end{pmatrix}$，</p>
+<p>则$\vec{u}=\begin{pmatrix}1 \-1 \\1\end{pmatrix}=\vec{i}-\vec{j}+\vec{k}$是向量$\vec{i},\vec{j},\vec{k}$的一个线性组合。</p>
 <h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p>Q：给定一组向量$\vec{v_1},\cdots,\vec{v_m}$，则$\vec{v_1},\cdots,\vec{v_m}$的全部线性组合是怎样的集合？</p>
-<p>例1：向量$\vec{u}=\begin{pmatrix}1 \1 \1\end{pmatrix}$的全部线性组合$\left{c\vec{u}|c\in R\right}$为以$\vec{u}$为方向的一条直线。</p>
-<p>例2：向量$\vec{u}=\begin{pmatrix}1 \1 \0\end{pmatrix}$和$\vec{v}=\begin{pmatrix}0 \1 \1\end{pmatrix}$的全部线性组合为$c\vec{u}+d\vec{v}=\begin{pmatrix}c \c+d \d\end{pmatrix}$，其中$c,d$为任意实数，这是平面$x-y+z=0$。</p>
-<p>例3：向量$\vec{u}=\begin{pmatrix}1 \1 \0\end{pmatrix}$和$\vec{v}=\begin{pmatrix}\sqrt{2} \\sqrt{2} \0\end{pmatrix}$的全部线性组合为$c\vec{u}+d\vec{v}=\begin{pmatrix}c+\sqrt{2}d \c+\sqrt{2}d\0\end{pmatrix}$，其中$c,d$为任意实数，这是直线$\left{\begin{aligned}x = y \z = 0\end{aligned}\right.$</p>
-<p>例4：向量$\vec{u}=\begin{pmatrix}1 \1 \0\end{pmatrix}$，$\vec{v}=\begin{pmatrix}0 \1 \1\end{pmatrix}$，$\vec{w}=\begin{pmatrix}1 \0 \1\end{pmatrix}$的全部线性组合$\left{c\vec{u}+d\vec{v}+e\vec{w}|c,d,e \in R\right}$为整个三维空间.</p>
-<p>这是因为，任意三维向量$\begin{pmatrix}x \y \z\end{pmatrix}$都可以表示为$\vec{u},\vec{v},\vec{w}$的下列线性组合：<br>$$<br>\begin{pmatrix}x \y \z\end{pmatrix}=\frac{x+y-z}{2}\vec{u}+\frac{y+z-x}{2}\vec{v}+\frac{z+x-y}{2}\vec{w}.<br>$$<br>例5：向量$\vec{u}=\begin{pmatrix}1 \1 \0\end{pmatrix}$，$\vec{v}=\begin{pmatrix}0 \1 \1\end{pmatrix}$，$\vec{w}=\begin{pmatrix}1 \2 \1\end{pmatrix}$的全部线性组合$\left{c\vec{u}+d\vec{v}+e\vec{w}=(c+e)\vec{u}+(d+e)\vec{v}|c,d,e \in R\right}$为向量$\vec{u},\vec{w}$张成的平面$x-y+z=0$，这是因为$\vec{w}=\vec{u}|\vec{v}$在$\vec{u},\vec{v}$所张成的这张平面上。</p>
+<p>例1：向量$\vec{u}=\begin{pmatrix}1 \\1 \\1\end{pmatrix}$的全部线性组合$\left\{c\vec{u}|c\in R\right\}$为以$\vec{u}$为方向的一条直线。</p>
+<p>例2：向量$\vec{u}=\begin{pmatrix}1 \\1 \\0\end{pmatrix}$和$\vec{v}=\begin{pmatrix}0 \\1 \\1\end{pmatrix}$的全部线性组合为$c\vec{u}+d\vec{v}=\begin{pmatrix}c \\c+d \\d\end{pmatrix}$，其中$c,d$为任意实数，这是平面$x-y+z=0$。</p>
+<p>例3：向量$\vec{u}=\begin{pmatrix}1 \\1 \\0\end{pmatrix}$和$\vec{v}=\begin{pmatrix}\sqrt{2} \\\sqrt{2} \\0\end{pmatrix}$的全部线性组合为$c\vec{u}+d\vec{v}=\begin{pmatrix}c+\sqrt{2}d \\c+\sqrt{2}d\\0\end{pmatrix}$，其中$c,d$为任意实数，这是直线$\left\{\begin{aligned}x = y \\z = 0\end{aligned}\right.$</p>
+<p>例4：向量$\vec{u}=\begin{pmatrix}1 \\1 \\0\end{pmatrix}$，$\vec{v}=\begin{pmatrix}0 \\1 \\1\end{pmatrix}$，$\vec{w}=\begin{pmatrix}1 \\0 \\1\end{pmatrix}$的全部线性组合$\left\{c\vec{u}+d\vec{v}+e\vec{w}|c,d,e \in R\right\}$为整个三维空间.</p>
+<p>这是因为，任意三维向量$\begin{pmatrix}x \\y \\z\end{pmatrix}$都可以表示为$\vec{u},\vec{v},\vec{w}$的下列线性组合：</p>
+<script type="math/tex; mode=display">
+\begin{pmatrix}x \\y \\z\end{pmatrix}=\frac{x+y-z}{2}\vec{u}+\frac{y+z-x}{2}\vec{v}+\frac{z+x-y}{2}\vec{w}.</script><p>例5：向量$\vec{u}=\begin{pmatrix}1 \\1 \\0\end{pmatrix}$，$\vec{v}=\begin{pmatrix}0 \\1 \\1\end{pmatrix}$，$\vec{w}=\begin{pmatrix}1 \\2 \\1\end{pmatrix}$的全部线性组合$\left\{c\vec{u}+d\vec{v}+e\vec{w}=(c+e)\vec{u}+(d+e)\vec{v}|c,d,e \in R\right\}$为向量$\vec{u},\vec{w}$张成的平面$x-y+z=0$，这是因为$\vec{w}=\vec{u}|\vec{v}$在$\vec{u},\vec{v}$所张成的这张平面上。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在3维空间中， 一般而言，向量$\vec{u},\vec{u}和\vec{v},或\vec{u}、\vec{v}和\vec{w}$的所有线性组合分别是一条直线、一张平面或整个3维空间。</p>
-<h1 id="向量的点积、长度"><a href="#向量的点积、长度" class="headerlink" title="向量的点积、长度"></a>向量的点积、长度</h1><h2 id="向量长度"><a href="#向量长度" class="headerlink" title="向量长度"></a>向量长度</h2><p>向量$\vec{v}$的长度(length)或模(norm)定义为<br>$$<br>|\vec{v}|=\sqrt{\vec{v}·\vec{v}}<br>$$<br>若$\vec{v}=(v_1,\cdots,v_n)$，则$|\vec{v}|=\sqrt{v_1^2+\cdots+v_n^2}$。</p>
+<h1 id="向量的点积、长度"><a href="#向量的点积、长度" class="headerlink" title="向量的点积、长度"></a>向量的点积、长度</h1><h2 id="向量长度"><a href="#向量长度" class="headerlink" title="向量长度"></a>向量长度</h2><p>向量$\vec{v}$的长度(length)或模(norm)定义为</p>
+<script type="math/tex; mode=display">
+|\vec{v}|=\sqrt{\vec{v}·\vec{v}}</script><p>若$\vec{v}=(v_1,\cdots,v_n)$，则$|\vec{v}|=\sqrt{v_1^2+\cdots+v_n^2}$。</p>
 <p>例：$\vec{v}=(1，2，3)$，则$|\vec{v}|=\sqrt{1+4+9}=\sqrt{14}$。</p>
 <h2 id="向量点积"><a href="#向量点积" class="headerlink" title="向量点积"></a>向量点积</h2><p>定义：若$|\vec{v}|=1$，则称$\vec{v}$为单位向量(unit vector)。</p>
 <p>单位化：任给一非零向量$\vec{v}$，则$\frac{\vec{v}}{|\vec{v}|}$是沿$\vec{v}$方向的单位向量。</p>
@@ -382,26 +404,44 @@
 </ol>
 <h1 id="向量的夹角"><a href="#向量的夹角" class="headerlink" title="向量的夹角"></a>向量的夹角</h1><h2 id="向量垂直"><a href="#向量垂直" class="headerlink" title="向量垂直"></a>向量垂直</h2><p>若$\vec{v}\cdot\vec{w}=0$，则称向量$\vec{v}$和$\vec{w}$垂直(perpendicular)(或者称为正交(orthogonal))。记作$\vec{v}\perp\vec{w}$或$\vec{w}\perp\vec{v}$。</p>
 <p>在此规定，$\vec{0}$和任意向量垂直。</p>
-<p>这样定义的垂直的概念与几何直观是一致的，即<br>$$<br>\vec{v}\perp\vec{w}\Longleftrightarrow\vec{v}\cdot\vec{w}=0<br>$$<br>证明：设$\vec{v}\perp\vec{w}$，则$\vec{v},\vec{w},\vec{v}-\vec{w}$构成直角三角形的三条边，如下如所示：</p>
+<p>这样定义的垂直的概念与几何直观是一致的，即</p>
+<script type="math/tex; mode=display">
+\vec{v}\perp\vec{w}\Longleftrightarrow\vec{v}\cdot\vec{w}=0</script><p>证明：设$\vec{v}\perp\vec{w}$，则$\vec{v},\vec{w},\vec{v}-\vec{w}$构成直角三角形的三条边，如下如所示：</p>
 <p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200602144024402.png" alt="image-20200602144024402"></p>
-<p>于是由勾股定理可得：$|\vec{v}-\vec{w}|^2=|\vec{v}|^2+|\vec{w}|^2$，将式子左边展开得：<br>$$<br>|\vec{v}-\vec{w}|^2=(\vec{v}-\vec{w})\cdot(\vec{v}-\vec{w})=|\vec{v}|^2-\vec{v}\cdot\vec{w}-\vec{w}\cdot\vec{v}+|\vec{w}|^2<br>$$<br>故得 $\vec{v}\cdot\vec{w}=0$，反之亦然。</p>
+<p>于是由勾股定理可得：$|\vec{v}-\vec{w}|^2=|\vec{v}|^2+|\vec{w}|^2$，将式子左边展开得：</p>
+<script type="math/tex; mode=display">
+|\vec{v}-\vec{w}|^2=(\vec{v}-\vec{w})\cdot(\vec{v}-\vec{w})=|\vec{v}|^2-\vec{v}\cdot\vec{w}-\vec{w}\cdot\vec{v}+|\vec{w}|^2</script><p>故得 $\vec{v}\cdot\vec{w}=0$，反之亦然。</p>
 <h2 id="向量的夹角-1"><a href="#向量的夹角-1" class="headerlink" title="向量的夹角"></a>向量的夹角</h2><p>命题：两非零向量$\vec{v},\vec{w}$的夹角$\theta$满足$\cos\theta=\frac{\vec{v}\cdot\vec{w}}{|\vec{v}||\vec{w}|}$。</p>
-<p>证明：一般的，向量$\vec{v},\vec{w},\vec{v}-\vec{w}$构成三角形的三条边，由<strong>余弦定理</strong>得<br>$$<br>|\vec{v}-\vec{w}|^2=|\vec{v}|^2+|\vec{w}|^2-2|\vec{v}||\vec{w}|\cos\theta<br>$$<br>故有：<br>$$<br>\cos\theta=\frac{|\vec{v}|^2+|\vec{w}|^2-|\vec{v}-\vec{w}|^2}{2|\vec{v}||\vec{w}|}=\frac{\vec{v}\cdot\vec{w}}{|\vec{v}||\vec{w}|}<br>$$</p>
-<ul>
+<p>证明：一般的，向量$\vec{v},\vec{w},\vec{v}-\vec{w}$构成三角形的三条边，由<strong>余弦定理</strong>得</p>
+<script type="math/tex; mode=display">
+|\vec{v}-\vec{w}|^2=|\vec{v}|^2+|\vec{w}|^2-2|\vec{v}||\vec{w}|\cos\theta</script><p>故有：</p>
+<script type="math/tex; mode=display">
+\cos\theta=\frac{|\vec{v}|^2+|\vec{w}|^2-|\vec{v}-\vec{w}|^2}{2|\vec{v}||\vec{w}|}=\frac{\vec{v}\cdot\vec{w}}{|\vec{v}||\vec{w}|}</script><ul>
 <li>若$\vec{v}\cdot\vec{w}&gt;0$，则$\cos\theta&gt;0$，取$0\leq\theta\leq\frac{\pi}{2}$</li>
 <li>若$\vec{v}\cdot\vec{w}&lt;0$，则$\cos\theta&lt;0$，取$\frac{\pi}{2}\leq\theta\leq\pi$</li>
 </ul>
 <p>例题：$\vec{v}=(1,1),\vec{w}=(-1,0)$，则$\cos\theta=\frac{\vec{v}\cdot\vec{w}}{|\vec{v}||\vec{w}|}=-\frac{1}{\sqrt{2}}$，则$\vec{v},\vec{w}$夹角$\theta=\frac{3}{4}\pi$</p>
 <h1 id="两个不等式"><a href="#两个不等式" class="headerlink" title="两个不等式"></a>两个不等式</h1><h2 id="Cauchy-Schwarz不等式"><a href="#Cauchy-Schwarz不等式" class="headerlink" title="Cauchy-Schwarz不等式"></a>Cauchy-Schwarz不等式</h2><p>Cauchy-Schwarz不等式首先由法国数学家Augustin-LouisCauchy(1789-1857)于1821年发现,再由俄国数学家Viktor YakovychBunyakovsky(1804-1889)于1859年重新发现, 后由德国数学家HermanSchwarz(1843-1921)于1886年再次重新发现.</p>
 <p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200602151346208.png" alt="image-20200602151346208"></p>
-<p>该不等式为：<br>$$<br>|\vec{v}\cdot\vec{w}|\leq|\vec{v}||\vec{w}|<br>$$<br>等号成立当且仅当一个向量是另一个向量得倍数。</p>
-<h2 id="三角不等式-Triangle-inequality"><a href="#三角不等式-Triangle-inequality" class="headerlink" title="三角不等式(Triangle inequality)"></a>三角不等式(Triangle inequality)</h2><p>$$<br>|\vec{v}+\vec{w}|\leq|\vec{v}|+|\vec{w}|<br>$$</p>
-<p>等号成立当且仅当$\vec{v},\vec{w}$之一为另一向量得非负倍数</p>
-<p>证明：<br>$$<br>\begin{aligned}<br>|\vec{v}+\vec{w}|&amp;=(\vec{v}+\vec{w})\cdot(\vec{v}+\vec{w})=|\vec{v}|^2+2\vec{v}\cdot\vec{w}+|\vec{w}|^2 \<br>&amp;\leq|\vec{v}|^2+|\vec{w}|^2+2|\vec{v}\cdot\vec{w}| \<br>&amp;\leq|\vec{v}|^2+|\vec{w}|^2+2|\vec{v}|\cdot|\vec{w}| \<br>&amp;=(|\vec{v}|+|\vec{w}|)^2<br>\end{aligned}<br>$$</p>
-<p>等号成立当且仅当$\vec{v}\cdot\vec{w}=|\vec{v}|\cdot|\vec{w}|$，这等价于$\vec{v},\vec{w}$之一为另一个向量得非负倍数。</p>
+<p>该不等式为：</p>
+<script type="math/tex; mode=display">
+|\vec{v}\cdot\vec{w}|\leq|\vec{v}||\vec{w}|</script><p>等号成立当且仅当一个向量是另一个向量得倍数。</p>
+<h2 id="三角不等式-Triangle-inequality"><a href="#三角不等式-Triangle-inequality" class="headerlink" title="三角不等式(Triangle inequality)"></a>三角不等式(Triangle inequality)</h2><script type="math/tex; mode=display">
+|\vec{v}+\vec{w}|\leq|\vec{v}|+|\vec{w}|</script><p>等号成立当且仅当$\vec{v},\vec{w}$之一为另一向量得非负倍数</p>
+<p>证明：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+|\vec{v}+\vec{w}|&=(\vec{v}+\vec{w})\cdot(\vec{v}+\vec{w})=|\vec{v}|^2+2\vec{v}\cdot\vec{w}+|\vec{w}|^2 \\
+&\leq|\vec{v}|^2+|\vec{w}|^2+2|\vec{v}\cdot\vec{w}| \\
+&\leq|\vec{v}|^2+|\vec{w}|^2+2|\vec{v}|\cdot|\vec{w}| \\
+&=(|\vec{v}|+|\vec{w}|)^2
+\end{aligned}</script><p>等号成立当且仅当$\vec{v}\cdot\vec{w}=|\vec{v}|\cdot|\vec{w}|$，这等价于$\vec{v},\vec{w}$之一为另一个向量得非负倍数。</p>
 <h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><ol>
-<li><p>设$\vec{v}=(a,b),\vec{w}=(b,a)$,则由Cauchy-Schwarz不等式得<br>$$<br>\vec{v}\cdot\vec{w}=2ab\leq a^2+b^2=|\vec{v}||\vec{w}|<br>$$<br>若令$x=a^2,y=b^2$，则得到<strong>几何平均不大于算术平均</strong>：<br>$$<br>\sqrt{xy}\leq\frac{x+y}{2}<br>$$</p>
-</li>
+<li><p>设$\vec{v}=(a,b),\vec{w}=(b,a)$,则由Cauchy-Schwarz不等式得</p>
+<script type="math/tex; mode=display">
+\vec{v}\cdot\vec{w}=2ab\leq a^2+b^2=|\vec{v}||\vec{w}|</script><p>若令$x=a^2,y=b^2$，则得到<strong>几何平均不大于算术平均</strong>：</p>
+<script type="math/tex; mode=display">
+\sqrt{xy}\leq\frac{x+y}{2}</script></li>
 <li><p>设$|\vec{v}|=5,|\vec{w}=3|$，求$|\vec{v}-\vec{w}|$的最小和最大可能长度</p>
 <p>解：首先，$|\vec{v}-\vec{w}|^2=|\vec{v}|^2-2\vec{v}\cdot\vec{w}+|\vec{w}|^2$,由Cauchy-Schwarz不等式得$-|\vec{v}||\vec{w}|\leq\vec{v}\cdot\vec{w}\leq|\vec{v}||\vec{w}|$，</p>
 <p>故$(|\vec{v}|-|\vec{w}|)^2\leq|\vec{v}-\vec{w}|^2\leq(|\vec{v}+\vec{w}|)^2$</p>
@@ -450,6 +490,25 @@
   </li>
 </ul>
 </div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
 
 
       <footer class="post-footer">
@@ -617,16 +676,32 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">45k</span>
+    <span title="站点总字数">44k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">41 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f0498d985a42554" async="async"></script>
+  </div><div class="translate-style">
+繁/简：<a id="translateLink" href="javascript:translatePage();">繁体
+</a>
+</div>
+<script type="text/javascript" src="/js/tw_cn.js"></script>
+<script type="text/javascript">
+var defaultEncoding = 2; //网站编写字体是否繁体，1-繁体，2-简体
+var translateDelay = 0; //延迟时间,若不在前, 要设定延迟翻译时间, 如100表示100ms,默认为0
+var cookieDomain = "http://yurui.tech/"; //Cookie地址, 一定要设定, 通常为你的网址
+var msgToTraditionalChinese = "繁体"; //此处可以更改为你想要显示的文字
+var msgToSimplifiedChinese = "简体"; //同上，但两处均不建议更改
+var translateButtonId = "translateLink"; //默认互换id
+translateInitilization();
+</script>
 
         
 
@@ -807,6 +882,13 @@ window.addEventListener('pjax:success', () => {
     
 
   
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
 
     </div>
 </body>

@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
   <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
@@ -80,6 +80,7 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="余睿的博客" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -243,7 +244,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.5k</span>
+              <span>3.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -262,112 +263,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="二进制小数"><a href="#二进制小数" class="headerlink" title="二进制小数"></a>二进制小数</h1><p>想要理解浮点数，首先要考虑小数的二进制表示。首先来考虑十进制的的表示方法，对于任意含有小数部分的十进制，我们都可以用形如：<br>$$ d_m d_{m-1} ···d_1 d_0  .  d_{-1} d_{-2} ··· d_{-n} $$<br>其中对于任意的$ d_i $的取值范围为$d_i\in[0,9]$,这个表达描述的数值$d$的定义如下：<br>$$d=\sum_{i=-n}^m10^i \times d_i \tag{1.1}$$<br>数字的权的定义与十进制小数点符号$’.’$有关，相当于小数点左边的数字的权是$10$的正幂，得到整数值，小数点右边的数字的权是$10$的负幂，得到小数值。例如，十进制数$12.34$可以表示为：<br>$$1 \times 10^1+2 \times 10^0 + 3 \times 10^{-1}+4 \times 10^{-2}= 12 \frac{34}{100}$$<br>类似，考虑一个形如<br>$$ b_m b_{m-1} ···b_1 b_0  .  b_{-1} b_{-2} ··· b_{-n}$$<br>的表示法，其中每个二进制（位）$b_i$的取值范围为$0或1$，这种表示方法表示的数$b$定义如下：<br>$$b=\sum_{i=-n}^m2^i \times b_i \tag{1.2}$$<br>此时，数字的权的定义与二进制小数点符号$’.’$有关，小数点左边的数字的权是$2$的正幂，得到整数值，小数点右边的数字的权是$2$的负幂，得到小数值。例如，二进制数$101.11$可以表示为：<br>$$1 \times 2^2 + 0 \times 2^1 + 1 \times 2^0 + 1 \times 2^{-1}+1 \times 2^{-2}=5 \frac{3}{4}$$<br>从$(1.2)$式中可以看出，将二进制小数点向左移动一位相当于除$2$，例如，$101.11$表示数$5 \frac{3}{4}$，而$10.111$表示数$2 \frac{7}{8}$，类似的，向右移动小数点一位相当于乘$2$，例如，$1011.1$表示数$11 \frac{1}{2}$。</p>
-<p>注意，形如$(0.11···1)_2$表示的数是刚好小于$1$的数，例如$(0.111111)_2$表示$\frac{63}{64}$,在此将用$1-\epsilon$来表示此类数值。</p>
-<p>如果我们仅考虑有限长度的编码，那么十进制符号是不能准确表达像$\frac{1}{3}$和$\frac{1}{5}$这样的无理数的。类似地，小数的二进制表示法只能表示那些能够被写成$x+2^y$的数。其它的值只能够近似地表示。例如，虽然加长的二进制能够提高表示数$\frac{1}{5}$的精度，但是我们并不能准确的把它表示为一个二进制数：</p>
-<table>
-<thead>
-<tr>
-<th align="center">二进制</th>
-<th align="center">值</th>
-<th align="center">十进制</th>
-<th align="center">二进制</th>
-<th align="center">值</th>
-<th align="center">十进制</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">0.0</td>
-<td align="center">0</td>
-<td align="center">0.0</td>
-<td align="center">0.00110</td>
-<td align="center">$\frac{6}{32}$</td>
-<td align="center">0.1875</td>
-</tr>
-<tr>
-<td align="center">0.01</td>
-<td align="center">$\frac{1}{4}$</td>
-<td align="center">0.25</td>
-<td align="center">0.001101</td>
-<td align="center">$\frac{13}{64}$</td>
-<td align="center">0.203125</td>
-</tr>
-<tr>
-<td align="center">0.010</td>
-<td align="center">$\frac{2}{8}$</td>
-<td align="center">0.25</td>
-<td align="center">0.0011010</td>
-<td align="center">$\frac{26}{128}$</td>
-<td align="center">0.203125</td>
-</tr>
-<tr>
-<td align="center">0.0011</td>
-<td align="center">$\frac{3}{16}$</td>
-<td align="center">0.1875</td>
-<td align="center">0.00110011</td>
-<td align="center">$\frac{51}{256}$</td>
-<td align="center">0.19921875</td>
-</tr>
-</tbody></table>
-<h1 id="IEEE754浮点表示"><a href="#IEEE754浮点表示" class="headerlink" title="IEEE754浮点表示"></a>IEEE754浮点表示</h1><p>像前一节中谈到的位置表示法不能很有效地表示很大地数字。例如。$5 \times 2^{100}$的表示是由$101$后跟$100$的位模式组成。相反的，我们希望通过给定$x$和$y$的值来表示形如$x \times 2^y$的数。<br>IEEE（读作“eye-Triple-ee”）浮点标准用<br>$$V=(-1)^s \times M \times 2^E \tag{2.1}$$来表示一个数。对于$(2.1)$式，有如下解释：</p>
-<ul>
-<li>** 符号$s$（sign）决定该数是正数（$s=0$）还是负数（$s=1$），对于数值$0$的符号位解释作为特殊情况处理。 **</li>
-</ul>
-<ul>
-<li>** 有效数$M$（significand）是一个二进制小数，它的范围在$1 \sim 2-\epsilon$之间，或者在$0\sim 1-\epsilon$之间。 **</li>
-</ul>
-<ul>
-<li>** 指数$E$（exponent）是$2$的幂（可能为负数），它的作用是对浮点数加权。**</li>
-</ul>
-<p>浮点数的位表示被划分为三个部分，以编码这些值：</p>
-<ul>
-<li>** 一个单独的符号位$s$直接编码符号$s$。 **</li>
-<li>** $k$位的指数部分$exp=e_{k-1}···e_1e_0$编码指数E。 **</li>
-<li>** $n$位的小数部分$frac=f_{n-1}···f_1f_0$编码有效数M，但是被编码的值也依赖于指数部分的值是否等于$0$。 **</li>
-</ul>
-<p>在单精度浮点格式（$C$语言中的$float$）中，$s$、$exp$、$frac$部分分别为$1$位，$k=8$位和$n=23$位，产生一个32位的表示。在双精度浮点格式（$C$语言中的$double$）中，$s$、$exp$、$frac$部分分别为$1$位、$k=11$位和$n=52$位，产生一个64位的表示。如下示意图所示：</p>
-<center>32位浮点格式</center>
-
-<table>
-<thead>
-<tr>
-<th align="center">s</th>
-<th align="center">exp</th>
-<th align="center">frac</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">s</td>
-<td align="center">$e_7e_6···e_1e_0$</td>
-<td align="center">$ f_{31}f_{30}···f_1f_0 $</td>
-</tr>
-</tbody></table>
-<center>64位浮点格式</center>
-
-<table>
-<thead>
-<tr>
-<th align="center">s</th>
-<th align="center">exp</th>
-<th align="center">frac</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">s</td>
-<td align="center">$e_{10}e_9···e_1e_0$</td>
-<td align="center">$f_{51}f_{50}···f_1f_0$</td>
-</tr>
-</tbody></table>
-<p>根据$esp$的值，被编码的值可以划分为三种情况：<br>1.规格化的值<br>2.非规格化的值<br>3.特殊值</p>
-<h2 id="规格化值"><a href="#规格化值" class="headerlink" title="规格化值"></a>规格化值</h2><p>这是最为普通的一种情况，当$exp$的值不全为$1$（对应数值0），和不全为$1$（32单精度中为255，64位双精度中为2047）时，都属于规格化的值。<br>在这种时候，阶码字段被解释为以偏置（biased）形式表示的有符号整数，此时阶码$E=e-Bias$，其中$e$为无符号数，表示形式为$exp=e_{k-1}···e_1e_0$，而$Bias$是一个等于$2_{k-1}-1$（单精度下为127，双精度下为1023）的偏置值。由此可以得到指数的取值范围，单精度为$-126 \sim +127$，而双精度为$-1022 \sim +1023$。<br>小数字段$frac$被解释为描述的小数值$f$，其中$0 \leq f&lt;1$，其二进制表示为$0.frac=f_{n-1}···f_1f_0$，尾数定义为$M=1+f$。</p>
-<h2 id="非规格化的值"><a href="#非规格化的值" class="headerlink" title="非规格化的值"></a>非规格化的值</h2><p>非规格化的值就是当阶码全为$0$时所表示的数。此时，阶码值是$E=1-Bias$，而尾数的值是$M=f$，注意，此时不隐含开头的$1$，仅表示小数字段。<br>非规格化的数有两个用途，一是用来表示数值$0$（在规格化的数中，我们总有$M \geq 1$，因此就不能表示$0$）。当阶码为全$0$且小数字段也全为$0$，就得到了$M=f=0$，如果此时符号位为$0$，则得到值$+0.0$，反之当符号位为$1$，则得到值$-0.0$。在IEEE浮点数中，两个值在某些方面被认为是不同的。<br>另一个功能是表示非常接近$0.0$的值，它们提供了一种称为<strong>逐渐溢出</strong>（gradual underflow）的属性。</p>
-<h2 id="特殊值"><a href="#特殊值" class="headerlink" title="特殊值"></a>特殊值</h2><p>最后一种情况是阶码全为1时出现的，当数小数部分$f$全为0时，得到的值表示无穷，$s=0$表示$+ \infty$，当$s=1$时表示$- \infty$。<br>当我们把两个非常大的数相乘或者除以零时，无穷大能够表示溢出的结果。当小数部分为非零时，结果值称为“NaN”（Not a Number），一些运算的结果不能是实数或无穷，就会返回这样的NaN值。</p>
-<h1 id="数字示例"><a href="#数字示例" class="headerlink" title="数字示例"></a>数字示例</h1><p>下图展示了假定的8位浮点格式的示例，其中$k=4$的阶码位和$n=3的小数位$，偏置量是$2^{4-1}-1=7$。图分为三个区域来来描述三类数字。不同的列给出了阶码字段是如何编码阶码$E$的，小数字段是如何编码尾数$M$的，以及它们是如何形成要表示的值$V=(-1)^s \times M \times 2^E \tag{2.1}$的。<br>从0开始，靠近0的是非规格化数，这种格式的非规格化数的$E=1-7=-6$，得到权$2^E= \frac{1}{64}$。小数f的值的范围是$0, \frac{1}{8},···, \frac{7}{8}$，从而得到数V的范围为$0 \sim \frac{1}{64}  \times \frac{1}{8}= \frac{7}{512}$。</p>
-<figure><img src="https://raw.githubusercontent.com/yurui105/image/master/blogs_image/8%E4%BD%8D%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E9%9D%9E%E8%B4%9F%E5%80%BC%E7%A4%BA%E4%BE%8B.png" alt="8位浮点数的非负值示例.png"><figcaption>8位浮点数的非负值示例</figcaption></figure>
-
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1]（美）布莱恩特,（美）奥哈拉伦著.深入理解计算机系统  原书第2版.机械工业出版社,2010.Print.</p>
-<p>[2]对IEEE 450-1995(ANSI/IEEE)标准的解释:IEEE 450-1995/INT-2001[S].2001.</p>
-
+          <h1 id="二进制小数"><a href="#二进制小数" class="headerlink" title="二进制小数"></a>二进制小数</h1><p>想要理解浮点数，首先要考虑小数的二进制表示。首先来考虑十进制的的表示方法，对于任意含有小数部分的十进制，我们都可以用形如：</p>
+<script type="math/tex; mode=display">d_m d_{m-1} ···d_1 d_0  .  d_{-1} d_{-2} ··· d_{-n}</script><p>其中对于任意的$ d_i $的取值范围为$d_i\in[0,9]$,这个表达描述的数值$d$的定义如下：</p>
+<script type="math/tex; mode=display">d=\sum_{i=-n}^m10^i \times d_i \tag{1.1}</script><p>数字的权的定义与十进制小数点符号$’.’$有关，相当于小数点左边的数字的权是$10$的正幂，得到整数值，小数点右边的数字的权是$10$的负幂，得到小数值。例如，十进制数$12.34$可以表示为：</p>
+<script type="math/tex; mode=display">1 \times 10^1+2 \times 10^0 + 3 \times 10^{-1}+4 \times 10^{-2}= 12 \frac{34}{100}</script>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/07/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E7%9B%B8%E5%85%B3/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%B5%AE%E7%82%B9%E6%95%B0%E8%A1%A8%E7%A4%BA/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -529,16 +436,32 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">45k</span>
+    <span title="站点总字数">44k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">41 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f0498d985a42554" async="async"></script>
+  </div><div class="translate-style">
+繁/简：<a id="translateLink" href="javascript:translatePage();">繁体
+</a>
+</div>
+<script type="text/javascript" src="/js/tw_cn.js"></script>
+<script type="text/javascript">
+var defaultEncoding = 2; //网站编写字体是否繁体，1-繁体，2-简体
+var translateDelay = 0; //延迟时间,若不在前, 要设定延迟翻译时间, 如100表示100ms,默认为0
+var cookieDomain = "http://yurui.tech/"; //Cookie地址, 一定要设定, 通常为你的网址
+var msgToTraditionalChinese = "繁体"; //此处可以更改为你想要显示的文字
+var msgToSimplifiedChinese = "简体"; //同上，但两处均不建议更改
+var translateButtonId = "translateLink"; //默认互换id
+translateInitilization();
+</script>
 
         
 
@@ -719,6 +642,13 @@ window.addEventListener('pjax:success', () => {
     
 
   
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
 
     </div>
 </body>
