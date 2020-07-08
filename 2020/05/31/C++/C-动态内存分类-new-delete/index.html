@@ -23,12 +23,12 @@
     var CONFIG = {"hostname":"www.yurui.tech","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="介绍c++动态内存分类。new关键字以及delete关键字的使用以及注意事项">
+  <meta name="description" content="使用new运算符分配一个变量格式： 1P &#x3D; new T; 其中T是任意类型名，P是类型为T*的指针。 使用该表达式动态分配出一片大小为sizeof(T)字节的内存空间。并且将该内存空间的其实地址赋值给P。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++动态内存分类(new&#x2F;delete)">
 <meta property="og:url" content="http://www.yurui.tech/2020/05/31/C++/C-%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E7%B1%BB-new-delete/index.html">
 <meta property="og:site_name" content="余睿的博客">
-<meta property="og:description" content="介绍c++动态内存分类。new关键字以及delete关键字的使用以及注意事项">
+<meta property="og:description" content="使用new运算符分配一个变量格式： 1P &#x3D; new T; 其中T是任意类型名，P是类型为T*的指针。 使用该表达式动态分配出一片大小为sizeof(T)字节的内存空间。并且将该内存空间的其实地址赋值给P。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-05-31T08:11:58.000Z">
 <meta property="article:modified_time" content="2020-05-31T08:11:58.000Z">
@@ -241,7 +241,28 @@
                 </span>
             </span>
 
-          <br>
+          
+            <span id="/2020/05/31/C++/C-%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E7%B1%BB-new-delete/" class="post-meta-item leancloud_visitors" data-flag-title="C++动态内存分类(new/delete)" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/05/31/C++/C-%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E7%B1%BB-new-delete/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/05/31/C++/C-%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E7%B1%BB-new-delete/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -256,7 +277,6 @@
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               <span>1 分钟</span>
             </span>
-            <div class="post-description">介绍c++动态内存分类。new关键字以及delete关键字的使用以及注意事项</div>
 
         </div>
       </header>
@@ -390,6 +410,7 @@
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -681,12 +702,61 @@ window.addEventListener('pjax:success', () => {
   
 
 
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '8SatUnwLkyBp7mvyQQL45pPP-gzGzoHsz',
+      appKey     : 'D63hzHRT9GyGE98CVxtOBtGU',
+      placeholder: "ヾﾉ≧∀≦)o来啊，快活啊!",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+
   <script async src="/js/cursor/fireworks.js"></script>
 
 
 
 
-
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div class="moon-menu-item" onclick="back2bottom()">
+      <i class='fa fa-chevron-down'></i>    </div>
+    
+    <div class="moon-menu-item" onclick="back2top()">
+      <i class='fa fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
     </div>
 </body>
 </html>

@@ -28,9 +28,6 @@
       &lt;h1 id=&quot;数列极限的定义&quot;&gt;&lt;a href=&quot;#数列极限的定义&quot; class=&quot;headerlink&quot; title=&quot;数列极限的定义&quot;&gt;&lt;/a&gt;数列极限的定义&lt;/h1&gt;&lt;h2 id=&quot;概念引入&quot;&gt;&lt;a href=&quot;#概念引入&quot; class=&quot;headerlink&quot; title=&quot;概念引入&quot;&gt;&lt;/a&gt;概念引入&lt;/h2&gt;&lt;p&gt;我们先来看一个数列$x_n=\frac{1}{n}$&lt;/p&gt;
 &lt;p&gt;当$n=1$时，$x_1=\frac{1}{1}=1$&lt;/p&gt;
 &lt;p&gt;当$n=2$时，$x_2=\frac{1}{2}$&lt;/p&gt;
-&lt;p&gt;$\cdots$&lt;/p&gt;
-&lt;p&gt;当$n=1000$时，$x_{1000}=\frac{1}{1000}$&lt;/p&gt;
-&lt;p&gt;$\cdots$&lt;br&gt;
     
     </summary>
     
@@ -59,9 +56,7 @@
 &lt;p&gt;假设给定一个线性方程组：&lt;/p&gt;
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;
 x_1+2x_2=4\\
-2x_1-3x_2=-2&lt;/script&gt;&lt;p&gt;我们将$x_1$、$x_2$的系数以及结果单独提取出来，它能表示为：&lt;/p&gt;
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}&lt;/script&gt;
+2x_1-3x_2=-2&lt;/script&gt;
     
     </summary>
     
@@ -80,7 +75,9 @@ x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}&lt;/script&gt;
     
     <summary type="html">
     
-      介绍c++函数的参数缺省
+      &lt;h1 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h1&gt;&lt;p&gt;c++中，定义函数的时候可以让&lt;strong&gt;最右边的连续若干个&lt;/strong&gt;参数有缺省值，在调用函数的时候，如果不写相应位置的参数，则调用的参数就为缺省值。&lt;/p&gt;
+&lt;p&gt;例如：&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;fun&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; a, &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; b = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; c = &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;built_in&quot;&gt;cout&lt;/span&gt; &amp;lt;&amp;lt; &lt;span class=&quot;string&quot;&gt;&quot;a=&quot;&lt;/span&gt; &amp;lt;&amp;lt; a &amp;lt;&amp;lt; &lt;span class=&quot;string&quot;&gt;&quot;\tb=&quot;&lt;/span&gt; &amp;lt;&amp;lt; b &amp;lt;&amp;lt; &lt;span class=&quot;string&quot;&gt;&quot;\tc=&quot;&lt;/span&gt; &amp;lt;&amp;lt; c &amp;lt;&amp;lt; &lt;span class=&quot;built_in&quot;&gt;endl&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
@@ -105,7 +102,8 @@ x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}&lt;/script&gt;
     
     <summary type="html">
     
-      介绍c++函数重载基本概念
+      &lt;h1 id=&quot;引入&quot;&gt;&lt;a href=&quot;#引入&quot; class=&quot;headerlink&quot; title=&quot;引入&quot;&gt;&lt;/a&gt;引入&lt;/h1&gt;&lt;p&gt;假设如下函数来比较两个&lt;code&gt;int&lt;/code&gt;型数据的大小&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; a, &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; b)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; a &amp;gt; b ? a : b;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
@@ -128,7 +126,8 @@ x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}&lt;/script&gt;
     
     <summary type="html">
     
-      介绍c++内联函数inline关键字的使用。
+      &lt;h1 id=&quot;inline概念&quot;&gt;&lt;a href=&quot;#inline概念&quot; class=&quot;headerlink&quot; title=&quot;inline概念&quot;&gt;&lt;/a&gt;&lt;code&gt;inline&lt;/code&gt;概念&lt;/h1&gt;&lt;p&gt;在&lt;code&gt;c++&lt;/code&gt;中，函数调用是会产生额外的时间开销的，如果函数本身代码很短，执行很快，并且该函数被反复调用。相比之下调用函数所产生的开销就会很大，甚至超过执行代码所产生的开销。&lt;/p&gt;
+&lt;p&gt;为了减少函数调用的开销，&lt;code&gt;c++&lt;/code&gt;引入了&lt;code&gt;内联函数&lt;/code&gt;的机制。编译器在处理内联函数的调用语句时，直接将整个内联函数代码插入到调用语句处，从而减少函数调用产生的开销。&lt;br&gt;
     
     </summary>
     
@@ -153,7 +152,10 @@ x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}&lt;/script&gt;
     
     <summary type="html">
     
-      介绍c++动态内存分类。new关键字以及delete关键字的使用以及注意事项
+      &lt;h1 id=&quot;使用new运算符分配一个变量&quot;&gt;&lt;a href=&quot;#使用new运算符分配一个变量&quot; class=&quot;headerlink&quot; title=&quot;使用new运算符分配一个变量&quot;&gt;&lt;/a&gt;使用&lt;code&gt;new&lt;/code&gt;运算符分配一个变量&lt;/h1&gt;&lt;p&gt;格式：&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;P = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; T;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;其中&lt;code&gt;T&lt;/code&gt;是任意类型名，&lt;code&gt;P&lt;/code&gt;是类型为&lt;code&gt;T*&lt;/code&gt;的指针。&lt;/p&gt;
+&lt;p&gt;使用该表达式动态分配出一片大小为&lt;code&gt;sizeof(T)&lt;/code&gt;字节的内存空间。并且将该内存空间的其实地址赋值给&lt;code&gt;P&lt;/code&gt;。&lt;br&gt;
     
     </summary>
     
@@ -180,7 +182,8 @@ x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}&lt;/script&gt;
     
     <summary type="html">
     
-      介绍c++ const关键字的使用
+      &lt;h1 id=&quot;const定义常量&quot;&gt;&lt;a href=&quot;#const定义常量&quot; class=&quot;headerlink&quot; title=&quot;const定义常量&quot;&gt;&lt;/a&gt;&lt;code&gt;const&lt;/code&gt;定义常量&lt;/h1&gt;&lt;p&gt;在c语言中，我们学习过可以使用&lt;code&gt;#define&lt;/code&gt;来定义常量。但是&lt;code&gt;#define&lt;/code&gt;的原理是简单的替换，因此对于&lt;code&gt;#define&lt;/code&gt;来说没有类型检查这回事。&lt;/p&gt;
+&lt;p&gt;c++中提供了&lt;code&gt;const&lt;/code&gt;关键字，用&lt;code&gt;const&lt;/code&gt;关键字修饰的变量其值是不能修改的，因此可以使用&lt;code&gt;const&lt;/code&gt;关键字来替换&lt;code&gt;#define&lt;/code&gt;，这有益于编译器进行类型检查。&lt;/p&gt;
     
     </summary>
     
@@ -207,7 +210,9 @@ x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}&lt;/script&gt;
     
     <summary type="html">
     
-      介绍 c++ 引用的使用方法以及注意事项
+      &lt;h1 id=&quot;引用的概念&quot;&gt;&lt;a href=&quot;#引用的概念&quot; class=&quot;headerlink&quot; title=&quot;引用的概念&quot;&gt;&lt;/a&gt;引用的概念&lt;/h1&gt;&lt;p&gt;引用是变量的一个别名，相当于已经存在的变量的另一个名字。引用名与被引用的变量名都指向同一个内存地址。&lt;/p&gt;
+&lt;h1 id=&quot;引用的创建&quot;&gt;&lt;a href=&quot;#引用的创建&quot; class=&quot;headerlink&quot; title=&quot;引用的创建&quot;&gt;&lt;/a&gt;引用的创建&lt;/h1&gt;&lt;p&gt;引用创建的语法格式如下，其中&lt;code&gt;T&lt;/code&gt;为任意类型：&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;T &amp;amp;引用名 = 变量名;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
@@ -236,7 +241,6 @@ x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}&lt;/script&gt;
     
       &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;数据在计算机中是按二进制的形式存在的，通过普通的四则运算我们能对这些数据做一些简单的运算。但当我们想修改某个数据中的某一位，我们就需要用到位运算。&lt;/p&gt;
 &lt;p&gt;例如：&lt;code&gt;666&lt;/code&gt;的二进制为&lt;code&gt;‭0001101000001010‬&lt;/code&gt;，如果我们需要知道或者修改最高位，此时我们就无法通过一般的方法来对其进行操作，就需要用到位运算符。&lt;/p&gt;
-&lt;p&gt;在许多古老的微处理器上，位运算比加减运算略快，通常位运算比乘除法运算要快很多。在现代架构中，情况并非如此：位运算的运算速度通常与加法运算相同（仍然快于乘法运算）。&lt;br&gt;
     
     </summary>
     
@@ -271,9 +275,6 @@ x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}&lt;/script&gt;
     
       &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;指针&lt;/strong&gt;是用来在程序中指向某一个变量的，实际上指针内存放的就是一个变量的相对内存地址（实际的物理地址还要加上一个偏移值）。&lt;/p&gt;
 &lt;p&gt;在程序运行期间，每个函数都会占用一段连续的内存空间，而函数名就是该函数所占内存空间的起始地址（入口地址），我们可以将一个函数的起始地址赋值给一个指针，进而通过该指针来调用函数，这就是函数指针。&lt;/p&gt;
-&lt;p&gt;函数指针可以像一般函数一样，用于调用函数、传递参数。在如 &lt;code&gt;C&lt;/code&gt;这样的语言中，通过提供一个简单的选取、执行函数的方法，函数指针可以简化代码。函数指针只能指向具有特定特征的函数。因而所有被同一指针运用的函数必须具有&lt;strong&gt;相同的参数和返回类型&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;C语言标准规定，函数指示符（function designator，即函数名字）既不是左值，也不是右值。但C++语言标准规定函数指示符属于左值，因此函数指示符转换为函数指针的右值属于左值转换为右值。&lt;/p&gt;
-&lt;p&gt;除了作为&lt;code&gt;sizeof&lt;/code&gt;或取地址&amp;amp;的操作数，函数指示符在表达式中自动转换为函数指针类型右值。因此通过一个函数指针调用所指的函数，不需要在函数指针前加取值或反引用（*）运算符。&lt;br&gt;
     
     </summary>
     
@@ -298,7 +299,8 @@ x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}&lt;/script&gt;
     
     <summary type="html">
     
-      Jellyfin puts you in control of managing and streaming your media. There are no strings attached, no premium licenses or features, and no hidden agendas.
+      &lt;p&gt;关于的jellyfin影音服务，已经有很多人对其做过介绍了，但在这里我任然要为其写一篇相关安装与使用的文章，因为在别的贴子里，很多人容易忽视掉设置硬件加速的一些必要步骤。&lt;/p&gt;
+&lt;p&gt;本篇文章将会从本机安装以及docker安装两种安装方式来向大家介绍jellyfin的安装以及基本使用方法。&lt;/p&gt;
     
     </summary>
     
@@ -327,7 +329,9 @@ x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}&lt;/script&gt;
     
     <summary type="html">
     
-      Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的镜像中，然后发布到任何流行的 Linux或Windows 机器上，也可以实现虚拟化。容器是完全使用沙箱机制，相互之间不会有任何接口。
+      &lt;p&gt;经过前面那么多期的铺垫，今天我们终于可以来安装使用我么的docker了。这是一个非常好用的工具，我们的NAS服务百分之九十都会部署在docker上运行。&lt;/p&gt;
+&lt;p&gt;有了docker以后，你不再需要小心翼翼地担心把系统配置搞乱无法恢复，在这里你可以通过几个简单地命令就可以将相关服务重新部署回来。&lt;/p&gt;
+&lt;p&gt;就这样，请拥有，并享受&lt;br&gt;
     
     </summary>
     
@@ -356,7 +360,7 @@ x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}&lt;/script&gt;
     
     <summary type="html">
     
-      介绍在ubuntu18.04下硬盘的挂载方法
+      &lt;p&gt;在开始下篇文章之前我觉得有必要讲解一下在linux中的硬盘挂载。这和Windows不同，Windows会自动扫描本地硬盘并为你自动挂载，但是linux不会值么做，它需要你自己去挂载硬盘到系统中。&lt;/p&gt;
     
     </summary>
     
@@ -385,7 +389,8 @@ x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}&lt;/script&gt;
     
     <summary type="html">
     
-      Cockpit makes GNU/Linux discoverable. See your server in a web browser and perform system tasks with a mouse. It’s easy to start containers, administer storage, configure networks, and inspect logs.
+      &lt;p&gt;在前面我们介绍了管理面板Webmin的安装与使用，这次我们来看Cockpit的安装与使用，Webmin与Cockoit都属于轻量级的管理面板，但是Cockpit的功能较Webmin有了更多的减少，提供了更多的图表可视化功能，对中文的支持也比Webmin要好得多。&lt;/p&gt;
+&lt;p&gt;cockpit提供了几乎所有Linux发行版本的安装包，对各个Linux平台支持都很好，这在官方的宣传里可以看到。该软件为开源软件，并在官网提供了详细的开发者文档。&lt;br&gt;
     
     </summary>
     
@@ -414,7 +419,9 @@ x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}&lt;/script&gt;
     
     <summary type="html">
     
-      Webmin是目前功能最强大的基于Web的Unix系统管理工具。管理员通过浏览器访问Webmin的各种管理功能并完成相应的管理动作。目前Webmin支持绝大多数的Unix系统，这些系统除了各种版本的linux以外还包括：AIX、HPUX、Solaris、Unixware、Irix和FreeBSD等。
+      &lt;p&gt;相信很多人选择黑群晖的原因之一是因为群晖有很好的图形化管理面板，其实Ubuntu，或者说linux也可以很好的图形化管理面板。&lt;/p&gt;
+&lt;p&gt;本系列文章将介绍两种轻量级的管理面板&lt;strong&gt;Webmin(功能较全面)&lt;/strong&gt;和&lt;strong&gt;Cockpit(功能简单)&lt;/strong&gt;，对于那些功能全面的重量级面板，再次不做介绍，尽管那些工具开发得很完善，但是在家用nas上使用却显得有些臃肿了。&lt;/p&gt;
+&lt;p&gt;就这样，请拥有，并享受。&lt;br&gt;
     
     </summary>
     
@@ -428,11 +435,11 @@ x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}&lt;/script&gt;
     
       <category term="HTPC服务器" scheme="http://www.yurui.tech/tags/HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
-      <category term="linux管理面板" scheme="http://www.yurui.tech/tags/linux%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BF/"/>
-    
       <category term="WEB-UI管理面板" scheme="http://www.yurui.tech/tags/WEB-UI%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BF/"/>
     
       <category term="webmin" scheme="http://www.yurui.tech/tags/webmin/"/>
+    
+      <category term="linux管理面板" scheme="http://www.yurui.tech/tags/linux%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BF/"/>
     
   </entry>
   
@@ -445,7 +452,10 @@ x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}&lt;/script&gt;
     
     <summary type="html">
     
-      Xshell 是一个强大的安全终端模拟软件，它支持SSH1, SSH2, 以及Microsoft Windows 平台的TELNET 协议。Xshell 通过互联网到远程主机的安全连接以及它创新性的设计和特色帮助用户在复杂的网络环境中享受他们的工作。
+      &lt;p&gt;在原本的计划中并没有准备专门写一篇关于SSH远程连接的教程，但想了想，该专栏文章应该致力于让所有读者都能看懂，即使你是从未使用过Linux操作系统的小白。&lt;/p&gt;
+&lt;p&gt;当然，本文仅介绍了XShell的试用，你也可以选择其他软件，这都一样，并不影响你的使用。&lt;/p&gt;
+&lt;p&gt;如果你已经有相关的使用经验，那么你可以直接跳过本章，毕竟下面的内容会浪费你宝贵生命中的几分钟。&lt;/p&gt;
+&lt;p&gt;就这样，请拥有，并享受。&lt;br&gt;
     
     </summary>
     
@@ -476,7 +486,8 @@ x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}&lt;/script&gt;
     
     <summary type="html">
     
-      介绍家庭nas操作系统ubuntu18.04的基本配置
+      &lt;p&gt;在上期文章中，我们完成了Ubuntu的硬盘安装，本期文章将说明基本linux的命令使用以及基本基本工具的安装使用。如果你有过相关linux的使用经验，那么本文纯属在浪费你的时间，你可以选择跳过此篇文章。&lt;/p&gt;
+&lt;p&gt;就这样，请拥有，并享受。&lt;br&gt;
     
     </summary>
     
@@ -484,15 +495,15 @@ x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}&lt;/script&gt;
       <category term="家庭NAS、HTPC服务器" scheme="http://www.yurui.tech/categories/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
     
+      <category term="Ubuntu18.04配置" scheme="http://www.yurui.tech/tags/Ubuntu18-04%E9%85%8D%E7%BD%AE/"/>
+    
+      <category term="Ubuntu配置" scheme="http://www.yurui.tech/tags/Ubuntu%E9%85%8D%E7%BD%AE/"/>
+    
       <category term="NAS系统" scheme="http://www.yurui.tech/tags/NAS%E7%B3%BB%E7%BB%9F/"/>
     
       <category term="家庭影音" scheme="http://www.yurui.tech/tags/%E5%AE%B6%E5%BA%AD%E5%BD%B1%E9%9F%B3/"/>
     
       <category term="HTPC服务器" scheme="http://www.yurui.tech/tags/HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
-      <category term="Ubuntu18.04配置" scheme="http://www.yurui.tech/tags/Ubuntu18-04%E9%85%8D%E7%BD%AE/"/>
-    
-      <category term="Ubuntu配置" scheme="http://www.yurui.tech/tags/Ubuntu%E9%85%8D%E7%BD%AE/"/>
     
   </entry>
   
@@ -505,7 +516,8 @@ x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}&lt;/script&gt;
     
     <summary type="html">
     
-      介绍家庭nas操作系统ubuntu18.04的基本安装
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;本文为系列文章的第二篇，关于本专栏相关文章可以到文末专栏目录查看。&lt;/p&gt;
+&lt;p&gt;就这样，请拥有，并享受。&lt;br&gt;
     
     </summary>
     
@@ -513,15 +525,15 @@ x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}&lt;/script&gt;
       <category term="家庭NAS、HTPC服务器" scheme="http://www.yurui.tech/categories/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
     
-      <category term="Ubuntu18.04安装" scheme="http://www.yurui.tech/tags/Ubuntu18-04%E5%AE%89%E8%A3%85/"/>
-    
-      <category term="Ubuntu安装" scheme="http://www.yurui.tech/tags/Ubuntu%E5%AE%89%E8%A3%85/"/>
-    
       <category term="NAS系统" scheme="http://www.yurui.tech/tags/NAS%E7%B3%BB%E7%BB%9F/"/>
     
       <category term="家庭影音" scheme="http://www.yurui.tech/tags/%E5%AE%B6%E5%BA%AD%E5%BD%B1%E9%9F%B3/"/>
     
       <category term="HTPC服务器" scheme="http://www.yurui.tech/tags/HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+      <category term="Ubuntu18.04安装" scheme="http://www.yurui.tech/tags/Ubuntu18-04%E5%AE%89%E8%A3%85/"/>
+    
+      <category term="Ubuntu安装" scheme="http://www.yurui.tech/tags/Ubuntu%E5%AE%89%E8%A3%85/"/>
     
   </entry>
   
@@ -534,13 +546,15 @@ x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}&lt;/script&gt;
     
     <summary type="html">
     
-      解释C++中cin.get()和cin.getline()输入函数的使用方法及注意事项
+      &lt;h1 id=&quot;描述&quot;&gt;&lt;a href=&quot;#描述&quot; class=&quot;headerlink&quot; title=&quot;描述&quot;&gt;&lt;/a&gt;描述&lt;/h1&gt;&lt;p&gt;在C++中，我们通常使用&lt;code&gt;cin&lt;/code&gt;作为输入函数来读取用户键盘输入的数据，由于不能通过键盘来输入空字符，因此&lt;code&gt;cin&lt;/code&gt;需要用别的方法来确定字符串结尾位置。&lt;code&gt;cin&lt;/code&gt;使用空白、空格、制表符和换行符来确定字符串的结束位置，这意味着&lt;code&gt;cin&lt;/code&gt;在读入数据的时候只能截取上述结束符前的数据，对于结束符后的数据讲不能读入程序中。我们来考一个&lt;code&gt;cin&lt;/code&gt;读入字符串的实例。&lt;br&gt;
     
     </summary>
     
     
       <category term="C++" scheme="http://www.yurui.tech/categories/C/"/>
     
+    
+      <category term="C++" scheme="http://www.yurui.tech/tags/C/"/>
     
       <category term="cin.get函数" scheme="http://www.yurui.tech/tags/cin-get%E5%87%BD%E6%95%B0/"/>
     
@@ -549,8 +563,6 @@ x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}&lt;/script&gt;
       <category term="cin.get()" scheme="http://www.yurui.tech/tags/cin-get/"/>
     
       <category term="cin.getline()" scheme="http://www.yurui.tech/tags/cin-getline/"/>
-    
-      <category term="C++" scheme="http://www.yurui.tech/tags/C/"/>
     
       <category term="字符串输入" scheme="http://www.yurui.tech/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BE%93%E5%85%A5/"/>
     

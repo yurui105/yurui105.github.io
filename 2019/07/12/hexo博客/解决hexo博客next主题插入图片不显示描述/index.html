@@ -245,7 +245,28 @@
                 </span>
             </span>
 
-          <br>
+          
+            <span id="/2019/07/12/hexo%E5%8D%9A%E5%AE%A2/%E8%A7%A3%E5%86%B3hexo%E5%8D%9A%E5%AE%A2next%E4%B8%BB%E9%A2%98%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E6%8F%8F%E8%BF%B0/" class="post-meta-item leancloud_visitors" data-flag-title="hexo博客next主题插入图片问题" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/07/12/hexo%E5%8D%9A%E5%AE%A2/%E8%A7%A3%E5%86%B3hexo%E5%8D%9A%E5%AE%A2next%E4%B8%BB%E9%A2%98%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E6%8F%8F%E8%BF%B0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/07/12/hexo%E5%8D%9A%E5%AE%A2/%E8%A7%A3%E5%86%B3hexo%E5%8D%9A%E5%AE%A2next%E4%B8%BB%E9%A2%98%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E6%8F%8F%E8%BF%B0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -272,9 +293,10 @@
 
       
         <h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>最近在使用hexo博客next主题的时候发现kramed渲染器在处理插入的图片时不显示标题描述，仅仅显示图片。例如我通过<code>![描述](url连接)</code>的形式插入一张图片，kramed渲染器将其渲染为下面这样：</p>
+<a id="more"></a>
 <figure><img src="https://raw.githubusercontent.com/yurui105/image/master/blogs_image/%E6%9C%AA%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0.jpg" alt="未显示图片描述.jpg"><figcaption>"未显示图片描述"</figcaption></figure>
 
-<p>并未将图片的描述显示在下方，这对于在文中想要引用插入的图片变得尤为困难，搜索引擎也没有找到相关的问题以及解决办法（也许是我搜索引擎用的不是很好^^）。<br>在查看了渲染出来的网页后，发现kramed在渲染图片时将<code>[]</code>中的的图片描述渲染为了 <code>alt</code>属性，这是图片加载错误时显示的替补文字，按照 <a href="https://github.com/iissnan/hexo-theme-next/issues/436" target="_blank" rel="noopener">hexo-theme-next #436</a>中的方法找到<code>var imageTitle = $image.attr(&#39;title&#39;);</code>，将其中的<code>title</code>改为<code>alt</code>，但是任然无法解决问题。<br><a id="more"></a></p>
+<p>并未将图片的描述显示在下方，这对于在文中想要引用插入的图片变得尤为困难，搜索引擎也没有找到相关的问题以及解决办法（也许是我搜索引擎用的不是很好^^）。<br>在查看了渲染出来的网页后，发现kramed在渲染图片时将<code>[]</code>中的的图片描述渲染为了 <code>alt</code>属性，这是图片加载错误时显示的替补文字，按照 <a href="https://github.com/iissnan/hexo-theme-next/issues/436" target="_blank" rel="noopener">hexo-theme-next #436</a>中的方法找到<code>var imageTitle = $image.attr(&#39;title&#39;);</code>，将其中的<code>title</code>改为<code>alt</code>，但是任然无法解决问题。</p>
 <h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>查看其它网站的图片对于的<code>html</code>源码发现，在插入图片之后，图片的部分代码为：<br><code>&lt;figure&gt;&lt;img src=&quot;URL&quot; alt=&quot;未正常显示图片描述&quot;&gt;&lt;figcaption&gt;&quot;图片描述&quot;&lt;/figcaption&gt;&lt;figure&gt;</code>而kramed渲染出来的格式为：<br><code>&lt;img src=&quot;URL&quot; alt=&quot;未显示图片描述&quot;&gt;</code><br>发现少了一对<code>&lt;figure&gt;</code>和一对<code>&lt;figcaption&gt;</code>标签，从这个思路出发，Google后发现，<code>&lt;figure&gt;</code> 标签是 <code>HTML5</code> 中的新标签，用作文档中插图的图形，其基本用法为：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">figure</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"url"</span> <span class="attr">width</span>=<span class="string">"350"</span> <span class="attr">height</span>=<span class="string">"234"</span> <span class="attr">alt</span>=<span class="string">"未显示图片描述"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <ul>
@@ -402,6 +424,7 @@
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -693,12 +716,61 @@ window.addEventListener('pjax:success', () => {
   
 
 
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '8SatUnwLkyBp7mvyQQL45pPP-gzGzoHsz',
+      appKey     : 'D63hzHRT9GyGE98CVxtOBtGU',
+      placeholder: "ヾﾉ≧∀≦)o来啊，快活啊!",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+
   <script async src="/js/cursor/fireworks.js"></script>
 
 
 
 
-
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div class="moon-menu-item" onclick="back2bottom()">
+      <i class='fa fa-chevron-down'></i>    </div>
+    
+    <div class="moon-menu-item" onclick="back2top()">
+      <i class='fa fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
     </div>
 </body>
 </html>

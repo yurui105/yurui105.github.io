@@ -5,7 +5,8 @@
     <url>/2020/02/26/C++/C-C-%E4%BD%8D%E8%BF%90%E7%AE%97/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>数据在计算机中是按二进制的形式存在的，通过普通的四则运算我们能对这些数据做一些简单的运算。但当我们想修改某个数据中的某一位，我们就需要用到位运算。</p>
 <p>例如：<code>666</code>的二进制为<code>‭0001101000001010‬</code>，如果我们需要知道或者修改最高位，此时我们就无法通过一般的方法来对其进行操作，就需要用到位运算符。</p>
-<p>在许多古老的微处理器上，位运算比加减运算略快，通常位运算比乘除法运算要快很多。在现代架构中，情况并非如此：位运算的运算速度通常与加法运算相同（仍然快于乘法运算）。<br><a id="more"></a></p>
+<a id="more"></a>
+<p>在许多古老的微处理器上，位运算比加减运算略快，通常位运算比乘除法运算要快很多。在现代架构中，情况并非如此：位运算的运算速度通常与加法运算相同（仍然快于乘法运算）。</p>
 <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p> 用于对程序变量(int、char、long)中的某一位(bit)或多位进行操作,位运算有两种常用的方式如下：</p>
 <ol>
 <li>判断某一位是否为0/1</li>
@@ -69,9 +70,10 @@
     <url>/2020/02/25/C++/C-C-%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>指针</strong>是用来在程序中指向某一个变量的，实际上指针内存放的就是一个变量的相对内存地址（实际的物理地址还要加上一个偏移值）。</p>
 <p>在程序运行期间，每个函数都会占用一段连续的内存空间，而函数名就是该函数所占内存空间的起始地址（入口地址），我们可以将一个函数的起始地址赋值给一个指针，进而通过该指针来调用函数，这就是函数指针。</p>
+<a id="more"></a>
 <p>函数指针可以像一般函数一样，用于调用函数、传递参数。在如 <code>C</code>这样的语言中，通过提供一个简单的选取、执行函数的方法，函数指针可以简化代码。函数指针只能指向具有特定特征的函数。因而所有被同一指针运用的函数必须具有<strong>相同的参数和返回类型</strong>。</p>
 <p>C语言标准规定，函数指示符（function designator，即函数名字）既不是左值，也不是右值。但C++语言标准规定函数指示符属于左值，因此函数指示符转换为函数指针的右值属于左值转换为右值。</p>
-<p>除了作为<code>sizeof</code>或取地址&amp;的操作数，函数指示符在表达式中自动转换为函数指针类型右值。因此通过一个函数指针调用所指的函数，不需要在函数指针前加取值或反引用（*）运算符。<br><a id="more"></a></p>
+<p>除了作为<code>sizeof</code>或取地址&amp;的操作数，函数指示符在表达式中自动转换为函数指针类型右值。因此通过一个函数指针调用所指的函数，不需要在函数指针前加取值或反引用（*）运算符。</p>
 <h1 id="定义形式"><a href="#定义形式" class="headerlink" title="定义形式"></a>定义形式</h1><p>对于一个函数指针，我们采用如下的定义方式：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">返回值 (* 指针变量名)(参数类型1，参数类型2，······)</span><br></pre></td></tr></table></figure><br>例如：<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> (* pf)(<span class="keyword">int</span>,<span class="keyword">int</span>);</span><br></pre></td></tr></table></figure><br>其中，</p>
 <p><strong>返回值</strong>：函数返回的数据类型</p>
 <p><strong>指针变量名</strong>:函数指针变量名</p>
@@ -110,7 +112,9 @@
     <url>/2020/05/31/C++/C-const%E5%85%B3%E9%94%AE%E5%AD%97%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="const定义常量"><a href="#const定义常量" class="headerlink" title="const定义常量"></a><code>const</code>定义常量</h1><p>在c语言中，我们学习过可以使用<code>#define</code>来定义常量。但是<code>#define</code>的原理是简单的替换，因此对于<code>#define</code>来说没有类型检查这回事。</p>
 <p>c++中提供了<code>const</code>关键字，用<code>const</code>关键字修饰的变量其值是不能修改的，因此可以使用<code>const</code>关键字来替换<code>#define</code>，这有益于编译器进行类型检查。</p>
-<p><code>const</code>关键字定义变量如下代码所示:<br><a id="more"></a><br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX = <span class="number">1000</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> PI = <span class="number">3.14</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> NAME[] = <span class="string">"yurui"</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	MAX = PI;<span class="comment">//报错</span></span><br><span class="line">	<span class="keyword">int</span> a = PI;<span class="comment">//警告</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p><code>const</code>关键字定义变量如下代码所示:</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX = <span class="number">1000</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> PI = <span class="number">3.14</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> NAME[] = <span class="string">"yurui"</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	MAX = PI;<span class="comment">//报错</span></span><br><span class="line">	<span class="keyword">int</span> a = PI;<span class="comment">//警告</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如上程序所示，使用<code>const</code>关键字定义了<code>MAX</code>、<code>PI</code>、<code>NAME</code>三个全局变量。</p>
 <p>通过<code>MAX = PI;</code>对const修饰的变量进行赋值时会报错；通过<code>int a = PI;</code>进行赋值时编译系统会给出警告，提示类型不符合。</p>
 <p>通过上面的例子，我们可以看出，通过使用<code>const</code>关键字修饰常量，在使用时编译系统会进行类型检查。</p>
@@ -139,45 +143,6 @@
         <tag>const</tag>
         <tag>const关键字</tag>
         <tag>常引用</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C++中cin.getline和cin.get函数的使用</title>
-    <url>/2019/09/16/C++/C-%E4%B8%ADgetline%E5%92%8Cget%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>在C++中，我们通常使用<code>cin</code>作为输入函数来读取用户键盘输入的数据，由于不能通过键盘来输入空字符，因此<code>cin</code>需要用别的方法来确定字符串结尾位置。<code>cin</code>使用空白、空格、制表符和换行符来确定字符串的结束位置，这意味着<code>cin</code>在读入数据的时候只能截取上述结束符前的数据，对于结束符后的数据讲不能读入程序中。我们来考一个<code>cin</code>读入字符串的实例。<br><a id="more"></a><br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">30</span>];</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的姓名："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; name;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的名字是："</span> &lt;&lt; name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>运行上面的程序，当我们输入<code>woody allen</code>时，程序会得到下面的结果：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">请输入您的姓名：woody allen</span><br><span class="line">您的名字是：woody</span><br></pre></td></tr></table></figure>
-<p>我们发现<code>cin</code>函数读入的数据并不完整，在上述样例中输入的名字被空格键截断了，所以cin只读入了一个单词就结束了读入操作。再来考察一个类似实例看看输入缓冲区内发生了什么？</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">30</span>];</span><br><span class="line">	<span class="keyword">char</span> addr[<span class="number">50</span>];</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的姓名："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; name;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的地址："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; addr;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的名字是："</span> &lt;&lt; name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的地址为："</span> &lt;&lt; addr &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行上述程序，我们发现，还没对地址输入提示做出反应，程序就把他显示出来了。然后立即显示最后一行。运行结果如下所示：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">请输入您的姓名：woody allen</span><br><span class="line">请输入您的地址：您的名字是：woody</span><br><span class="line">您的地址为：allen</span><br></pre></td></tr></table></figure>
-<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><h2 id="面向行输入：getline"><a href="#面向行输入：getline" class="headerlink" title="面向行输入：getline()"></a>面向行输入：getline()</h2><p><code>getline()</code>函数读取输入的整行，它使用通过回车键输入的换行符来作为结束符。要调用这种方法可以使用<code>cin.getline()</code>，该函数有两个参数，第一个参数是用来存储输入行的数组名称，另一个参数是要读取的字符串长度，如果参数为30，则最多读取29各字符，最后一个用来存储在字符串末尾的空字符。<br>例如，假设要使用<code>cin.getline()</code>将姓名读入到一个包含30各元素的<code>name</code>数组中，可使用下面这样的函数调用：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.getline(name,<span class="number">30</span>);</span><br></pre></td></tr></table></figure>
-<p>这样就可以将一行读入到数组中————如果这一行不超过29个字符(<code>getline()</code>成员函数还可以接受第三个可选参数，在此不做讨论)。现在对上述样例进行修改如下：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">30</span>];</span><br><span class="line">	<span class="keyword">char</span> addr[<span class="number">50</span>];</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的姓名："</span>;</span><br><span class="line">	<span class="built_in">cin</span>.getline(name,<span class="number">30</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的地址："</span>;</span><br><span class="line">	<span class="built_in">cin</span>.getline(addr,<span class="number">50</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的名字是："</span> &lt;&lt; name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的地址为："</span> &lt;&lt; addr &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上述程序中将<code>cin</code>换成了<code>cin.getline()</code>，我们得到了正确的输入如下：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">请输入您的姓名：woody allen</span><br><span class="line">请输入您的地址：Guizhou China</span><br><span class="line">您的名字是：woody allen</span><br><span class="line">您的地址为：Guizhou China</span><br></pre></td></tr></table></figure>
-<p><code>getline()</code>函数每次读取一行，它通过回车键输入的换行符来确定行尾，但是不保存换行符。相反，在存储字符串时，它用空字符来替换换行符。</p>
-<h2 id="面向行的输入get"><a href="#面向行的输入get" class="headerlink" title="面向行的输入get()"></a>面向行的输入get()</h2><p>另外还有一种方法。<code>istream</code>类有另一个名为<code>get()</code>的成员函数，该函数有几种变体，其中一种与<code>getline()</code>类似，他们接受相同的参数，解释参数的方式也相同，都读取到行尾。单<code>get()</code>不再读取并丢弃换行符，而是将其留在输入队列中，假设我们连续两次调用<code>get()</code>：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(name,arrSize);</span><br><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(addr,arrSize);</span><br></pre></td></tr></table></figure>
-<p>运行上诉代码，我们会发现第二行代码并没有读入数据，原因是当第二行代码在读取数据时，把第一行读取的回车符当成了第二个字符串的结束标志，所以接下来的数据都没有读入，一个解决办法是将上诉代码改为：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(name,arrSize);</span><br><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>();</span><br><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(addr,arrSize);</span><br></pre></td></tr></table></figure>
-<p>通过新增的<code>cin.get();</code>先读取上一行留下来的换行符，然后再读取下一个字符串。</p>
-<p>另一种使用<code>get()</code>的方法是将两个类成员函数拼接起来使用，如下代码所示：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(name,addr).<span class="built_in">get</span>();</span><br></pre></td></tr></table></figure>
-<p>之所以这样做，是由于<code>cin.get(name,addr)</code>返回一个<code>cin</code>对象，该对象随后将被用来调用<code>get()</code>函数，同样，下面语句也能将输入的两行分别读到数组<code>name</code>和<code>addr</code>中，其效果与两次调用<code>cin.getline()</code>相同：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.getline(name,ArSize).getline(addr,ArSize);</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>C++</category>
-      </categories>
-      <tags>
-        <tag>cin.get函数</tag>
-        <tag>cin.getline函数</tag>
-        <tag>cin.get()</tag>
-        <tag>cin.getline()</tag>
-        <tag>C++</tag>
-        <tag>字符串输入</tag>
       </tags>
   </entry>
   <entry>
@@ -218,6 +183,29 @@
         <tag>内存分配</tag>
         <tag>new关键字</tag>
         <tag>delete关键字</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>c++内联函数inline</title>
+    <url>/2020/06/01/C++/c-%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0inline/</url>
+    <content><![CDATA[<h1 id="inline概念"><a href="#inline概念" class="headerlink" title="inline概念"></a><code>inline</code>概念</h1><p>在<code>c++</code>中，函数调用是会产生额外的时间开销的，如果函数本身代码很短，执行很快，并且该函数被反复调用。相比之下调用函数所产生的开销就会很大，甚至超过执行代码所产生的开销。</p>
+<p>为了减少函数调用的开销，<code>c++</code>引入了<code>内联函数</code>的机制。编译器在处理内联函数的调用语句时，直接将整个内联函数代码插入到调用语句处，从而减少函数调用产生的开销。<br><a id="more"></a></p>
+<h1 id="inline定义"><a href="#inline定义" class="headerlink" title="inline定义"></a><code>inline</code>定义</h1><p><code>inline</code>关键字的使用比较简单，只需要在函数的定义头部加上<code>inline</code>关键字即可，如下所示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> 返回值类型 函数名(参数)&#123;</span><br><span class="line">	函数体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>内联函数的具体使用如下代码所示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//返回两数中的最大值</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="built_in">max</span>(<span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如上代码所示，定义一个内联函数<code>max</code>，该函数返回两个数中的最大值，只需要在函数定义时加入<code>inline</code>关键字即可，在对<code>max</code>函数进行调用时，编译器直接将<code>max</code>的函数代码嵌入到调用的地方，以此来节省函数调用产生的额外开销。</p>
+<h1 id="inline函数注意事项"><a href="#inline函数注意事项" class="headerlink" title="inline函数注意事项"></a><code>inline</code>函数注意事项</h1><p>通过上面的例子，我们了解了<code>inline</code>关键字的基本使用方法，内联函数虽然节省了函数调用产生的开销，但并不是所有的地方都能使用内联函数定义。</p>
+<p>当函数代码过长时，使用内联函数会使得程序变得臃肿。此时就不应该使用内联函数。</p>
+<p>另外，当函数中包含循环控制语句时，也不应该使用内联函数。</p>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>inline函数</tag>
+        <tag>内联函数</tag>
       </tags>
   </entry>
   <entry>
@@ -270,26 +258,42 @@
       </tags>
   </entry>
   <entry>
-    <title>c++内联函数inline</title>
-    <url>/2020/06/01/C++/c-%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0inline/</url>
-    <content><![CDATA[<h1 id="inline概念"><a href="#inline概念" class="headerlink" title="inline概念"></a><code>inline</code>概念</h1><p>在<code>c++</code>中，函数调用是会产生额外的时间开销的，如果函数本身代码很短，执行很快，并且该函数被反复调用。相比之下调用函数所产生的开销就会很大，甚至超过执行代码所产生的开销。</p>
-<p>为了减少函数调用的开销，<code>c++</code>引入了<code>内联函数</code>的机制。编译器在处理内联函数的调用语句时，直接将整个内联函数代码插入到调用语句处，从而减少函数调用产生的开销。<br><a id="more"></a></p>
-<h1 id="inline定义"><a href="#inline定义" class="headerlink" title="inline定义"></a><code>inline</code>定义</h1><p><code>inline</code>关键字的使用比较简单，只需要在函数的定义头部加上<code>inline</code>关键字即可，如下所示：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> 返回值类型 函数名(参数)&#123;</span><br><span class="line">	函数体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>内联函数的具体使用如下代码所示：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//返回两数中的最大值</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="built_in">max</span>(<span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如上代码所示，定义一个内联函数<code>max</code>，该函数返回两个数中的最大值，只需要在函数定义时加入<code>inline</code>关键字即可，在对<code>max</code>函数进行调用时，编译器直接将<code>max</code>的函数代码嵌入到调用的地方，以此来节省函数调用产生的额外开销。</p>
-<h1 id="inline函数注意事项"><a href="#inline函数注意事项" class="headerlink" title="inline函数注意事项"></a><code>inline</code>函数注意事项</h1><p>通过上面的例子，我们了解了<code>inline</code>关键字的基本使用方法，内联函数虽然节省了函数调用产生的开销，但并不是所有的地方都能使用内联函数定义。</p>
-<p>当函数代码过长时，使用内联函数会使得程序变得臃肿。此时就不应该使用内联函数。</p>
-<p>另外，当函数中包含循环控制语句时，也不应该使用内联函数。</p>
+    <title>C++中cin.getline和cin.get函数的使用</title>
+    <url>/2019/09/16/C++/C-%E4%B8%ADgetline%E5%92%8Cget%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>在C++中，我们通常使用<code>cin</code>作为输入函数来读取用户键盘输入的数据，由于不能通过键盘来输入空字符，因此<code>cin</code>需要用别的方法来确定字符串结尾位置。<code>cin</code>使用空白、空格、制表符和换行符来确定字符串的结束位置，这意味着<code>cin</code>在读入数据的时候只能截取上述结束符前的数据，对于结束符后的数据讲不能读入程序中。我们来考一个<code>cin</code>读入字符串的实例。<br><a id="more"></a><br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">30</span>];</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的姓名："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; name;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的名字是："</span> &lt;&lt; name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行上面的程序，当我们输入<code>woody allen</code>时，程序会得到下面的结果：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">请输入您的姓名：woody allen</span><br><span class="line">您的名字是：woody</span><br></pre></td></tr></table></figure>
+<p>我们发现<code>cin</code>函数读入的数据并不完整，在上述样例中输入的名字被空格键截断了，所以cin只读入了一个单词就结束了读入操作。再来考察一个类似实例看看输入缓冲区内发生了什么？</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">30</span>];</span><br><span class="line">	<span class="keyword">char</span> addr[<span class="number">50</span>];</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的姓名："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; name;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的地址："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; addr;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的名字是："</span> &lt;&lt; name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的地址为："</span> &lt;&lt; addr &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行上述程序，我们发现，还没对地址输入提示做出反应，程序就把他显示出来了。然后立即显示最后一行。运行结果如下所示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">请输入您的姓名：woody allen</span><br><span class="line">请输入您的地址：您的名字是：woody</span><br><span class="line">您的地址为：allen</span><br></pre></td></tr></table></figure>
+<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><h2 id="面向行输入：getline"><a href="#面向行输入：getline" class="headerlink" title="面向行输入：getline()"></a>面向行输入：getline()</h2><p><code>getline()</code>函数读取输入的整行，它使用通过回车键输入的换行符来作为结束符。要调用这种方法可以使用<code>cin.getline()</code>，该函数有两个参数，第一个参数是用来存储输入行的数组名称，另一个参数是要读取的字符串长度，如果参数为30，则最多读取29各字符，最后一个用来存储在字符串末尾的空字符。<br>例如，假设要使用<code>cin.getline()</code>将姓名读入到一个包含30各元素的<code>name</code>数组中，可使用下面这样的函数调用：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.getline(name,<span class="number">30</span>);</span><br></pre></td></tr></table></figure>
+<p>这样就可以将一行读入到数组中————如果这一行不超过29个字符(<code>getline()</code>成员函数还可以接受第三个可选参数，在此不做讨论)。现在对上述样例进行修改如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">30</span>];</span><br><span class="line">	<span class="keyword">char</span> addr[<span class="number">50</span>];</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的姓名："</span>;</span><br><span class="line">	<span class="built_in">cin</span>.getline(name,<span class="number">30</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的地址："</span>;</span><br><span class="line">	<span class="built_in">cin</span>.getline(addr,<span class="number">50</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的名字是："</span> &lt;&lt; name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的地址为："</span> &lt;&lt; addr &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述程序中将<code>cin</code>换成了<code>cin.getline()</code>，我们得到了正确的输入如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">请输入您的姓名：woody allen</span><br><span class="line">请输入您的地址：Guizhou China</span><br><span class="line">您的名字是：woody allen</span><br><span class="line">您的地址为：Guizhou China</span><br></pre></td></tr></table></figure>
+<p><code>getline()</code>函数每次读取一行，它通过回车键输入的换行符来确定行尾，但是不保存换行符。相反，在存储字符串时，它用空字符来替换换行符。</p>
+<h2 id="面向行的输入get"><a href="#面向行的输入get" class="headerlink" title="面向行的输入get()"></a>面向行的输入get()</h2><p>另外还有一种方法。<code>istream</code>类有另一个名为<code>get()</code>的成员函数，该函数有几种变体，其中一种与<code>getline()</code>类似，他们接受相同的参数，解释参数的方式也相同，都读取到行尾。单<code>get()</code>不再读取并丢弃换行符，而是将其留在输入队列中，假设我们连续两次调用<code>get()</code>：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(name,arrSize);</span><br><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(addr,arrSize);</span><br></pre></td></tr></table></figure>
+<p>运行上诉代码，我们会发现第二行代码并没有读入数据，原因是当第二行代码在读取数据时，把第一行读取的回车符当成了第二个字符串的结束标志，所以接下来的数据都没有读入，一个解决办法是将上诉代码改为：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(name,arrSize);</span><br><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>();</span><br><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(addr,arrSize);</span><br></pre></td></tr></table></figure>
+<p>通过新增的<code>cin.get();</code>先读取上一行留下来的换行符，然后再读取下一个字符串。</p>
+<p>另一种使用<code>get()</code>的方法是将两个类成员函数拼接起来使用，如下代码所示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(name,addr).<span class="built_in">get</span>();</span><br></pre></td></tr></table></figure>
+<p>之所以这样做，是由于<code>cin.get(name,addr)</code>返回一个<code>cin</code>对象，该对象随后将被用来调用<code>get()</code>函数，同样，下面语句也能将输入的两行分别读到数组<code>name</code>和<code>addr</code>中，其效果与两次调用<code>cin.getline()</code>相同：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.getline(name,ArSize).getline(addr,ArSize);</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>C++</category>
       </categories>
       <tags>
-        <tag>c++</tag>
-        <tag>inline函数</tag>
-        <tag>内联函数</tag>
+        <tag>C++</tag>
+        <tag>cin.get函数</tag>
+        <tag>cin.getline函数</tag>
+        <tag>cin.get()</tag>
+        <tag>cin.getline()</tag>
+        <tag>字符串输入</tag>
       </tags>
   </entry>
   <entry>
@@ -326,12 +330,44 @@
       </tags>
   </entry>
   <entry>
+    <title>c++函数重载</title>
+    <url>/2020/06/01/C++/c-%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD/</url>
+    <content><![CDATA[<h1 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h1><p>假设如下函数来比较两个<code>int</code>型数据的大小</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>当我们需要再增加一个比较两个<code>double</code>或<code>char</code>类型的数据时，我们的函数名会变得臃肿，如下所示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max_int</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max_double</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max_char</span><span class="params">(<span class="keyword">char</span> a, <span class="keyword">char</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当我们需要比较更多类型数据的大小时，我们的<code>max_xxx</code>函数会变得越来越多。在进行调用时会越来越麻烦。</p>
+<h1 id="函数重载定义"><a href="#函数重载定义" class="headerlink" title="函数重载定义"></a>函数重载定义</h1><p>函数重载指的是一个或多个函数，名字相同，然而参数个数以及参数类型不同，我们就称之为函数重载。</p>
+<p>将上面的代码改写为如下形势：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">char</span> a, <span class="keyword">char</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是我们在调用函数时就不需要用函数名去区分该调用哪个函数，此时程序会根据我们的参数个数以及参数类型去选择调用的函数。</p>
+<p>如下函数调用代码所示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;<span class="comment">// 1</span></span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span> </span>&#123;<span class="comment">// 2</span></span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">char</span> a, <span class="keyword">char</span> b)</span> </span>&#123;<span class="comment">// 3</span></span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">max</span>(<span class="number">2</span>, <span class="number">3</span>);<span class="comment">//调用 1</span></span><br><span class="line">	<span class="built_in">max</span>(<span class="string">'a'</span>, <span class="string">'b'</span>);<span class="comment">//调用 3</span></span><br><span class="line">	<span class="built_in">max</span>(<span class="number">2.3</span>, <span class="number">3.2</span>);<span class="comment">//调用 2</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如上程序，在执行<code>max(2, 3);</code>时，参数为两个<code>int</code>类型的，所以自动匹配到调用第1个<code>max</code>函数。其他两次调用类似。</p>
+<p>函数重载使得函数的命名变得简单，调用过程也变得简洁。</p>
+<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>考察如下函数调用语句：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">max</span>(<span class="number">2</span>, <span class="number">3.1</span>);</span><br></pre></td></tr></table></figure>
+<p>当我们进行上述的函数调用时，就会产生二义性。</p>
+<p>此时编译器不知道是将<code>3.1</code>转换为<code>int</code>去调用<code>max(int a, int b)</code> ，还是将<code>2</code>转化为<code>double</code>去调用 <code>max(double a, double b)</code>。</p>
+<p>因此，在调用重载函数时要注意去避免产生二义性。</p>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>函数重载</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo博客next主题插入图片问题</title>
     <url>/2019/07/12/hexo%E5%8D%9A%E5%AE%A2/%E8%A7%A3%E5%86%B3hexo%E5%8D%9A%E5%AE%A2next%E4%B8%BB%E9%A2%98%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E6%8F%8F%E8%BF%B0/</url>
     <content><![CDATA[<h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>最近在使用hexo博客next主题的时候发现kramed渲染器在处理插入的图片时不显示标题描述，仅仅显示图片。例如我通过<code>![描述](url连接)</code>的形式插入一张图片，kramed渲染器将其渲染为下面这样：</p>
+<a id="more"></a>
 <figure><img src="https://raw.githubusercontent.com/yurui105/image/master/blogs_image/%E6%9C%AA%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0.jpg" alt="未显示图片描述.jpg"><figcaption>"未显示图片描述"</figcaption></figure>
 
-<p>并未将图片的描述显示在下方，这对于在文中想要引用插入的图片变得尤为困难，搜索引擎也没有找到相关的问题以及解决办法（也许是我搜索引擎用的不是很好^^）。<br>在查看了渲染出来的网页后，发现kramed在渲染图片时将<code>[]</code>中的的图片描述渲染为了 <code>alt</code>属性，这是图片加载错误时显示的替补文字，按照 <a href="https://github.com/iissnan/hexo-theme-next/issues/436" target="_blank" rel="noopener">hexo-theme-next #436</a>中的方法找到<code>var imageTitle = $image.attr(&#39;title&#39;);</code>，将其中的<code>title</code>改为<code>alt</code>，但是任然无法解决问题。<br><a id="more"></a></p>
+<p>并未将图片的描述显示在下方，这对于在文中想要引用插入的图片变得尤为困难，搜索引擎也没有找到相关的问题以及解决办法（也许是我搜索引擎用的不是很好^^）。<br>在查看了渲染出来的网页后，发现kramed在渲染图片时将<code>[]</code>中的的图片描述渲染为了 <code>alt</code>属性，这是图片加载错误时显示的替补文字，按照 <a href="https://github.com/iissnan/hexo-theme-next/issues/436" target="_blank" rel="noopener">hexo-theme-next #436</a>中的方法找到<code>var imageTitle = $image.attr(&#39;title&#39;);</code>，将其中的<code>title</code>改为<code>alt</code>，但是任然无法解决问题。</p>
 <h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>查看其它网站的图片对于的<code>html</code>源码发现，在插入图片之后，图片的部分代码为：<br><code>&lt;figure&gt;&lt;img src=&quot;URL&quot; alt=&quot;未正常显示图片描述&quot;&gt;&lt;figcaption&gt;&quot;图片描述&quot;&lt;/figcaption&gt;&lt;figure&gt;</code>而kramed渲染出来的格式为：<br><code>&lt;img src=&quot;URL&quot; alt=&quot;未显示图片描述&quot;&gt;</code><br>发现少了一对<code>&lt;figure&gt;</code>和一对<code>&lt;figcaption&gt;</code>标签，从这个思路出发，Google后发现，<code>&lt;figure&gt;</code> 标签是 <code>HTML5</code> 中的新标签，用作文档中插图的图形，其基本用法为：</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">figure</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"url"</span> <span class="attr">width</span>=<span class="string">"350"</span> <span class="attr">height</span>=<span class="string">"234"</span> <span class="attr">alt</span>=<span class="string">"未显示图片描述"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <ul>
@@ -371,83 +407,6 @@
         <tag>图片问题</tag>
         <tag>markdown插入图片</tag>
         <tag>hexo优化</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ubuntu18.04安装</title>
-    <url>/2019/12/24/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/2%E3%80%81Ubuntu18.04%E7%9A%84%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文为系列文章的第二篇，关于本专栏相关文章可以到文末专栏目录查看。</p>
-<p>就这样，请拥有，并享受。<br><a id="more"></a></p>
-<h1 id="制作安装镜像"><a href="#制作安装镜像" class="headerlink" title="制作安装镜像"></a>制作安装镜像</h1><h2 id="下载操作系统镜像"><a href="#下载操作系统镜像" class="headerlink" title="下载操作系统镜像"></a>下载操作系统镜像</h2><p>首先到Ubuntu中国官网下载最新版本的Ubuntu18.04桌面版</p>
-<p>下载传送门：点击这里</p>
-<p>step1.点击桌面系统<br><img src="https://raw.githubusercontent.com/yurui105/image/master/0.jpg" alt="ubuntu首页"></p>
-<p>step2.点击下载Ubuntu<br><img src="https://raw.githubusercontent.com/yurui105/image/master/1.jpg" alt="桌面系统主页"></p>
-<p>step3.点击Ubuntu18.04.3 LTS后面的直接下载<br><img src="https://raw.githubusercontent.com/yurui105/image/master/2.jpg" alt="下载界面"></p>
-<p>在写文章时的官方最新版本为18.04.3，具体可能会有变化。</p>
-<p>LTS为官方长期支持版本，你也可以选择下载最新的试用版本，具体看个人怎么选择，官方也对各版本有详细的说明。个人建议选择LTS版本。</p>
-<p>注！可以选择BT下载，这样下载速度会比较快。</p>
-<h2 id="下载启动盘制作工具"><a href="#下载启动盘制作工具" class="headerlink" title="下载启动盘制作工具"></a>下载启动盘制作工具</h2><p>制作启动盘的工具市面上有很多，可以参考网络上其他同类文章，这里选择用UltraISO作为制作工具。</p>
-<p>UltraISO传送门：点击这里</p>
-<p>step1.点击导航栏<strong>下载</strong><br><img src="https://raw.githubusercontent.com/yurui105/image/master/4%E3%80%81ultraiso.jpg" alt="UltraISO官网主页"></p>
-<p>step2.点击<strong>免费下载试用</strong><br><img src="https://raw.githubusercontent.com/yurui105/image/master/5.jpg" alt="下载界面"></p>
-<p>step3.安装</p>
-<p>这里就部展开详述了，安装完成后打开，会跳出窗口订购，在这里点击下方的试用即可。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115307.jpg" alt="UltraISO订阅界面"></p>
-<h2 id="制作镜像"><a href="#制作镜像" class="headerlink" title="制作镜像"></a>制作镜像</h2><p>重要！！！制作U盘安装工具会擦除U盘所有数据，请提前备份好U盘数据！！！</p>
-<p>step1.打开刚才下载的Ubuntu安装镜像<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115730.jpg" alt="UltraISO软件界面"><br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115759.jpg" alt="加载安装镜像后"></p>
-<p>step2.安装镜像文件到U盘</p>
-<p>注：一下操作会擦除U盘数据，请做好备份。</p>
-<p>点击菜单栏启动—&gt;写入硬盘镜像</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115816.jpg" alt="制作镜像启动"></p>
-<p>之后会跳出一个窗口，磁盘驱动器处选择要作为启动盘的U盘，其它选项默认，然后点击写入，整个过程会持续几分钟，待进度条跑完后及完成（注意错误提示，并在网上寻求解决方案）。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115857.jpg" alt="镜像写入"></p>
-<p>到此不出意外的话整个启动U盘就制作好了。</p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>接下来你需要设置主板从U盘启动，不同的主板设置不一样，在此不做任何操作说明，具体你可以百度主板型号+U盘启动来寻找你主板对应的设置方法。</p>
-<p>从U盘启动后，会看到下图的界面，全部默认，点击install ubuntu（安装ubuntu）</p>
-<p>（你也可以选择其他语言，但是建议选择英文，中文安装后在后续的操作目录切换中特别麻烦，你还需要安装一个中文编译器，但是相信我，作为nas的操作系统，你需要中文输入的地方很少，尤其是对于linux，只会增加一些没用且繁琐的折腾，所以选择英文就好）<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20170625.jpg" alt="Welcome界面"></p>
-<p>之后选择键盘和布局，这里默认就好，然后点击continue（继续）。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20170644.jpg" alt="​选择键盘和布局"></p>
-<p>之后跳转到​下图界面，选择Minimal installation（最小化安装）即可，Normal installation（正常安装）提供了较为完整的软件，但那些都是我们用不到的东西。</p>
-<p>Download updates while installing Ubuntu（安装过程中更新软件）选上这个会在安装的过程中更新软件包，会增加安装时间。可以在后续安装完成后更新。</p>
-<p>install third-party software······这个选项勾上，会为你安装硬件驱动等，减少后期工作量。</p>
-<p>完成后点击continue</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20170709.jpg" alt="​更新以及第三方软件"></p>
-<p>之后选择安装类型，如果你懒得折腾，选择默认的即可，你也可以选择Something else来自定义安装，如果你没有相关linux基础，建议选择默认，如果你有相关基础，相信你会自己做出选择。</p>
-<p>然后点击continue<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20170730.jpg" alt="​安装类型"></p>
-<p>这里提示你会擦除硬盘内容，叫你确认。</p>
-<p>没有其他任何问题的话这里选择continue<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20171232.jpg" alt="​确认框"></p>
-<p>之后选择时区，选择shanghai即可，然后continue。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20171313.jpg" alt="选择时区"></p>
-<p>下面进行用户配置</p>
-<p>your name：用户名</p>
-<p>your computer name：计算机名</p>
-<p>pick a username：登录用户名（不要为中文）</p>
-<p>choose a password：密码</p>
-<p>confirm your password：确认密码</p>
-<p>然后勾选下面的log in automatically，点击continue<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20171349.jpg" alt="用户信息​"></p>
-<p>之后进入到漫长的安装过程，只需等待即可，整个过程看你的网络情况，从几十分到几小时不等，ubuntu服务器在国外，访问会比较慢，可以使用梯子。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20171407.jpg" alt="安装过程"></p>
-<p>安装完成后会跳出一个弹窗，这里选择restart now（重启）</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20175101.jpg" alt="重启界面"></p>
-<p>好了，到这里这个安装过程就结束了，而折腾的真个nas过程也就完成了60%了。</p>
-<p>是不是很兴奋。</p>
-<h1 id="专栏目录"><a href="#专栏目录" class="headerlink" title="专栏目录"></a>专栏目录</h1><p>注！[✔]表示已更新，[✖] 表示未更新</p>
-<p>[✔] 前言</p>
-<p>[✔] Ubuntu18.04的安装</p>
-<p>[✖] Linux的基本操作</p>
-<p>[✖] 基本工具安装及使用</p>
-<p>[✖] Docker安装</p>
-<p>[✖] 控制面板</p>
-<p>[✖] jellyfin影音服务</p>
-<p>[✖] 网盘服务</p>
-<p>[✖] 下载工具</p>
-<p>[✖] 笔记管理</p>
-<p>[✖] 手机开关机</p>
-]]></content>
-      <categories>
-        <category>家庭NAS、HTPC服务器</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu18.04安装</tag>
-        <tag>Ubuntu安装</tag>
-        <tag>NAS系统</tag>
-        <tag>家庭影音</tag>
-        <tag>HTPC服务器</tag>
       </tags>
   </entry>
   <entry>
@@ -523,11 +482,88 @@
         <category>家庭NAS、HTPC服务器</category>
       </categories>
       <tags>
+        <tag>Ubuntu18.04配置</tag>
+        <tag>Ubuntu配置</tag>
         <tag>NAS系统</tag>
         <tag>家庭影音</tag>
         <tag>HTPC服务器</tag>
-        <tag>Ubuntu18.04配置</tag>
-        <tag>Ubuntu配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu18.04安装</title>
+    <url>/2019/12/24/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/2%E3%80%81Ubuntu18.04%E7%9A%84%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文为系列文章的第二篇，关于本专栏相关文章可以到文末专栏目录查看。</p>
+<p>就这样，请拥有，并享受。<br><a id="more"></a></p>
+<h1 id="制作安装镜像"><a href="#制作安装镜像" class="headerlink" title="制作安装镜像"></a>制作安装镜像</h1><h2 id="下载操作系统镜像"><a href="#下载操作系统镜像" class="headerlink" title="下载操作系统镜像"></a>下载操作系统镜像</h2><p>首先到Ubuntu中国官网下载最新版本的Ubuntu18.04桌面版</p>
+<p>下载传送门：点击这里</p>
+<p>step1.点击桌面系统<br><img src="https://raw.githubusercontent.com/yurui105/image/master/0.jpg" alt="ubuntu首页"></p>
+<p>step2.点击下载Ubuntu<br><img src="https://raw.githubusercontent.com/yurui105/image/master/1.jpg" alt="桌面系统主页"></p>
+<p>step3.点击Ubuntu18.04.3 LTS后面的直接下载<br><img src="https://raw.githubusercontent.com/yurui105/image/master/2.jpg" alt="下载界面"></p>
+<p>在写文章时的官方最新版本为18.04.3，具体可能会有变化。</p>
+<p>LTS为官方长期支持版本，你也可以选择下载最新的试用版本，具体看个人怎么选择，官方也对各版本有详细的说明。个人建议选择LTS版本。</p>
+<p>注！可以选择BT下载，这样下载速度会比较快。</p>
+<h2 id="下载启动盘制作工具"><a href="#下载启动盘制作工具" class="headerlink" title="下载启动盘制作工具"></a>下载启动盘制作工具</h2><p>制作启动盘的工具市面上有很多，可以参考网络上其他同类文章，这里选择用UltraISO作为制作工具。</p>
+<p>UltraISO传送门：点击这里</p>
+<p>step1.点击导航栏<strong>下载</strong><br><img src="https://raw.githubusercontent.com/yurui105/image/master/4%E3%80%81ultraiso.jpg" alt="UltraISO官网主页"></p>
+<p>step2.点击<strong>免费下载试用</strong><br><img src="https://raw.githubusercontent.com/yurui105/image/master/5.jpg" alt="下载界面"></p>
+<p>step3.安装</p>
+<p>这里就部展开详述了，安装完成后打开，会跳出窗口订购，在这里点击下方的试用即可。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115307.jpg" alt="UltraISO订阅界面"></p>
+<h2 id="制作镜像"><a href="#制作镜像" class="headerlink" title="制作镜像"></a>制作镜像</h2><p>重要！！！制作U盘安装工具会擦除U盘所有数据，请提前备份好U盘数据！！！</p>
+<p>step1.打开刚才下载的Ubuntu安装镜像<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115730.jpg" alt="UltraISO软件界面"><br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115759.jpg" alt="加载安装镜像后"></p>
+<p>step2.安装镜像文件到U盘</p>
+<p>注：一下操作会擦除U盘数据，请做好备份。</p>
+<p>点击菜单栏启动—&gt;写入硬盘镜像</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115816.jpg" alt="制作镜像启动"></p>
+<p>之后会跳出一个窗口，磁盘驱动器处选择要作为启动盘的U盘，其它选项默认，然后点击写入，整个过程会持续几分钟，待进度条跑完后及完成（注意错误提示，并在网上寻求解决方案）。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115857.jpg" alt="镜像写入"></p>
+<p>到此不出意外的话整个启动U盘就制作好了。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>接下来你需要设置主板从U盘启动，不同的主板设置不一样，在此不做任何操作说明，具体你可以百度主板型号+U盘启动来寻找你主板对应的设置方法。</p>
+<p>从U盘启动后，会看到下图的界面，全部默认，点击install ubuntu（安装ubuntu）</p>
+<p>（你也可以选择其他语言，但是建议选择英文，中文安装后在后续的操作目录切换中特别麻烦，你还需要安装一个中文编译器，但是相信我，作为nas的操作系统，你需要中文输入的地方很少，尤其是对于linux，只会增加一些没用且繁琐的折腾，所以选择英文就好）<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20170625.jpg" alt="Welcome界面"></p>
+<p>之后选择键盘和布局，这里默认就好，然后点击continue（继续）。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20170644.jpg" alt="​选择键盘和布局"></p>
+<p>之后跳转到​下图界面，选择Minimal installation（最小化安装）即可，Normal installation（正常安装）提供了较为完整的软件，但那些都是我们用不到的东西。</p>
+<p>Download updates while installing Ubuntu（安装过程中更新软件）选上这个会在安装的过程中更新软件包，会增加安装时间。可以在后续安装完成后更新。</p>
+<p>install third-party software······这个选项勾上，会为你安装硬件驱动等，减少后期工作量。</p>
+<p>完成后点击continue</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20170709.jpg" alt="​更新以及第三方软件"></p>
+<p>之后选择安装类型，如果你懒得折腾，选择默认的即可，你也可以选择Something else来自定义安装，如果你没有相关linux基础，建议选择默认，如果你有相关基础，相信你会自己做出选择。</p>
+<p>然后点击continue<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20170730.jpg" alt="​安装类型"></p>
+<p>这里提示你会擦除硬盘内容，叫你确认。</p>
+<p>没有其他任何问题的话这里选择continue<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20171232.jpg" alt="​确认框"></p>
+<p>之后选择时区，选择shanghai即可，然后continue。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20171313.jpg" alt="选择时区"></p>
+<p>下面进行用户配置</p>
+<p>your name：用户名</p>
+<p>your computer name：计算机名</p>
+<p>pick a username：登录用户名（不要为中文）</p>
+<p>choose a password：密码</p>
+<p>confirm your password：确认密码</p>
+<p>然后勾选下面的log in automatically，点击continue<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20171349.jpg" alt="用户信息​"></p>
+<p>之后进入到漫长的安装过程，只需等待即可，整个过程看你的网络情况，从几十分到几小时不等，ubuntu服务器在国外，访问会比较慢，可以使用梯子。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20171407.jpg" alt="安装过程"></p>
+<p>安装完成后会跳出一个弹窗，这里选择restart now（重启）</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20175101.jpg" alt="重启界面"></p>
+<p>好了，到这里这个安装过程就结束了，而折腾的真个nas过程也就完成了60%了。</p>
+<p>是不是很兴奋。</p>
+<h1 id="专栏目录"><a href="#专栏目录" class="headerlink" title="专栏目录"></a>专栏目录</h1><p>注！[✔]表示已更新，[✖] 表示未更新</p>
+<p>[✔] 前言</p>
+<p>[✔] Ubuntu18.04的安装</p>
+<p>[✖] Linux的基本操作</p>
+<p>[✖] 基本工具安装及使用</p>
+<p>[✖] Docker安装</p>
+<p>[✖] 控制面板</p>
+<p>[✖] jellyfin影音服务</p>
+<p>[✖] 网盘服务</p>
+<p>[✖] 下载工具</p>
+<p>[✖] 笔记管理</p>
+<p>[✖] 手机开关机</p>
+]]></content>
+      <categories>
+        <category>家庭NAS、HTPC服务器</category>
+      </categories>
+      <tags>
+        <tag>NAS系统</tag>
+        <tag>家庭影音</tag>
+        <tag>HTPC服务器</tag>
+        <tag>Ubuntu18.04安装</tag>
+        <tag>Ubuntu安装</tag>
       </tags>
   </entry>
   <entry>
@@ -566,53 +602,6 @@
         <tag>xshell配置</tag>
         <tag>ssh安装及使用</tag>
         <tag>xshell安装</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>WEB-UI管理面板Cockpit(轻量简单)安装与使用</title>
-    <url>/2019/12/28/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/6%E3%80%81WEB-UI%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BFCockpit(%E8%BD%BB%E9%87%8F%E7%AE%80%E5%8D%95)%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>在前面我们介绍了管理面板Webmin的安装与使用，这次我们来看Cockpit的安装与使用，Webmin与Cockoit都属于轻量级的管理面板，但是Cockpit的功能较Webmin有了更多的减少，提供了更多的图表可视化功能，对中文的支持也比Webmin要好得多。</p>
-<p>cockpit提供了几乎所有Linux发行版本的安装包，对各个Linux平台支持都很好，这在官方的宣传里可以看到。该软件为开源软件，并在官网提供了详细的开发者文档。<br><a id="more"></a><br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20141709.jpg" alt="cockpit"></p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>cockpit的官网提供了各平台的安装方法以及相关的的使用文档，并且在Ubuntu17.04以及之后的Ubuntu版本中加入了官方的软件源中，这意味这我们可以很容易地安装Cockpit。</p>
-<p>只需要在终端中执行以下命令即可安装<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt -y install cockpit</span><br></pre></td></tr></table></figure><br>安装完成后没有给出任何地提示信息，我们只需要用浏览器打开<code>https://服务器IP:9090</code>即可打开监控界面，然后输入ubuntu的用户名密码就可以登录它。<br>（打开过程中浏览器可能会拦截该页面，允许访问即可）</p>
-<h1 id="功能介绍"><a href="#功能介绍" class="headerlink" title="功能介绍"></a>功能介绍</h1><p>在浏览器中打开<code>https://服务器IP:9090</code>后我们可以看到如下画面，输入用户名、密码登录即可。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20141314.jpg" alt="cockpit登录界面"></p>
-<p>登录成功后我们就进入道路cockpit的管理界面，在这里可以直观的看到NAS的运行状态，包括CPU使用率、内存使用率、硬盘使用率等。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20141354.jpg" alt="cockpit仪表盘"></p>
-<p>下面我们来看看cockpit中有那些功能。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97.jpg" alt="系统日志"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86.jpg" alt="存储管理"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86.jpg" alt="网络管理"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1.jpg" alt="系统服务"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E4%BB%AA%E8%A1%A8%E7%9B%98.jpg" alt="仪表盘"></p>
-<h1 id="cockpit使用"><a href="#cockpit使用" class="headerlink" title="cockpit使用"></a>cockpit使用</h1><p>在cockpit中我们可以很方便的管理各系统服务，下面将介绍一些基本的管理功能</p>
-<h2 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h2><p>在磁盘管理中，为我们提供了图形化创建RAID设备，可支持RAID0、1、4、5、6、10。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20143552.jpg" alt="创建RAID设备"></p>
-<p>可以图形化创建磁盘分区表，格式化磁盘。可支持GPT以及MBR分区方式。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20143743.jpg" alt="创建磁盘分区表"></p>
-<p>更改磁盘挂载点等</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144009.jpg" alt="磁盘挂载点"></p>
-<h2 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h2><p>可以添加绑定、添加网桥、划分vlan的网络操作。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%B7%BB%E5%8A%A0%E7%BB%91%E5%AE%9A.jpg" alt="添加绑定"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144216.jpg" alt="添加网桥"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144227.jpg" alt="VLAN划分"></p>
-<p>还可以进行ipv4、ipv6等设置，支持管理连接状态，实时日志查看等</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/ipv4.jpg" alt="IPV4设置"></p>
-<h2 id="系统服务"><a href="#系统服务" class="headerlink" title="系统服务"></a>系统服务</h2><p>支持查看相关系统服务进程，并支持启用、禁用相关进程。支持定时任务管理等</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144606.jpg" alt="系统服务管理"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144730.jpg" alt="定时任务"></p>
-<p>除此之外，还提供了一个终端的功能，可直接在网页中打开终端</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144908.jpg" alt="终端"></p>
-<h1 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h1><p>cockpit比webmin要精简很多，去除了很多感觉不要的东西，在我看来是最适合做NAS管理面板的软件，其使用起来也很方便，不需要很复杂的操作就可以管理系统相关服务。对各种数据监控提供了很好的图形可视化支持，能很好的查看系统使用状态</p>
-<h1 id="专栏目录"><a href="#专栏目录" class="headerlink" title="专栏目录"></a>专栏目录</h1>]]></content>
-      <categories>
-        <category>家庭NAS、HTPC服务器</category>
-      </categories>
-      <tags>
-        <tag>NAS系统</tag>
-        <tag>家庭影音</tag>
-        <tag>HTPC服务器</tag>
-        <tag>linux管理面板</tag>
-        <tag>Cockpit</tag>
       </tags>
   </entry>
   <entry>
@@ -660,17 +649,18 @@
         <tag>NAS系统</tag>
         <tag>家庭影音</tag>
         <tag>HTPC服务器</tag>
-        <tag>linux管理面板</tag>
         <tag>WEB-UI管理面板</tag>
         <tag>webmin</tag>
+        <tag>linux管理面板</tag>
       </tags>
   </entry>
   <entry>
     <title>Ubuntu挂载硬盘</title>
     <url>/2019/12/29/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/7%E3%80%81Ubuntu%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/</url>
     <content><![CDATA[<p>在开始下篇文章之前我觉得有必要讲解一下在linux中的硬盘挂载。这和Windows不同，Windows会自动扫描本地硬盘并为你自动挂载，但是linux不会值么做，它需要你自己去挂载硬盘到系统中。</p>
+<a id="more"></a>
 <p>如果你是新硬盘，你需要对硬盘进行格式化才能正常使用，linux支持ext4、NTFS等文件系统，在此建议将硬盘格式化为NTFS格式，这样就算你把硬盘从linux移动Windows环境下也可以正常使用，Windows不知EXT4文件系统。</p>
-<p>但是格式化NTFS也会带来一个弊端，就是你无法对文件进行权限操作，这样你在使用的时候应该小心一些，避免误操作删除硬盘数据。<br><a id="more"></a></p>
+<p>但是格式化NTFS也会带来一个弊端，就是你无法对文件进行权限操作，这样你在使用的时候应该小心一些，避免误操作删除硬盘数据。</p>
 <h1 id="格式化硬盘"><a href="#格式化硬盘" class="headerlink" title="格式化硬盘"></a>格式化硬盘</h1><p>如果你的硬盘已经格式化过存有数据的话，你应该跳过这一小节的内容，直接跳转到下一小节参考硬盘挂载操作。</p>
 <p>首先你需要查看设备位置，输入</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo fdisk -l</span><br></pre></td></tr></table></figure>
@@ -702,34 +692,50 @@
       </tags>
   </entry>
   <entry>
-    <title>c++函数重载</title>
-    <url>/2020/06/01/C++/c-%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD/</url>
-    <content><![CDATA[<h1 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h1><p>假设如下函数来比较两个<code>int</code>型数据的大小</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>当我们需要再增加一个比较两个<code>double</code>或<code>char</code>类型的数据时，我们的函数名会变得臃肿，如下所示：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max_int</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max_double</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max_char</span><span class="params">(<span class="keyword">char</span> a, <span class="keyword">char</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>当我们需要比较更多类型数据的大小时，我们的<code>max_xxx</code>函数会变得越来越多。在进行调用时会越来越麻烦。</p>
-<h1 id="函数重载定义"><a href="#函数重载定义" class="headerlink" title="函数重载定义"></a>函数重载定义</h1><p>函数重载指的是一个或多个函数，名字相同，然而参数个数以及参数类型不同，我们就称之为函数重载。</p>
-<p>将上面的代码改写为如下形势：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">char</span> a, <span class="keyword">char</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这是我们在调用函数时就不需要用函数名去区分该调用哪个函数，此时程序会根据我们的参数个数以及参数类型去选择调用的函数。</p>
-<p>如下函数调用代码所示：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;<span class="comment">// 1</span></span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span> </span>&#123;<span class="comment">// 2</span></span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">char</span> a, <span class="keyword">char</span> b)</span> </span>&#123;<span class="comment">// 3</span></span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">max</span>(<span class="number">2</span>, <span class="number">3</span>);<span class="comment">//调用 1</span></span><br><span class="line">	<span class="built_in">max</span>(<span class="string">'a'</span>, <span class="string">'b'</span>);<span class="comment">//调用 3</span></span><br><span class="line">	<span class="built_in">max</span>(<span class="number">2.3</span>, <span class="number">3.2</span>);<span class="comment">//调用 2</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如上程序，在执行<code>max(2, 3);</code>时，参数为两个<code>int</code>类型的，所以自动匹配到调用第1个<code>max</code>函数。其他两次调用类似。</p>
-<p>函数重载使得函数的命名变得简单，调用过程也变得简洁。</p>
-<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>考察如下函数调用语句：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">max</span>(<span class="number">2</span>, <span class="number">3.1</span>);</span><br></pre></td></tr></table></figure>
-<p>当我们进行上述的函数调用时，就会产生二义性。</p>
-<p>此时编译器不知道是将<code>3.1</code>转换为<code>int</code>去调用<code>max(int a, int b)</code> ，还是将<code>2</code>转化为<code>double</code>去调用 <code>max(double a, double b)</code>。</p>
-<p>因此，在调用重载函数时要注意去避免产生二义性。</p>
-]]></content>
+    <title>WEB-UI管理面板Cockpit(轻量简单)安装与使用</title>
+    <url>/2019/12/28/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/6%E3%80%81WEB-UI%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BFCockpit(%E8%BD%BB%E9%87%8F%E7%AE%80%E5%8D%95)%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>在前面我们介绍了管理面板Webmin的安装与使用，这次我们来看Cockpit的安装与使用，Webmin与Cockoit都属于轻量级的管理面板，但是Cockpit的功能较Webmin有了更多的减少，提供了更多的图表可视化功能，对中文的支持也比Webmin要好得多。</p>
+<p>cockpit提供了几乎所有Linux发行版本的安装包，对各个Linux平台支持都很好，这在官方的宣传里可以看到。该软件为开源软件，并在官网提供了详细的开发者文档。<br><a id="more"></a><br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20141709.jpg" alt="cockpit"></p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>cockpit的官网提供了各平台的安装方法以及相关的的使用文档，并且在Ubuntu17.04以及之后的Ubuntu版本中加入了官方的软件源中，这意味这我们可以很容易地安装Cockpit。</p>
+<p>只需要在终端中执行以下命令即可安装<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt -y install cockpit</span><br></pre></td></tr></table></figure><br>安装完成后没有给出任何地提示信息，我们只需要用浏览器打开<code>https://服务器IP:9090</code>即可打开监控界面，然后输入ubuntu的用户名密码就可以登录它。<br>（打开过程中浏览器可能会拦截该页面，允许访问即可）</p>
+<h1 id="功能介绍"><a href="#功能介绍" class="headerlink" title="功能介绍"></a>功能介绍</h1><p>在浏览器中打开<code>https://服务器IP:9090</code>后我们可以看到如下画面，输入用户名、密码登录即可。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20141314.jpg" alt="cockpit登录界面"></p>
+<p>登录成功后我们就进入道路cockpit的管理界面，在这里可以直观的看到NAS的运行状态，包括CPU使用率、内存使用率、硬盘使用率等。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20141354.jpg" alt="cockpit仪表盘"></p>
+<p>下面我们来看看cockpit中有那些功能。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97.jpg" alt="系统日志"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86.jpg" alt="存储管理"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86.jpg" alt="网络管理"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1.jpg" alt="系统服务"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E4%BB%AA%E8%A1%A8%E7%9B%98.jpg" alt="仪表盘"></p>
+<h1 id="cockpit使用"><a href="#cockpit使用" class="headerlink" title="cockpit使用"></a>cockpit使用</h1><p>在cockpit中我们可以很方便的管理各系统服务，下面将介绍一些基本的管理功能</p>
+<h2 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h2><p>在磁盘管理中，为我们提供了图形化创建RAID设备，可支持RAID0、1、4、5、6、10。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20143552.jpg" alt="创建RAID设备"></p>
+<p>可以图形化创建磁盘分区表，格式化磁盘。可支持GPT以及MBR分区方式。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20143743.jpg" alt="创建磁盘分区表"></p>
+<p>更改磁盘挂载点等</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144009.jpg" alt="磁盘挂载点"></p>
+<h2 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h2><p>可以添加绑定、添加网桥、划分vlan的网络操作。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%B7%BB%E5%8A%A0%E7%BB%91%E5%AE%9A.jpg" alt="添加绑定"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144216.jpg" alt="添加网桥"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144227.jpg" alt="VLAN划分"></p>
+<p>还可以进行ipv4、ipv6等设置，支持管理连接状态，实时日志查看等</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/ipv4.jpg" alt="IPV4设置"></p>
+<h2 id="系统服务"><a href="#系统服务" class="headerlink" title="系统服务"></a>系统服务</h2><p>支持查看相关系统服务进程，并支持启用、禁用相关进程。支持定时任务管理等</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144606.jpg" alt="系统服务管理"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144730.jpg" alt="定时任务"></p>
+<p>除此之外，还提供了一个终端的功能，可直接在网页中打开终端</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144908.jpg" alt="终端"></p>
+<h1 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h1><p>cockpit比webmin要精简很多，去除了很多感觉不要的东西，在我看来是最适合做NAS管理面板的软件，其使用起来也很方便，不需要很复杂的操作就可以管理系统相关服务。对各种数据监控提供了很好的图形可视化支持，能很好的查看系统使用状态</p>
+<h1 id="专栏目录"><a href="#专栏目录" class="headerlink" title="专栏目录"></a>专栏目录</h1>]]></content>
       <categories>
-        <category>C++</category>
+        <category>家庭NAS、HTPC服务器</category>
       </categories>
       <tags>
-        <tag>c++</tag>
-        <tag>函数重载</tag>
+        <tag>NAS系统</tag>
+        <tag>家庭影音</tag>
+        <tag>HTPC服务器</tag>
+        <tag>linux管理面板</tag>
+        <tag>Cockpit</tag>
       </tags>
   </entry>
   <entry>
@@ -834,146 +840,15 @@
       </tags>
   </entry>
   <entry>
-    <title>影音服务jellyfin安装与使用</title>
-    <url>/2020/01/01/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/9%E3%80%81%E5%BD%B1%E9%9F%B3%E6%9C%8D%E5%8A%A1jellyfin%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>关于的jellyfin影音服务，已经有很多人对其做过介绍了，但在这里我任然要为其写一篇相关安装与使用的文章，因为在别的贴子里，很多人容易忽视掉设置硬件加速的一些必要步骤。</p>
-<p>本篇文章将会从本机安装以及docker安装两种安装方式来向大家介绍jellyfin的安装以及基本使用方法。</p>
-<p>注意：你应该在看完文章后再决定你选用的安装方式</p>
-<p>就这样，请拥有，并享受<br><a id="more"></a></p>
-<h1 id="jellyfin介绍"><a href="#jellyfin介绍" class="headerlink" title="jellyfin介绍"></a>jellyfin介绍</h1><p>jellyfin是一个免费的媒体系统软件，可以让你控制媒体的管理和流式传输，是emby和plex的替代产品，可以通过多个应用程序将媒体从专用服务器提供给最终用户设备。Jellyfin是Emby 3.5.2发行版的衍生版本，并移植到.NET Core框架以实现全面的跨平台支持。</p>
-<p>jellyfin目前支持的平台有：Android、Android TV、Amazon Fire TV、UWP、 Apple iOS（目前正在测试阶段）等等平台，你可以参见<a href="http://jellyfin.org/docs/general/clients/index.html" target="_blank" rel="noopener">jellyfin支持平台</a>获得更多的信息。</p>
-<h1 id="查看是设备是否支持硬件加速"><a href="#查看是设备是否支持硬件加速" class="headerlink" title="查看是设备是否支持硬件加速"></a>查看是设备是否支持硬件加速</h1><p>Jellyfin支持使用<code>FFMpeg</code>的视频编码/解码的硬件加速。<code>FFMpeg</code>可通过视频加速<code>API（VAAPI）</code>支持多种硬件加速实现，例如<code>Intel Quicksync（QSV）</code>，<code>AMD AMF</code>，<code>OpenMax OMX</code>，<code>nVidia NVENC / NVDEC</code>等。<br>|操作系统|推荐的硬件加速|<br>|-|-|<br>|Linux / GNU|VAAPI（推荐），NVENC，QSV，AMF|<br>|Windows|QSV，NVENC，AMF，VAAPI|<br>|MacOS|None (videotoolbox support coming)|<br>|Android|MediaCodec, OMX|<br>|RPi|OMX|<br><a href="https://developer.nvidia.com/ffmpeg" target="_blank" rel="noopener">NVIDIA使用ffmpeg官方名单</a>，建议将这些<a href="https://github.com/keylase/nvidia-patch" target="_blank" rel="noopener">驱动程序</a>用于<code>Linux / GNU</code>和<code>Windows</code>。这是支持的编解码器的<a href="https://developer.nvidia.com/video-encode-decode-gpu-support-matrix" target="_blank" rel="noopener">NVIDIA图形卡</a>的官方列表。</p>
-<p>VAAPI支持的编解码器列表：<a href="http://jellyfin.org/docs/general/administration/hardware-acceleration.html" target="_blank" rel="noopener">点击这里查看</a><br>支持QSV的Intel处理器列表。<a href="https://ark.intel.com/content/www/us/en/ark.html#@Processors" target="_blank" rel="noopener">点击这里查看</a><br>FFmpeg硬件加速支持列表。<a href="https://trac.ffmpeg.org/wiki/HWAccelIntro" target="_blank" rel="noopener">点击这里查看</a><br>Ubuntu使用NVENC的示例。<a href="https://www.reddit.com/r/jellyfin/comments/amuyba/nvenc_nvdec_working_in_jellyfin_on_ubuntu_server/" target="_blank" rel="noopener">点击这里查看</a></p>
-<h2 id="启用硬件加速"><a href="#启用硬件加速" class="headerlink" title="启用硬件加速"></a>启用硬件加速</h2><p>硬件加速选项可在“管理仪表板”的“ 转码”部分下找到。从下拉菜单中选择有效的硬件加速选项，指示设备（如果适用），并检查enable hardware encoding以启用编码以及解码（如果您的硬件支持）。</p>
-<p>硬件加速可立即用于媒体播放。无需重新启动服务器。</p>
-<p>每种硬件加速类型以及每种Jellyfin安装类型在使用前都需要不同的设置选项。始终最好参考您选择的加速度类型的FFMpeg文档以获取最新信息。</p>
-<h3 id="Debian-Ubuntu上配置VAAPI加速"><a href="#Debian-Ubuntu上配置VAAPI加速" class="headerlink" title="Debian / Ubuntu上配置VAAPI加速"></a>Debian / Ubuntu上配置VAAPI加速</h3><p>在Debian / Ubuntu上配置VAAPI需要进行一些其他配置，以确保权限正确。</p>
-<ol>
-<li>验证render设备现在在中/dev/dri，并记下可写入该设备的权限和组，在这种情况下render：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ls -l &#x2F;dev&#x2F;dri</span><br></pre></td></tr></table></figure>
-查看是否有如下输出：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">total 0</span><br><span class="line">drwxr-xr-x 2 root root 100 Apr 13 16:37 by-path</span><br><span class="line">crw-rw---- 1 root video 226, 0 Apr 13 16:37 card0</span><br><span class="line">crw-rw---- 1 root video 226, 1 Apr 13 16:37 card1</span><br><span class="line">crw-rw---- 1 root render 226, 128 Apr 13 16:37 renderD128</span><br></pre></td></tr></table></figure>
-如果没有，在确保你的设备支持硬件加速的情况下通过<a href="http://jellyfin.org/docs/general/administration/hardware-acceleration.html" target="_blank" rel="noopener">指导文件</a>来进行相关设备的配置以及验证。不同的硬件平台配置方法不一样，在此不展开详述。</li>
-</ol>
-<ol>
-<li>将Jellyfin服务用户添加到上述组中，以允许Jellyfin的FFMpeg进程访问该设备，然后重新启动Jellyfin：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo usermod -aG render jellyfin</span><br><span class="line">sudo systemctl restart jellyfin</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>注意：在这里执行完第一条语句后可能会出现报错，这是因为在某些发行版本中，该组可能为video而不是render，将其更改过来即可。<br>在看了很多相关文章后，发现大家都没有配置这一步，这可能导致硬件转码没有办法正常工作。</p>
-<p>注意：以下两点请在安装完成jellyfin后在来看</p>
-<ol>
-<li><p>在管理控制台的“代码转换”页面中配置VAAPI加速。输入/dev/dri/renderD128上面的设备作为VA API Device值。</p>
-</li>
-<li><p>观看电影，并通过使用或类似工具观看ffmpeg-transcode-*.txt日志来验证是否正在进行转码。</p>
-</li>
-</ol>
-<h1 id="Ubuntu安装jellyfin"><a href="#Ubuntu安装jellyfin" class="headerlink" title="Ubuntu安装jellyfin"></a>Ubuntu安装jellyfin</h1><p>文章存在时效性，具体可参考<a href="http://jellyfin.org/docs/general/administration/installing.html#ubuntu" target="_blank" rel="noopener">官方指南</a></p>
-<h2 id="迁移至新仓库"><a href="#迁移至新仓库" class="headerlink" title="迁移至新仓库"></a>迁移至新仓库</h2><p>早期的jellyfin在ubuntu的官方<code>apt-get</code>源中，现在已将其拆分成自己的存储库，以更好地处理单独的二进制程序包。如果遇到ubuntu找不到该发行版的错误，并且以前配置了<code>ubuntu jellyfin.list</code>文件，请按照以下步骤操作。</p>
-<ol>
-<li>删除旧的<code>/etc/apt/sources.list.d/jellyfin.list</code>文件<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo rm &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;jellyfin.list</span><br></pre></td></tr></table></figure></li>
-<li>按照下面的方法步骤继续操作</li>
-</ol>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>Jellyfin团队提供了一个Ubuntu存储库，可以在<code>Ubuntu Xenial/Bionic/Cosmic/Disco</code>上进行安装。支持的架构<code>amd64、arm64</code>和<code>armhf</code>。<code>Ubuntu Xenial</code> 仅支持 <code>amd64</code>。</p>
-<p>注意：Microsoft不为32位x86 Linux系统提供.NET，因此<code>i386</code>体系结构不支持Jellyfin 。</p>
-<ol>
-<li><p>如果尚未安装APT的HTTPS传输，请执行以下操作：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install apt-transport-https</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>启用Universe存储库以获取所有FFMpeg依赖项：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo add-apt-repository universe</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>导入GPG签名密钥：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget -O - https:&#x2F;&#x2F;repo.jellyfin.org&#x2F;ubuntu&#x2F;jellyfin_team.gpg.key | sudo apt-key add -</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在以下位置添加存储库配置<code>/etc/apt/sources.list.d/jellyfin.list</code>：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">echo &quot;deb [arch&#x3D;$( dpkg --print-architecture )] https:&#x2F;&#x2F;repo.jellyfin.org&#x2F;ubuntu $( lsb_release -c -s ) main&quot; | sudo tee &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;jellyfin.list</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>注意：支持的版本是：<code>xenial</code>，<code>bionic</code>，<code>cosmic</code>，和<code>disco</code>。</p>
-<ol>
-<li>更新APT存储库：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol>
-<li><p>安装Jellyfin：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install jellyfin</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用您选择的工具管理Jellyfin系统服务：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo systemctl restart jellyfin</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="Docker安装jellyfin"><a href="#Docker安装jellyfin" class="headerlink" title="Docker安装jellyfin"></a>Docker安装jellyfin</h1><p>你可以到<a href="https://registry.hub.docker.com/r/jellyfin/jellyfin" target="_blank" rel="noopener">jellyfin官方docker hub</a>查看该项目的最新动态以及获得相关支持。</p>
-<ol>
-<li>获取docker镜像<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker pull jellyfin&#x2F;jellyfin</span><br></pre></td></tr></table></figure></li>
-<li>运行jellyfin<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">-p 8096:8096 \</span><br><span class="line">--name jellyfin \</span><br><span class="line">--restart always \</span><br><span class="line">-v 配置文件路径:&#x2F;config \</span><br><span class="line">-v 缓存文件路径:&#x2F;cache \</span><br><span class="line">-v 媒体路径1:&#x2F;media \</span><br><span class="line">-v 媒体路径2:&#x2F;media \</span><br><span class="line">--device &#x2F;dev&#x2F;dri&#x2F;renderD128:&#x2F;dev&#x2F;dri&#x2F;renderD128 \</span><br><span class="line">--device &#x2F;dev&#x2F;dri&#x2F;card0:&#x2F;dev&#x2F;dri&#x2F;card0 \</span><br><span class="line">--privileged&#x3D;true \</span><br><span class="line">--env GIDLIST&#x3D;44 \</span><br><span class="line">jellyfin&#x2F;jellyfin:latest</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>到此，jellyfin的安装工作就算完成了。接下来进行相关的配置工作。</p>
-<h1 id="jellyfin配置与使用"><a href="#jellyfin配置与使用" class="headerlink" title="jellyfin配置与使用"></a>jellyfin配置与使用</h1><h2 id="启动配置"><a href="#启动配置" class="headerlink" title="启动配置"></a>启动配置</h2><p>在浏览器中输入<code>服务器IP:8096</code>即可进入到jellyfin的web端。</p>
-<ol>
-<li><p>选择语言<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174755.jpg" alt="选择语言"></p>
-</li>
-<li><p>用户设置<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174819.jpg" alt="添加用户"></p>
-</li>
-<li><p>设置媒体库<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174832.jpg" alt="媒体库设置"></p>
-</li>
-<li><p>选择地区与语言<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174851.jpg" alt="选择地区与语言"></p>
-</li>
-<li><p>远程访问（默认即可）<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174902.jpg" alt="远程访问权限"></p>
-</li>
-<li><p>完成配置<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174912.jpg" alt="完成配置"></p>
-</li>
-<li><p>登录<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174925.jpg" alt="用户登录"></p>
-</li>
-<li><p>进入界面<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174936.jpg" alt="主页面"></p>
-</li>
-</ol>
-<h2 id="界面配置"><a href="#界面配置" class="headerlink" title="界面配置"></a>界面配置</h2><p>点击右上角小人，进入如下界面</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20181402.jpg" alt="个人设置"></p>
-<p>选择显示菜单</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20181423.jpg" alt="显示配置"></p>
-<p>这里选择自己喜欢的主题可以进行配置在上个页面中你也可以进行更多配置</p>
-<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><p>选择左上角的<strong>三横图标</strong> —&gt; <strong>控制台</strong> —&gt; <strong>往下找到插件</strong> 来到下图所示的界面<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182002.jpg" alt="插件"></p>
-<p>我这里以及安装了很多插件了，如果你没有安装过，这里将显示空白。点击上方的目录可进入到插件目录</p>
-<h3 id="字幕插件"><a href="#字幕插件" class="headerlink" title="字幕插件"></a>字幕插件</h3><p>在元素据中找到Open Subtitles，进去点击安装</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182159.jpg" alt="字幕插件"></p>
-<p>然后回到我的插件，点开Open Subtitles进入配置页面</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182318.jpg" alt="Open Subtitles配置"><br>输入用户名密码登录，没有的话可以到<a href="http://www.opensubtitles.org/" target="_blank" rel="noopener">opensubtitles官网</a>进行注册。</p>
-<h3 id="KODI串流"><a href="#KODI串流" class="headerlink" title="KODI串流"></a>KODI串流</h3><p>在插件目录的常规栏目找到Kodi Sync Queue进行安装<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182711.jpg" alt="KODI"></p>
-<p>然后回到我的插件，进入KODI配置，全勾选上即可<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182644.jpg" alt="KODI"></p>
-<p>关于kodi的使用将在后期文章中进行介绍</p>
-<h3 id="其他插件"><a href="#其他插件" class="headerlink" title="其他插件"></a>其他插件</h3><p>其他插件可以根据自己的需要进行安装，可以参考其他同类文章，在此不进行详述。</p>
-<h2 id="添加媒体库"><a href="#添加媒体库" class="headerlink" title="添加媒体库"></a>添加媒体库</h2><p>在控制台中进入到媒体库，可以看到添加媒体库的按钮，如下图<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20183340.jpg" alt="媒体库管理"><br>然后点击添加媒体库<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20183444.jpg" alt="添加媒体库"><br>选择对应的类型与名称，在文件夹处选择刚才对应的媒体库，docker安装的话媒体目录被映射到/media目录下。</p>
-<p>点击左上角的显示高级设置<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20183808.jpg" alt="设置"></p>
-<p>把除了上图没勾选的之外的全面勾选上。然后确认。之后会自动扫描和下载字幕，该过程有些漫长。<br>然后在主页就可以看到添加的媒体了<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20184026.jpg" alt="媒体"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20184239.jpg" alt="电影"></p>
-<p>对于某些电影，会识别失败，这时我们需要手动识别，进入电影详情页面。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20184406.jpg" alt="电影详情"></p>
-<p>然后点击播放 预告片后面的更多<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20184517.jpg" alt="更多"><br>然后选择对应的菜单进入操作即可。</p>
-<h1 id="jellyfin播放设置"><a href="#jellyfin播放设置" class="headerlink" title="jellyfin播放设置"></a>jellyfin播放设置</h1><h2 id="硬件加速"><a href="#硬件加速" class="headerlink" title="硬件加速"></a>硬件加速</h2><p>硬件播放可以到控制台 —&gt; 播放进行设置<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20202112.jpg" alt="硬件加速"></p>
-<p>可以参考上面的平台推荐加速器进行相关设置，我这里设置为VAAPI<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20202312.jpg" alt="加速方式"></p>
-<p>VAAPI选择对应的硬件设备，确保你已依照上面的过程进行了相关的驱动设置。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20202427.jpg" alt="加速设备"></p>
-<p>其他参数可依照说明按需进行更改</p>
-<h2 id="流媒体传输设置"><a href="#流媒体传输设置" class="headerlink" title="流媒体传输设置"></a>流媒体传输设置</h2><p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20202647.jpg" alt="流媒体传输设置"><br>可依据自己的网络情况进行传输设置，这对于防止设备请求比 internet 连接所能处理的更高的比特率非常有用。这可能会导致服务器上的 CPU 负载增加, 以便将视频转码到较低的比特率。</p>
-<h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>本来想在一篇文章中对jellyfin做个详细的说明，但是发现那样文章就显得太过于长了。<br>下篇文章将对jellyfin的其他使用技巧做一个介绍，比如电影命名规范，格式选择等。<br>除此之外还会对jellyfin的使用过程中遇到的一些问题进行介绍，以及如何获取解决方案。</p>
-]]></content>
-      <categories>
-        <category>家庭NAS、HTPC服务器</category>
-      </categories>
-      <tags>
-        <tag>NAS系统</tag>
-        <tag>家庭影音</tag>
-        <tag>HTPC服务器</tag>
-        <tag>jellyfin</tag>
-        <tag>影音服务</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数列极限的定义及应用</title>
     <url>/2020/06/04/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%8A%E5%BA%94%E7%94%A8/</url>
     <content><![CDATA[<h1 id="数列极限的定义"><a href="#数列极限的定义" class="headerlink" title="数列极限的定义"></a>数列极限的定义</h1><h2 id="概念引入"><a href="#概念引入" class="headerlink" title="概念引入"></a>概念引入</h2><p>我们先来看一个数列$x_n=\frac{1}{n}$</p>
 <p>当$n=1$时，$x_1=\frac{1}{1}=1$</p>
 <p>当$n=2$时，$x_2=\frac{1}{2}$</p>
+<a id="more"></a>
 <p>$\cdots$</p>
 <p>当$n=1000$时，$x_{1000}=\frac{1}{1000}$</p>
-<p>$\cdots$<br><a id="more"></a></p>
+<p>$\cdots$</p>
 <p>当$n\to\infty$时，数列$x_n$的值无限接近$0$。如下图所示：</p>
 <p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200604165314460.png" alt="image-20200604165314460"></p>
 <p>此时我们就可以说$\underset{n\to \infty }{\text{lim}}\frac{1}{n}=0$。这样我们就可以给出数列极限的一个直观定义：</p>
@@ -1014,16 +889,154 @@
       </tags>
   </entry>
   <entry>
+    <title>计算机浮点数表示</title>
+    <url>/2019/07/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E7%9B%B8%E5%85%B3/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%B5%AE%E7%82%B9%E6%95%B0%E8%A1%A8%E7%A4%BA/</url>
+    <content><![CDATA[<h1 id="二进制小数"><a href="#二进制小数" class="headerlink" title="二进制小数"></a>二进制小数</h1><p>想要理解浮点数，首先要考虑小数的二进制表示。首先来考虑十进制的的表示方法，对于任意含有小数部分的十进制，我们都可以用形如：</p>
+<script type="math/tex; mode=display">d_m d_{m-1} ···d_1 d_0  .  d_{-1} d_{-2} ··· d_{-n}</script><p>其中对于任意的$ d_i $的取值范围为$d_i\in[0,9]$,这个表达描述的数值$d$的定义如下：</p>
+<script type="math/tex; mode=display">d=\sum_{i=-n}^m10^i \times d_i \tag{1.1}</script><a id="more"></a>
+<p>数字的权的定义与十进制小数点符号$’.’$有关，相当于小数点左边的数字的权是$10$的正幂，得到整数值，小数点右边的数字的权是$10$的负幂，得到小数值。例如，十进制数$12.34$可以表示为：</p>
+<script type="math/tex; mode=display">1 \times 10^1+2 \times 10^0 + 3 \times 10^{-1}+4 \times 10^{-2}= 12 \frac{34}{100}</script><p>类似，考虑一个形如</p>
+<script type="math/tex; mode=display">b_m b_{m-1} ···b_1 b_0  .  b_{-1} b_{-2} ··· b_{-n}</script><p>的表示法，其中每个二进制（位）$b_i$的取值范围为$0或1$，这种表示方法表示的数$b$定义如下：</p>
+<script type="math/tex; mode=display">b=\sum_{i=-n}^m2^i \times b_i \tag{1.2}</script><p>此时，数字的权的定义与二进制小数点符号$’.’$有关，小数点左边的数字的权是$2$的正幂，得到整数值，小数点右边的数字的权是$2$的负幂，得到小数值。例如，二进制数$101.11$可以表示为：</p>
+<script type="math/tex; mode=display">1 \times 2^2 + 0 \times 2^1 + 1 \times 2^0 + 1 \times 2^{-1}+1 \times 2^{-2}=5 \frac{3}{4}</script><p>从$(1.2)$式中可以看出，将二进制小数点向左移动一位相当于除$2$，例如，$101.11$表示数$5 \frac{3}{4}$，而$10.111$表示数$2 \frac{7}{8}$，类似的，向右移动小数点一位相当于乘$2$，例如，$1011.1$表示数$11 \frac{1}{2}$。</p>
+<p>注意，形如$(0.11···1)_2$表示的数是刚好小于$1$的数，例如$(0.111111)_2$表示$\frac{63}{64}$,在此将用$1-\epsilon$来表示此类数值。</p>
+<p>如果我们仅考虑有限长度的编码，那么十进制符号是不能准确表达像$\frac{1}{3}$和$\frac{1}{5}$这样的无理数的。类似地，小数的二进制表示法只能表示那些能够被写成$x+2^y$的数。其它的值只能够近似地表示。例如，虽然加长的二进制能够提高表示数$\frac{1}{5}$的精度，但是我们并不能准确的把它表示为一个二进制数：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">二进制</th>
+<th style="text-align:center">值</th>
+<th style="text-align:center">十进制</th>
+<th style="text-align:center">二进制</th>
+<th style="text-align:center">值</th>
+<th style="text-align:center">十进制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0.0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0.0</td>
+<td style="text-align:center">0.00110</td>
+<td style="text-align:center">$\frac{6}{32}$</td>
+<td style="text-align:center">0.1875</td>
+</tr>
+<tr>
+<td style="text-align:center">0.01</td>
+<td style="text-align:center">$\frac{1}{4}$</td>
+<td style="text-align:center">0.25</td>
+<td style="text-align:center">0.001101</td>
+<td style="text-align:center">$\frac{13}{64}$</td>
+<td style="text-align:center">0.203125</td>
+</tr>
+<tr>
+<td style="text-align:center">0.010</td>
+<td style="text-align:center">$\frac{2}{8}$</td>
+<td style="text-align:center">0.25</td>
+<td style="text-align:center">0.0011010</td>
+<td style="text-align:center">$\frac{26}{128}$</td>
+<td style="text-align:center">0.203125</td>
+</tr>
+<tr>
+<td style="text-align:center">0.0011</td>
+<td style="text-align:center">$\frac{3}{16}$</td>
+<td style="text-align:center">0.1875</td>
+<td style="text-align:center">0.00110011</td>
+<td style="text-align:center">$\frac{51}{256}$</td>
+<td style="text-align:center">0.19921875</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="IEEE754浮点表示"><a href="#IEEE754浮点表示" class="headerlink" title="IEEE754浮点表示"></a>IEEE754浮点表示</h1><p>像前一节中谈到的位置表示法不能很有效地表示很大地数字。例如。$5 \times 2^{100}$的表示是由$101$后跟$100$的位模式组成。相反的，我们希望通过给定$x$和$y$的值来表示形如$x \times 2^y$的数。<br>IEEE（读作“eye-Triple-ee”）浮点标准用</p>
+<p><script type="math/tex">V=(-1)^s \times M \times 2^E \tag{2.1}</script>来表示一个数。对于$(2.1)$式，有如下解释：</p>
+<ul>
+<li><strong> 符号$s$（sign）决定该数是正数（$s=0$）还是负数（$s=1$），对于数值$0$的符号位解释作为特殊情况处理。 </strong></li>
+</ul>
+<ul>
+<li><strong> 有效数$M$（significand）是一个二进制小数，它的范围在$1 \sim 2-\epsilon$之间，或者在$0\sim 1-\epsilon$之间。 </strong></li>
+</ul>
+<ul>
+<li><strong> 指数$E$（exponent）是$2$的幂（可能为负数），它的作用是对浮点数加权。</strong></li>
+</ul>
+<p>浮点数的位表示被划分为三个部分，以编码这些值：</p>
+<ul>
+<li><strong> 一个单独的符号位$s$直接编码符号$s$。 </strong></li>
+<li><strong> $k$位的指数部分$exp=e_{k-1}···e_1e_0$编码指数E。 </strong></li>
+<li><strong> $n$位的小数部分$frac=f_{n-1}···f_1f_0$编码有效数M，但是被编码的值也依赖于指数部分的值是否等于$0$。 </strong></li>
+</ul>
+<p>在单精度浮点格式（$C$语言中的$float$）中，$s$、$exp$、$frac$部分分别为$1$位，$k=8$位和$n=23$位，产生一个32位的表示。在双精度浮点格式（$C$语言中的$double$）中，$s$、$exp$、$frac$部分分别为$1$位、$k=11$位和$n=52$位，产生一个64位的表示。如下示意图所示：</p>
+<center>32位浮点格式</center>
+
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">s</th>
+<th style="text-align:center">exp</th>
+<th style="text-align:center">frac</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">s</td>
+<td style="text-align:center">$e_7e_6···e_1e_0$</td>
+<td style="text-align:center">$ f_{31}f_{30}···f_1f_0 $</td>
+</tr>
+</tbody>
+</table>
+</div>
+<center>64位浮点格式</center>
+
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">s</th>
+<th style="text-align:center">exp</th>
+<th style="text-align:center">frac</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">s</td>
+<td style="text-align:center">$e_{10}e_9···e_1e_0$</td>
+<td style="text-align:center">$f_{51}f_{50}···f_1f_0$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>根据$esp$的值，被编码的值可以划分为三种情况：<br>1.规格化的值<br>2.非规格化的值<br>3.特殊值</p>
+<h2 id="规格化值"><a href="#规格化值" class="headerlink" title="规格化值"></a>规格化值</h2><p>这是最为普通的一种情况，当$exp$的值不全为$1$（对应数值0），和不全为$1$（32单精度中为255，64位双精度中为2047）时，都属于规格化的值。<br>在这种时候，阶码字段被解释为以偏置（biased）形式表示的有符号整数，此时阶码$E=e-Bias$，其中$e$为无符号数，表示形式为$exp=e_{k-1}···e_1e_0$，而$Bias$是一个等于$2_{k-1}-1$（单精度下为127，双精度下为1023）的偏置值。由此可以得到指数的取值范围，单精度为$-126 \sim +127$，而双精度为$-1022 \sim +1023$。<br>小数字段$frac$被解释为描述的小数值$f$，其中$0 \leq f&lt;1$，其二进制表示为$0.frac=f_{n-1}···f_1f_0$，尾数定义为$M=1+f$。</p>
+<h2 id="非规格化的值"><a href="#非规格化的值" class="headerlink" title="非规格化的值"></a>非规格化的值</h2><p>非规格化的值就是当阶码全为$0$时所表示的数。此时，阶码值是$E=1-Bias$，而尾数的值是$M=f$，注意，此时不隐含开头的$1$，仅表示小数字段。<br>非规格化的数有两个用途，一是用来表示数值$0$（在规格化的数中，我们总有$M \geq 1$，因此就不能表示$0$）。当阶码为全$0$且小数字段也全为$0$，就得到了$M=f=0$，如果此时符号位为$0$，则得到值$+0.0$，反之当符号位为$1$，则得到值$-0.0$。在IEEE浮点数中，两个值在某些方面被认为是不同的。<br>另一个功能是表示非常接近$0.0$的值，它们提供了一种称为<strong>逐渐溢出</strong>（gradual underflow）的属性。</p>
+<h2 id="特殊值"><a href="#特殊值" class="headerlink" title="特殊值"></a>特殊值</h2><p>最后一种情况是阶码全为1时出现的，当数小数部分$f$全为0时，得到的值表示无穷，$s=0$表示$+ \infty$，当$s=1$时表示$- \infty$。<br>当我们把两个非常大的数相乘或者除以零时，无穷大能够表示溢出的结果。当小数部分为非零时，结果值称为“NaN”（Not a Number），一些运算的结果不能是实数或无穷，就会返回这样的NaN值。</p>
+<h1 id="数字示例"><a href="#数字示例" class="headerlink" title="数字示例"></a>数字示例</h1><p>下图展示了假定的8位浮点格式的示例，其中$k=4$的阶码位和$n=3的小数位$，偏置量是$2^{4-1}-1=7$。图分为三个区域来来描述三类数字。不同的列给出了阶码字段是如何编码阶码$E$的，小数字段是如何编码尾数$M$的，以及它们是如何形成要表示的值$V=(-1)^s \times M \times 2^E \tag{2.1}$的。<br>从0开始，靠近0的是非规格化数，这种格式的非规格化数的$E=1-7=-6$，得到权$2^E= \frac{1}{64}$。小数f的值的范围是$0, \frac{1}{8},···, \frac{7}{8}$，从而得到数V的范围为$0 \sim \frac{1}{64}  \times \frac{1}{8}= \frac{7}{512}$。</p>
+<figure><img src="https://raw.githubusercontent.com/yurui105/image/master/blogs_image/8%E4%BD%8D%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E9%9D%9E%E8%B4%9F%E5%80%BC%E7%A4%BA%E4%BE%8B.png" alt="8位浮点数的非负值示例.png"><figcaption>8位浮点数的非负值示例</figcaption></figure>
+
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1]（美）布莱恩特,（美）奥哈拉伦著.深入理解计算机系统  原书第2版.机械工业出版社,2010.Print.</p>
+<p>[2]对IEEE 450-1995(ANSI/IEEE)标准的解释:IEEE 450-1995/INT-2001[S].2001.</p>
+]]></content>
+      <categories>
+        <category>计算机组成相关</category>
+      </categories>
+      <tags>
+        <tag>浮点数</tag>
+        <tag>IEEE754</tag>
+        <tag>IEEE浮点数</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>1、向量及其运算</title>
     <url>/2020/06/01/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/1%E3%80%81%E5%90%91%E9%87%8F%E5%8F%8A%E5%85%B6%E8%BF%90%E7%AE%97/</url>
     <content><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>线性代数的中心问题是求解线性方程组。</p>
 <p>假设给定一个线性方程组：</p>
 <script type="math/tex; mode=display">
 x_1+2x_2=4\\
-2x_1-3x_2=-2</script><p>我们将$x_1$、$x_2$的系数以及结果单独提取出来，它能表示为：</p>
+2x_1-3x_2=-2</script><a id="more"></a>
+<p>我们将$x_1$、$x_2$的系数以及结果单独提取出来，它能表示为：</p>
 <script type="math/tex; mode=display">
-x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}</script><a id="more"></a>
-<p>由此可得此方程可解$\Longleftrightarrow$$\binom{4}{-2}$可表示为$\binom{1}{2}$和$\binom{2}{-3}$的线性组合。</p>
+x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}</script><p>由此可得此方程可解$\Longleftrightarrow$$\binom{4}{-2}$可表示为$\binom{1}{2}$和$\binom{2}{-3}$的线性组合。</p>
 <p>线性代数是建立在向量的加法和数乘这两种所谓<strong>线性运算</strong>上的.</p>
 <h1 id="n-维空间中的点"><a href="#n-维空间中的点" class="headerlink" title="$n$维空间中的点"></a>$n$维空间中的点</h1><h2 id="表示"><a href="#表示" class="headerlink" title="表示"></a>表示</h2><p>在一条直线上取定坐标原点后，每个实数一一对应表示直线上的一个点。</p>
 <p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200601225945203.png" alt="image-20200601225945203"></p>
@@ -1195,141 +1208,136 @@ c\vec{a}:=\begin{pmatrix}c\vec{a_1} \\\vdots \\c\vec{a_n}\end{pmatrix}.</script>
       </categories>
   </entry>
   <entry>
-    <title>计算机浮点数表示</title>
-    <url>/2019/07/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E7%9B%B8%E5%85%B3/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%B5%AE%E7%82%B9%E6%95%B0%E8%A1%A8%E7%A4%BA/</url>
-    <content><![CDATA[<h1 id="二进制小数"><a href="#二进制小数" class="headerlink" title="二进制小数"></a>二进制小数</h1><p>想要理解浮点数，首先要考虑小数的二进制表示。首先来考虑十进制的的表示方法，对于任意含有小数部分的十进制，我们都可以用形如：</p>
-<script type="math/tex; mode=display">d_m d_{m-1} ···d_1 d_0  .  d_{-1} d_{-2} ··· d_{-n}</script><p>其中对于任意的$ d_i $的取值范围为$d_i\in[0,9]$,这个表达描述的数值$d$的定义如下：</p>
-<script type="math/tex; mode=display">d=\sum_{i=-n}^m10^i \times d_i \tag{1.1}</script><p>数字的权的定义与十进制小数点符号$’.’$有关，相当于小数点左边的数字的权是$10$的正幂，得到整数值，小数点右边的数字的权是$10$的负幂，得到小数值。例如，十进制数$12.34$可以表示为：</p>
-<script type="math/tex; mode=display">1 \times 10^1+2 \times 10^0 + 3 \times 10^{-1}+4 \times 10^{-2}= 12 \frac{34}{100}</script><a id="more"></a>
-<p>类似，考虑一个形如</p>
-<script type="math/tex; mode=display">b_m b_{m-1} ···b_1 b_0  .  b_{-1} b_{-2} ··· b_{-n}</script><p>的表示法，其中每个二进制（位）$b_i$的取值范围为$0或1$，这种表示方法表示的数$b$定义如下：</p>
-<script type="math/tex; mode=display">b=\sum_{i=-n}^m2^i \times b_i \tag{1.2}</script><p>此时，数字的权的定义与二进制小数点符号$’.’$有关，小数点左边的数字的权是$2$的正幂，得到整数值，小数点右边的数字的权是$2$的负幂，得到小数值。例如，二进制数$101.11$可以表示为：</p>
-<script type="math/tex; mode=display">1 \times 2^2 + 0 \times 2^1 + 1 \times 2^0 + 1 \times 2^{-1}+1 \times 2^{-2}=5 \frac{3}{4}</script><p>从$(1.2)$式中可以看出，将二进制小数点向左移动一位相当于除$2$，例如，$101.11$表示数$5 \frac{3}{4}$，而$10.111$表示数$2 \frac{7}{8}$，类似的，向右移动小数点一位相当于乘$2$，例如，$1011.1$表示数$11 \frac{1}{2}$。</p>
-<p>注意，形如$(0.11···1)_2$表示的数是刚好小于$1$的数，例如$(0.111111)_2$表示$\frac{63}{64}$,在此将用$1-\epsilon$来表示此类数值。</p>
-<p>如果我们仅考虑有限长度的编码，那么十进制符号是不能准确表达像$\frac{1}{3}$和$\frac{1}{5}$这样的无理数的。类似地，小数的二进制表示法只能表示那些能够被写成$x+2^y$的数。其它的值只能够近似地表示。例如，虽然加长的二进制能够提高表示数$\frac{1}{5}$的精度，但是我们并不能准确的把它表示为一个二进制数：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">二进制</th>
-<th style="text-align:center">值</th>
-<th style="text-align:center">十进制</th>
-<th style="text-align:center">二进制</th>
-<th style="text-align:center">值</th>
-<th style="text-align:center">十进制</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">0.0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0.0</td>
-<td style="text-align:center">0.00110</td>
-<td style="text-align:center">$\frac{6}{32}$</td>
-<td style="text-align:center">0.1875</td>
-</tr>
-<tr>
-<td style="text-align:center">0.01</td>
-<td style="text-align:center">$\frac{1}{4}$</td>
-<td style="text-align:center">0.25</td>
-<td style="text-align:center">0.001101</td>
-<td style="text-align:center">$\frac{13}{64}$</td>
-<td style="text-align:center">0.203125</td>
-</tr>
-<tr>
-<td style="text-align:center">0.010</td>
-<td style="text-align:center">$\frac{2}{8}$</td>
-<td style="text-align:center">0.25</td>
-<td style="text-align:center">0.0011010</td>
-<td style="text-align:center">$\frac{26}{128}$</td>
-<td style="text-align:center">0.203125</td>
-</tr>
-<tr>
-<td style="text-align:center">0.0011</td>
-<td style="text-align:center">$\frac{3}{16}$</td>
-<td style="text-align:center">0.1875</td>
-<td style="text-align:center">0.00110011</td>
-<td style="text-align:center">$\frac{51}{256}$</td>
-<td style="text-align:center">0.19921875</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h1 id="IEEE754浮点表示"><a href="#IEEE754浮点表示" class="headerlink" title="IEEE754浮点表示"></a>IEEE754浮点表示</h1><p>像前一节中谈到的位置表示法不能很有效地表示很大地数字。例如。$5 \times 2^{100}$的表示是由$101$后跟$100$的位模式组成。相反的，我们希望通过给定$x$和$y$的值来表示形如$x \times 2^y$的数。<br>IEEE（读作“eye-Triple-ee”）浮点标准用</p>
-<p><script type="math/tex">V=(-1)^s \times M \times 2^E \tag{2.1}</script>来表示一个数。对于$(2.1)$式，有如下解释：</p>
-<ul>
-<li><strong> 符号$s$（sign）决定该数是正数（$s=0$）还是负数（$s=1$），对于数值$0$的符号位解释作为特殊情况处理。 </strong></li>
-</ul>
-<ul>
-<li><strong> 有效数$M$（significand）是一个二进制小数，它的范围在$1 \sim 2-\epsilon$之间，或者在$0\sim 1-\epsilon$之间。 </strong></li>
-</ul>
-<ul>
-<li><strong> 指数$E$（exponent）是$2$的幂（可能为负数），它的作用是对浮点数加权。</strong></li>
-</ul>
-<p>浮点数的位表示被划分为三个部分，以编码这些值：</p>
-<ul>
-<li><strong> 一个单独的符号位$s$直接编码符号$s$。 </strong></li>
-<li><strong> $k$位的指数部分$exp=e_{k-1}···e_1e_0$编码指数E。 </strong></li>
-<li><strong> $n$位的小数部分$frac=f_{n-1}···f_1f_0$编码有效数M，但是被编码的值也依赖于指数部分的值是否等于$0$。 </strong></li>
-</ul>
-<p>在单精度浮点格式（$C$语言中的$float$）中，$s$、$exp$、$frac$部分分别为$1$位，$k=8$位和$n=23$位，产生一个32位的表示。在双精度浮点格式（$C$语言中的$double$）中，$s$、$exp$、$frac$部分分别为$1$位、$k=11$位和$n=52$位，产生一个64位的表示。如下示意图所示：</p>
-<center>32位浮点格式</center>
-
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">s</th>
-<th style="text-align:center">exp</th>
-<th style="text-align:center">frac</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">s</td>
-<td style="text-align:center">$e_7e_6···e_1e_0$</td>
-<td style="text-align:center">$ f_{31}f_{30}···f_1f_0 $</td>
-</tr>
-</tbody>
-</table>
-</div>
-<center>64位浮点格式</center>
-
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">s</th>
-<th style="text-align:center">exp</th>
-<th style="text-align:center">frac</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">s</td>
-<td style="text-align:center">$e_{10}e_9···e_1e_0$</td>
-<td style="text-align:center">$f_{51}f_{50}···f_1f_0$</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>根据$esp$的值，被编码的值可以划分为三种情况：<br>1.规格化的值<br>2.非规格化的值<br>3.特殊值</p>
-<h2 id="规格化值"><a href="#规格化值" class="headerlink" title="规格化值"></a>规格化值</h2><p>这是最为普通的一种情况，当$exp$的值不全为$1$（对应数值0），和不全为$1$（32单精度中为255，64位双精度中为2047）时，都属于规格化的值。<br>在这种时候，阶码字段被解释为以偏置（biased）形式表示的有符号整数，此时阶码$E=e-Bias$，其中$e$为无符号数，表示形式为$exp=e_{k-1}···e_1e_0$，而$Bias$是一个等于$2_{k-1}-1$（单精度下为127，双精度下为1023）的偏置值。由此可以得到指数的取值范围，单精度为$-126 \sim +127$，而双精度为$-1022 \sim +1023$。<br>小数字段$frac$被解释为描述的小数值$f$，其中$0 \leq f&lt;1$，其二进制表示为$0.frac=f_{n-1}···f_1f_0$，尾数定义为$M=1+f$。</p>
-<h2 id="非规格化的值"><a href="#非规格化的值" class="headerlink" title="非规格化的值"></a>非规格化的值</h2><p>非规格化的值就是当阶码全为$0$时所表示的数。此时，阶码值是$E=1-Bias$，而尾数的值是$M=f$，注意，此时不隐含开头的$1$，仅表示小数字段。<br>非规格化的数有两个用途，一是用来表示数值$0$（在规格化的数中，我们总有$M \geq 1$，因此就不能表示$0$）。当阶码为全$0$且小数字段也全为$0$，就得到了$M=f=0$，如果此时符号位为$0$，则得到值$+0.0$，反之当符号位为$1$，则得到值$-0.0$。在IEEE浮点数中，两个值在某些方面被认为是不同的。<br>另一个功能是表示非常接近$0.0$的值，它们提供了一种称为<strong>逐渐溢出</strong>（gradual underflow）的属性。</p>
-<h2 id="特殊值"><a href="#特殊值" class="headerlink" title="特殊值"></a>特殊值</h2><p>最后一种情况是阶码全为1时出现的，当数小数部分$f$全为0时，得到的值表示无穷，$s=0$表示$+ \infty$，当$s=1$时表示$- \infty$。<br>当我们把两个非常大的数相乘或者除以零时，无穷大能够表示溢出的结果。当小数部分为非零时，结果值称为“NaN”（Not a Number），一些运算的结果不能是实数或无穷，就会返回这样的NaN值。</p>
-<h1 id="数字示例"><a href="#数字示例" class="headerlink" title="数字示例"></a>数字示例</h1><p>下图展示了假定的8位浮点格式的示例，其中$k=4$的阶码位和$n=3的小数位$，偏置量是$2^{4-1}-1=7$。图分为三个区域来来描述三类数字。不同的列给出了阶码字段是如何编码阶码$E$的，小数字段是如何编码尾数$M$的，以及它们是如何形成要表示的值$V=(-1)^s \times M \times 2^E \tag{2.1}$的。<br>从0开始，靠近0的是非规格化数，这种格式的非规格化数的$E=1-7=-6$，得到权$2^E= \frac{1}{64}$。小数f的值的范围是$0, \frac{1}{8},···, \frac{7}{8}$，从而得到数V的范围为$0 \sim \frac{1}{64}  \times \frac{1}{8}= \frac{7}{512}$。</p>
-<figure><img src="https://raw.githubusercontent.com/yurui105/image/master/blogs_image/8%E4%BD%8D%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E9%9D%9E%E8%B4%9F%E5%80%BC%E7%A4%BA%E4%BE%8B.png" alt="8位浮点数的非负值示例.png"><figcaption>8位浮点数的非负值示例</figcaption></figure>
-
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1]（美）布莱恩特,（美）奥哈拉伦著.深入理解计算机系统  原书第2版.机械工业出版社,2010.Print.</p>
-<p>[2]对IEEE 450-1995(ANSI/IEEE)标准的解释:IEEE 450-1995/INT-2001[S].2001.</p>
+    <title>影音服务jellyfin安装与使用</title>
+    <url>/2020/01/01/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/9%E3%80%81%E5%BD%B1%E9%9F%B3%E6%9C%8D%E5%8A%A1jellyfin%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>关于的jellyfin影音服务，已经有很多人对其做过介绍了，但在这里我任然要为其写一篇相关安装与使用的文章，因为在别的贴子里，很多人容易忽视掉设置硬件加速的一些必要步骤。</p>
+<p>本篇文章将会从本机安装以及docker安装两种安装方式来向大家介绍jellyfin的安装以及基本使用方法。</p>
+<a id="more"></a>
+<p>注意：你应该在看完文章后再决定你选用的安装方式</p>
+<p>就这样，请拥有，并享受</p>
+<h1 id="jellyfin介绍"><a href="#jellyfin介绍" class="headerlink" title="jellyfin介绍"></a>jellyfin介绍</h1><p>jellyfin是一个免费的媒体系统软件，可以让你控制媒体的管理和流式传输，是emby和plex的替代产品，可以通过多个应用程序将媒体从专用服务器提供给最终用户设备。Jellyfin是Emby 3.5.2发行版的衍生版本，并移植到.NET Core框架以实现全面的跨平台支持。</p>
+<p>jellyfin目前支持的平台有：Android、Android TV、Amazon Fire TV、UWP、 Apple iOS（目前正在测试阶段）等等平台，你可以参见<a href="http://jellyfin.org/docs/general/clients/index.html" target="_blank" rel="noopener">jellyfin支持平台</a>获得更多的信息。</p>
+<h1 id="查看是设备是否支持硬件加速"><a href="#查看是设备是否支持硬件加速" class="headerlink" title="查看是设备是否支持硬件加速"></a>查看是设备是否支持硬件加速</h1><p>Jellyfin支持使用<code>FFMpeg</code>的视频编码/解码的硬件加速。<code>FFMpeg</code>可通过视频加速<code>API（VAAPI）</code>支持多种硬件加速实现，例如<code>Intel Quicksync（QSV）</code>，<code>AMD AMF</code>，<code>OpenMax OMX</code>，<code>nVidia NVENC / NVDEC</code>等。<br>|操作系统|推荐的硬件加速|<br>|-|-|<br>|Linux / GNU|VAAPI（推荐），NVENC，QSV，AMF|<br>|Windows|QSV，NVENC，AMF，VAAPI|<br>|MacOS|None (videotoolbox support coming)|<br>|Android|MediaCodec, OMX|<br>|RPi|OMX|<br><a href="https://developer.nvidia.com/ffmpeg" target="_blank" rel="noopener">NVIDIA使用ffmpeg官方名单</a>，建议将这些<a href="https://github.com/keylase/nvidia-patch" target="_blank" rel="noopener">驱动程序</a>用于<code>Linux / GNU</code>和<code>Windows</code>。这是支持的编解码器的<a href="https://developer.nvidia.com/video-encode-decode-gpu-support-matrix" target="_blank" rel="noopener">NVIDIA图形卡</a>的官方列表。</p>
+<p>VAAPI支持的编解码器列表：<a href="http://jellyfin.org/docs/general/administration/hardware-acceleration.html" target="_blank" rel="noopener">点击这里查看</a><br>支持QSV的Intel处理器列表。<a href="https://ark.intel.com/content/www/us/en/ark.html#@Processors" target="_blank" rel="noopener">点击这里查看</a><br>FFmpeg硬件加速支持列表。<a href="https://trac.ffmpeg.org/wiki/HWAccelIntro" target="_blank" rel="noopener">点击这里查看</a><br>Ubuntu使用NVENC的示例。<a href="https://www.reddit.com/r/jellyfin/comments/amuyba/nvenc_nvdec_working_in_jellyfin_on_ubuntu_server/" target="_blank" rel="noopener">点击这里查看</a></p>
+<h2 id="启用硬件加速"><a href="#启用硬件加速" class="headerlink" title="启用硬件加速"></a>启用硬件加速</h2><p>硬件加速选项可在“管理仪表板”的“ 转码”部分下找到。从下拉菜单中选择有效的硬件加速选项，指示设备（如果适用），并检查enable hardware encoding以启用编码以及解码（如果您的硬件支持）。</p>
+<p>硬件加速可立即用于媒体播放。无需重新启动服务器。</p>
+<p>每种硬件加速类型以及每种Jellyfin安装类型在使用前都需要不同的设置选项。始终最好参考您选择的加速度类型的FFMpeg文档以获取最新信息。</p>
+<h3 id="Debian-Ubuntu上配置VAAPI加速"><a href="#Debian-Ubuntu上配置VAAPI加速" class="headerlink" title="Debian / Ubuntu上配置VAAPI加速"></a>Debian / Ubuntu上配置VAAPI加速</h3><p>在Debian / Ubuntu上配置VAAPI需要进行一些其他配置，以确保权限正确。</p>
+<ol>
+<li>验证render设备现在在中/dev/dri，并记下可写入该设备的权限和组，在这种情况下render：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ls -l &#x2F;dev&#x2F;dri</span><br></pre></td></tr></table></figure>
+查看是否有如下输出：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">total 0</span><br><span class="line">drwxr-xr-x 2 root root 100 Apr 13 16:37 by-path</span><br><span class="line">crw-rw---- 1 root video 226, 0 Apr 13 16:37 card0</span><br><span class="line">crw-rw---- 1 root video 226, 1 Apr 13 16:37 card1</span><br><span class="line">crw-rw---- 1 root render 226, 128 Apr 13 16:37 renderD128</span><br></pre></td></tr></table></figure>
+如果没有，在确保你的设备支持硬件加速的情况下通过<a href="http://jellyfin.org/docs/general/administration/hardware-acceleration.html" target="_blank" rel="noopener">指导文件</a>来进行相关设备的配置以及验证。不同的硬件平台配置方法不一样，在此不展开详述。</li>
+</ol>
+<ol>
+<li>将Jellyfin服务用户添加到上述组中，以允许Jellyfin的FFMpeg进程访问该设备，然后重新启动Jellyfin：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo usermod -aG render jellyfin</span><br><span class="line">sudo systemctl restart jellyfin</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>注意：在这里执行完第一条语句后可能会出现报错，这是因为在某些发行版本中，该组可能为video而不是render，将其更改过来即可。<br>在看了很多相关文章后，发现大家都没有配置这一步，这可能导致硬件转码没有办法正常工作。</p>
+<p>注意：以下两点请在安装完成jellyfin后在来看</p>
+<ol>
+<li><p>在管理控制台的“代码转换”页面中配置VAAPI加速。输入/dev/dri/renderD128上面的设备作为VA API Device值。</p>
+</li>
+<li><p>观看电影，并通过使用或类似工具观看ffmpeg-transcode-*.txt日志来验证是否正在进行转码。</p>
+</li>
+</ol>
+<h1 id="Ubuntu安装jellyfin"><a href="#Ubuntu安装jellyfin" class="headerlink" title="Ubuntu安装jellyfin"></a>Ubuntu安装jellyfin</h1><p>文章存在时效性，具体可参考<a href="http://jellyfin.org/docs/general/administration/installing.html#ubuntu" target="_blank" rel="noopener">官方指南</a></p>
+<h2 id="迁移至新仓库"><a href="#迁移至新仓库" class="headerlink" title="迁移至新仓库"></a>迁移至新仓库</h2><p>早期的jellyfin在ubuntu的官方<code>apt-get</code>源中，现在已将其拆分成自己的存储库，以更好地处理单独的二进制程序包。如果遇到ubuntu找不到该发行版的错误，并且以前配置了<code>ubuntu jellyfin.list</code>文件，请按照以下步骤操作。</p>
+<ol>
+<li>删除旧的<code>/etc/apt/sources.list.d/jellyfin.list</code>文件<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo rm &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;jellyfin.list</span><br></pre></td></tr></table></figure></li>
+<li>按照下面的方法步骤继续操作</li>
+</ol>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>Jellyfin团队提供了一个Ubuntu存储库，可以在<code>Ubuntu Xenial/Bionic/Cosmic/Disco</code>上进行安装。支持的架构<code>amd64、arm64</code>和<code>armhf</code>。<code>Ubuntu Xenial</code> 仅支持 <code>amd64</code>。</p>
+<p>注意：Microsoft不为32位x86 Linux系统提供.NET，因此<code>i386</code>体系结构不支持Jellyfin 。</p>
+<ol>
+<li><p>如果尚未安装APT的HTTPS传输，请执行以下操作：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install apt-transport-https</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启用Universe存储库以获取所有FFMpeg依赖项：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo add-apt-repository universe</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>导入GPG签名密钥：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget -O - https:&#x2F;&#x2F;repo.jellyfin.org&#x2F;ubuntu&#x2F;jellyfin_team.gpg.key | sudo apt-key add -</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在以下位置添加存储库配置<code>/etc/apt/sources.list.d/jellyfin.list</code>：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">echo &quot;deb [arch&#x3D;$( dpkg --print-architecture )] https:&#x2F;&#x2F;repo.jellyfin.org&#x2F;ubuntu $( lsb_release -c -s ) main&quot; | sudo tee &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;jellyfin.list</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>注意：支持的版本是：<code>xenial</code>，<code>bionic</code>，<code>cosmic</code>，和<code>disco</code>。</p>
+<ol>
+<li>更新APT存储库：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>安装Jellyfin：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install jellyfin</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用您选择的工具管理Jellyfin系统服务：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo systemctl restart jellyfin</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="Docker安装jellyfin"><a href="#Docker安装jellyfin" class="headerlink" title="Docker安装jellyfin"></a>Docker安装jellyfin</h1><p>你可以到<a href="https://registry.hub.docker.com/r/jellyfin/jellyfin" target="_blank" rel="noopener">jellyfin官方docker hub</a>查看该项目的最新动态以及获得相关支持。</p>
+<ol>
+<li>获取docker镜像<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker pull jellyfin&#x2F;jellyfin</span><br></pre></td></tr></table></figure></li>
+<li>运行jellyfin<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">-p 8096:8096 \</span><br><span class="line">--name jellyfin \</span><br><span class="line">--restart always \</span><br><span class="line">-v 配置文件路径:&#x2F;config \</span><br><span class="line">-v 缓存文件路径:&#x2F;cache \</span><br><span class="line">-v 媒体路径1:&#x2F;media \</span><br><span class="line">-v 媒体路径2:&#x2F;media \</span><br><span class="line">--device &#x2F;dev&#x2F;dri&#x2F;renderD128:&#x2F;dev&#x2F;dri&#x2F;renderD128 \</span><br><span class="line">--device &#x2F;dev&#x2F;dri&#x2F;card0:&#x2F;dev&#x2F;dri&#x2F;card0 \</span><br><span class="line">--privileged&#x3D;true \</span><br><span class="line">--env GIDLIST&#x3D;44 \</span><br><span class="line">jellyfin&#x2F;jellyfin:latest</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>到此，jellyfin的安装工作就算完成了。接下来进行相关的配置工作。</p>
+<h1 id="jellyfin配置与使用"><a href="#jellyfin配置与使用" class="headerlink" title="jellyfin配置与使用"></a>jellyfin配置与使用</h1><h2 id="启动配置"><a href="#启动配置" class="headerlink" title="启动配置"></a>启动配置</h2><p>在浏览器中输入<code>服务器IP:8096</code>即可进入到jellyfin的web端。</p>
+<ol>
+<li><p>选择语言<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174755.jpg" alt="选择语言"></p>
+</li>
+<li><p>用户设置<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174819.jpg" alt="添加用户"></p>
+</li>
+<li><p>设置媒体库<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174832.jpg" alt="媒体库设置"></p>
+</li>
+<li><p>选择地区与语言<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174851.jpg" alt="选择地区与语言"></p>
+</li>
+<li><p>远程访问（默认即可）<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174902.jpg" alt="远程访问权限"></p>
+</li>
+<li><p>完成配置<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174912.jpg" alt="完成配置"></p>
+</li>
+<li><p>登录<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174925.jpg" alt="用户登录"></p>
+</li>
+<li><p>进入界面<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174936.jpg" alt="主页面"></p>
+</li>
+</ol>
+<h2 id="界面配置"><a href="#界面配置" class="headerlink" title="界面配置"></a>界面配置</h2><p>点击右上角小人，进入如下界面</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20181402.jpg" alt="个人设置"></p>
+<p>选择显示菜单</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20181423.jpg" alt="显示配置"></p>
+<p>这里选择自己喜欢的主题可以进行配置在上个页面中你也可以进行更多配置</p>
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><p>选择左上角的<strong>三横图标</strong> —&gt; <strong>控制台</strong> —&gt; <strong>往下找到插件</strong> 来到下图所示的界面<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182002.jpg" alt="插件"></p>
+<p>我这里以及安装了很多插件了，如果你没有安装过，这里将显示空白。点击上方的目录可进入到插件目录</p>
+<h3 id="字幕插件"><a href="#字幕插件" class="headerlink" title="字幕插件"></a>字幕插件</h3><p>在元素据中找到Open Subtitles，进去点击安装</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182159.jpg" alt="字幕插件"></p>
+<p>然后回到我的插件，点开Open Subtitles进入配置页面</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182318.jpg" alt="Open Subtitles配置"><br>输入用户名密码登录，没有的话可以到<a href="http://www.opensubtitles.org/" target="_blank" rel="noopener">opensubtitles官网</a>进行注册。</p>
+<h3 id="KODI串流"><a href="#KODI串流" class="headerlink" title="KODI串流"></a>KODI串流</h3><p>在插件目录的常规栏目找到Kodi Sync Queue进行安装<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182711.jpg" alt="KODI"></p>
+<p>然后回到我的插件，进入KODI配置，全勾选上即可<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182644.jpg" alt="KODI"></p>
+<p>关于kodi的使用将在后期文章中进行介绍</p>
+<h3 id="其他插件"><a href="#其他插件" class="headerlink" title="其他插件"></a>其他插件</h3><p>其他插件可以根据自己的需要进行安装，可以参考其他同类文章，在此不进行详述。</p>
+<h2 id="添加媒体库"><a href="#添加媒体库" class="headerlink" title="添加媒体库"></a>添加媒体库</h2><p>在控制台中进入到媒体库，可以看到添加媒体库的按钮，如下图<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20183340.jpg" alt="媒体库管理"><br>然后点击添加媒体库<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20183444.jpg" alt="添加媒体库"><br>选择对应的类型与名称，在文件夹处选择刚才对应的媒体库，docker安装的话媒体目录被映射到/media目录下。</p>
+<p>点击左上角的显示高级设置<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20183808.jpg" alt="设置"></p>
+<p>把除了上图没勾选的之外的全面勾选上。然后确认。之后会自动扫描和下载字幕，该过程有些漫长。<br>然后在主页就可以看到添加的媒体了<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20184026.jpg" alt="媒体"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20184239.jpg" alt="电影"></p>
+<p>对于某些电影，会识别失败，这时我们需要手动识别，进入电影详情页面。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20184406.jpg" alt="电影详情"></p>
+<p>然后点击播放 预告片后面的更多<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20184517.jpg" alt="更多"><br>然后选择对应的菜单进入操作即可。</p>
+<h1 id="jellyfin播放设置"><a href="#jellyfin播放设置" class="headerlink" title="jellyfin播放设置"></a>jellyfin播放设置</h1><h2 id="硬件加速"><a href="#硬件加速" class="headerlink" title="硬件加速"></a>硬件加速</h2><p>硬件播放可以到控制台 —&gt; 播放进行设置<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20202112.jpg" alt="硬件加速"></p>
+<p>可以参考上面的平台推荐加速器进行相关设置，我这里设置为VAAPI<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20202312.jpg" alt="加速方式"></p>
+<p>VAAPI选择对应的硬件设备，确保你已依照上面的过程进行了相关的驱动设置。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20202427.jpg" alt="加速设备"></p>
+<p>其他参数可依照说明按需进行更改</p>
+<h2 id="流媒体传输设置"><a href="#流媒体传输设置" class="headerlink" title="流媒体传输设置"></a>流媒体传输设置</h2><p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20202647.jpg" alt="流媒体传输设置"><br>可依据自己的网络情况进行传输设置，这对于防止设备请求比 internet 连接所能处理的更高的比特率非常有用。这可能会导致服务器上的 CPU 负载增加, 以便将视频转码到较低的比特率。</p>
+<h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>本来想在一篇文章中对jellyfin做个详细的说明，但是发现那样文章就显得太过于长了。<br>下篇文章将对jellyfin的其他使用技巧做一个介绍，比如电影命名规范，格式选择等。<br>除此之外还会对jellyfin的使用过程中遇到的一些问题进行介绍，以及如何获取解决方案。</p>
 ]]></content>
       <categories>
-        <category>计算机组成相关</category>
+        <category>家庭NAS、HTPC服务器</category>
       </categories>
       <tags>
-        <tag>浮点数</tag>
-        <tag>IEEE754</tag>
-        <tag>IEEE浮点数</tag>
+        <tag>NAS系统</tag>
+        <tag>家庭影音</tag>
+        <tag>HTPC服务器</tag>
+        <tag>jellyfin</tag>
+        <tag>影音服务</tag>
       </tags>
   </entry>
 </search>
