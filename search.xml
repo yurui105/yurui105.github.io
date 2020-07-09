@@ -108,6 +108,45 @@
       </tags>
   </entry>
   <entry>
+    <title>C++中cin.getline和cin.get函数的使用</title>
+    <url>/2019/09/16/C++/C-%E4%B8%ADgetline%E5%92%8Cget%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>在C++中，我们通常使用<code>cin</code>作为输入函数来读取用户键盘输入的数据，由于不能通过键盘来输入空字符，因此<code>cin</code>需要用别的方法来确定字符串结尾位置。<code>cin</code>使用空白、空格、制表符和换行符来确定字符串的结束位置，这意味着<code>cin</code>在读入数据的时候只能截取上述结束符前的数据，对于结束符后的数据讲不能读入程序中。我们来考一个<code>cin</code>读入字符串的实例。<br><a id="more"></a><br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">30</span>];</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的姓名："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; name;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的名字是："</span> &lt;&lt; name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行上面的程序，当我们输入<code>woody allen</code>时，程序会得到下面的结果：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">请输入您的姓名：woody allen</span><br><span class="line">您的名字是：woody</span><br></pre></td></tr></table></figure>
+<p>我们发现<code>cin</code>函数读入的数据并不完整，在上述样例中输入的名字被空格键截断了，所以cin只读入了一个单词就结束了读入操作。再来考察一个类似实例看看输入缓冲区内发生了什么？</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">30</span>];</span><br><span class="line">	<span class="keyword">char</span> addr[<span class="number">50</span>];</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的姓名："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; name;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的地址："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; addr;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的名字是："</span> &lt;&lt; name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的地址为："</span> &lt;&lt; addr &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行上述程序，我们发现，还没对地址输入提示做出反应，程序就把他显示出来了。然后立即显示最后一行。运行结果如下所示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">请输入您的姓名：woody allen</span><br><span class="line">请输入您的地址：您的名字是：woody</span><br><span class="line">您的地址为：allen</span><br></pre></td></tr></table></figure>
+<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><h2 id="面向行输入：getline"><a href="#面向行输入：getline" class="headerlink" title="面向行输入：getline()"></a>面向行输入：getline()</h2><p><code>getline()</code>函数读取输入的整行，它使用通过回车键输入的换行符来作为结束符。要调用这种方法可以使用<code>cin.getline()</code>，该函数有两个参数，第一个参数是用来存储输入行的数组名称，另一个参数是要读取的字符串长度，如果参数为30，则最多读取29各字符，最后一个用来存储在字符串末尾的空字符。<br>例如，假设要使用<code>cin.getline()</code>将姓名读入到一个包含30各元素的<code>name</code>数组中，可使用下面这样的函数调用：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.getline(name,<span class="number">30</span>);</span><br></pre></td></tr></table></figure>
+<p>这样就可以将一行读入到数组中————如果这一行不超过29个字符(<code>getline()</code>成员函数还可以接受第三个可选参数，在此不做讨论)。现在对上述样例进行修改如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">30</span>];</span><br><span class="line">	<span class="keyword">char</span> addr[<span class="number">50</span>];</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的姓名："</span>;</span><br><span class="line">	<span class="built_in">cin</span>.getline(name,<span class="number">30</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的地址："</span>;</span><br><span class="line">	<span class="built_in">cin</span>.getline(addr,<span class="number">50</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的名字是："</span> &lt;&lt; name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的地址为："</span> &lt;&lt; addr &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述程序中将<code>cin</code>换成了<code>cin.getline()</code>，我们得到了正确的输入如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">请输入您的姓名：woody allen</span><br><span class="line">请输入您的地址：Guizhou China</span><br><span class="line">您的名字是：woody allen</span><br><span class="line">您的地址为：Guizhou China</span><br></pre></td></tr></table></figure>
+<p><code>getline()</code>函数每次读取一行，它通过回车键输入的换行符来确定行尾，但是不保存换行符。相反，在存储字符串时，它用空字符来替换换行符。</p>
+<h2 id="面向行的输入get"><a href="#面向行的输入get" class="headerlink" title="面向行的输入get()"></a>面向行的输入get()</h2><p>另外还有一种方法。<code>istream</code>类有另一个名为<code>get()</code>的成员函数，该函数有几种变体，其中一种与<code>getline()</code>类似，他们接受相同的参数，解释参数的方式也相同，都读取到行尾。单<code>get()</code>不再读取并丢弃换行符，而是将其留在输入队列中，假设我们连续两次调用<code>get()</code>：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(name,arrSize);</span><br><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(addr,arrSize);</span><br></pre></td></tr></table></figure>
+<p>运行上诉代码，我们会发现第二行代码并没有读入数据，原因是当第二行代码在读取数据时，把第一行读取的回车符当成了第二个字符串的结束标志，所以接下来的数据都没有读入，一个解决办法是将上诉代码改为：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(name,arrSize);</span><br><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>();</span><br><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(addr,arrSize);</span><br></pre></td></tr></table></figure>
+<p>通过新增的<code>cin.get();</code>先读取上一行留下来的换行符，然后再读取下一个字符串。</p>
+<p>另一种使用<code>get()</code>的方法是将两个类成员函数拼接起来使用，如下代码所示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(name,addr).<span class="built_in">get</span>();</span><br></pre></td></tr></table></figure>
+<p>之所以这样做，是由于<code>cin.get(name,addr)</code>返回一个<code>cin</code>对象，该对象随后将被用来调用<code>get()</code>函数，同样，下面语句也能将输入的两行分别读到数组<code>name</code>和<code>addr</code>中，其效果与两次调用<code>cin.getline()</code>相同：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.getline(name,ArSize).getline(addr,ArSize);</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>cin.get函数</tag>
+        <tag>cin.getline函数</tag>
+        <tag>cin.get()</tag>
+        <tag>cin.getline()</tag>
+        <tag>C++</tag>
+        <tag>字符串输入</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++ const关键字使用</title>
     <url>/2020/05/31/C++/C-const%E5%85%B3%E9%94%AE%E5%AD%97%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="const定义常量"><a href="#const定义常量" class="headerlink" title="const定义常量"></a><code>const</code>定义常量</h1><p>在c语言中，我们学习过可以使用<code>#define</code>来定义常量。但是<code>#define</code>的原理是简单的替换，因此对于<code>#define</code>来说没有类型检查这回事。</p>
@@ -143,6 +182,118 @@
         <tag>const</tag>
         <tag>const关键字</tag>
         <tag>常引用</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++构造函数</title>
+    <url>/2020/07/09/C++/C-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h1><h1 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h1><p>在c++的类中，构造函数是一种特殊的成员函数，在每次创建创建一个类的时候会默认调用构造函数进行初始化工作。</p>
+<p>构造函数用来完成一些必要的初始化工作，有了构造函数之后，就无需再单独写初始化函数，并且也不必担心忘记调用初始化函数。</p>
+<a id="more"></a>
+<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>构造函数具有如下几个特点</p>
+<ul>
+<li>名字与类名相同，可以有参数，<strong>但是不能有返回值（void也不行）</strong></li>
+<li>作用是对对象进行初始化工作，如给成员变量赋值等。</li>
+<li>如果定义类时没有写构造函数，系统会生成一个<strong>默认的无参构造函数</strong>，默认构造函数没有参数，不做任何工作。</li>
+<li>如果定义了构造函数，系统不再生成默认的无参构造函数</li>
+<li>对象生成时构造函数自动调用，对象一旦生成，不能在其上再次执行构造函数</li>
+<li>一个类可以有多个构造函数，为重载关系</li>
+</ul>
+<h1 id="构造函数-1"><a href="#构造函数-1" class="headerlink" title="构造函数"></a>构造函数</h1><h2 id="默认无参构造函数"><a href="#默认无参构造函数" class="headerlink" title="默认无参构造函数"></a>默认无参构造函数</h2><p>下面来看一个简单的例子。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span> &#123;</span><span class="comment">//复数类</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">double</span> real, imag;<span class="comment">//分别表示实部以及虚部</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">double</span> r, <span class="keyword">double</span> i)</span> </span>&#123;</span><br><span class="line">		real = r;</span><br><span class="line">		imag = i;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>对于上面的复数类，<code>real</code>表示实部，<code>imag</code>表示虚部，<code>set(set(double r, double i))</code>函数为初始化函数，我们并没有为其编写构造函数，此时编译系统将生成一个默认的无参构造函数。</p>
+<p>假设有如下调用：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Complex c1;<span class="comment">//默认构造函数被调用</span></span><br><span class="line">	Complex* c2 = <span class="keyword">new</span> Complex;<span class="comment">//默认构造函数被调用</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在对象生成的时候，编译系统自动调用默认的无参构造函数对其进行初始化工作（什么都没做），此时我们必须自己调用<code>set(double r, double i)</code>函数才能对其进行初始化操作。</p>
+<h2 id="编写构造函数"><a href="#编写构造函数" class="headerlink" title="编写构造函数"></a>编写构造函数</h2><p>接下来我们为上面的类编写一个构造函数</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span> &#123;</span><span class="comment">//复数类</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">double</span> real, imag;<span class="comment">//分别表示实部以及虚部</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Complex(<span class="keyword">double</span> r, <span class="keyword">double</span> i = <span class="number">0</span>) &#123;</span><br><span class="line">		real = r;</span><br><span class="line">		imag = i;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Complex c1;<span class="comment">//错误，参数不匹配</span></span><br><span class="line">	Complex* c2 = <span class="keyword">new</span> Complex;<span class="comment">//错误，参数不匹配</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当我们在调用上面的代码生成对象<code>c1</code>、<code>c2</code>时，编译系统会给我们报错。原因是我们编写的构造函数需要接收至少一个参数，而我们在初始化的时候没有给出任何的参数。</p>
+<p>对上面的代码进行如下的改动：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="function">Complex <span class="title">c1</span><span class="params">(<span class="number">1</span>)</span></span>;<span class="comment">//OK</span></span><br><span class="line">	Complex* c2 = <span class="keyword">new</span> Complex(<span class="number">2</span>,<span class="number">5</span>);<span class="comment">//OK</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时<code>c1</code>、<code>c2</code>就可以正常地生成。</p>
+<ul>
+<li>对于<code>c1</code>对象，用<code>1</code>来初始化实部，用缺省的<code>0</code>初始化虚部。</li>
+<li>对于<code>c2</code>对象，用<code>2</code>来初始化实部，用<code>5</code>初始化虚部。</li>
+</ul>
+<h1 id="构造函数重载"><a href="#构造函数重载" class="headerlink" title="构造函数重载"></a>构造函数重载</h1><p>对于同一个类，可以有多个构造函数，只要参数个数或类型不同就可，他们之间为重载的关系。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span> &#123;</span><span class="comment">//复数类</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">double</span> real, imag;<span class="comment">//分别表示实部以及虚部</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="comment">//构造函数</span></span><br><span class="line">	Complex();</span><br><span class="line">	Complex(<span class="keyword">double</span> r);</span><br><span class="line">	Complex(<span class="keyword">double</span> r, <span class="keyword">double</span> i);</span><br><span class="line">	Complex(Complex c1, Complex c2);</span><br><span class="line">&#125;;</span><br><span class="line">Complex::Complex() &#123;</span><br><span class="line">	real = <span class="number">0</span>;</span><br><span class="line">	imag = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">Complex::Complex(<span class="keyword">double</span> r) &#123;</span><br><span class="line">	real = r;</span><br><span class="line">	imag = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">Complex::Complex(<span class="keyword">double</span> r, <span class="keyword">double</span> i) &#123;</span><br><span class="line">	real = r;</span><br><span class="line">	imag = i;</span><br><span class="line">&#125;</span><br><span class="line">Complex::Complex(Complex c1, Complex c2) &#123;</span><br><span class="line">	real = c1.real + c2.real;</span><br><span class="line">	imag = c1.imag + c2.imag;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上面的类中，分别写了四个构造函数</p>
+<ul>
+<li><code>Complex()</code>无参构造函数，<code>real</code>和<code>imag</code>都初始化为<code>0</code></li>
+<li><code>Complex(double r)</code>将<code>real</code>初始化为<code>r</code>，<code>imag</code>初始化为<code>0</code></li>
+<li><code>Complex(double r, double i)</code>将<code>real</code>初始化为<code>r</code>，<code>imag</code>初始化为<code>i</code></li>
+<li><code>Complex(Complex c1, Complex c2)</code>将<code>real</code>初始化为<code>c1.real + c2.real</code>，<code>imag</code>初始化为<code>c1.imag + c2.imag</code></li>
+</ul>
+<p>对于上面的类，假设我们有如下调用：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Complex c1;<span class="comment">//调用Complex()构造函数</span></span><br><span class="line">	<span class="function">Complex <span class="title">c2</span><span class="params">(<span class="number">2</span>)</span></span>;<span class="comment">//调用Complex(double r)构造函数</span></span><br><span class="line">	<span class="function">Complex <span class="title">c3</span><span class="params">(<span class="number">2</span>, <span class="number">3</span>)</span></span>;<span class="comment">//调用Complex(double r, double i)构造函数</span></span><br><span class="line">	<span class="function">Complex <span class="title">c4</span><span class="params">(c1, c2)</span></span>;<span class="comment">//Complex(Complex c1, Complex c2)构造函数</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>对于<code>c1</code>对象，调用<code>Complex()</code>无参构造函数，将<code>real</code>和<code>imag</code>都初始化为<code>0</code></li>
+<li>对于<code>c2</code>对象，调用<code>Complex(double r)</code>构造函数，将<code>real</code>初始化为<code>2</code>，<code>imag</code>初始化为<code>0</code></li>
+<li>对于<code>c3</code>对象，调用<code>Complex(double r, double i)</code>构造函数，将<code>real</code>初始化为<code>2</code>，<code>imag</code>初始化为<code>3</code></li>
+<li>对于<code>c4</code>对象，调用<code>Complex(Complex c1, Complex c2)</code>将<code>real</code>初始化为<code>c1.real + c2.real=2</code>，<code>imag</code>初始化为<code>c1.imag + c2.imag=0</code></li>
+</ul>
+<h1 id="构造函数在数组中的使用"><a href="#构造函数在数组中的使用" class="headerlink" title="构造函数在数组中的使用"></a>构造函数在数组中的使用</h1><p>下面我们通过一个实例来查看对与对象数组是如何调用构造函数进行初始化的。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span> &#123;</span><span class="comment">//复数类</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">double</span> real, imag;<span class="comment">//分别表示实部以及虚部</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="comment">//构造函数</span></span><br><span class="line">	Complex() &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"无参构造函数初始化"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	Complex(<span class="keyword">double</span> r) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"一个参数的构造函数初始化"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	Complex(<span class="keyword">double</span> r, <span class="keyword">double</span> i) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"两个参数的构造函数初始化"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>我们为上面的类写了三个构造函数，在调用无参构造函数时输出<code>无参构造函数初始化</code>，调用一个参数的构造函数时输出<code>一个参数的构造函数初始化</code>，调用两个构造函数初始化时输出<code>两个参数的构造函数初始化</code>。</p>
+<p>假设我们有如下的对象生成：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"array1"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	Complex array1[<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"array2"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	Complex array2[<span class="number">3</span>] = &#123; <span class="number">1</span>,<span class="number">2</span> &#125;;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"array3"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	Complex array3[<span class="number">3</span>] = &#123; <span class="number">1</span>,Complex(<span class="number">1</span>,<span class="number">2</span>) &#125;;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"array4"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	Complex* array4 = <span class="keyword">new</span> Complex[<span class="number">3</span>];</span><br><span class="line">    </span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"array5"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	Complex* array5[<span class="number">3</span>] = &#123; <span class="keyword">new</span> Complex(<span class="number">1</span>),<span class="keyword">new</span> Complex(<span class="number">2</span>,<span class="number">3</span>) &#125;;</span><br><span class="line">    </span><br><span class="line">	<span class="keyword">delete</span>[]array4;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>对于<code>array1</code>生成的三个对象，我们没有为其指定参数，所以都调用无参构造函数进行初始化。</li>
+<li>对于<code>array2</code>生成的三个对象，我们指定了前两个的参数表为<code>1</code>和<code>2</code>，所以调用一个参数的构造函数进行初始化，第三个对象没有指定参数，所以调用无参构造函数进行初始。</li>
+<li>对于<code>array3</code>生成的三个对象，第一个对象参数为<code>1</code>，所以调用无参构造函数初始化，第二个对象参数为<code>(1,2)</code>，所以调用两个参数的构造函数初始化，对于第三个对象，我们没有指定参数，所以调用无参构造函数初始化。</li>
+<li><code>array4</code>为一个<code>Complex</code>类的指针，通过<code>new</code>运算符动态分配三个对象，并将其首地址返回给<code>array4</code>，在此我们并没有为<code>new</code>出来的三个对象指定初始化参数，所以三个对象都调用无参构造函数初始化。</li>
+<li><code>array5</code>为一个<code>Complex</code>类的指针数组，包含三个指针对象。第一个<code>new Complex(1)</code>生成了一个对象，且参数为<code>1</code>，所以调用一个参数的构造函数；第二个元素通过<code>new Complex(2,3)</code>生成一个对象，且参数为<code>(2,3)</code>，所以调用两个参数的构造函数；第三个我们没有为其动态分配内存空间，所以不会导致对象的生成，仅存在一个对象指针。所以<strong><code>array5</code>仅生成了两个对象</strong>。</li>
+</ul>
+<p>对于上面的程序，我们可以得到如下的运行结果：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">array1</span><br><span class="line">无参构造函数初始化</span><br><span class="line">无参构造函数初始化</span><br><span class="line">无参构造函数初始化</span><br><span class="line">array2</span><br><span class="line">一个参数的构造函数初始化</span><br><span class="line">一个参数的构造函数初始化</span><br><span class="line">无参构造函数初始化</span><br><span class="line">array3</span><br><span class="line">一个参数的构造函数初始化</span><br><span class="line">两个参数的构造函数初始化</span><br><span class="line">无参构造函数初始化</span><br><span class="line">array4</span><br><span class="line">无参构造函数初始化</span><br><span class="line">无参构造函数初始化</span><br><span class="line">无参构造函数初始化</span><br><span class="line">array5</span><br><span class="line">一个参数的构造函数初始化</span><br><span class="line">两个参数的构造函数初始化</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>c++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>构造函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++动态内存分类(new/delete)</title>
+    <url>/2020/05/31/C++/C-%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E7%B1%BB-new-delete/</url>
+    <content><![CDATA[<h1 id="使用new运算符分配一个变量"><a href="#使用new运算符分配一个变量" class="headerlink" title="使用new运算符分配一个变量"></a>使用<code>new</code>运算符分配一个变量</h1><p>格式：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">P = <span class="keyword">new</span> T;</span><br></pre></td></tr></table></figure>
+<p>其中<code>T</code>是任意类型名，<code>P</code>是类型为<code>T*</code>的指针。</p>
+<p>使用该表达式动态分配出一片大小为<code>sizeof(T)</code>字节的内存空间。并且将该内存空间的其实地址赋值给<code>P</code>。<br><a id="more"></a><br>例如：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line">	*p = <span class="number">5</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上述程序中，为<code>p</code>动态分配了<code>sizeof(int)</code>大小的空间，并将起始地址赋值给了<code>p</code>。</p>
+<h1 id="使用new运算符分配一个数组"><a href="#使用new运算符分配一个数组" class="headerlink" title="使用new运算符分配一个数组"></a>使用<code>new</code>运算符分配一个数组</h1><p>格式：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">P = <span class="keyword">new</span> T[N];</span><br></pre></td></tr></table></figure>
+<p>其中<code>T</code>是任意类型名，<code>P</code>是类型为<code>T*</code>的指针，<code>N</code>是要分配的数组元素的个数，<code>N</code>可以是表达式。</p>
+<p>使用该表达式动态分配出<code>N*sizeof(T)</code>字节的内存空间，并将起始地址渎职给<code>P</code>。</p>
+<p>例如：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line">	p[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	p[<span class="number">9</span>] = <span class="number">10</span>;</span><br><span class="line">	p[<span class="number">10</span>] = <span class="number">10</span>;<span class="comment">//越界</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上述程序中，为<code>p</code>动态分配了<code>10 * sizeof(int)</code>大小的空间，并将起始地址赋值给了<code>p</code>。</p>
+<p>为数组分配完空间后就可以像访问数组一样访问该指针。但是需要注意的是在执行<code>p[10] = 10;</code>时会导致数组越界，编译器又可能不会报错。</p>
+<h1 id="使用delete运算符释放动态分配的内存"><a href="#使用delete运算符释放动态分配的内存" class="headerlink" title="使用delete运算符释放动态分配的内存"></a>使用<code>delete</code>运算符释放动态分配的内存</h1><p>使用<code>new</code>运算符动态分配的内存空间，一定要使用<code>delete</code>运算符进行释放。</p>
+<h2 id="delete变量"><a href="#delete变量" class="headerlink" title="delete变量"></a><code>delete</code>变量</h2><p>格式：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">delete</span> 指针;<span class="comment">//该指针必须指向new出来的空间</span></span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line">	<span class="keyword">delete</span> p;</span><br><span class="line">	<span class="keyword">delete</span> p;<span class="comment">//报错，只能delete一次</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在使用<code>delete</code>时只能对同一片空间使用一次<code>delete</code>，否则将会报错，如上程序所示。</p>
+<h2 id="delete数组"><a href="#delete数组" class="headerlink" title="delete数组"></a><code>delete</code>数组</h2><p>格式：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">delete</span> []指针;<span class="comment">//该指针必须指向new出来的空间</span></span><br></pre></td></tr></table></figure>
+<p><strong>使用<code>delete</code>释放动态分配的数组时，要添加<code>[]</code>。</strong></p>
+<p>例如：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line">	<span class="keyword">delete</span> []p;</span><br><span class="line">	<span class="keyword">delete</span> p;<span class="comment">//错误,只会释放第一个元素的空间</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用<code>delete []p;</code>来正确释放动态分配的内存空间，指针前有<code>[]</code>符；当使用<code>delete p;</code>时，将导致该数组的首元素空间被释放，而其余空间未被释放，形成“野指针”。</p>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>内存分配</tag>
+        <tag>new关键字</tag>
+        <tag>delete关键字</tag>
       </tags>
   </entry>
   <entry>
@@ -240,89 +391,10 @@
         <category>C++</category>
       </categories>
       <tags>
+        <tag>构造函数</tag>
         <tag>c++对象</tag>
         <tag>c++类</tag>
         <tag>面向对象</tag>
-        <tag>构造函数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C++中cin.getline和cin.get函数的使用</title>
-    <url>/2019/09/16/C++/C-%E4%B8%ADgetline%E5%92%8Cget%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>在C++中，我们通常使用<code>cin</code>作为输入函数来读取用户键盘输入的数据，由于不能通过键盘来输入空字符，因此<code>cin</code>需要用别的方法来确定字符串结尾位置。<code>cin</code>使用空白、空格、制表符和换行符来确定字符串的结束位置，这意味着<code>cin</code>在读入数据的时候只能截取上述结束符前的数据，对于结束符后的数据讲不能读入程序中。我们来考一个<code>cin</code>读入字符串的实例。<br><a id="more"></a><br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">30</span>];</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的姓名："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; name;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的名字是："</span> &lt;&lt; name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>运行上面的程序，当我们输入<code>woody allen</code>时，程序会得到下面的结果：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">请输入您的姓名：woody allen</span><br><span class="line">您的名字是：woody</span><br></pre></td></tr></table></figure>
-<p>我们发现<code>cin</code>函数读入的数据并不完整，在上述样例中输入的名字被空格键截断了，所以cin只读入了一个单词就结束了读入操作。再来考察一个类似实例看看输入缓冲区内发生了什么？</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">30</span>];</span><br><span class="line">	<span class="keyword">char</span> addr[<span class="number">50</span>];</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的姓名："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; name;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的地址："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; addr;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的名字是："</span> &lt;&lt; name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的地址为："</span> &lt;&lt; addr &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行上述程序，我们发现，还没对地址输入提示做出反应，程序就把他显示出来了。然后立即显示最后一行。运行结果如下所示：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">请输入您的姓名：woody allen</span><br><span class="line">请输入您的地址：您的名字是：woody</span><br><span class="line">您的地址为：allen</span><br></pre></td></tr></table></figure>
-<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><h2 id="面向行输入：getline"><a href="#面向行输入：getline" class="headerlink" title="面向行输入：getline()"></a>面向行输入：getline()</h2><p><code>getline()</code>函数读取输入的整行，它使用通过回车键输入的换行符来作为结束符。要调用这种方法可以使用<code>cin.getline()</code>，该函数有两个参数，第一个参数是用来存储输入行的数组名称，另一个参数是要读取的字符串长度，如果参数为30，则最多读取29各字符，最后一个用来存储在字符串末尾的空字符。<br>例如，假设要使用<code>cin.getline()</code>将姓名读入到一个包含30各元素的<code>name</code>数组中，可使用下面这样的函数调用：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.getline(name,<span class="number">30</span>);</span><br></pre></td></tr></table></figure>
-<p>这样就可以将一行读入到数组中————如果这一行不超过29个字符(<code>getline()</code>成员函数还可以接受第三个可选参数，在此不做讨论)。现在对上述样例进行修改如下：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">30</span>];</span><br><span class="line">	<span class="keyword">char</span> addr[<span class="number">50</span>];</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的姓名："</span>;</span><br><span class="line">	<span class="built_in">cin</span>.getline(name,<span class="number">30</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的地址："</span>;</span><br><span class="line">	<span class="built_in">cin</span>.getline(addr,<span class="number">50</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的名字是："</span> &lt;&lt; name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的地址为："</span> &lt;&lt; addr &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上述程序中将<code>cin</code>换成了<code>cin.getline()</code>，我们得到了正确的输入如下：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">请输入您的姓名：woody allen</span><br><span class="line">请输入您的地址：Guizhou China</span><br><span class="line">您的名字是：woody allen</span><br><span class="line">您的地址为：Guizhou China</span><br></pre></td></tr></table></figure>
-<p><code>getline()</code>函数每次读取一行，它通过回车键输入的换行符来确定行尾，但是不保存换行符。相反，在存储字符串时，它用空字符来替换换行符。</p>
-<h2 id="面向行的输入get"><a href="#面向行的输入get" class="headerlink" title="面向行的输入get()"></a>面向行的输入get()</h2><p>另外还有一种方法。<code>istream</code>类有另一个名为<code>get()</code>的成员函数，该函数有几种变体，其中一种与<code>getline()</code>类似，他们接受相同的参数，解释参数的方式也相同，都读取到行尾。单<code>get()</code>不再读取并丢弃换行符，而是将其留在输入队列中，假设我们连续两次调用<code>get()</code>：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(name,arrSize);</span><br><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(addr,arrSize);</span><br></pre></td></tr></table></figure>
-<p>运行上诉代码，我们会发现第二行代码并没有读入数据，原因是当第二行代码在读取数据时，把第一行读取的回车符当成了第二个字符串的结束标志，所以接下来的数据都没有读入，一个解决办法是将上诉代码改为：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(name,arrSize);</span><br><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>();</span><br><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(addr,arrSize);</span><br></pre></td></tr></table></figure>
-<p>通过新增的<code>cin.get();</code>先读取上一行留下来的换行符，然后再读取下一个字符串。</p>
-<p>另一种使用<code>get()</code>的方法是将两个类成员函数拼接起来使用，如下代码所示：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(name,addr).<span class="built_in">get</span>();</span><br></pre></td></tr></table></figure>
-<p>之所以这样做，是由于<code>cin.get(name,addr)</code>返回一个<code>cin</code>对象，该对象随后将被用来调用<code>get()</code>函数，同样，下面语句也能将输入的两行分别读到数组<code>name</code>和<code>addr</code>中，其效果与两次调用<code>cin.getline()</code>相同：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.getline(name,ArSize).getline(addr,ArSize);</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>C++</category>
-      </categories>
-      <tags>
-        <tag>cin.get函数</tag>
-        <tag>cin.getline函数</tag>
-        <tag>cin.get()</tag>
-        <tag>cin.getline()</tag>
-        <tag>C++</tag>
-        <tag>字符串输入</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C++动态内存分类(new/delete)</title>
-    <url>/2020/05/31/C++/C-%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E7%B1%BB-new-delete/</url>
-    <content><![CDATA[<h1 id="使用new运算符分配一个变量"><a href="#使用new运算符分配一个变量" class="headerlink" title="使用new运算符分配一个变量"></a>使用<code>new</code>运算符分配一个变量</h1><p>格式：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">P = <span class="keyword">new</span> T;</span><br></pre></td></tr></table></figure>
-<p>其中<code>T</code>是任意类型名，<code>P</code>是类型为<code>T*</code>的指针。</p>
-<p>使用该表达式动态分配出一片大小为<code>sizeof(T)</code>字节的内存空间。并且将该内存空间的其实地址赋值给<code>P</code>。<br><a id="more"></a><br>例如：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line">	*p = <span class="number">5</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在上述程序中，为<code>p</code>动态分配了<code>sizeof(int)</code>大小的空间，并将起始地址赋值给了<code>p</code>。</p>
-<h1 id="使用new运算符分配一个数组"><a href="#使用new运算符分配一个数组" class="headerlink" title="使用new运算符分配一个数组"></a>使用<code>new</code>运算符分配一个数组</h1><p>格式：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">P = <span class="keyword">new</span> T[N];</span><br></pre></td></tr></table></figure>
-<p>其中<code>T</code>是任意类型名，<code>P</code>是类型为<code>T*</code>的指针，<code>N</code>是要分配的数组元素的个数，<code>N</code>可以是表达式。</p>
-<p>使用该表达式动态分配出<code>N*sizeof(T)</code>字节的内存空间，并将起始地址渎职给<code>P</code>。</p>
-<p>例如：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line">	p[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	p[<span class="number">9</span>] = <span class="number">10</span>;</span><br><span class="line">	p[<span class="number">10</span>] = <span class="number">10</span>;<span class="comment">//越界</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在上述程序中，为<code>p</code>动态分配了<code>10 * sizeof(int)</code>大小的空间，并将起始地址赋值给了<code>p</code>。</p>
-<p>为数组分配完空间后就可以像访问数组一样访问该指针。但是需要注意的是在执行<code>p[10] = 10;</code>时会导致数组越界，编译器又可能不会报错。</p>
-<h1 id="使用delete运算符释放动态分配的内存"><a href="#使用delete运算符释放动态分配的内存" class="headerlink" title="使用delete运算符释放动态分配的内存"></a>使用<code>delete</code>运算符释放动态分配的内存</h1><p>使用<code>new</code>运算符动态分配的内存空间，一定要使用<code>delete</code>运算符进行释放。</p>
-<h2 id="delete变量"><a href="#delete变量" class="headerlink" title="delete变量"></a><code>delete</code>变量</h2><p>格式：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">delete</span> 指针;<span class="comment">//该指针必须指向new出来的空间</span></span><br></pre></td></tr></table></figure>
-<p>例如：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line">	<span class="keyword">delete</span> p;</span><br><span class="line">	<span class="keyword">delete</span> p;<span class="comment">//报错，只能delete一次</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在使用<code>delete</code>时只能对同一片空间使用一次<code>delete</code>，否则将会报错，如上程序所示。</p>
-<h2 id="delete数组"><a href="#delete数组" class="headerlink" title="delete数组"></a><code>delete</code>数组</h2><p>格式：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">delete</span> []指针;<span class="comment">//该指针必须指向new出来的空间</span></span><br></pre></td></tr></table></figure>
-<p><strong>使用<code>delete</code>释放动态分配的数组时，要添加<code>[]</code>。</strong></p>
-<p>例如：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line">	<span class="keyword">delete</span> []p;</span><br><span class="line">	<span class="keyword">delete</span> p;<span class="comment">//错误,只会释放第一个元素的空间</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用<code>delete []p;</code>来正确释放动态分配的内存空间，指针前有<code>[]</code>符；当使用<code>delete p;</code>时，将导致该数组的首元素空间被释放，而其余空间未被释放，形成“野指针”。</p>
-]]></content>
-      <categories>
-        <category>C++</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>内存分配</tag>
-        <tag>new关键字</tag>
-        <tag>delete关键字</tag>
       </tags>
   </entry>
   <entry>
@@ -408,6 +480,29 @@
       </tags>
   </entry>
   <entry>
+    <title>c++内联函数inline</title>
+    <url>/2020/06/01/C++/c-%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0inline/</url>
+    <content><![CDATA[<h1 id="inline概念"><a href="#inline概念" class="headerlink" title="inline概念"></a><code>inline</code>概念</h1><p>在<code>c++</code>中，函数调用是会产生额外的时间开销的，如果函数本身代码很短，执行很快，并且该函数被反复调用。相比之下调用函数所产生的开销就会很大，甚至超过执行代码所产生的开销。</p>
+<p>为了减少函数调用的开销，<code>c++</code>引入了<code>内联函数</code>的机制。编译器在处理内联函数的调用语句时，直接将整个内联函数代码插入到调用语句处，从而减少函数调用产生的开销。<br><a id="more"></a></p>
+<h1 id="inline定义"><a href="#inline定义" class="headerlink" title="inline定义"></a><code>inline</code>定义</h1><p><code>inline</code>关键字的使用比较简单，只需要在函数的定义头部加上<code>inline</code>关键字即可，如下所示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> 返回值类型 函数名(参数)&#123;</span><br><span class="line">	函数体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>内联函数的具体使用如下代码所示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//返回两数中的最大值</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="built_in">max</span>(<span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如上代码所示，定义一个内联函数<code>max</code>，该函数返回两个数中的最大值，只需要在函数定义时加入<code>inline</code>关键字即可，在对<code>max</code>函数进行调用时，编译器直接将<code>max</code>的函数代码嵌入到调用的地方，以此来节省函数调用产生的额外开销。</p>
+<h1 id="inline函数注意事项"><a href="#inline函数注意事项" class="headerlink" title="inline函数注意事项"></a><code>inline</code>函数注意事项</h1><p>通过上面的例子，我们了解了<code>inline</code>关键字的基本使用方法，内联函数虽然节省了函数调用产生的开销，但并不是所有的地方都能使用内联函数定义。</p>
+<p>当函数代码过长时，使用内联函数会使得程序变得臃肿。此时就不应该使用内联函数。</p>
+<p>另外，当函数中包含循环控制语句时，也不应该使用内联函数。</p>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>inline函数</tag>
+        <tag>内联函数</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>c++函数重载</title>
     <url>/2020/06/01/C++/c-%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD/</url>
     <content><![CDATA[<h1 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h1><p>假设如下函数来比较两个<code>int</code>型数据的大小</p>
@@ -488,106 +583,6 @@
       </tags>
   </entry>
   <entry>
-    <title>c++内联函数inline</title>
-    <url>/2020/06/01/C++/c-%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0inline/</url>
-    <content><![CDATA[<h1 id="inline概念"><a href="#inline概念" class="headerlink" title="inline概念"></a><code>inline</code>概念</h1><p>在<code>c++</code>中，函数调用是会产生额外的时间开销的，如果函数本身代码很短，执行很快，并且该函数被反复调用。相比之下调用函数所产生的开销就会很大，甚至超过执行代码所产生的开销。</p>
-<p>为了减少函数调用的开销，<code>c++</code>引入了<code>内联函数</code>的机制。编译器在处理内联函数的调用语句时，直接将整个内联函数代码插入到调用语句处，从而减少函数调用产生的开销。<br><a id="more"></a></p>
-<h1 id="inline定义"><a href="#inline定义" class="headerlink" title="inline定义"></a><code>inline</code>定义</h1><p><code>inline</code>关键字的使用比较简单，只需要在函数的定义头部加上<code>inline</code>关键字即可，如下所示：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> 返回值类型 函数名(参数)&#123;</span><br><span class="line">	函数体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>内联函数的具体使用如下代码所示：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//返回两数中的最大值</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="built_in">max</span>(<span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如上代码所示，定义一个内联函数<code>max</code>，该函数返回两个数中的最大值，只需要在函数定义时加入<code>inline</code>关键字即可，在对<code>max</code>函数进行调用时，编译器直接将<code>max</code>的函数代码嵌入到调用的地方，以此来节省函数调用产生的额外开销。</p>
-<h1 id="inline函数注意事项"><a href="#inline函数注意事项" class="headerlink" title="inline函数注意事项"></a><code>inline</code>函数注意事项</h1><p>通过上面的例子，我们了解了<code>inline</code>关键字的基本使用方法，内联函数虽然节省了函数调用产生的开销，但并不是所有的地方都能使用内联函数定义。</p>
-<p>当函数代码过长时，使用内联函数会使得程序变得臃肿。此时就不应该使用内联函数。</p>
-<p>另外，当函数中包含循环控制语句时，也不应该使用内联函数。</p>
-]]></content>
-      <categories>
-        <category>C++</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>inline函数</tag>
-        <tag>内联函数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ubuntu18.04安装</title>
-    <url>/2019/12/24/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/2%E3%80%81Ubuntu18.04%E7%9A%84%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文为系列文章的第二篇，关于本专栏相关文章可以到文末专栏目录查看。</p>
-<p>就这样，请拥有，并享受。<br><a id="more"></a></p>
-<h1 id="制作安装镜像"><a href="#制作安装镜像" class="headerlink" title="制作安装镜像"></a>制作安装镜像</h1><h2 id="下载操作系统镜像"><a href="#下载操作系统镜像" class="headerlink" title="下载操作系统镜像"></a>下载操作系统镜像</h2><p>首先到Ubuntu中国官网下载最新版本的Ubuntu18.04桌面版</p>
-<p>下载传送门：点击这里</p>
-<p>step1.点击桌面系统<br><img src="https://raw.githubusercontent.com/yurui105/image/master/0.jpg" alt="ubuntu首页"></p>
-<p>step2.点击下载Ubuntu<br><img src="https://raw.githubusercontent.com/yurui105/image/master/1.jpg" alt="桌面系统主页"></p>
-<p>step3.点击Ubuntu18.04.3 LTS后面的直接下载<br><img src="https://raw.githubusercontent.com/yurui105/image/master/2.jpg" alt="下载界面"></p>
-<p>在写文章时的官方最新版本为18.04.3，具体可能会有变化。</p>
-<p>LTS为官方长期支持版本，你也可以选择下载最新的试用版本，具体看个人怎么选择，官方也对各版本有详细的说明。个人建议选择LTS版本。</p>
-<p>注！可以选择BT下载，这样下载速度会比较快。</p>
-<h2 id="下载启动盘制作工具"><a href="#下载启动盘制作工具" class="headerlink" title="下载启动盘制作工具"></a>下载启动盘制作工具</h2><p>制作启动盘的工具市面上有很多，可以参考网络上其他同类文章，这里选择用UltraISO作为制作工具。</p>
-<p>UltraISO传送门：点击这里</p>
-<p>step1.点击导航栏<strong>下载</strong><br><img src="https://raw.githubusercontent.com/yurui105/image/master/4%E3%80%81ultraiso.jpg" alt="UltraISO官网主页"></p>
-<p>step2.点击<strong>免费下载试用</strong><br><img src="https://raw.githubusercontent.com/yurui105/image/master/5.jpg" alt="下载界面"></p>
-<p>step3.安装</p>
-<p>这里就部展开详述了，安装完成后打开，会跳出窗口订购，在这里点击下方的试用即可。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115307.jpg" alt="UltraISO订阅界面"></p>
-<h2 id="制作镜像"><a href="#制作镜像" class="headerlink" title="制作镜像"></a>制作镜像</h2><p>重要！！！制作U盘安装工具会擦除U盘所有数据，请提前备份好U盘数据！！！</p>
-<p>step1.打开刚才下载的Ubuntu安装镜像<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115730.jpg" alt="UltraISO软件界面"><br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115759.jpg" alt="加载安装镜像后"></p>
-<p>step2.安装镜像文件到U盘</p>
-<p>注：一下操作会擦除U盘数据，请做好备份。</p>
-<p>点击菜单栏启动—&gt;写入硬盘镜像</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115816.jpg" alt="制作镜像启动"></p>
-<p>之后会跳出一个窗口，磁盘驱动器处选择要作为启动盘的U盘，其它选项默认，然后点击写入，整个过程会持续几分钟，待进度条跑完后及完成（注意错误提示，并在网上寻求解决方案）。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115857.jpg" alt="镜像写入"></p>
-<p>到此不出意外的话整个启动U盘就制作好了。</p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>接下来你需要设置主板从U盘启动，不同的主板设置不一样，在此不做任何操作说明，具体你可以百度主板型号+U盘启动来寻找你主板对应的设置方法。</p>
-<p>从U盘启动后，会看到下图的界面，全部默认，点击install ubuntu（安装ubuntu）</p>
-<p>（你也可以选择其他语言，但是建议选择英文，中文安装后在后续的操作目录切换中特别麻烦，你还需要安装一个中文编译器，但是相信我，作为nas的操作系统，你需要中文输入的地方很少，尤其是对于linux，只会增加一些没用且繁琐的折腾，所以选择英文就好）<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20170625.jpg" alt="Welcome界面"></p>
-<p>之后选择键盘和布局，这里默认就好，然后点击continue（继续）。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20170644.jpg" alt="​选择键盘和布局"></p>
-<p>之后跳转到​下图界面，选择Minimal installation（最小化安装）即可，Normal installation（正常安装）提供了较为完整的软件，但那些都是我们用不到的东西。</p>
-<p>Download updates while installing Ubuntu（安装过程中更新软件）选上这个会在安装的过程中更新软件包，会增加安装时间。可以在后续安装完成后更新。</p>
-<p>install third-party software······这个选项勾上，会为你安装硬件驱动等，减少后期工作量。</p>
-<p>完成后点击continue</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20170709.jpg" alt="​更新以及第三方软件"></p>
-<p>之后选择安装类型，如果你懒得折腾，选择默认的即可，你也可以选择Something else来自定义安装，如果你没有相关linux基础，建议选择默认，如果你有相关基础，相信你会自己做出选择。</p>
-<p>然后点击continue<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20170730.jpg" alt="​安装类型"></p>
-<p>这里提示你会擦除硬盘内容，叫你确认。</p>
-<p>没有其他任何问题的话这里选择continue<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20171232.jpg" alt="​确认框"></p>
-<p>之后选择时区，选择shanghai即可，然后continue。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20171313.jpg" alt="选择时区"></p>
-<p>下面进行用户配置</p>
-<p>your name：用户名</p>
-<p>your computer name：计算机名</p>
-<p>pick a username：登录用户名（不要为中文）</p>
-<p>choose a password：密码</p>
-<p>confirm your password：确认密码</p>
-<p>然后勾选下面的log in automatically，点击continue<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20171349.jpg" alt="用户信息​"></p>
-<p>之后进入到漫长的安装过程，只需等待即可，整个过程看你的网络情况，从几十分到几小时不等，ubuntu服务器在国外，访问会比较慢，可以使用梯子。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20171407.jpg" alt="安装过程"></p>
-<p>安装完成后会跳出一个弹窗，这里选择restart now（重启）</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20175101.jpg" alt="重启界面"></p>
-<p>好了，到这里这个安装过程就结束了，而折腾的真个nas过程也就完成了60%了。</p>
-<p>是不是很兴奋。</p>
-<h1 id="专栏目录"><a href="#专栏目录" class="headerlink" title="专栏目录"></a>专栏目录</h1><p>注！[✔]表示已更新，[✖] 表示未更新</p>
-<p>[✔] 前言</p>
-<p>[✔] Ubuntu18.04的安装</p>
-<p>[✖] Linux的基本操作</p>
-<p>[✖] 基本工具安装及使用</p>
-<p>[✖] Docker安装</p>
-<p>[✖] 控制面板</p>
-<p>[✖] jellyfin影音服务</p>
-<p>[✖] 网盘服务</p>
-<p>[✖] 下载工具</p>
-<p>[✖] 笔记管理</p>
-<p>[✖] 手机开关机</p>
-]]></content>
-      <categories>
-        <category>家庭NAS、HTPC服务器</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu18.04安装</tag>
-        <tag>Ubuntu安装</tag>
-        <tag>NAS系统</tag>
-        <tag>家庭影音</tag>
-        <tag>HTPC服务器</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ubuntu安装基本工具及基本命令的使用</title>
     <url>/2019/12/25/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/3%E3%80%81%E5%AE%89%E8%A3%85%E5%9F%BA%E6%9C%AC%E5%B7%A5%E5%85%B7%E5%8F%8A%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p>在上期文章中，我们完成了Ubuntu的硬盘安装，本期文章将说明基本linux的命令使用以及基本基本工具的安装使用。如果你有过相关linux的使用经验，那么本文纯属在浪费你的时间，你可以选择跳过此篇文章。</p>
@@ -660,51 +655,39 @@
         <category>家庭NAS、HTPC服务器</category>
       </categories>
       <tags>
+        <tag>Ubuntu18.04配置</tag>
+        <tag>Ubuntu配置</tag>
         <tag>NAS系统</tag>
         <tag>家庭影音</tag>
         <tag>HTPC服务器</tag>
-        <tag>Ubuntu18.04配置</tag>
-        <tag>Ubuntu配置</tag>
       </tags>
   </entry>
   <entry>
-    <title>WEB-UI管理面板webmin（轻量级较全面）安装及使用</title>
-    <url>/2019/12/27/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/5%E3%80%81WEB-UI%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BFwebmin%EF%BC%88%E8%BD%BB%E9%87%8F%E7%BA%A7%E8%BE%83%E5%85%A8%E9%9D%A2%EF%BC%89%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>相信很多人选择黑群晖的原因之一是因为群晖有很好的图形化管理面板，其实Ubuntu，或者说linux也可以很好的图形化管理面板。</p>
-<p>本系列文章将介绍两种轻量级的管理面板<strong>Webmin(功能较全面)</strong>和<strong>Cockpit(功能简单)</strong>，对于那些功能全面的重量级面板，再次不做介绍，尽管那些工具开发得很完善，但是在家用nas上使用却显得有些臃肿了。</p>
+    <title>SSH工具Xshell的安装以及使用</title>
+    <url>/2019/12/26/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/4%E3%80%81SSH%E5%B7%A5%E5%85%B7Xshell%E7%9A%84%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>在原本的计划中并没有准备专门写一篇关于SSH远程连接的教程，但想了想，该专栏文章应该致力于让所有读者都能看懂，即使你是从未使用过Linux操作系统的小白。</p>
+<p>当然，本文仅介绍了XShell的试用，你也可以选择其他软件，这都一样，并不影响你的使用。</p>
+<p>如果你已经有相关的使用经验，那么你可以直接跳过本章，毕竟下面的内容会浪费你宝贵生命中的几分钟。</p>
 <p>就这样，请拥有，并享受。<br><a id="more"></a></p>
-<h1 id="Webmin安装"><a href="#Webmin安装" class="headerlink" title="Webmin安装"></a>Webmin安装</h1><p>对于Webmin的安装以及使用在它的官网中有详细的介绍，大家可以参考官网。</p>
-<p>传送门：<a href="http://www.webmin.com/" target="_blank" rel="noopener">点击这里</a></p>
-<ol>
-<li>打开xshell并连接到主机，然后切换到<strong>root</strong>用户，执行一下命令下载软件包<br>（我在写文章安装时的版本为1.930，安装时可到官网查看最新版本）<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget http:&#x2F;&#x2F;prdownloads.sourceforge.net&#x2F;webadmin&#x2F;webmin_1.930_all.deb</span><br></pre></td></tr></table></figure>
-执行dpkg命令进行安装<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dpkg --install webmin_1.930_all.deb</span><br></pre></td></tr></table></figure>
-提示：在输入时可以使用Tab键进行命令补全。</li>
-</ol>
-<p>在执行上面的语句时，你可能会得到下面的报错：</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20072855.jpg" alt="缺少编译环境"></p>
-<p>这是由于缺少编译环境导致的，输入以下命令安装相关相关工具<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt install perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python</span><br></pre></td></tr></table></figure><br>在输入完上述命令后，可能还会出现一个错误如下：</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20073439.jpg" alt="错误提示"></p>
-<p>此时我们按照提示运行输入<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt --fix-broken install</span><br></pre></td></tr></table></figure><br>然后再运行<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dpkg --install webmin_1.930_all.deb</span><br></pre></td></tr></table></figure><br>即可安装成功，安装完成后如下图</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20073838.jpg" alt="安装完成"></p>
-<p>Webmin默认安装到<code>/usr/share/webmin</code>目录下，我们可以通过<code>https://服务器ip:10000/</code>来登录管理面板；登录密码为<code>root</code>密码或者可以运行<code>sudo su</code>的管理者用户名密码来登录。</p>
-<p>（因为Ubuntu不允许使用<code>root</code>来作为默认登录用户，你可以使用其它可以执行<code>sudo su</code>切换到管理员权限的用户名密码来作为登录用户）</p>
-<h1 id="Webmin配置"><a href="#Webmin配置" class="headerlink" title="Webmin配置"></a>Webmin配置</h1><p>完成安装后我们用浏览器打开<code>https://服务器ip:10000/</code>来进入管理面板，打开后会跳出一个错误页面，点击提示中的URL链接即可正常进入。<br>（如果浏览器有安全警告，直接跳过继续前往即可）</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20084600.jpg" alt="打开跳转提示"></p>
-<p>之后便是登录界面，输入上面提到的用户名密码进行登录</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20084629.jpg" alt="登录"></p>
-<p>完成登录后就进入到管理面板的界面了</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20085032.jpg" alt="管理面板界面"></p>
-<p>现在界面显示的英文，我们可以到<code>Webmin -&gt; Webmin Configuration -&gt; Language and Locale</code>将语言改为中文，记得保存。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20085522.jpg" alt="更改语言"></p>
-<p>我们可以在面板中很直观地查看到系统的相关信息以及进行相关配置。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20085758.jpg" alt="系统监视"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20085945.jpg" alt="网络管理"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20090041.jpg" alt="磁盘管理"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20090156.jpg" alt="开关机管理"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20090317.jpg" alt="进程管理"></p>
-<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>Webmin的功能还是比较全面的，可以通过安装模块来扩展功能，支持集群管理等。</p>
-<p>到这里本篇文章就结束了，以后就可以通过浏览器来查看以及管理nas了。</p>
-<h1 id="专栏目录"><a href="#专栏目录" class="headerlink" title="专栏目录"></a>专栏目录</h1>]]></content>
+<h1 id="下载Xshell"><a href="#下载Xshell" class="headerlink" title="下载Xshell"></a>下载Xshell</h1><p>首先到XShell的官网：<a href="https://www.netsarang.com/zh/xshell/" target="_blank" rel="noopener">点击这里</a>点击<strong>下载</strong>按钮，之后会跳转到一个信息填写页面，可以申请30天的免费试用。作为学校和家庭用户，点击右边的<a href="https://www.netsarang.com/zh/free-for-home-school/" target="_blank" rel="noopener"><strong>免费授权页面</strong></a>可以申请免费使用。</p>
+<p>填写完信息后下载链接会发送到你所填写的邮箱中，点击里面的下载链接即可下载。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20060647.jpg" alt="Xshell主页"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20060720.jpg" alt="信息填写"></p>
+<h1 id="使用Xshell"><a href="#使用Xshell" class="headerlink" title="使用Xshell"></a>使用Xshell</h1><p>下载完成安装后，打开软件可以看到下图所示的页面。<br>（我这里以及添加有很多连接，可以忽略）</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/Xshell%E5%90%AF%E5%8A%A8%E7%95%8C%E9%9D%A2.jpg" alt="XShell软件启动"></p>
+<p>然后点击对话框左上角添加按钮，在弹出的对话框<strong>名称</strong>处输入你想要的名称，<strong>主机</strong>一栏输入你在<strong>第一篇文章中</strong>所查看的主机<strong>IP</strong></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%B7%BB%E5%8A%A0%E4%B8%BB%E6%9C%BA.jpg" alt="IP输入"></p>
+<p>然后点击界面左边的<strong>用户身份验证</strong>，进入后输入<strong>用户名</strong>和<strong>密码</strong>，该用户名和密码为你在安装Ubuntu时设置的用户名以及密码。</p>
+<p>然后点击连接，中途会跳出是否保存用户名密码，自己根据情况选择；在跳出密钥接收保存询问框的时候选择接收并保存。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81.jpg" alt="用户名密码输入"></p>
+<p>然后看到下如所示的提示信息即说明连接成功。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20062918.jpg" alt="连接成功"></p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>整个NAS的前期准备工作到此就结束了，在接下来的文章中我们将一同探讨大家比较关心的影音服务、管理面板、网盘工具等内容的搭建了。</p>
+<p>前面的文章看起来多少有些无趣，但这却是整个系统管理中不可获缺的。如上面提到的基本命令，这将是你使用频率非常高的命令，甚至可以说这些是你进行接下来的工作不可少的东西，如果你还没有掌握它的话，应该利用闲余的几分钟去了解一下它。</p>
+<p>使用Ubuntu的过程中，你或多或少会在搜索引擎中查找相应技术文章，再次过程中你将会感受到计算机专业的开源精神。</p>
+<p>但是，在寻求解决方案的时候<strong>请不要轻易尝试别人给你的命令，除非你想把之前的工作从头再来一遍</strong>。执行任何含有<strong>rm</strong>的命令你都应当十分小心地确认你的操作，尤其是在你的数据盘中。</p>
+<p>请牢记好上面的内容，<strong>必要的时候请先在虚拟机中验证它的正确性</strong>。</p>
+<h1 id="专栏导航"><a href="#专栏导航" class="headerlink" title="专栏导航"></a>专栏导航</h1>]]></content>
       <categories>
         <category>家庭NAS、HTPC服务器</category>
       </categories>
@@ -712,9 +695,123 @@
         <tag>NAS系统</tag>
         <tag>家庭影音</tag>
         <tag>HTPC服务器</tag>
-        <tag>WEB-UI管理面板</tag>
-        <tag>webmin</tag>
-        <tag>linux管理面板</tag>
+        <tag>xshell配置</tag>
+        <tag>ssh安装及使用</tag>
+        <tag>xshell安装</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu挂载硬盘</title>
+    <url>/2019/12/29/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/7%E3%80%81Ubuntu%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/</url>
+    <content><![CDATA[<p>在开始下篇文章之前我觉得有必要讲解一下在linux中的硬盘挂载。这和Windows不同，Windows会自动扫描本地硬盘并为你自动挂载，但是linux不会值么做，它需要你自己去挂载硬盘到系统中。</p>
+<a id="more"></a>
+<p>如果你是新硬盘，你需要对硬盘进行格式化才能正常使用，linux支持ext4、NTFS等文件系统，在此建议将硬盘格式化为NTFS格式，这样就算你把硬盘从linux移动Windows环境下也可以正常使用，Windows不知EXT4文件系统。</p>
+<p>但是格式化NTFS也会带来一个弊端，就是你无法对文件进行权限操作，这样你在使用的时候应该小心一些，避免误操作删除硬盘数据。</p>
+<h1 id="格式化硬盘"><a href="#格式化硬盘" class="headerlink" title="格式化硬盘"></a>格式化硬盘</h1><p>如果你的硬盘已经格式化过存有数据的话，你应该跳过这一小节的内容，直接跳转到下一小节参考硬盘挂载操作。</p>
+<p>首先你需要查看设备位置，输入</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo fdisk -l</span><br></pre></td></tr></table></figure>
+<p>然后找到你需要挂载的硬盘，例如我在这里要挂载<strong>Disk /dev/sdb: 7.3 TiB</strong>这块磁盘，记下它的位置，这里为/dev/sdb</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20160129.jpg" alt="查看硬盘设备"></p>
+<h2 id="格式化为EXT4格式"><a href="#格式化为EXT4格式" class="headerlink" title="格式化为EXT4格式"></a>格式化为EXT4格式</h2><p>如果需要格式化为EXT4格式，只需要执行下面语句即可，将/dev/sdb换成你需要进行格式化操作的设备路径。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo mkfs.ext4  &#x2F;dev&#x2F;sdb</span><br></pre></td></tr></table></figure></p>
+<h2 id="格式化为NTFS"><a href="#格式化为NTFS" class="headerlink" title="格式化为NTFS"></a>格式化为NTFS</h2><p>NTFS是windows的文件系统，在进行格式化操作之前需要安装一个工具，输入下面命令进行安装。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt -y install ntfsprogs</span><br></pre></td></tr></table></figure><br>安装完成后执行格式化语句，这里同样将/dev/sdb更改为你要执行格式化操作的设备路径。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo mkntfs -f &#x2F;dev&#x2F;sdb</span><br></pre></td></tr></table></figure><br>到此就将硬盘格式化完成了，接下来进行挂载操作</p>
+<h1 id="挂载硬盘"><a href="#挂载硬盘" class="headerlink" title="挂载硬盘"></a>挂载硬盘</h1><p>在进行挂载操作之前需要先查看硬盘的UUID值，输入sudo blkid进行查看</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20162314.jpg" alt="UUID值"></p>
+<p>这里假设我们要挂载/dev/sdb1: LABEL=”mybook” UUID=”21B724CC1FE1D190” TYPE=”ntfs” ···这块硬盘，我们选中UUID后面的值（不要双引号），在xshell中可以右键复制下来。</p>
+<p>然后创建一个挂载点，这个挂载点就是你以后打开查看硬盘内容的地方，这里假设我们需要将硬盘挂载到/mnt/sdb这个路径。你可以选择其他任何一个你觉得可以的地方进行挂载。<br>首先执行<strong>cd /mnt</strong>进入到mnt目录。<br>然后执行<strong>mkdir sdb</strong>创建一个名为sdb的文件夹，这个文件夹为我们需要挂载硬盘的地方。</p>
+<p>然后编辑系统挂载配置文件/etc/fstab</p>
+<p>执行<strong>vim /etc/fstab</strong>打开配置文件，可以看到下图所示的内容<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20163118.jpg" alt="fstab文件"></p>
+<p>这里的格式为<strong>设备名称 挂载点 分区类型 挂载选项 dump选项 fsck选项</strong><br>dump为0表示不进行备份<br>fsck为启动时检查顺序，0为不检查，/更目录为1，其他只能从2开始</p>
+<p>添加要挂载的内容到末行，这里我们以刚才的为例<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20163801.jpg" alt="挂载设置"><br>挂载点为我们刚才设置的挂载路径/mnt/sdb，格式为NTFS（如果你格式化为ext4，这里就填ext4），挂载选项默认defaults，不进行备份，开机不检查。</p>
+<p>挂载完成后执行<code>reboot</code>命令重启电脑，重启后我们就可以到/mnt/sdb目录下查看硬盘内容了</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20164125.jpg" alt="查看硬盘数据"></p>
+<h1 id="查看硬盘使用状态"><a href="#查看硬盘使用状态" class="headerlink" title="查看硬盘使用状态"></a>查看硬盘使用状态</h1><p>除了在WEB-UI管理界面中查看硬盘使用状态，我们也可以在命令行中输入<strong>df -h</strong>查看硬盘使用状态<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20164727.jpg" alt="硬盘使用状态"><br>Size为总分区大小<br>Used为已使用<br>Avail为可用容量<br>Use%为使用百分比<br>Mounted on为挂载点</p>
+]]></content>
+      <categories>
+        <category>家庭NAS、HTPC服务器</category>
+      </categories>
+      <tags>
+        <tag>NAS系统</tag>
+        <tag>家庭影音</tag>
+        <tag>HTPC服务器</tag>
+        <tag>linux硬盘挂载</tag>
+        <tag>ubuntu挂载硬盘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu18.04安装</title>
+    <url>/2019/12/24/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/2%E3%80%81Ubuntu18.04%E7%9A%84%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文为系列文章的第二篇，关于本专栏相关文章可以到文末专栏目录查看。</p>
+<p>就这样，请拥有，并享受。<br><a id="more"></a></p>
+<h1 id="制作安装镜像"><a href="#制作安装镜像" class="headerlink" title="制作安装镜像"></a>制作安装镜像</h1><h2 id="下载操作系统镜像"><a href="#下载操作系统镜像" class="headerlink" title="下载操作系统镜像"></a>下载操作系统镜像</h2><p>首先到Ubuntu中国官网下载最新版本的Ubuntu18.04桌面版</p>
+<p>下载传送门：点击这里</p>
+<p>step1.点击桌面系统<br><img src="https://raw.githubusercontent.com/yurui105/image/master/0.jpg" alt="ubuntu首页"></p>
+<p>step2.点击下载Ubuntu<br><img src="https://raw.githubusercontent.com/yurui105/image/master/1.jpg" alt="桌面系统主页"></p>
+<p>step3.点击Ubuntu18.04.3 LTS后面的直接下载<br><img src="https://raw.githubusercontent.com/yurui105/image/master/2.jpg" alt="下载界面"></p>
+<p>在写文章时的官方最新版本为18.04.3，具体可能会有变化。</p>
+<p>LTS为官方长期支持版本，你也可以选择下载最新的试用版本，具体看个人怎么选择，官方也对各版本有详细的说明。个人建议选择LTS版本。</p>
+<p>注！可以选择BT下载，这样下载速度会比较快。</p>
+<h2 id="下载启动盘制作工具"><a href="#下载启动盘制作工具" class="headerlink" title="下载启动盘制作工具"></a>下载启动盘制作工具</h2><p>制作启动盘的工具市面上有很多，可以参考网络上其他同类文章，这里选择用UltraISO作为制作工具。</p>
+<p>UltraISO传送门：点击这里</p>
+<p>step1.点击导航栏<strong>下载</strong><br><img src="https://raw.githubusercontent.com/yurui105/image/master/4%E3%80%81ultraiso.jpg" alt="UltraISO官网主页"></p>
+<p>step2.点击<strong>免费下载试用</strong><br><img src="https://raw.githubusercontent.com/yurui105/image/master/5.jpg" alt="下载界面"></p>
+<p>step3.安装</p>
+<p>这里就部展开详述了，安装完成后打开，会跳出窗口订购，在这里点击下方的试用即可。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115307.jpg" alt="UltraISO订阅界面"></p>
+<h2 id="制作镜像"><a href="#制作镜像" class="headerlink" title="制作镜像"></a>制作镜像</h2><p>重要！！！制作U盘安装工具会擦除U盘所有数据，请提前备份好U盘数据！！！</p>
+<p>step1.打开刚才下载的Ubuntu安装镜像<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115730.jpg" alt="UltraISO软件界面"><br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115759.jpg" alt="加载安装镜像后"></p>
+<p>step2.安装镜像文件到U盘</p>
+<p>注：一下操作会擦除U盘数据，请做好备份。</p>
+<p>点击菜单栏启动—&gt;写入硬盘镜像</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115816.jpg" alt="制作镜像启动"></p>
+<p>之后会跳出一个窗口，磁盘驱动器处选择要作为启动盘的U盘，其它选项默认，然后点击写入，整个过程会持续几分钟，待进度条跑完后及完成（注意错误提示，并在网上寻求解决方案）。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115857.jpg" alt="镜像写入"></p>
+<p>到此不出意外的话整个启动U盘就制作好了。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>接下来你需要设置主板从U盘启动，不同的主板设置不一样，在此不做任何操作说明，具体你可以百度主板型号+U盘启动来寻找你主板对应的设置方法。</p>
+<p>从U盘启动后，会看到下图的界面，全部默认，点击install ubuntu（安装ubuntu）</p>
+<p>（你也可以选择其他语言，但是建议选择英文，中文安装后在后续的操作目录切换中特别麻烦，你还需要安装一个中文编译器，但是相信我，作为nas的操作系统，你需要中文输入的地方很少，尤其是对于linux，只会增加一些没用且繁琐的折腾，所以选择英文就好）<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20170625.jpg" alt="Welcome界面"></p>
+<p>之后选择键盘和布局，这里默认就好，然后点击continue（继续）。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20170644.jpg" alt="​选择键盘和布局"></p>
+<p>之后跳转到​下图界面，选择Minimal installation（最小化安装）即可，Normal installation（正常安装）提供了较为完整的软件，但那些都是我们用不到的东西。</p>
+<p>Download updates while installing Ubuntu（安装过程中更新软件）选上这个会在安装的过程中更新软件包，会增加安装时间。可以在后续安装完成后更新。</p>
+<p>install third-party software······这个选项勾上，会为你安装硬件驱动等，减少后期工作量。</p>
+<p>完成后点击continue</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20170709.jpg" alt="​更新以及第三方软件"></p>
+<p>之后选择安装类型，如果你懒得折腾，选择默认的即可，你也可以选择Something else来自定义安装，如果你没有相关linux基础，建议选择默认，如果你有相关基础，相信你会自己做出选择。</p>
+<p>然后点击continue<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20170730.jpg" alt="​安装类型"></p>
+<p>这里提示你会擦除硬盘内容，叫你确认。</p>
+<p>没有其他任何问题的话这里选择continue<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20171232.jpg" alt="​确认框"></p>
+<p>之后选择时区，选择shanghai即可，然后continue。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20171313.jpg" alt="选择时区"></p>
+<p>下面进行用户配置</p>
+<p>your name：用户名</p>
+<p>your computer name：计算机名</p>
+<p>pick a username：登录用户名（不要为中文）</p>
+<p>choose a password：密码</p>
+<p>confirm your password：确认密码</p>
+<p>然后勾选下面的log in automatically，点击continue<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20171349.jpg" alt="用户信息​"></p>
+<p>之后进入到漫长的安装过程，只需等待即可，整个过程看你的网络情况，从几十分到几小时不等，ubuntu服务器在国外，访问会比较慢，可以使用梯子。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20171407.jpg" alt="安装过程"></p>
+<p>安装完成后会跳出一个弹窗，这里选择restart now（重启）</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20175101.jpg" alt="重启界面"></p>
+<p>好了，到这里这个安装过程就结束了，而折腾的真个nas过程也就完成了60%了。</p>
+<p>是不是很兴奋。</p>
+<h1 id="专栏目录"><a href="#专栏目录" class="headerlink" title="专栏目录"></a>专栏目录</h1><p>注！[✔]表示已更新，[✖] 表示未更新</p>
+<p>[✔] 前言</p>
+<p>[✔] Ubuntu18.04的安装</p>
+<p>[✖] Linux的基本操作</p>
+<p>[✖] 基本工具安装及使用</p>
+<p>[✖] Docker安装</p>
+<p>[✖] 控制面板</p>
+<p>[✖] jellyfin影音服务</p>
+<p>[✖] 网盘服务</p>
+<p>[✖] 下载工具</p>
+<p>[✖] 笔记管理</p>
+<p>[✖] 手机开关机</p>
+]]></content>
+      <categories>
+        <category>家庭NAS、HTPC服务器</category>
+      </categories>
+      <tags>
+        <tag>NAS系统</tag>
+        <tag>家庭影音</tag>
+        <tag>HTPC服务器</tag>
+        <tag>Ubuntu18.04安装</tag>
+        <tag>Ubuntu安装</tag>
       </tags>
   </entry>
   <entry>
@@ -765,31 +862,95 @@
       </tags>
   </entry>
   <entry>
-    <title>SSH工具Xshell的安装以及使用</title>
-    <url>/2019/12/26/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/4%E3%80%81SSH%E5%B7%A5%E5%85%B7Xshell%E7%9A%84%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>在原本的计划中并没有准备专门写一篇关于SSH远程连接的教程，但想了想，该专栏文章应该致力于让所有读者都能看懂，即使你是从未使用过Linux操作系统的小白。</p>
-<p>当然，本文仅介绍了XShell的试用，你也可以选择其他软件，这都一样，并不影响你的使用。</p>
-<p>如果你已经有相关的使用经验，那么你可以直接跳过本章，毕竟下面的内容会浪费你宝贵生命中的几分钟。</p>
-<p>就这样，请拥有，并享受。<br><a id="more"></a></p>
-<h1 id="下载Xshell"><a href="#下载Xshell" class="headerlink" title="下载Xshell"></a>下载Xshell</h1><p>首先到XShell的官网：<a href="https://www.netsarang.com/zh/xshell/" target="_blank" rel="noopener">点击这里</a>点击<strong>下载</strong>按钮，之后会跳转到一个信息填写页面，可以申请30天的免费试用。作为学校和家庭用户，点击右边的<a href="https://www.netsarang.com/zh/free-for-home-school/" target="_blank" rel="noopener"><strong>免费授权页面</strong></a>可以申请免费使用。</p>
-<p>填写完信息后下载链接会发送到你所填写的邮箱中，点击里面的下载链接即可下载。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20060647.jpg" alt="Xshell主页"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20060720.jpg" alt="信息填写"></p>
-<h1 id="使用Xshell"><a href="#使用Xshell" class="headerlink" title="使用Xshell"></a>使用Xshell</h1><p>下载完成安装后，打开软件可以看到下图所示的页面。<br>（我这里以及添加有很多连接，可以忽略）</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/Xshell%E5%90%AF%E5%8A%A8%E7%95%8C%E9%9D%A2.jpg" alt="XShell软件启动"></p>
-<p>然后点击对话框左上角添加按钮，在弹出的对话框<strong>名称</strong>处输入你想要的名称，<strong>主机</strong>一栏输入你在<strong>第一篇文章中</strong>所查看的主机<strong>IP</strong></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%B7%BB%E5%8A%A0%E4%B8%BB%E6%9C%BA.jpg" alt="IP输入"></p>
-<p>然后点击界面左边的<strong>用户身份验证</strong>，进入后输入<strong>用户名</strong>和<strong>密码</strong>，该用户名和密码为你在安装Ubuntu时设置的用户名以及密码。</p>
-<p>然后点击连接，中途会跳出是否保存用户名密码，自己根据情况选择；在跳出密钥接收保存询问框的时候选择接收并保存。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81.jpg" alt="用户名密码输入"></p>
-<p>然后看到下如所示的提示信息即说明连接成功。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20062918.jpg" alt="连接成功"></p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>整个NAS的前期准备工作到此就结束了，在接下来的文章中我们将一同探讨大家比较关心的影音服务、管理面板、网盘工具等内容的搭建了。</p>
-<p>前面的文章看起来多少有些无趣，但这却是整个系统管理中不可获缺的。如上面提到的基本命令，这将是你使用频率非常高的命令，甚至可以说这些是你进行接下来的工作不可少的东西，如果你还没有掌握它的话，应该利用闲余的几分钟去了解一下它。</p>
-<p>使用Ubuntu的过程中，你或多或少会在搜索引擎中查找相应技术文章，再次过程中你将会感受到计算机专业的开源精神。</p>
-<p>但是，在寻求解决方案的时候<strong>请不要轻易尝试别人给你的命令，除非你想把之前的工作从头再来一遍</strong>。执行任何含有<strong>rm</strong>的命令你都应当十分小心地确认你的操作，尤其是在你的数据盘中。</p>
-<p>请牢记好上面的内容，<strong>必要的时候请先在虚拟机中验证它的正确性</strong>。</p>
-<h1 id="专栏导航"><a href="#专栏导航" class="headerlink" title="专栏导航"></a>专栏导航</h1>]]></content>
+    <title>Ubuntu下Docker的安装与使用</title>
+    <url>/2019/12/30/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/8%E3%80%81Ubuntu%E4%B8%8BDocker%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>经过前面那么多期的铺垫，今天我们终于可以来安装使用我么的docker了。这是一个非常好用的工具，我们的NAS服务百分之九十都会部署在docker上运行。</p>
+<p>有了docker以后，你不再需要小心翼翼地担心把系统配置搞乱无法恢复，在这里你可以通过几个简单地命令就可以将相关服务重新部署回来。</p>
+<p>就这样，请拥有，并享受<br><a id="more"></a></p>
+<h1 id="Docker简介"><a href="#Docker简介" class="headerlink" title="Docker简介"></a>Docker简介</h1><p>如你并不想了解Docker是什么，只需要能简单的用就行地话你可以跳过本小节，直接进入Docker的安装部分。</p>
+<p>关于Docker的详细信息我们可以去Docker的官网查看，<a href="https://docs.docker.com/" target="_blank" rel="noopener">点击这里</a>可以跳转。</p>
+<blockquote>
+<p>Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的镜像中，然后发布到任何流行的 Linux或Windows 机器上，也可以实现虚拟化。容器是完全使用沙箱机制，相互之间不会有任何接口。</p>
+</blockquote>
+<p>这是百科对Docker的解释，看到这里是不是很懵，不要紧，我来为你解释。</p>
+<p>Docker是一个容器引擎，容器就是用来放东西的，Docker容器里面放的就是操作系统，一个容器对应一个操作系统，你可以把Docker想象成虚拟机，但是和虚拟机不同的是，得益于Docker的机制，在Docker中运行虚拟机往往不需要很多内存以及处理器资源，相比VMWare动则几个G的大小，在Docker中运行一个虚拟机仅需几十兆到几百兆的空间，你可以运行几十甚至上百个虚拟机在Docker中，这是VMWare所不能比的。</p>
+<p>在开始搭建之前，你需要了解docker的几个基本概念</p>
+<p>镜像：镜像就是实际就类似于一个安装镜像，比如你需要安装Windows，那么你需要去微软的官网下载windows的镜像，你才能进行安装。</p>
+<p>DockerHub：DockerHub就是一个存放以及分享镜像的地方，你可以将你自己制作的镜像上传到DockerHub与别人分享，你也可以到DockerHub下载别人分享的镜像进行使用。</p>
+<p>容器：当你启动了一个镜像之后，对应着就会有一个容器生成，容器是用来存储镜像运行时的状态的，这就相当于你通过镜像创建了一个虚拟机，那么创建完成后你的虚拟机就跑在了容器中。镜像是静态的，而容器是动态的。</p>
+<p>有了对Docker的一个简单了解后，我们就可以进行接下来的操作了。</p>
+<h1 id="Docker安装与卸载"><a href="#Docker安装与卸载" class="headerlink" title="Docker安装与卸载"></a>Docker安装与卸载</h1><h2 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h2><p>在apt的官方源中已经加入了Docker，但是这往往不是最新的版本，要安装最新的版本，我们需要进行一些简单的配置。</p>
+<p>Docker提供了<code>Enterprise</code>以及<code>Community</code>两个版本可供安装，我们只需要安装<code>Community</code>版即可，这是一个社区版，可以免费使用。</p>
+<p>如果你以及安装了一个老的版本的Docker，那么你需要先卸载它，老版本的Docker软件名字为<code>docker</code>、<code>docker.io</code>或者是<code>docker-engine</code>，你可以通过下面语句卸载它。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get remove docker docker-engine docker.io containerd runc</span><br></pre></td></tr></table></figure>
+<ol>
+<li>首先更新<code>apt</code>包的索引：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure></li>
+<li><p>安装软件包以允许<code>apt</code>通过<code>HTTPS</code>使用存储库：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get install \</span><br><span class="line">    apt-transport-https \</span><br><span class="line">    ca-certificates \</span><br><span class="line">    curl \</span><br><span class="line">    gnupg-agent \</span><br><span class="line">    software-properties-common</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加Docker的官方GPG密钥：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">curl -fsSL https:&#x2F;&#x2F;download.docker.com&#x2F;linux&#x2F;ubuntu&#x2F;gpg | sudo apt-key add -</span><br></pre></td></tr></table></figure>
+<p><code>9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88</code>通过搜索指纹的后8个字符，验证您现在是否拥有带有指纹的密钥 。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-key fingerprint 0EBFCD88</span><br></pre></td></tr></table></figure>
+<p>执行后出现以下内容即添加成功</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pub   rsa4096 2017-02-22 [SCEA]</span><br><span class="line">      9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88</span><br><span class="line">uid           [ unknown] Docker Release (CE deb) &lt;docker@docker.com&gt;</span><br><span class="line">sub   rsa4096 2017-02-22 [S]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用以下命令来设置稳定的存储库</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo add-apt-repository \</span><br><span class="line">   &quot;deb [arch&#x3D;amd64] https:&#x2F;&#x2F;download.docker.com&#x2F;linux&#x2F;ubuntu \</span><br><span class="line">   $(lsb_release -cs) \</span><br><span class="line">   stable&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新<code>apt</code>包索引。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装最新版本的Docker Engine-Community和containerd</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>验证安装是否成功</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker --version</span><br></pre></td></tr></table></figure>
+<p>如果出现如下的版本号，即为安装成功</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Docker version 19.03.5, build 633a0ea838</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="Docker卸载"><a href="#Docker卸载" class="headerlink" title="Docker卸载"></a>Docker卸载</h2><ol>
+<li>卸载Docker Engine-社区软件包：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt purge docker-ce</span><br></pre></td></tr></table></figure></li>
+<li>主机上的映像，容器，卷或自定义配置文件不会自动删除。要删除所有图像，容器和卷：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo rm -rf &#x2F;var&#x2F;lib&#x2F;docker</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="Docker配置及基本使用"><a href="#Docker配置及基本使用" class="headerlink" title="Docker配置及基本使用"></a>Docker配置及基本使用</h1><p>在完成docker的安装后，我们就可以开始使用docker来部署服务了，在此之前，我们先来学习一下docker的基本使用方法。</p>
+<p>在docker中你首先需要有镜像文件（images），你才可以通过镜像来部署相关服务，镜像的话你可以到DockerHub获取，也可以自己写dockerfile来构建镜像（本专栏不涉及）。</p>
+<h2 id="Docker配置"><a href="#Docker配置" class="headerlink" title="Docker配置"></a>Docker配置</h2><ol>
+<li>修改镜像源<br>docker服务器在国外，在国内访问速度很慢，我们可以通过修改镜像源为阿里云来启用加速</li>
+</ol>
+<p>首先到阿里云<a href="https://www.aliyun.com/product/acr" target="_blank" rel="noopener">镜像服务中心</a>，你需要登录阿里云。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20202216.jpg" alt="镜像服务中心"></p>
+<p>然后进入<strong>管理控制台</strong>，然后选择<code>镜像中心 -&gt; 镜像加速器</code></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20202344.jpg" alt="镜像加速器"><br>如果你没有的话会提示你进行申请，完成后会看到上图的信息，会提示你进行配置，配置的话你只需要将配置镜像加速器下方的代码复制到终端执行即可（如果你分不清命令的话一次性全部复制完，粘贴后按下回车键）。<br>这样当以后下载镜像的时候就会快很多。</p>
+<h2 id="Docker基本使用"><a href="#Docker基本使用" class="headerlink" title="Docker基本使用"></a>Docker基本使用</h2><ol>
+<li>获取镜像文件<br>首先到docker官网：<a href="https://hub.docker.com/" target="_blank" rel="noopener">点击这里</a>进行注册注册完成后登录<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20203405.jpg" alt="Docker官网"><br>然后点击左上角的搜索框输入需要搜索的东西可进行搜索，这里以搜索Ubuntu为例<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20203714.jpg" alt="镜像搜索"><br>完成搜索后我们可以看到列出了很多的项目，我们根据自己的需要点开一个镜像<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20203937.jpg" alt="镜像页面"><br>在这里我们我们可以看到相关的镜像描述以及基本的信息，右边有一栏黑色的代码框，通过输入代码框的命令我们即可获取相关的镜像。<br>在这里我们输入一下命令来获取镜像<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker pull ubuntu</span><br></pre></td></tr></table></figure>
+<img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20205329.jpg" alt="获取镜像"></li>
+</ol>
+<p>下载完成后我们可以通过以下命令查看本地的镜像<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure><br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20205540.jpg" alt="查看本地镜像"></p>
+<p><strong>REPOSITORY</strong>：镜像名<br><strong>TAG</strong>：标签：latest为最新版本<br><strong>IMAGE ID</strong>：镜像ID，镜像唯一标识符<br><strong>CREATED</strong>：构建时间<br><strong>SIZE</strong>:镜像大小</p>
+<ol>
+<li>构建容器<br>在有了本地镜像之后，我们就可以来构建容器了，我们先通过一个简单的例子来讲解<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">-p 9999:8096 \</span><br><span class="line">--name&#x3D;ubuntu \</span><br><span class="line">-v &#x2F;mnt&#x2F;sda:&#x2F;mnt \</span><br><span class="line">--restart&#x3D;always \</span><br><span class="line">--device &#x2F;dev&#x2F;dri&#x2F;renderD128:&#x2F;dev&#x2F;dri&#x2F;renderD128 \</span><br><span class="line">ubuntu</span><br></pre></td></tr></table></figure>
+出现下图所示内容即创建成功</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20210815.jpg" alt="创建成功"></p>
+<p>上面命令你也可以将\符去掉写成一行，这里来讲解一下各个参数的作用</p>
+<p>-d：表示运行容器后台运行<br>-p：端口映射，格式为<strong>主机端口：容器内端口</strong>，即通过主机的该端口既可以访问到容器内的端口内容<br>—name：命名容器，默认生成的容器名字是随机的，可以通过该命令指定<br>-v：绑定文件卷，格式为<strong>主机目录：容器内目录</strong>，在主机上的某一目录映射到容器内，即通过容器内指定的目录即可访问到主机对应的目录中的文件。<br>—restart：开机重启，always为开机重启<br>—device：绑定硬件到容器内部，在后面章节做详细讲解。</p>
+<h2 id="其他相关命令"><a href="#其他相关命令" class="headerlink" title="其他相关命令"></a>其他相关命令</h2><p>创建成功后我们可以通过如下命令查看正在运行的容器：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure><br>通过一下命令查看所用容器，包括未运行的容器：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure><br>停止容器：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker stop 容器名&#x2F;容器id</span><br></pre></td></tr></table></figure><br>这里容器id只需要输入前几位就可以，只要能和其他的区别开来就行</p>
+<p>启动容器：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker start 容器名&#x2F;容器id</span><br></pre></td></tr></table></figure><br>删除容器（删除前需要先停止容器）：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker rm 容器名&#x2F;容器id</span><br></pre></td></tr></table></figure><br>删除镜像（删除前需先删除用该镜像构建的容器）<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker rmi 镜像id</span><br></pre></td></tr></table></figure></p>
+<h1 id="命令总结"><a href="#命令总结" class="headerlink" title="命令总结"></a>命令总结</h1><ol>
+<li><code>docker pull</code>：拉取镜像</li>
+<li><code>docker images</code>：查看本地镜像</li>
+<li><code>docker run</code>：通过镜像构建容器</li>
+<li><code>docker ps</code>：查看正在运行的容器</li>
+<li><code>docker ps -a</code>：查看所有容器</li>
+<li><code>docker start</code>:启动容器</li>
+<li><code>docker stop</code>：停止容器运行</li>
+<li><code>docker rm</code>：查出容器</li>
+<li><code>docker rmi</code>：删除镜像</li>
+</ol>
+<h1 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h1><p>容器相对来说使用还是比较简单的，通过简单的学习就可以使用。如果你对其还不是很熟悉，你应该多去实际使用上面的命令，在这里你不用担心出错，大不了使用<code>docker rm</code>删除了再来一次，而不用担心物理机环境遭到破坏。</p>
+<h1 id="目录专栏"><a href="#目录专栏" class="headerlink" title="目录专栏"></a>目录专栏</h1>]]></content>
       <categories>
         <category>家庭NAS、HTPC服务器</category>
       </categories>
@@ -797,9 +958,8 @@
         <tag>NAS系统</tag>
         <tag>家庭影音</tag>
         <tag>HTPC服务器</tag>
-        <tag>xshell配置</tag>
-        <tag>ssh安装及使用</tag>
-        <tag>xshell安装</tag>
+        <tag>docker</tag>
+        <tag>ubuntu安装docker</tag>
       </tags>
   </entry>
   <entry>
@@ -936,95 +1096,43 @@
       </tags>
   </entry>
   <entry>
-    <title>Ubuntu下Docker的安装与使用</title>
-    <url>/2019/12/30/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/8%E3%80%81Ubuntu%E4%B8%8BDocker%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>经过前面那么多期的铺垫，今天我们终于可以来安装使用我么的docker了。这是一个非常好用的工具，我们的NAS服务百分之九十都会部署在docker上运行。</p>
-<p>有了docker以后，你不再需要小心翼翼地担心把系统配置搞乱无法恢复，在这里你可以通过几个简单地命令就可以将相关服务重新部署回来。</p>
-<p>就这样，请拥有，并享受<br><a id="more"></a></p>
-<h1 id="Docker简介"><a href="#Docker简介" class="headerlink" title="Docker简介"></a>Docker简介</h1><p>如你并不想了解Docker是什么，只需要能简单的用就行地话你可以跳过本小节，直接进入Docker的安装部分。</p>
-<p>关于Docker的详细信息我们可以去Docker的官网查看，<a href="https://docs.docker.com/" target="_blank" rel="noopener">点击这里</a>可以跳转。</p>
-<blockquote>
-<p>Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的镜像中，然后发布到任何流行的 Linux或Windows 机器上，也可以实现虚拟化。容器是完全使用沙箱机制，相互之间不会有任何接口。</p>
-</blockquote>
-<p>这是百科对Docker的解释，看到这里是不是很懵，不要紧，我来为你解释。</p>
-<p>Docker是一个容器引擎，容器就是用来放东西的，Docker容器里面放的就是操作系统，一个容器对应一个操作系统，你可以把Docker想象成虚拟机，但是和虚拟机不同的是，得益于Docker的机制，在Docker中运行虚拟机往往不需要很多内存以及处理器资源，相比VMWare动则几个G的大小，在Docker中运行一个虚拟机仅需几十兆到几百兆的空间，你可以运行几十甚至上百个虚拟机在Docker中，这是VMWare所不能比的。</p>
-<p>在开始搭建之前，你需要了解docker的几个基本概念</p>
-<p>镜像：镜像就是实际就类似于一个安装镜像，比如你需要安装Windows，那么你需要去微软的官网下载windows的镜像，你才能进行安装。</p>
-<p>DockerHub：DockerHub就是一个存放以及分享镜像的地方，你可以将你自己制作的镜像上传到DockerHub与别人分享，你也可以到DockerHub下载别人分享的镜像进行使用。</p>
-<p>容器：当你启动了一个镜像之后，对应着就会有一个容器生成，容器是用来存储镜像运行时的状态的，这就相当于你通过镜像创建了一个虚拟机，那么创建完成后你的虚拟机就跑在了容器中。镜像是静态的，而容器是动态的。</p>
-<p>有了对Docker的一个简单了解后，我们就可以进行接下来的操作了。</p>
-<h1 id="Docker安装与卸载"><a href="#Docker安装与卸载" class="headerlink" title="Docker安装与卸载"></a>Docker安装与卸载</h1><h2 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h2><p>在apt的官方源中已经加入了Docker，但是这往往不是最新的版本，要安装最新的版本，我们需要进行一些简单的配置。</p>
-<p>Docker提供了<code>Enterprise</code>以及<code>Community</code>两个版本可供安装，我们只需要安装<code>Community</code>版即可，这是一个社区版，可以免费使用。</p>
-<p>如果你以及安装了一个老的版本的Docker，那么你需要先卸载它，老版本的Docker软件名字为<code>docker</code>、<code>docker.io</code>或者是<code>docker-engine</code>，你可以通过下面语句卸载它。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get remove docker docker-engine docker.io containerd runc</span><br></pre></td></tr></table></figure>
+    <title>WEB-UI管理面板webmin（轻量级较全面）安装及使用</title>
+    <url>/2019/12/27/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/5%E3%80%81WEB-UI%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BFwebmin%EF%BC%88%E8%BD%BB%E9%87%8F%E7%BA%A7%E8%BE%83%E5%85%A8%E9%9D%A2%EF%BC%89%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>相信很多人选择黑群晖的原因之一是因为群晖有很好的图形化管理面板，其实Ubuntu，或者说linux也可以很好的图形化管理面板。</p>
+<p>本系列文章将介绍两种轻量级的管理面板<strong>Webmin(功能较全面)</strong>和<strong>Cockpit(功能简单)</strong>，对于那些功能全面的重量级面板，再次不做介绍，尽管那些工具开发得很完善，但是在家用nas上使用却显得有些臃肿了。</p>
+<p>就这样，请拥有，并享受。<br><a id="more"></a></p>
+<h1 id="Webmin安装"><a href="#Webmin安装" class="headerlink" title="Webmin安装"></a>Webmin安装</h1><p>对于Webmin的安装以及使用在它的官网中有详细的介绍，大家可以参考官网。</p>
+<p>传送门：<a href="http://www.webmin.com/" target="_blank" rel="noopener">点击这里</a></p>
 <ol>
-<li>首先更新<code>apt</code>包的索引：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure></li>
-<li><p>安装软件包以允许<code>apt</code>通过<code>HTTPS</code>使用存储库：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get install \</span><br><span class="line">    apt-transport-https \</span><br><span class="line">    ca-certificates \</span><br><span class="line">    curl \</span><br><span class="line">    gnupg-agent \</span><br><span class="line">    software-properties-common</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>添加Docker的官方GPG密钥：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">curl -fsSL https:&#x2F;&#x2F;download.docker.com&#x2F;linux&#x2F;ubuntu&#x2F;gpg | sudo apt-key add -</span><br></pre></td></tr></table></figure>
-<p><code>9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88</code>通过搜索指纹的后8个字符，验证您现在是否拥有带有指纹的密钥 。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-key fingerprint 0EBFCD88</span><br></pre></td></tr></table></figure>
-<p>执行后出现以下内容即添加成功</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pub   rsa4096 2017-02-22 [SCEA]</span><br><span class="line">      9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88</span><br><span class="line">uid           [ unknown] Docker Release (CE deb) &lt;docker@docker.com&gt;</span><br><span class="line">sub   rsa4096 2017-02-22 [S]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用以下命令来设置稳定的存储库</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo add-apt-repository \</span><br><span class="line">   &quot;deb [arch&#x3D;amd64] https:&#x2F;&#x2F;download.docker.com&#x2F;linux&#x2F;ubuntu \</span><br><span class="line">   $(lsb_release -cs) \</span><br><span class="line">   stable&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>更新<code>apt</code>包索引。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装最新版本的Docker Engine-Community和containerd</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>验证安装是否成功</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker --version</span><br></pre></td></tr></table></figure>
-<p>如果出现如下的版本号，即为安装成功</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Docker version 19.03.5, build 633a0ea838</span><br></pre></td></tr></table></figure>
-</li>
+<li>打开xshell并连接到主机，然后切换到<strong>root</strong>用户，执行一下命令下载软件包<br>（我在写文章安装时的版本为1.930，安装时可到官网查看最新版本）<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget http:&#x2F;&#x2F;prdownloads.sourceforge.net&#x2F;webadmin&#x2F;webmin_1.930_all.deb</span><br></pre></td></tr></table></figure>
+执行dpkg命令进行安装<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dpkg --install webmin_1.930_all.deb</span><br></pre></td></tr></table></figure>
+提示：在输入时可以使用Tab键进行命令补全。</li>
 </ol>
-<h2 id="Docker卸载"><a href="#Docker卸载" class="headerlink" title="Docker卸载"></a>Docker卸载</h2><ol>
-<li>卸载Docker Engine-社区软件包：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt purge docker-ce</span><br></pre></td></tr></table></figure></li>
-<li>主机上的映像，容器，卷或自定义配置文件不会自动删除。要删除所有图像，容器和卷：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo rm -rf &#x2F;var&#x2F;lib&#x2F;docker</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="Docker配置及基本使用"><a href="#Docker配置及基本使用" class="headerlink" title="Docker配置及基本使用"></a>Docker配置及基本使用</h1><p>在完成docker的安装后，我们就可以开始使用docker来部署服务了，在此之前，我们先来学习一下docker的基本使用方法。</p>
-<p>在docker中你首先需要有镜像文件（images），你才可以通过镜像来部署相关服务，镜像的话你可以到DockerHub获取，也可以自己写dockerfile来构建镜像（本专栏不涉及）。</p>
-<h2 id="Docker配置"><a href="#Docker配置" class="headerlink" title="Docker配置"></a>Docker配置</h2><ol>
-<li>修改镜像源<br>docker服务器在国外，在国内访问速度很慢，我们可以通过修改镜像源为阿里云来启用加速</li>
-</ol>
-<p>首先到阿里云<a href="https://www.aliyun.com/product/acr" target="_blank" rel="noopener">镜像服务中心</a>，你需要登录阿里云。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20202216.jpg" alt="镜像服务中心"></p>
-<p>然后进入<strong>管理控制台</strong>，然后选择<code>镜像中心 -&gt; 镜像加速器</code></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20202344.jpg" alt="镜像加速器"><br>如果你没有的话会提示你进行申请，完成后会看到上图的信息，会提示你进行配置，配置的话你只需要将配置镜像加速器下方的代码复制到终端执行即可（如果你分不清命令的话一次性全部复制完，粘贴后按下回车键）。<br>这样当以后下载镜像的时候就会快很多。</p>
-<h2 id="Docker基本使用"><a href="#Docker基本使用" class="headerlink" title="Docker基本使用"></a>Docker基本使用</h2><ol>
-<li>获取镜像文件<br>首先到docker官网：<a href="https://hub.docker.com/" target="_blank" rel="noopener">点击这里</a>进行注册注册完成后登录<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20203405.jpg" alt="Docker官网"><br>然后点击左上角的搜索框输入需要搜索的东西可进行搜索，这里以搜索Ubuntu为例<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20203714.jpg" alt="镜像搜索"><br>完成搜索后我们可以看到列出了很多的项目，我们根据自己的需要点开一个镜像<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20203937.jpg" alt="镜像页面"><br>在这里我们我们可以看到相关的镜像描述以及基本的信息，右边有一栏黑色的代码框，通过输入代码框的命令我们即可获取相关的镜像。<br>在这里我们输入一下命令来获取镜像<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker pull ubuntu</span><br></pre></td></tr></table></figure>
-<img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20205329.jpg" alt="获取镜像"></li>
-</ol>
-<p>下载完成后我们可以通过以下命令查看本地的镜像<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure><br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20205540.jpg" alt="查看本地镜像"></p>
-<p><strong>REPOSITORY</strong>：镜像名<br><strong>TAG</strong>：标签：latest为最新版本<br><strong>IMAGE ID</strong>：镜像ID，镜像唯一标识符<br><strong>CREATED</strong>：构建时间<br><strong>SIZE</strong>:镜像大小</p>
-<ol>
-<li>构建容器<br>在有了本地镜像之后，我们就可以来构建容器了，我们先通过一个简单的例子来讲解<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">-p 9999:8096 \</span><br><span class="line">--name&#x3D;ubuntu \</span><br><span class="line">-v &#x2F;mnt&#x2F;sda:&#x2F;mnt \</span><br><span class="line">--restart&#x3D;always \</span><br><span class="line">--device &#x2F;dev&#x2F;dri&#x2F;renderD128:&#x2F;dev&#x2F;dri&#x2F;renderD128 \</span><br><span class="line">ubuntu</span><br></pre></td></tr></table></figure>
-出现下图所示内容即创建成功</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20210815.jpg" alt="创建成功"></p>
-<p>上面命令你也可以将\符去掉写成一行，这里来讲解一下各个参数的作用</p>
-<p>-d：表示运行容器后台运行<br>-p：端口映射，格式为<strong>主机端口：容器内端口</strong>，即通过主机的该端口既可以访问到容器内的端口内容<br>—name：命名容器，默认生成的容器名字是随机的，可以通过该命令指定<br>-v：绑定文件卷，格式为<strong>主机目录：容器内目录</strong>，在主机上的某一目录映射到容器内，即通过容器内指定的目录即可访问到主机对应的目录中的文件。<br>—restart：开机重启，always为开机重启<br>—device：绑定硬件到容器内部，在后面章节做详细讲解。</p>
-<h2 id="其他相关命令"><a href="#其他相关命令" class="headerlink" title="其他相关命令"></a>其他相关命令</h2><p>创建成功后我们可以通过如下命令查看正在运行的容器：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure><br>通过一下命令查看所用容器，包括未运行的容器：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure><br>停止容器：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker stop 容器名&#x2F;容器id</span><br></pre></td></tr></table></figure><br>这里容器id只需要输入前几位就可以，只要能和其他的区别开来就行</p>
-<p>启动容器：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker start 容器名&#x2F;容器id</span><br></pre></td></tr></table></figure><br>删除容器（删除前需要先停止容器）：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker rm 容器名&#x2F;容器id</span><br></pre></td></tr></table></figure><br>删除镜像（删除前需先删除用该镜像构建的容器）<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker rmi 镜像id</span><br></pre></td></tr></table></figure></p>
-<h1 id="命令总结"><a href="#命令总结" class="headerlink" title="命令总结"></a>命令总结</h1><ol>
-<li><code>docker pull</code>：拉取镜像</li>
-<li><code>docker images</code>：查看本地镜像</li>
-<li><code>docker run</code>：通过镜像构建容器</li>
-<li><code>docker ps</code>：查看正在运行的容器</li>
-<li><code>docker ps -a</code>：查看所有容器</li>
-<li><code>docker start</code>:启动容器</li>
-<li><code>docker stop</code>：停止容器运行</li>
-<li><code>docker rm</code>：查出容器</li>
-<li><code>docker rmi</code>：删除镜像</li>
-</ol>
-<h1 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h1><p>容器相对来说使用还是比较简单的，通过简单的学习就可以使用。如果你对其还不是很熟悉，你应该多去实际使用上面的命令，在这里你不用担心出错，大不了使用<code>docker rm</code>删除了再来一次，而不用担心物理机环境遭到破坏。</p>
-<h1 id="目录专栏"><a href="#目录专栏" class="headerlink" title="目录专栏"></a>目录专栏</h1>]]></content>
+<p>在执行上面的语句时，你可能会得到下面的报错：</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20072855.jpg" alt="缺少编译环境"></p>
+<p>这是由于缺少编译环境导致的，输入以下命令安装相关相关工具<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt install perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python</span><br></pre></td></tr></table></figure><br>在输入完上述命令后，可能还会出现一个错误如下：</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20073439.jpg" alt="错误提示"></p>
+<p>此时我们按照提示运行输入<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt --fix-broken install</span><br></pre></td></tr></table></figure><br>然后再运行<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dpkg --install webmin_1.930_all.deb</span><br></pre></td></tr></table></figure><br>即可安装成功，安装完成后如下图</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20073838.jpg" alt="安装完成"></p>
+<p>Webmin默认安装到<code>/usr/share/webmin</code>目录下，我们可以通过<code>https://服务器ip:10000/</code>来登录管理面板；登录密码为<code>root</code>密码或者可以运行<code>sudo su</code>的管理者用户名密码来登录。</p>
+<p>（因为Ubuntu不允许使用<code>root</code>来作为默认登录用户，你可以使用其它可以执行<code>sudo su</code>切换到管理员权限的用户名密码来作为登录用户）</p>
+<h1 id="Webmin配置"><a href="#Webmin配置" class="headerlink" title="Webmin配置"></a>Webmin配置</h1><p>完成安装后我们用浏览器打开<code>https://服务器ip:10000/</code>来进入管理面板，打开后会跳出一个错误页面，点击提示中的URL链接即可正常进入。<br>（如果浏览器有安全警告，直接跳过继续前往即可）</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20084600.jpg" alt="打开跳转提示"></p>
+<p>之后便是登录界面，输入上面提到的用户名密码进行登录</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20084629.jpg" alt="登录"></p>
+<p>完成登录后就进入到管理面板的界面了</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20085032.jpg" alt="管理面板界面"></p>
+<p>现在界面显示的英文，我们可以到<code>Webmin -&gt; Webmin Configuration -&gt; Language and Locale</code>将语言改为中文，记得保存。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20085522.jpg" alt="更改语言"></p>
+<p>我们可以在面板中很直观地查看到系统的相关信息以及进行相关配置。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20085758.jpg" alt="系统监视"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20085945.jpg" alt="网络管理"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20090041.jpg" alt="磁盘管理"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20090156.jpg" alt="开关机管理"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20090317.jpg" alt="进程管理"></p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>Webmin的功能还是比较全面的，可以通过安装模块来扩展功能，支持集群管理等。</p>
+<p>到这里本篇文章就结束了，以后就可以通过浏览器来查看以及管理nas了。</p>
+<h1 id="专栏目录"><a href="#专栏目录" class="headerlink" title="专栏目录"></a>专栏目录</h1>]]></content>
       <categories>
         <category>家庭NAS、HTPC服务器</category>
       </categories>
@@ -1032,8 +1140,58 @@
         <tag>NAS系统</tag>
         <tag>家庭影音</tag>
         <tag>HTPC服务器</tag>
-        <tag>docker</tag>
-        <tag>ubuntu安装docker</tag>
+        <tag>linux管理面板</tag>
+        <tag>WEB-UI管理面板</tag>
+        <tag>webmin</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数列极限的定义及应用</title>
+    <url>/2020/06/04/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%8A%E5%BA%94%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="数列极限的定义"><a href="#数列极限的定义" class="headerlink" title="数列极限的定义"></a>数列极限的定义</h1><h2 id="概念引入"><a href="#概念引入" class="headerlink" title="概念引入"></a>概念引入</h2><p>我们先来看一个数列$x_n=\frac{1}{n}$</p>
+<p>当$n=1$时，$x_1=\frac{1}{1}=1$</p>
+<p>当$n=2$时，$x_2=\frac{1}{2}$</p>
+<a id="more"></a>
+<p>$\cdots$</p>
+<p>当$n=1000$时，$x_{1000}=\frac{1}{1000}$</p>
+<p>$\cdots$</p>
+<p>当$n\to\infty$时，数列$x_n$的值无限接近$0$。如下图所示：</p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200604165314460.png" alt="image-20200604165314460"></p>
+<p>此时我们就可以说$\underset{n\to \infty }{\text{lim}}\frac{1}{n}=0$。这样我们就可以给出数列极限的一个直观定义：</p>
+<script type="math/tex; mode=display">
+\underset{n\to \infty }{\text{lim}}x_n=A\Longleftrightarrow n\to \infty ,x_n\rightarrow A</script><blockquote>
+<p>当$n$趋近于无穷大时，数列极限$x_n$<strong>无限接近</strong>于一个值$A$。</p>
+</blockquote>
+<p>用<strong>无限接近</strong>来描述这个定义是不严谨的，我们需要找到一种更加精确的语言来描述这段话。那么如何用数学语言来描述这一变化呢？？</p>
+<h2 id="数列极限定义"><a href="#数列极限定义" class="headerlink" title="数列极限定义"></a>数列极限定义</h2><h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><p>分析数列$a_n=\frac{(-1)^n }{n}\sin \left(\frac{1}{n}\right)$的变化趋势</p>
+<p>我们任意给定一个$\varepsilon&gt;0$，$\varepsilon$为一个任意小的值，总存在一个$N$(这里的$N$指数列的第$N$项)，当$n&gt;N$时，总存在$|a_n-0|&lt;\frac{1}{n}$，如下</p>
+<ul>
+<li>取$\varepsilon=\frac{1}{2}$，当$n&gt;2$，有$|a_n-0|&lt;\frac{1}{n}&lt;\varepsilon\Longrightarrow n&gt;N_1=2,|a_n-0|&lt;\frac{1}{2}$。</li>
+<li>取$\varepsilon=\frac{1}{2^2}$，当$n&gt;2^2$，有$|a_n-0|&lt;\frac{1}{n}&lt;\varepsilon\Longrightarrow n&gt;N_2=2^2,|a_n-0|&lt;\frac{1}{2^2}$。</li>
+<li>取$\varepsilon=\frac{1}{2^k}$，当$n&gt;2^k$，有$|a_n-0|&lt;\frac{1}{n}&lt;\varepsilon\Longrightarrow n&gt;N_k=2^k,|a_n-0|&lt;\frac{1}{2^k}$。</li>
+</ul>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>给定数列$\left \{a_n \right\}$，$a$为常数，如果对于任意的$\varepsilon&gt;0$，都存在一个自然数$N$，使得当$n&gt;N$时，成立</p>
+<script type="math/tex; mode=display">
+|a_n-a|<\varepsilon</script><p>则称数列$\left \{a_n \right\}$以$a$为极限，记作$\underset{n\to \infty }{\text{lim}}a_n=a$</p>
+<p>如果该数列没有极限，则称该数列是<strong>发散</strong>的。</p>
+<p>需要注意</p>
+<ul>
+<li>定义中的$\varepsilon$刻画了$x_n$与$a$的逼近程度，定义中的$\varepsilon$可以限制$\varepsilon &lt; a$</li>
+<li>定义中的$N$和$\varepsilon$有关，仅要求存在，一般$\varepsilon$越小，$N$越大。</li>
+</ul>
+<h3 id="数学符号描述"><a href="#数学符号描述" class="headerlink" title="数学符号描述"></a>数学符号描述</h3><script type="math/tex; mode=display">
+\forall \varepsilon > 0,\exists N(\varepsilon)\in N^*,\forall n>N:|x_n-a|<\varepsilon</script><p>其中“$\forall$”表示任意的，“$\exists$”表示存在，“$:$”表示满足</p>
+<h3 id="几何解释"><a href="#几何解释" class="headerlink" title="几何解释"></a>几何解释</h3><p>推论$\underset{n\to \infty }{\text{lim}}a_n=a\Longleftrightarrow$当$n&gt;N$时，所有的点$x_n$都落在$(a-\varepsilon,a+\varepsilon)$内，只有有限个(最多$N$个落在其外)。</p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200605001400184.png" alt="image-20200605001400184"></p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200605001429236.png" alt="image-20200605001429236"></p>
+]]></content>
+      <categories>
+        <category>数学分析</category>
+      </categories>
+      <tags>
+        <tag>数列极限</tag>
+        <tag>数列极限定义</tag>
+        <tag>数列极限应用</tag>
       </tags>
   </entry>
   <entry>
@@ -1216,92 +1374,6 @@ c\vec{a}:=\begin{pmatrix}c\vec{a_1} \\\vdots \\c\vec{a_n}\end{pmatrix}.</script>
       <categories>
         <category>线性代数</category>
       </categories>
-  </entry>
-  <entry>
-    <title>Ubuntu挂载硬盘</title>
-    <url>/2019/12/29/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/7%E3%80%81Ubuntu%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/</url>
-    <content><![CDATA[<p>在开始下篇文章之前我觉得有必要讲解一下在linux中的硬盘挂载。这和Windows不同，Windows会自动扫描本地硬盘并为你自动挂载，但是linux不会值么做，它需要你自己去挂载硬盘到系统中。</p>
-<a id="more"></a>
-<p>如果你是新硬盘，你需要对硬盘进行格式化才能正常使用，linux支持ext4、NTFS等文件系统，在此建议将硬盘格式化为NTFS格式，这样就算你把硬盘从linux移动Windows环境下也可以正常使用，Windows不知EXT4文件系统。</p>
-<p>但是格式化NTFS也会带来一个弊端，就是你无法对文件进行权限操作，这样你在使用的时候应该小心一些，避免误操作删除硬盘数据。</p>
-<h1 id="格式化硬盘"><a href="#格式化硬盘" class="headerlink" title="格式化硬盘"></a>格式化硬盘</h1><p>如果你的硬盘已经格式化过存有数据的话，你应该跳过这一小节的内容，直接跳转到下一小节参考硬盘挂载操作。</p>
-<p>首先你需要查看设备位置，输入</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo fdisk -l</span><br></pre></td></tr></table></figure>
-<p>然后找到你需要挂载的硬盘，例如我在这里要挂载<strong>Disk /dev/sdb: 7.3 TiB</strong>这块磁盘，记下它的位置，这里为/dev/sdb</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20160129.jpg" alt="查看硬盘设备"></p>
-<h2 id="格式化为EXT4格式"><a href="#格式化为EXT4格式" class="headerlink" title="格式化为EXT4格式"></a>格式化为EXT4格式</h2><p>如果需要格式化为EXT4格式，只需要执行下面语句即可，将/dev/sdb换成你需要进行格式化操作的设备路径。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo mkfs.ext4  &#x2F;dev&#x2F;sdb</span><br></pre></td></tr></table></figure></p>
-<h2 id="格式化为NTFS"><a href="#格式化为NTFS" class="headerlink" title="格式化为NTFS"></a>格式化为NTFS</h2><p>NTFS是windows的文件系统，在进行格式化操作之前需要安装一个工具，输入下面命令进行安装。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt -y install ntfsprogs</span><br></pre></td></tr></table></figure><br>安装完成后执行格式化语句，这里同样将/dev/sdb更改为你要执行格式化操作的设备路径。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo mkntfs -f &#x2F;dev&#x2F;sdb</span><br></pre></td></tr></table></figure><br>到此就将硬盘格式化完成了，接下来进行挂载操作</p>
-<h1 id="挂载硬盘"><a href="#挂载硬盘" class="headerlink" title="挂载硬盘"></a>挂载硬盘</h1><p>在进行挂载操作之前需要先查看硬盘的UUID值，输入sudo blkid进行查看</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20162314.jpg" alt="UUID值"></p>
-<p>这里假设我们要挂载/dev/sdb1: LABEL=”mybook” UUID=”21B724CC1FE1D190” TYPE=”ntfs” ···这块硬盘，我们选中UUID后面的值（不要双引号），在xshell中可以右键复制下来。</p>
-<p>然后创建一个挂载点，这个挂载点就是你以后打开查看硬盘内容的地方，这里假设我们需要将硬盘挂载到/mnt/sdb这个路径。你可以选择其他任何一个你觉得可以的地方进行挂载。<br>首先执行<strong>cd /mnt</strong>进入到mnt目录。<br>然后执行<strong>mkdir sdb</strong>创建一个名为sdb的文件夹，这个文件夹为我们需要挂载硬盘的地方。</p>
-<p>然后编辑系统挂载配置文件/etc/fstab</p>
-<p>执行<strong>vim /etc/fstab</strong>打开配置文件，可以看到下图所示的内容<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20163118.jpg" alt="fstab文件"></p>
-<p>这里的格式为<strong>设备名称 挂载点 分区类型 挂载选项 dump选项 fsck选项</strong><br>dump为0表示不进行备份<br>fsck为启动时检查顺序，0为不检查，/更目录为1，其他只能从2开始</p>
-<p>添加要挂载的内容到末行，这里我们以刚才的为例<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20163801.jpg" alt="挂载设置"><br>挂载点为我们刚才设置的挂载路径/mnt/sdb，格式为NTFS（如果你格式化为ext4，这里就填ext4），挂载选项默认defaults，不进行备份，开机不检查。</p>
-<p>挂载完成后执行<code>reboot</code>命令重启电脑，重启后我们就可以到/mnt/sdb目录下查看硬盘内容了</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20164125.jpg" alt="查看硬盘数据"></p>
-<h1 id="查看硬盘使用状态"><a href="#查看硬盘使用状态" class="headerlink" title="查看硬盘使用状态"></a>查看硬盘使用状态</h1><p>除了在WEB-UI管理界面中查看硬盘使用状态，我们也可以在命令行中输入<strong>df -h</strong>查看硬盘使用状态<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20164727.jpg" alt="硬盘使用状态"><br>Size为总分区大小<br>Used为已使用<br>Avail为可用容量<br>Use%为使用百分比<br>Mounted on为挂载点</p>
-]]></content>
-      <categories>
-        <category>家庭NAS、HTPC服务器</category>
-      </categories>
-      <tags>
-        <tag>NAS系统</tag>
-        <tag>家庭影音</tag>
-        <tag>HTPC服务器</tag>
-        <tag>linux硬盘挂载</tag>
-        <tag>ubuntu挂载硬盘</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数列极限的定义及应用</title>
-    <url>/2020/06/04/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%8A%E5%BA%94%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="数列极限的定义"><a href="#数列极限的定义" class="headerlink" title="数列极限的定义"></a>数列极限的定义</h1><h2 id="概念引入"><a href="#概念引入" class="headerlink" title="概念引入"></a>概念引入</h2><p>我们先来看一个数列$x_n=\frac{1}{n}$</p>
-<p>当$n=1$时，$x_1=\frac{1}{1}=1$</p>
-<p>当$n=2$时，$x_2=\frac{1}{2}$</p>
-<a id="more"></a>
-<p>$\cdots$</p>
-<p>当$n=1000$时，$x_{1000}=\frac{1}{1000}$</p>
-<p>$\cdots$</p>
-<p>当$n\to\infty$时，数列$x_n$的值无限接近$0$。如下图所示：</p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200604165314460.png" alt="image-20200604165314460"></p>
-<p>此时我们就可以说$\underset{n\to \infty }{\text{lim}}\frac{1}{n}=0$。这样我们就可以给出数列极限的一个直观定义：</p>
-<script type="math/tex; mode=display">
-\underset{n\to \infty }{\text{lim}}x_n=A\Longleftrightarrow n\to \infty ,x_n\rightarrow A</script><blockquote>
-<p>当$n$趋近于无穷大时，数列极限$x_n$<strong>无限接近</strong>于一个值$A$。</p>
-</blockquote>
-<p>用<strong>无限接近</strong>来描述这个定义是不严谨的，我们需要找到一种更加精确的语言来描述这段话。那么如何用数学语言来描述这一变化呢？？</p>
-<h2 id="数列极限定义"><a href="#数列极限定义" class="headerlink" title="数列极限定义"></a>数列极限定义</h2><h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><p>分析数列$a_n=\frac{(-1)^n }{n}\sin \left(\frac{1}{n}\right)$的变化趋势</p>
-<p>我们任意给定一个$\varepsilon&gt;0$，$\varepsilon$为一个任意小的值，总存在一个$N$(这里的$N$指数列的第$N$项)，当$n&gt;N$时，总存在$|a_n-0|&lt;\frac{1}{n}$，如下</p>
-<ul>
-<li>取$\varepsilon=\frac{1}{2}$，当$n&gt;2$，有$|a_n-0|&lt;\frac{1}{n}&lt;\varepsilon\Longrightarrow n&gt;N_1=2,|a_n-0|&lt;\frac{1}{2}$。</li>
-<li>取$\varepsilon=\frac{1}{2^2}$，当$n&gt;2^2$，有$|a_n-0|&lt;\frac{1}{n}&lt;\varepsilon\Longrightarrow n&gt;N_2=2^2,|a_n-0|&lt;\frac{1}{2^2}$。</li>
-<li>取$\varepsilon=\frac{1}{2^k}$，当$n&gt;2^k$，有$|a_n-0|&lt;\frac{1}{n}&lt;\varepsilon\Longrightarrow n&gt;N_k=2^k,|a_n-0|&lt;\frac{1}{2^k}$。</li>
-</ul>
-<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>给定数列$\left \{a_n \right\}$，$a$为常数，如果对于任意的$\varepsilon&gt;0$，都存在一个自然数$N$，使得当$n&gt;N$时，成立</p>
-<script type="math/tex; mode=display">
-|a_n-a|<\varepsilon</script><p>则称数列$\left \{a_n \right\}$以$a$为极限，记作$\underset{n\to \infty }{\text{lim}}a_n=a$</p>
-<p>如果该数列没有极限，则称该数列是<strong>发散</strong>的。</p>
-<p>需要注意</p>
-<ul>
-<li>定义中的$\varepsilon$刻画了$x_n$与$a$的逼近程度，定义中的$\varepsilon$可以限制$\varepsilon &lt; a$</li>
-<li>定义中的$N$和$\varepsilon$有关，仅要求存在，一般$\varepsilon$越小，$N$越大。</li>
-</ul>
-<h3 id="数学符号描述"><a href="#数学符号描述" class="headerlink" title="数学符号描述"></a>数学符号描述</h3><script type="math/tex; mode=display">
-\forall \varepsilon > 0,\exists N(\varepsilon)\in N^*,\forall n>N:|x_n-a|<\varepsilon</script><p>其中“$\forall$”表示任意的，“$\exists$”表示存在，“$:$”表示满足</p>
-<h3 id="几何解释"><a href="#几何解释" class="headerlink" title="几何解释"></a>几何解释</h3><p>推论$\underset{n\to \infty }{\text{lim}}a_n=a\Longleftrightarrow$当$n&gt;N$时，所有的点$x_n$都落在$(a-\varepsilon,a+\varepsilon)$内，只有有限个(最多$N$个落在其外)。</p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200605001400184.png" alt="image-20200605001400184"></p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200605001429236.png" alt="image-20200605001429236"></p>
-]]></content>
-      <categories>
-        <category>数学分析</category>
-      </categories>
-      <tags>
-        <tag>数列极限</tag>
-        <tag>数列极限定义</tag>
-        <tag>数列极限应用</tag>
-      </tags>
   </entry>
   <entry>
     <title>计算机浮点数表示</title>
