@@ -25,13 +25,7 @@
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h1 id=&quot;类和对象&quot;&gt;&lt;a href=&quot;#类和对象&quot; class=&quot;headerlink&quot;
-        
-      
+      &lt;h1 id=&quot;类和对象&quot;&gt;&lt;a href=&quot;#类和对象&quot; class=&quot;headerlink&quot; title=&quot;类和对象&quot;&gt;&lt;/a&gt;类和对象&lt;/h1&gt;&lt;p&gt;在c语言中，程序是由若干的函数以及变量组成的，它们之间并没有很严格的关系，这就导致了当程序规模逐渐变大之后，就不易于程序的扩充以及维护。另外，当我们想要复用之前程序中的一些代码片段时，函数中的变量使得我们很难将其从程序中抽离出来。总之，结构化程序设计使得我们的程序难以扩充、难以维护、难以重用。&lt;/p&gt;
     
     </summary>
     
@@ -528,15 +522,15 @@ x_1+2x_2=4\\
       <category term="家庭NAS、HTPC服务器" scheme="http://www.yurui.tech/categories/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
     
-      <category term="Ubuntu18.04配置" scheme="http://www.yurui.tech/tags/Ubuntu18-04%E9%85%8D%E7%BD%AE/"/>
-    
-      <category term="Ubuntu配置" scheme="http://www.yurui.tech/tags/Ubuntu%E9%85%8D%E7%BD%AE/"/>
-    
       <category term="NAS系统" scheme="http://www.yurui.tech/tags/NAS%E7%B3%BB%E7%BB%9F/"/>
     
       <category term="家庭影音" scheme="http://www.yurui.tech/tags/%E5%AE%B6%E5%BA%AD%E5%BD%B1%E9%9F%B3/"/>
     
       <category term="HTPC服务器" scheme="http://www.yurui.tech/tags/HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+      <category term="Ubuntu18.04配置" scheme="http://www.yurui.tech/tags/Ubuntu18-04%E9%85%8D%E7%BD%AE/"/>
+    
+      <category term="Ubuntu配置" scheme="http://www.yurui.tech/tags/Ubuntu%E9%85%8D%E7%BD%AE/"/>
     
   </entry>
   
@@ -558,15 +552,15 @@ x_1+2x_2=4\\
       <category term="家庭NAS、HTPC服务器" scheme="http://www.yurui.tech/categories/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
     
+      <category term="Ubuntu18.04安装" scheme="http://www.yurui.tech/tags/Ubuntu18-04%E5%AE%89%E8%A3%85/"/>
+    
+      <category term="Ubuntu安装" scheme="http://www.yurui.tech/tags/Ubuntu%E5%AE%89%E8%A3%85/"/>
+    
       <category term="NAS系统" scheme="http://www.yurui.tech/tags/NAS%E7%B3%BB%E7%BB%9F/"/>
     
       <category term="家庭影音" scheme="http://www.yurui.tech/tags/%E5%AE%B6%E5%BA%AD%E5%BD%B1%E9%9F%B3/"/>
     
       <category term="HTPC服务器" scheme="http://www.yurui.tech/tags/HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
-      <category term="Ubuntu18.04安装" scheme="http://www.yurui.tech/tags/Ubuntu18-04%E5%AE%89%E8%A3%85/"/>
-    
-      <category term="Ubuntu安装" scheme="http://www.yurui.tech/tags/Ubuntu%E5%AE%89%E8%A3%85/"/>
     
   </entry>
   
@@ -587,8 +581,6 @@ x_1+2x_2=4\\
       <category term="C++" scheme="http://www.yurui.tech/categories/C/"/>
     
     
-      <category term="C++" scheme="http://www.yurui.tech/tags/C/"/>
-    
       <category term="cin.get函数" scheme="http://www.yurui.tech/tags/cin-get%E5%87%BD%E6%95%B0/"/>
     
       <category term="cin.getline函数" scheme="http://www.yurui.tech/tags/cin-getline%E5%87%BD%E6%95%B0/"/>
@@ -596,6 +588,8 @@ x_1+2x_2=4\\
       <category term="cin.get()" scheme="http://www.yurui.tech/tags/cin-get/"/>
     
       <category term="cin.getline()" scheme="http://www.yurui.tech/tags/cin-getline/"/>
+    
+      <category term="C++" scheme="http://www.yurui.tech/tags/C/"/>
     
       <category term="字符串输入" scheme="http://www.yurui.tech/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BE%93%E5%85%A5/"/>
     

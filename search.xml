@@ -146,6 +146,146 @@
       </tags>
   </entry>
   <entry>
+    <title>C++类和对象基础知识</title>
+    <url>/2020/07/08/C++/C-%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
+    <content><![CDATA[<h1 id="类和对象"><a href="#类和对象" class="headerlink" title="类和对象"></a>类和对象</h1><p>在c语言中，程序是由若干的函数以及变量组成的，它们之间并没有很严格的关系，这就导致了当程序规模逐渐变大之后，就不易于程序的扩充以及维护。另外，当我们想要复用之前程序中的一些代码片段时，函数中的变量使得我们很难将其从程序中抽离出来。总之，结构化程序设计使得我们的程序难以扩充、难以维护、难以重用。</p>
+<a id="more"></a>
+<p>c++在c语言的基础上增加了<strong>面向对象程序设计</strong>（Object-oriented programming，OOP）的机制，而面向对象的这种机制恰好解决了c语言结构化设计的这种缺陷。简单来说，在面向对象程序设计中，我们可以依照以下的设计方法：</p>
+<ol>
+<li>我们将某类客观事物的共同特点（属性）归纳出来，形成一个数据结构，可以用多个变量描述事物的属性。</li>
+<li>将这类事物所能进行的行为也归纳出来，形成函数，这些函数就用来操作数据结构。</li>
+<li>然后通过某种方式将这些数据结构与函数捆绑<strong>封装</strong>起来，从而形成一个类。</li>
+</ol>
+<p>需要注意的是，被封装的函数只能访问与它封装在一起的数据结构，反之，这些数据结构也只能被与它封装在一起的函数所操作。这样就使得某一类事物的数据结构只能由与之封装的函数进行操作，而其它函数是无法访问其数据结构的。</p>
+<div class="note info">
+            <p>案例<br>假设我们现在要实现一个矩形类，该如何表示呢？</p><ul><li>矩形有长(length)和宽(weight)两个属性</li></ul><p>作为一个矩形，可以有哪些行为呢？</p><ul><li>设置长和宽</li><li>计算面积</li><li>计算周长</li></ul>
+          </div>
+<h1 id="类的定义"><a href="#类的定义" class="headerlink" title="类的定义"></a>类的定义</h1><p>我们将上面的矩形属性长(length)和宽(weight)以及与之对应的行为封装在一起，就能形成一个矩形类。</p>
+<p>矩形属性成为“<strong>成员变量</strong>”，3个函数成为该类的“<strong>成员函数</strong>”，成员变量与成员函数统称为类的成员。</p>
+<p>实际上，类看上去就像带函数的结构。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">double</span> length;<span class="comment">//长</span></span><br><span class="line">	<span class="keyword">double</span> weight;<span class="comment">//宽</span></span><br><span class="line">    </span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">double</span> length_,<span class="keyword">double</span> weight_)</span> </span>&#123;<span class="comment">//设置长和宽</span></span><br><span class="line">		length = length_;<span class="comment">//设置长</span></span><br><span class="line">		weight = weight_;<span class="comment">//设置宽</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">Area</span><span class="params">()</span></span>&#123;<span class="comment">//计算面积</span></span><br><span class="line">		<span class="keyword">return</span> length * weight;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">Perimeter</span><span class="params">()</span> </span>&#123;<span class="comment">//计算周长</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">2</span> * (length + weight);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;<span class="comment">//分号不可省略</span></span><br></pre></td></tr></table></figure>
+<p>关键字 <strong>public</strong> 确定了类成员的访问属性。在类对象作用域内，公共成员在类的外部是可访问的。除了<strong>public</strong>，我们还可以指定成员为<strong>private</strong> 或 <strong>protected</strong>，我们将在后续进行讲解。</p>
+<p>这样我们就得到了一个矩形类。</p>
+<ul>
+<li><strong>length</strong> 和 <strong>weight</strong> 分别为矩形的长和宽</li>
+<li><strong>init</strong>、<strong>Area</strong>、<strong>Perimeter</strong>分别为类的成员函数，函数中的<strong>length</strong> 和 <strong>weight</strong> 指的是成员变量的<strong>length</strong> 和 <strong>weight</strong> 。</li>
+</ul>
+<h1 id="定义-C-对象"><a href="#定义-C-对象" class="headerlink" title="定义 C++ 对象"></a>定义 C++ 对象</h1><h2 id="普通定义"><a href="#普通定义" class="headerlink" title="普通定义"></a>普通定义</h2><p>我们有了<strong>Rectangle</strong>类之后就要去使用它，声明类的对象，就像声明基本数据类型的变量一样，如下代码所示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Rectangle r;<span class="comment">//声明一个对象</span></span><br><span class="line">	<span class="keyword">double</span> length = <span class="number">10.0</span>;</span><br><span class="line">	<span class="keyword">double</span> weight = <span class="number">10.0</span>;</span><br><span class="line">	r.init(length, weight);<span class="comment">//初始化对象</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"矩形面积为："</span> &lt;&lt; r.Area() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"矩形周长为："</span> &lt;&lt; r.Perimeter() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们声明了一个对象<code>r</code>,类型为<code>Rectangle</code>。<strong>我们通过<code>.</code>运算符可以访问类的成员</strong>，通过<code>r.init(length, weight);</code>来初始化对象，此时调用了类的成员函数<code>void init(double length_,double weight_)</code>，设置了矩形的长和宽。</p>
+<p>接下来，通过<code>r.Area()</code>以及<code>r.Perimeter()</code>计算矩形的面积以及周长，并通过<code>cout</code>输出，运行上面的代码，我们可以得到如下结果:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">矩形面积为：100</span><br><span class="line">矩形周长为：40</span><br></pre></td></tr></table></figure>
+<h2 id="通过指针定义"><a href="#通过指针定义" class="headerlink" title="通过指针定义"></a>通过指针定义</h2><p>除了上面所展示的普通定义之外，我们还可以通过指针来定义类的对象，其用法与基本数据类型的指针定义相同。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">double</span> length;<span class="comment">//长</span></span><br><span class="line">	<span class="keyword">double</span> weight;<span class="comment">//宽</span></span><br><span class="line">	Rectangle *r;<span class="comment">//声明一个对象指针</span></span><br><span class="line">	r = <span class="keyword">new</span> Rectangle;<span class="comment">//为对象动态分配内存空间</span></span><br><span class="line">	r-&gt;init(length, weight);<span class="comment">//初始化对象</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"矩形面积为："</span> &lt;&lt; r-&gt;Area() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"矩形周长为："</span> &lt;&lt; r-&gt;Perimeter() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">delete</span> r;<span class="comment">//释放动态分配的空间</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对象指针的创建与基本数据类型的指针定义相同，通过<code>Rectangle *r;</code>创建一个对象指针，并通过<code>new</code>运算符为其动态分配内存空间，值得注意的是，在访问对象的成员时，需要使用<code>-&gt;</code>运算符进行访问，而不再是<code>.</code>运算符。</p>
+<p>执行上面代码，我们可以获得与普通定义相同的结果：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">矩形面积为：100</span><br><span class="line">矩形周长为：40</span><br></pre></td></tr></table></figure>
+<p>最后，在使用完之后，我们需要使用<code>delete</code>运算符来释放动态分配的空间。</p>
+<p>通过类可以定义变量，类定义出来的<strong>变量</strong>，也成为类的实例，就是我们所说的<strong>对象</strong>。</p>
+<h1 id="访问数据成员"><a href="#访问数据成员" class="headerlink" title="访问数据成员"></a>访问数据成员</h1><p>类的对象的公共数据成员(<strong>public</strong>)可以使用直接成员访问运算符<code>.</code>或<code>-&gt;</code>来访问。</p>
+<h2 id="使用-访问"><a href="#使用-访问" class="headerlink" title="使用.访问"></a>使用<code>.</code>访问</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Rectangle r;<span class="comment">//声明一个对象</span></span><br><span class="line">	<span class="keyword">double</span> length = <span class="number">10.0</span>;</span><br><span class="line">	<span class="keyword">double</span> weight = <span class="number">10.0</span>;</span><br><span class="line">	r.init(length, weight);<span class="comment">//初始化对象</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"矩形长为："</span> &lt;&lt; r.length &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"矩形宽为："</span> &lt;&lt; r.weight &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>通过<code>r.init(length, weight);</code>，我们调用了初始化函数初始化了矩形的长和宽。</p>
+</li>
+<li><p>通过<code>r.length</code>，得到了矩形的长。</p>
+</li>
+<li><p>通过<code>r.weight</code>，得到了矩形的宽。</p>
+</li>
+</ul>
+<p>执行上面的代码，得到如下结果：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">矩形长为：10</span><br><span class="line">矩形宽为：10</span><br></pre></td></tr></table></figure>
+<h2 id="使用-gt-访问"><a href="#使用-gt-访问" class="headerlink" title="使用-&gt;访问"></a>使用<code>-&gt;</code>访问</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">double</span> length;<span class="comment">//长</span></span><br><span class="line">	<span class="keyword">double</span> weight;<span class="comment">//宽</span></span><br><span class="line">	Rectangle *r;<span class="comment">//声明一个对象指针</span></span><br><span class="line">	r = <span class="keyword">new</span> Rectangle;<span class="comment">//为对象动态分配内存空间</span></span><br><span class="line">	r-&gt;init(length, weight);<span class="comment">//初始化对象</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"矩形长为："</span> &lt;&lt; r-&gt;length &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"矩形宽为："</span> &lt;&lt; r-&gt;weight &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">delete</span> r;<span class="comment">//释放动态分配的空间</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行代码，得到下面结果：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">矩形长为：10</span><br><span class="line">矩形宽为：10</span><br></pre></td></tr></table></figure>
+<p>与使用<code>.</code>运算符的结果一致。</p>
+<h1 id="对象的内存分配"><a href="#对象的内存分配" class="headerlink" title="对象的内存分配"></a>对象的内存分配</h1><p>一般的，我们认为对象所占用的内存大小为，等于<strong>所有成员变量的大小之和</strong>。</p>
+<p>对于上面的<code>Rectangle</code>类，<code>sizeof(Rectangle)=16</code></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">double</span> length;<span class="comment">//长</span></span><br><span class="line">	<span class="keyword">double</span> weight;<span class="comment">//宽</span></span><br><span class="line">	Rectangle r;<span class="comment">//声明一个对象</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"sizeof(Rectangle)="</span> &lt;&lt; <span class="keyword">sizeof</span>(Rectangle) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行上面代码，得到如下结果：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sizeof(Rectangle)=16</span><br></pre></td></tr></table></figure>
+<div class="note warning">
+            <p>注意</p><ul><li>并不是所有的类所占内存空间大小都为成员变量之和，有时还需要考虑<strong>对齐</strong>等情况，会有所差异。</li><li>一个类的成员函数只有一份，为所有成员共享，故类的成员函数所占用内存空间没有计算。</li><li>每个对象都有自己的存储空间，一个对象的值改变了并不会影响另一个变量</li></ul>
+          </div>
+<h1 id="类的成员函数和类的定义分开写"><a href="#类的成员函数和类的定义分开写" class="headerlink" title="类的成员函数和类的定义分开写"></a>类的成员函数和类的定义分开写</h1><p>当我们的类拥有很多的成员变量以及成员函数的时候，如果将所有的成员函数的实现都写在类的定义当中的话，就会显得十分的臃肿，不利于代码的阅读。此时，我们可以将类的定义以及实现分类来写，类的定义当中仅写成员函数的定义，而成员函数的实现则写到类的外面。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">double</span> length;<span class="comment">//长</span></span><br><span class="line">	<span class="keyword">double</span> weight;<span class="comment">//宽</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">double</span> length_, <span class="keyword">double</span> weight_)</span></span>;<span class="comment">//设置长和宽</span></span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">Area</span><span class="params">()</span></span>;<span class="comment">//计算面积</span></span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">Perimeter</span><span class="params">()</span></span>; <span class="comment">//计算周长</span></span><br><span class="line">&#125;;<span class="comment">//分号不可省略</span></span><br></pre></td></tr></table></figure>
+<p>我们改写上面所示的代码，在类的实现当中仅写成员函数的定义。将成员函数写在类外，如下代码所示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Rectangle::init</span><span class="params">(<span class="keyword">double</span> length_, <span class="keyword">double</span> weight_)</span> </span>&#123;</span><br><span class="line">	length = length_;</span><br><span class="line">	weight = weight_;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">Rectangle::Area</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> length * weight;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">Rectangle::Perimeter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">2</span> * (length * weight);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其基本格式为：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">返回值类型 类名::函数名(参数表)&#123;</span><br><span class="line">    函数体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过<code>类名::</code>说明后面的函数为类的成员函数，而非普通函数。</p>
+<h1 id="类成员的可访问范围"><a href="#类成员的可访问范围" class="headerlink" title="类成员的可访问范围"></a>类成员的可访问范围</h1><p>在类的定义中，用以下的关键字来说明类成员的访问范围：</p>
+<ul>
+<li><strong>private</strong>：私有成员，只能在成员函数内访问</li>
+<li><strong>public</strong>：公用成员，可以在任何地方访问</li>
+<li><strong>protected</strong>：保护成员，具体用法以后讨论</li>
+</ul>
+<div class="note info">
+            <ul><li>以上三种关键字出现次数和先后顺序没有限制</li><li>没有说明访问范围的默认为<strong>private</strong></li></ul>
+          </div>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> &#123;</span></span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">10</span>];<span class="comment">//默认为private</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">char</span> sex;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">printInfo</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> age;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">	<span class="keyword">time_t</span> birthday;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>例如在上面的学生类中，<strong>name</strong>属性没有指定访问范围，值默认缺省为<strong>private</strong>。</p>
+<p>对于上面的类，假设我们有如下外部调用：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Student stu;</span><br><span class="line">	stu.printInfo();<span class="comment">//OK</span></span><br><span class="line">	stu.sex;<span class="comment">//OK</span></span><br><span class="line">	stu.name;<span class="comment">//错误，不能访问私有成员</span></span><br><span class="line">	stu.birthday;<span class="comment">//错误，不能访问保护成员</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们仅能访问类的公有成员(<strong>public</strong>)，不能访问其它属性的成员。</p>
+<p>对于如下的内部调用：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Student::printInfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; age &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//OK</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; birthday &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//OK</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在类的成员函数内部，我们可以访问所有的成员。</p>
+<div class="note info">
+            <p>注意</p><ul><li><strong>private</strong>属性的成员只能通过类的成员函数访问，不能在类外部访问。</li><li>在类的成员函数内部，能够访问<strong>当前对象的全部属性、函数</strong>以及<strong>同类其它对象的全部属性、函数</strong>。</li><li>在类的成员函数以外的地方，就只能访问该类对象的公有成员(<strong>public</strong>)</li></ul>
+          </div>
+<p>设置私有成员的的机制叫“<strong>隐藏</strong>”，隐藏的目的时强制成员变量的访问一定要通过成员函数进行，使得成员变量不能被外部所访问到，确保了成员变量的安全，同时也易于以后的维护。</p>
+<h1 id="成员函数的重载与缺省"><a href="#成员函数的重载与缺省" class="headerlink" title="成员函数的重载与缺省"></a>成员函数的重载与缺省</h1><p>类的成员函数也可以进行重载以及缺省参数值，其用法与普通函数的重载与参数缺省相同。</p>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>c++对象</tag>
+        <tag>c++类</tag>
+        <tag>面向对象</tag>
+        <tag>构造函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++中cin.getline和cin.get函数的使用</title>
+    <url>/2019/09/16/C++/C-%E4%B8%ADgetline%E5%92%8Cget%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>在C++中，我们通常使用<code>cin</code>作为输入函数来读取用户键盘输入的数据，由于不能通过键盘来输入空字符，因此<code>cin</code>需要用别的方法来确定字符串结尾位置。<code>cin</code>使用空白、空格、制表符和换行符来确定字符串的结束位置，这意味着<code>cin</code>在读入数据的时候只能截取上述结束符前的数据，对于结束符后的数据讲不能读入程序中。我们来考一个<code>cin</code>读入字符串的实例。<br><a id="more"></a><br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">30</span>];</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的姓名："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; name;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的名字是："</span> &lt;&lt; name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行上面的程序，当我们输入<code>woody allen</code>时，程序会得到下面的结果：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">请输入您的姓名：woody allen</span><br><span class="line">您的名字是：woody</span><br></pre></td></tr></table></figure>
+<p>我们发现<code>cin</code>函数读入的数据并不完整，在上述样例中输入的名字被空格键截断了，所以cin只读入了一个单词就结束了读入操作。再来考察一个类似实例看看输入缓冲区内发生了什么？</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">30</span>];</span><br><span class="line">	<span class="keyword">char</span> addr[<span class="number">50</span>];</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的姓名："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; name;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的地址："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; addr;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的名字是："</span> &lt;&lt; name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的地址为："</span> &lt;&lt; addr &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行上述程序，我们发现，还没对地址输入提示做出反应，程序就把他显示出来了。然后立即显示最后一行。运行结果如下所示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">请输入您的姓名：woody allen</span><br><span class="line">请输入您的地址：您的名字是：woody</span><br><span class="line">您的地址为：allen</span><br></pre></td></tr></table></figure>
+<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><h2 id="面向行输入：getline"><a href="#面向行输入：getline" class="headerlink" title="面向行输入：getline()"></a>面向行输入：getline()</h2><p><code>getline()</code>函数读取输入的整行，它使用通过回车键输入的换行符来作为结束符。要调用这种方法可以使用<code>cin.getline()</code>，该函数有两个参数，第一个参数是用来存储输入行的数组名称，另一个参数是要读取的字符串长度，如果参数为30，则最多读取29各字符，最后一个用来存储在字符串末尾的空字符。<br>例如，假设要使用<code>cin.getline()</code>将姓名读入到一个包含30各元素的<code>name</code>数组中，可使用下面这样的函数调用：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.getline(name,<span class="number">30</span>);</span><br></pre></td></tr></table></figure>
+<p>这样就可以将一行读入到数组中————如果这一行不超过29个字符(<code>getline()</code>成员函数还可以接受第三个可选参数，在此不做讨论)。现在对上述样例进行修改如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">30</span>];</span><br><span class="line">	<span class="keyword">char</span> addr[<span class="number">50</span>];</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的姓名："</span>;</span><br><span class="line">	<span class="built_in">cin</span>.getline(name,<span class="number">30</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的地址："</span>;</span><br><span class="line">	<span class="built_in">cin</span>.getline(addr,<span class="number">50</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的名字是："</span> &lt;&lt; name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的地址为："</span> &lt;&lt; addr &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述程序中将<code>cin</code>换成了<code>cin.getline()</code>，我们得到了正确的输入如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">请输入您的姓名：woody allen</span><br><span class="line">请输入您的地址：Guizhou China</span><br><span class="line">您的名字是：woody allen</span><br><span class="line">您的地址为：Guizhou China</span><br></pre></td></tr></table></figure>
+<p><code>getline()</code>函数每次读取一行，它通过回车键输入的换行符来确定行尾，但是不保存换行符。相反，在存储字符串时，它用空字符来替换换行符。</p>
+<h2 id="面向行的输入get"><a href="#面向行的输入get" class="headerlink" title="面向行的输入get()"></a>面向行的输入get()</h2><p>另外还有一种方法。<code>istream</code>类有另一个名为<code>get()</code>的成员函数，该函数有几种变体，其中一种与<code>getline()</code>类似，他们接受相同的参数，解释参数的方式也相同，都读取到行尾。单<code>get()</code>不再读取并丢弃换行符，而是将其留在输入队列中，假设我们连续两次调用<code>get()</code>：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(name,arrSize);</span><br><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(addr,arrSize);</span><br></pre></td></tr></table></figure>
+<p>运行上诉代码，我们会发现第二行代码并没有读入数据，原因是当第二行代码在读取数据时，把第一行读取的回车符当成了第二个字符串的结束标志，所以接下来的数据都没有读入，一个解决办法是将上诉代码改为：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(name,arrSize);</span><br><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>();</span><br><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(addr,arrSize);</span><br></pre></td></tr></table></figure>
+<p>通过新增的<code>cin.get();</code>先读取上一行留下来的换行符，然后再读取下一个字符串。</p>
+<p>另一种使用<code>get()</code>的方法是将两个类成员函数拼接起来使用，如下代码所示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(name,addr).<span class="built_in">get</span>();</span><br></pre></td></tr></table></figure>
+<p>之所以这样做，是由于<code>cin.get(name,addr)</code>返回一个<code>cin</code>对象，该对象随后将被用来调用<code>get()</code>函数，同样，下面语句也能将输入的两行分别读到数组<code>name</code>和<code>addr</code>中，其效果与两次调用<code>cin.getline()</code>相同：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.getline(name,ArSize).getline(addr,ArSize);</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>cin.get函数</tag>
+        <tag>cin.getline函数</tag>
+        <tag>cin.get()</tag>
+        <tag>cin.getline()</tag>
+        <tag>C++</tag>
+        <tag>字符串输入</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++动态内存分类(new/delete)</title>
     <url>/2020/05/31/C++/C-%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E7%B1%BB-new-delete/</url>
     <content><![CDATA[<h1 id="使用new运算符分配一个变量"><a href="#使用new运算符分配一个变量" class="headerlink" title="使用new运算符分配一个变量"></a>使用<code>new</code>运算符分配一个变量</h1><p>格式：</p>
@@ -183,29 +323,6 @@
         <tag>内存分配</tag>
         <tag>new关键字</tag>
         <tag>delete关键字</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>c++内联函数inline</title>
-    <url>/2020/06/01/C++/c-%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0inline/</url>
-    <content><![CDATA[<h1 id="inline概念"><a href="#inline概念" class="headerlink" title="inline概念"></a><code>inline</code>概念</h1><p>在<code>c++</code>中，函数调用是会产生额外的时间开销的，如果函数本身代码很短，执行很快，并且该函数被反复调用。相比之下调用函数所产生的开销就会很大，甚至超过执行代码所产生的开销。</p>
-<p>为了减少函数调用的开销，<code>c++</code>引入了<code>内联函数</code>的机制。编译器在处理内联函数的调用语句时，直接将整个内联函数代码插入到调用语句处，从而减少函数调用产生的开销。<br><a id="more"></a></p>
-<h1 id="inline定义"><a href="#inline定义" class="headerlink" title="inline定义"></a><code>inline</code>定义</h1><p><code>inline</code>关键字的使用比较简单，只需要在函数的定义头部加上<code>inline</code>关键字即可，如下所示：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> 返回值类型 函数名(参数)&#123;</span><br><span class="line">	函数体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>内联函数的具体使用如下代码所示：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//返回两数中的最大值</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="built_in">max</span>(<span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如上代码所示，定义一个内联函数<code>max</code>，该函数返回两个数中的最大值，只需要在函数定义时加入<code>inline</code>关键字即可，在对<code>max</code>函数进行调用时，编译器直接将<code>max</code>的函数代码嵌入到调用的地方，以此来节省函数调用产生的额外开销。</p>
-<h1 id="inline函数注意事项"><a href="#inline函数注意事项" class="headerlink" title="inline函数注意事项"></a><code>inline</code>函数注意事项</h1><p>通过上面的例子，我们了解了<code>inline</code>关键字的基本使用方法，内联函数虽然节省了函数调用产生的开销，但并不是所有的地方都能使用内联函数定义。</p>
-<p>当函数代码过长时，使用内联函数会使得程序变得臃肿。此时就不应该使用内联函数。</p>
-<p>另外，当函数中包含循环控制语句时，也不应该使用内联函数。</p>
-]]></content>
-      <categories>
-        <category>C++</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>inline函数</tag>
-        <tag>内联函数</tag>
       </tags>
   </entry>
   <entry>
@@ -255,45 +372,6 @@
         <tag>c++引用</tag>
         <tag>函数返回值引用</tag>
         <tag>变量引用</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C++中cin.getline和cin.get函数的使用</title>
-    <url>/2019/09/16/C++/C-%E4%B8%ADgetline%E5%92%8Cget%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>在C++中，我们通常使用<code>cin</code>作为输入函数来读取用户键盘输入的数据，由于不能通过键盘来输入空字符，因此<code>cin</code>需要用别的方法来确定字符串结尾位置。<code>cin</code>使用空白、空格、制表符和换行符来确定字符串的结束位置，这意味着<code>cin</code>在读入数据的时候只能截取上述结束符前的数据，对于结束符后的数据讲不能读入程序中。我们来考一个<code>cin</code>读入字符串的实例。<br><a id="more"></a><br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">30</span>];</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的姓名："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; name;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的名字是："</span> &lt;&lt; name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>运行上面的程序，当我们输入<code>woody allen</code>时，程序会得到下面的结果：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">请输入您的姓名：woody allen</span><br><span class="line">您的名字是：woody</span><br></pre></td></tr></table></figure>
-<p>我们发现<code>cin</code>函数读入的数据并不完整，在上述样例中输入的名字被空格键截断了，所以cin只读入了一个单词就结束了读入操作。再来考察一个类似实例看看输入缓冲区内发生了什么？</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">30</span>];</span><br><span class="line">	<span class="keyword">char</span> addr[<span class="number">50</span>];</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的姓名："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; name;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的地址："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; addr;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的名字是："</span> &lt;&lt; name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的地址为："</span> &lt;&lt; addr &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行上述程序，我们发现，还没对地址输入提示做出反应，程序就把他显示出来了。然后立即显示最后一行。运行结果如下所示：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">请输入您的姓名：woody allen</span><br><span class="line">请输入您的地址：您的名字是：woody</span><br><span class="line">您的地址为：allen</span><br></pre></td></tr></table></figure>
-<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><h2 id="面向行输入：getline"><a href="#面向行输入：getline" class="headerlink" title="面向行输入：getline()"></a>面向行输入：getline()</h2><p><code>getline()</code>函数读取输入的整行，它使用通过回车键输入的换行符来作为结束符。要调用这种方法可以使用<code>cin.getline()</code>，该函数有两个参数，第一个参数是用来存储输入行的数组名称，另一个参数是要读取的字符串长度，如果参数为30，则最多读取29各字符，最后一个用来存储在字符串末尾的空字符。<br>例如，假设要使用<code>cin.getline()</code>将姓名读入到一个包含30各元素的<code>name</code>数组中，可使用下面这样的函数调用：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.getline(name,<span class="number">30</span>);</span><br></pre></td></tr></table></figure>
-<p>这样就可以将一行读入到数组中————如果这一行不超过29个字符(<code>getline()</code>成员函数还可以接受第三个可选参数，在此不做讨论)。现在对上述样例进行修改如下：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">30</span>];</span><br><span class="line">	<span class="keyword">char</span> addr[<span class="number">50</span>];</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的姓名："</span>;</span><br><span class="line">	<span class="built_in">cin</span>.getline(name,<span class="number">30</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的地址："</span>;</span><br><span class="line">	<span class="built_in">cin</span>.getline(addr,<span class="number">50</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的名字是："</span> &lt;&lt; name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的地址为："</span> &lt;&lt; addr &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上述程序中将<code>cin</code>换成了<code>cin.getline()</code>，我们得到了正确的输入如下：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">请输入您的姓名：woody allen</span><br><span class="line">请输入您的地址：Guizhou China</span><br><span class="line">您的名字是：woody allen</span><br><span class="line">您的地址为：Guizhou China</span><br></pre></td></tr></table></figure>
-<p><code>getline()</code>函数每次读取一行，它通过回车键输入的换行符来确定行尾，但是不保存换行符。相反，在存储字符串时，它用空字符来替换换行符。</p>
-<h2 id="面向行的输入get"><a href="#面向行的输入get" class="headerlink" title="面向行的输入get()"></a>面向行的输入get()</h2><p>另外还有一种方法。<code>istream</code>类有另一个名为<code>get()</code>的成员函数，该函数有几种变体，其中一种与<code>getline()</code>类似，他们接受相同的参数，解释参数的方式也相同，都读取到行尾。单<code>get()</code>不再读取并丢弃换行符，而是将其留在输入队列中，假设我们连续两次调用<code>get()</code>：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(name,arrSize);</span><br><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(addr,arrSize);</span><br></pre></td></tr></table></figure>
-<p>运行上诉代码，我们会发现第二行代码并没有读入数据，原因是当第二行代码在读取数据时，把第一行读取的回车符当成了第二个字符串的结束标志，所以接下来的数据都没有读入，一个解决办法是将上诉代码改为：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(name,arrSize);</span><br><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>();</span><br><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(addr,arrSize);</span><br></pre></td></tr></table></figure>
-<p>通过新增的<code>cin.get();</code>先读取上一行留下来的换行符，然后再读取下一个字符串。</p>
-<p>另一种使用<code>get()</code>的方法是将两个类成员函数拼接起来使用，如下代码所示：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.<span class="built_in">get</span>(name,addr).<span class="built_in">get</span>();</span><br></pre></td></tr></table></figure>
-<p>之所以这样做，是由于<code>cin.get(name,addr)</code>返回一个<code>cin</code>对象，该对象随后将被用来调用<code>get()</code>函数，同样，下面语句也能将输入的两行分别读到数组<code>name</code>和<code>addr</code>中，其效果与两次调用<code>cin.getline()</code>相同：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cin</span>.getline(name,ArSize).getline(addr,ArSize);</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>C++</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-        <tag>cin.get函数</tag>
-        <tag>cin.getline函数</tag>
-        <tag>cin.get()</tag>
-        <tag>cin.getline()</tag>
-        <tag>字符串输入</tag>
       </tags>
   </entry>
   <entry>
@@ -410,83 +488,26 @@
       </tags>
   </entry>
   <entry>
-    <title>ubuntu安装基本工具及基本命令的使用</title>
-    <url>/2019/12/25/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/3%E3%80%81%E5%AE%89%E8%A3%85%E5%9F%BA%E6%9C%AC%E5%B7%A5%E5%85%B7%E5%8F%8A%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>在上期文章中，我们完成了Ubuntu的硬盘安装，本期文章将说明基本linux的命令使用以及基本基本工具的安装使用。如果你有过相关linux的使用经验，那么本文纯属在浪费你的时间，你可以选择跳过此篇文章。</p>
-<p>就这样，请拥有，并享受。<br><a id="more"></a></p>
-<h1 id="开始之前"><a href="#开始之前" class="headerlink" title="开始之前"></a>开始之前</h1><p>安装完成后开启电脑，会进入到ubuntu的桌面，我们在屏幕任意位置点击右键，选择Open Terminal来打开一个终端，以后我们的所有工作将在这个终端内完成。</p>
-<p>本系列文章不探讨相关实现原理，仅为演示，如何关注的话可以去看linux系统的相关知识。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20214716.jpg" alt="terminal"></p>
-<p>更改软件源<br>step1.在终端中敲入命令</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo su</span><br></pre></td></tr></table></figure>
-<p>然后输入密码，将权限切换到root权限。（输入的密码不会显示，该密码为用户密码）</p>
-<p>完成后你会发现前面的提示符由用户名变为了root，这样就可以了。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20215409.jpg" alt="切换权限"></p>
-<p>然后输入</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gedit &#x2F;etc&#x2F;apt&#x2F;sources.list</span><br></pre></td></tr></table></figure>
-<h2 id="更换软件源"><a href="#更换软件源" class="headerlink" title="更换软件源"></a>更换软件源</h2><p>然后将打开的文本替换为网站<a href="https://developer.aliyun.com/mirror中ubuntu" target="_blank" rel="noopener">https://developer.aliyun.com/mirror中ubuntu</a> 18.04(bionic) 配置的内容，注意选择对应的版本。然后保存。</p>
-<p>（注！！在ubuntu中粘贴快捷键为Shift+Insert）<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E9%98%BF%E9%87%8C%E4%BA%91%E8%BD%AF%E4%BB%B6%E5%9B%AD.jpg" alt="阿里云软件源"></p>
-<h2 id="基本工具安装"><a href="#基本工具安装" class="headerlink" title="基本工具安装"></a>基本工具安装</h2><p>完成后回到终端，依次执行以下语句，在此对语句做简要说明，如不关注可忽略，直接执行即可。</p>
-<p>(注意语句之间的空格不可忽略)</p>
-<p>apt是ubuntu中的包管理工具，通过apt命令来管理软件。</p>
-<p>step1.更新软件源</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
-<p>step2.升级软件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt -y upgrade</span><br></pre></td></tr></table></figure>
-<p>step3.安装vim文本编辑器</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install -y vim</span><br></pre></td></tr></table></figure>
-<p>step4.安装ssh远程连接工具</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install -y openssh-server</span><br></pre></td></tr></table></figure>
-<p>step5.安装网络工具</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install -y net-tools</span><br></pre></td></tr></table></figure>
-<p>step6.查看IP地址</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20222141.jpg" alt="查看ip"></p>
-<p>我的网卡在这里为ens33，记住后面的IP地址，不同的机器会有不同的IP。</p>
-<p>到这里你就可以扔掉nas的显示器了，接下来的所有操作将会用远程主机连接nas进行操作。</p>
-<h1 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h1><p>ubuntu不同于windows操作系统，需要具有一定的动手能力，毕竟鼠标那一套在这不好使，在这里我们将介绍相关的一些基本命令使用。</p>
-<h2 id="linux文件系统"><a href="#linux文件系统" class="headerlink" title="linux文件系统"></a>linux文件系统</h2><p>在这里不想展开详述linux的相关知识，我也没法把详细的内容说清楚，毕竟那是一个厚几百到几千页的书，如果关注的话可以自行进一步了解。</p>
-<p>首先需要知道根目录，也就是<code>/</code></p>
-<p>这是linux最为重要的东西，没有之一。所有目录都是由根目录衍生出来的；根目录与系统的开机、修复、还原密切相关；</p>
-<p>下面这些内容并不需要你去记住，你只需要知道有这么个东西即可</p>
-<p><code>/bin/</code>存放系统命令，普通用户和 root 都可以执行。放在 /bin 下的命令在单用户模式下也可以执行</p>
-<p><code>/boot/</code>系统启动目录，保存与系统启动相关的文件，如内核文件和启动引导程序（grub）文件等</p>
-<p><code>/dev/</code>设备文件保存位置</p>
-<p><code>/etc/</code>配置文件保存位置。系统内所有采用默认安装方式（rpm 安装）的服务配置文件全部保存在此目录中，如用户信息、服务的启动脚本、常用服务的配置文件等</p>
-<p><code>/home/</code>普通用户的主目录（也称为家目录）。在创建用户时，每个用户要有一个默认登录和保存自己数据的位置，就是用户的主目录，所有普通用户的主目录是在 /home/ 下建立一个和用户名相同的目录。如用户 liming 的主目录就是 /home/liming</p>
-<p><code>/lib/</code>系统调用的函数库保存位置</p>
-<p><code>/mnt/</code>挂载目录。早期 Linux 中只有这一个挂载目录，并没有细分。系统建议这个目录用来挂载额外的设备，如 U 盘、移动硬盘和其他操作系统的分区</p>
-<p><code>/opt/</code>第三方安装的软件保存位置。这个目录是放置和安装其他软件的位置，手工安装的源码包软件都可以安装到这个目录中。不过笔者还是习惯把软件放到 /usr/local/ 目录中，也就是说，/usr/local/ 目录也可以用来安装软件</p>
-<p><code>/root/</code> root 的主目录。普通用户主目录在 /home/ 下，root 主目录直接在“/”下/sbin/保存与系统环境设置相关的命令，只有 root 可以使用这些命令进行系统环境设置，但也有些命令可以允许普通用户查看</p>
-<p><code>/tmp/</code>临时目录。系统存放临时文件的目录，在该目录下，所有用户都可以访问和写入。建议此目录中不能保存重要数据，最好每次开机都把该目录清空</p>
-<h2 id="基本命令使用"><a href="#基本命令使用" class="headerlink" title="基本命令使用"></a>基本命令使用</h2><ol>
-<li><p>cd命令<br>cd命令用来在上面这些目录之间切换，用法为cd+路径，例如要到/mnt目录中<code>cd /mnt</code></p>
-</li>
-<li><p>ls命令<br>ls是显示当前路径中的文件和文件夹的，直接输入ls即可</p>
-</li>
-<li><p>vim编辑器使用<br>参考：点击这里<br>知道<strong>-i插入</strong>、<strong>:wq保存退出</strong>即可</p>
-</li>
-</ol>
-<p>专栏目录<br>注！[✔]表示已更新，[✖] 表示未更新</p>
-<p>[✔] 前言</p>
-<p>[✔] Ubuntu18.04的安装</p>
-<p>[✔] Ubuntu18.04基本软件安装及使用</p>
-<p>[✖] Docker安装</p>
-<p>[✖] 控制面板</p>
-<p>[✖] jellyfin影音服务</p>
-<p>[✖] 网盘服务</p>
-<p>[✖] 下载工具</p>
-<p>[✖] 笔记管理</p>
-<p>[✖] 手机开关机</p>
+    <title>c++内联函数inline</title>
+    <url>/2020/06/01/C++/c-%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0inline/</url>
+    <content><![CDATA[<h1 id="inline概念"><a href="#inline概念" class="headerlink" title="inline概念"></a><code>inline</code>概念</h1><p>在<code>c++</code>中，函数调用是会产生额外的时间开销的，如果函数本身代码很短，执行很快，并且该函数被反复调用。相比之下调用函数所产生的开销就会很大，甚至超过执行代码所产生的开销。</p>
+<p>为了减少函数调用的开销，<code>c++</code>引入了<code>内联函数</code>的机制。编译器在处理内联函数的调用语句时，直接将整个内联函数代码插入到调用语句处，从而减少函数调用产生的开销。<br><a id="more"></a></p>
+<h1 id="inline定义"><a href="#inline定义" class="headerlink" title="inline定义"></a><code>inline</code>定义</h1><p><code>inline</code>关键字的使用比较简单，只需要在函数的定义头部加上<code>inline</code>关键字即可，如下所示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> 返回值类型 函数名(参数)&#123;</span><br><span class="line">	函数体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>内联函数的具体使用如下代码所示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//返回两数中的最大值</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="built_in">max</span>(<span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如上代码所示，定义一个内联函数<code>max</code>，该函数返回两个数中的最大值，只需要在函数定义时加入<code>inline</code>关键字即可，在对<code>max</code>函数进行调用时，编译器直接将<code>max</code>的函数代码嵌入到调用的地方，以此来节省函数调用产生的额外开销。</p>
+<h1 id="inline函数注意事项"><a href="#inline函数注意事项" class="headerlink" title="inline函数注意事项"></a><code>inline</code>函数注意事项</h1><p>通过上面的例子，我们了解了<code>inline</code>关键字的基本使用方法，内联函数虽然节省了函数调用产生的开销，但并不是所有的地方都能使用内联函数定义。</p>
+<p>当函数代码过长时，使用内联函数会使得程序变得臃肿。此时就不应该使用内联函数。</p>
+<p>另外，当函数中包含循环控制语句时，也不应该使用内联函数。</p>
 ]]></content>
       <categories>
-        <category>家庭NAS、HTPC服务器</category>
+        <category>C++</category>
       </categories>
       <tags>
-        <tag>Ubuntu18.04配置</tag>
-        <tag>Ubuntu配置</tag>
-        <tag>NAS系统</tag>
-        <tag>家庭影音</tag>
-        <tag>HTPC服务器</tag>
+        <tag>c++</tag>
+        <tag>inline函数</tag>
+        <tag>内联函数</tag>
       </tags>
   </entry>
   <entry>
@@ -559,39 +580,82 @@
         <category>家庭NAS、HTPC服务器</category>
       </categories>
       <tags>
+        <tag>Ubuntu18.04安装</tag>
+        <tag>Ubuntu安装</tag>
         <tag>NAS系统</tag>
         <tag>家庭影音</tag>
         <tag>HTPC服务器</tag>
-        <tag>Ubuntu18.04安装</tag>
-        <tag>Ubuntu安装</tag>
       </tags>
   </entry>
   <entry>
-    <title>SSH工具Xshell的安装以及使用</title>
-    <url>/2019/12/26/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/4%E3%80%81SSH%E5%B7%A5%E5%85%B7Xshell%E7%9A%84%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>在原本的计划中并没有准备专门写一篇关于SSH远程连接的教程，但想了想，该专栏文章应该致力于让所有读者都能看懂，即使你是从未使用过Linux操作系统的小白。</p>
-<p>当然，本文仅介绍了XShell的试用，你也可以选择其他软件，这都一样，并不影响你的使用。</p>
-<p>如果你已经有相关的使用经验，那么你可以直接跳过本章，毕竟下面的内容会浪费你宝贵生命中的几分钟。</p>
+    <title>ubuntu安装基本工具及基本命令的使用</title>
+    <url>/2019/12/25/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/3%E3%80%81%E5%AE%89%E8%A3%85%E5%9F%BA%E6%9C%AC%E5%B7%A5%E5%85%B7%E5%8F%8A%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>在上期文章中，我们完成了Ubuntu的硬盘安装，本期文章将说明基本linux的命令使用以及基本基本工具的安装使用。如果你有过相关linux的使用经验，那么本文纯属在浪费你的时间，你可以选择跳过此篇文章。</p>
 <p>就这样，请拥有，并享受。<br><a id="more"></a></p>
-<h1 id="下载Xshell"><a href="#下载Xshell" class="headerlink" title="下载Xshell"></a>下载Xshell</h1><p>首先到XShell的官网：<a href="https://www.netsarang.com/zh/xshell/" target="_blank" rel="noopener">点击这里</a>点击<strong>下载</strong>按钮，之后会跳转到一个信息填写页面，可以申请30天的免费试用。作为学校和家庭用户，点击右边的<a href="https://www.netsarang.com/zh/free-for-home-school/" target="_blank" rel="noopener"><strong>免费授权页面</strong></a>可以申请免费使用。</p>
-<p>填写完信息后下载链接会发送到你所填写的邮箱中，点击里面的下载链接即可下载。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20060647.jpg" alt="Xshell主页"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20060720.jpg" alt="信息填写"></p>
-<h1 id="使用Xshell"><a href="#使用Xshell" class="headerlink" title="使用Xshell"></a>使用Xshell</h1><p>下载完成安装后，打开软件可以看到下图所示的页面。<br>（我这里以及添加有很多连接，可以忽略）</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/Xshell%E5%90%AF%E5%8A%A8%E7%95%8C%E9%9D%A2.jpg" alt="XShell软件启动"></p>
-<p>然后点击对话框左上角添加按钮，在弹出的对话框<strong>名称</strong>处输入你想要的名称，<strong>主机</strong>一栏输入你在<strong>第一篇文章中</strong>所查看的主机<strong>IP</strong></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%B7%BB%E5%8A%A0%E4%B8%BB%E6%9C%BA.jpg" alt="IP输入"></p>
-<p>然后点击界面左边的<strong>用户身份验证</strong>，进入后输入<strong>用户名</strong>和<strong>密码</strong>，该用户名和密码为你在安装Ubuntu时设置的用户名以及密码。</p>
-<p>然后点击连接，中途会跳出是否保存用户名密码，自己根据情况选择；在跳出密钥接收保存询问框的时候选择接收并保存。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81.jpg" alt="用户名密码输入"></p>
-<p>然后看到下如所示的提示信息即说明连接成功。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20062918.jpg" alt="连接成功"></p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>整个NAS的前期准备工作到此就结束了，在接下来的文章中我们将一同探讨大家比较关心的影音服务、管理面板、网盘工具等内容的搭建了。</p>
-<p>前面的文章看起来多少有些无趣，但这却是整个系统管理中不可获缺的。如上面提到的基本命令，这将是你使用频率非常高的命令，甚至可以说这些是你进行接下来的工作不可少的东西，如果你还没有掌握它的话，应该利用闲余的几分钟去了解一下它。</p>
-<p>使用Ubuntu的过程中，你或多或少会在搜索引擎中查找相应技术文章，再次过程中你将会感受到计算机专业的开源精神。</p>
-<p>但是，在寻求解决方案的时候<strong>请不要轻易尝试别人给你的命令，除非你想把之前的工作从头再来一遍</strong>。执行任何含有<strong>rm</strong>的命令你都应当十分小心地确认你的操作，尤其是在你的数据盘中。</p>
-<p>请牢记好上面的内容，<strong>必要的时候请先在虚拟机中验证它的正确性</strong>。</p>
-<h1 id="专栏导航"><a href="#专栏导航" class="headerlink" title="专栏导航"></a>专栏导航</h1>]]></content>
+<h1 id="开始之前"><a href="#开始之前" class="headerlink" title="开始之前"></a>开始之前</h1><p>安装完成后开启电脑，会进入到ubuntu的桌面，我们在屏幕任意位置点击右键，选择Open Terminal来打开一个终端，以后我们的所有工作将在这个终端内完成。</p>
+<p>本系列文章不探讨相关实现原理，仅为演示，如何关注的话可以去看linux系统的相关知识。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20214716.jpg" alt="terminal"></p>
+<p>更改软件源<br>step1.在终端中敲入命令</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo su</span><br></pre></td></tr></table></figure>
+<p>然后输入密码，将权限切换到root权限。（输入的密码不会显示，该密码为用户密码）</p>
+<p>完成后你会发现前面的提示符由用户名变为了root，这样就可以了。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20215409.jpg" alt="切换权限"></p>
+<p>然后输入</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gedit &#x2F;etc&#x2F;apt&#x2F;sources.list</span><br></pre></td></tr></table></figure>
+<h2 id="更换软件源"><a href="#更换软件源" class="headerlink" title="更换软件源"></a>更换软件源</h2><p>然后将打开的文本替换为网站<a href="https://developer.aliyun.com/mirror中ubuntu" target="_blank" rel="noopener">https://developer.aliyun.com/mirror中ubuntu</a> 18.04(bionic) 配置的内容，注意选择对应的版本。然后保存。</p>
+<p>（注！！在ubuntu中粘贴快捷键为Shift+Insert）<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E9%98%BF%E9%87%8C%E4%BA%91%E8%BD%AF%E4%BB%B6%E5%9B%AD.jpg" alt="阿里云软件源"></p>
+<h2 id="基本工具安装"><a href="#基本工具安装" class="headerlink" title="基本工具安装"></a>基本工具安装</h2><p>完成后回到终端，依次执行以下语句，在此对语句做简要说明，如不关注可忽略，直接执行即可。</p>
+<p>(注意语句之间的空格不可忽略)</p>
+<p>apt是ubuntu中的包管理工具，通过apt命令来管理软件。</p>
+<p>step1.更新软件源</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
+<p>step2.升级软件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt -y upgrade</span><br></pre></td></tr></table></figure>
+<p>step3.安装vim文本编辑器</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install -y vim</span><br></pre></td></tr></table></figure>
+<p>step4.安装ssh远程连接工具</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install -y openssh-server</span><br></pre></td></tr></table></figure>
+<p>step5.安装网络工具</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install -y net-tools</span><br></pre></td></tr></table></figure>
+<p>step6.查看IP地址</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20222141.jpg" alt="查看ip"></p>
+<p>我的网卡在这里为ens33，记住后面的IP地址，不同的机器会有不同的IP。</p>
+<p>到这里你就可以扔掉nas的显示器了，接下来的所有操作将会用远程主机连接nas进行操作。</p>
+<h1 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h1><p>ubuntu不同于windows操作系统，需要具有一定的动手能力，毕竟鼠标那一套在这不好使，在这里我们将介绍相关的一些基本命令使用。</p>
+<h2 id="linux文件系统"><a href="#linux文件系统" class="headerlink" title="linux文件系统"></a>linux文件系统</h2><p>在这里不想展开详述linux的相关知识，我也没法把详细的内容说清楚，毕竟那是一个厚几百到几千页的书，如果关注的话可以自行进一步了解。</p>
+<p>首先需要知道根目录，也就是<code>/</code></p>
+<p>这是linux最为重要的东西，没有之一。所有目录都是由根目录衍生出来的；根目录与系统的开机、修复、还原密切相关；</p>
+<p>下面这些内容并不需要你去记住，你只需要知道有这么个东西即可</p>
+<p><code>/bin/</code>存放系统命令，普通用户和 root 都可以执行。放在 /bin 下的命令在单用户模式下也可以执行</p>
+<p><code>/boot/</code>系统启动目录，保存与系统启动相关的文件，如内核文件和启动引导程序（grub）文件等</p>
+<p><code>/dev/</code>设备文件保存位置</p>
+<p><code>/etc/</code>配置文件保存位置。系统内所有采用默认安装方式（rpm 安装）的服务配置文件全部保存在此目录中，如用户信息、服务的启动脚本、常用服务的配置文件等</p>
+<p><code>/home/</code>普通用户的主目录（也称为家目录）。在创建用户时，每个用户要有一个默认登录和保存自己数据的位置，就是用户的主目录，所有普通用户的主目录是在 /home/ 下建立一个和用户名相同的目录。如用户 liming 的主目录就是 /home/liming</p>
+<p><code>/lib/</code>系统调用的函数库保存位置</p>
+<p><code>/mnt/</code>挂载目录。早期 Linux 中只有这一个挂载目录，并没有细分。系统建议这个目录用来挂载额外的设备，如 U 盘、移动硬盘和其他操作系统的分区</p>
+<p><code>/opt/</code>第三方安装的软件保存位置。这个目录是放置和安装其他软件的位置，手工安装的源码包软件都可以安装到这个目录中。不过笔者还是习惯把软件放到 /usr/local/ 目录中，也就是说，/usr/local/ 目录也可以用来安装软件</p>
+<p><code>/root/</code> root 的主目录。普通用户主目录在 /home/ 下，root 主目录直接在“/”下/sbin/保存与系统环境设置相关的命令，只有 root 可以使用这些命令进行系统环境设置，但也有些命令可以允许普通用户查看</p>
+<p><code>/tmp/</code>临时目录。系统存放临时文件的目录，在该目录下，所有用户都可以访问和写入。建议此目录中不能保存重要数据，最好每次开机都把该目录清空</p>
+<h2 id="基本命令使用"><a href="#基本命令使用" class="headerlink" title="基本命令使用"></a>基本命令使用</h2><ol>
+<li><p>cd命令<br>cd命令用来在上面这些目录之间切换，用法为cd+路径，例如要到/mnt目录中<code>cd /mnt</code></p>
+</li>
+<li><p>ls命令<br>ls是显示当前路径中的文件和文件夹的，直接输入ls即可</p>
+</li>
+<li><p>vim编辑器使用<br>参考：点击这里<br>知道<strong>-i插入</strong>、<strong>:wq保存退出</strong>即可</p>
+</li>
+</ol>
+<p>专栏目录<br>注！[✔]表示已更新，[✖] 表示未更新</p>
+<p>[✔] 前言</p>
+<p>[✔] Ubuntu18.04的安装</p>
+<p>[✔] Ubuntu18.04基本软件安装及使用</p>
+<p>[✖] Docker安装</p>
+<p>[✖] 控制面板</p>
+<p>[✖] jellyfin影音服务</p>
+<p>[✖] 网盘服务</p>
+<p>[✖] 下载工具</p>
+<p>[✖] 笔记管理</p>
+<p>[✖] 手机开关机</p>
+]]></content>
       <categories>
         <category>家庭NAS、HTPC服务器</category>
       </categories>
@@ -599,9 +663,8 @@
         <tag>NAS系统</tag>
         <tag>家庭影音</tag>
         <tag>HTPC服务器</tag>
-        <tag>xshell配置</tag>
-        <tag>ssh安装及使用</tag>
-        <tag>xshell安装</tag>
+        <tag>Ubuntu18.04配置</tag>
+        <tag>Ubuntu配置</tag>
       </tags>
   </entry>
   <entry>
@@ -655,43 +718,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Ubuntu挂载硬盘</title>
-    <url>/2019/12/29/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/7%E3%80%81Ubuntu%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/</url>
-    <content><![CDATA[<p>在开始下篇文章之前我觉得有必要讲解一下在linux中的硬盘挂载。这和Windows不同，Windows会自动扫描本地硬盘并为你自动挂载，但是linux不会值么做，它需要你自己去挂载硬盘到系统中。</p>
-<a id="more"></a>
-<p>如果你是新硬盘，你需要对硬盘进行格式化才能正常使用，linux支持ext4、NTFS等文件系统，在此建议将硬盘格式化为NTFS格式，这样就算你把硬盘从linux移动Windows环境下也可以正常使用，Windows不知EXT4文件系统。</p>
-<p>但是格式化NTFS也会带来一个弊端，就是你无法对文件进行权限操作，这样你在使用的时候应该小心一些，避免误操作删除硬盘数据。</p>
-<h1 id="格式化硬盘"><a href="#格式化硬盘" class="headerlink" title="格式化硬盘"></a>格式化硬盘</h1><p>如果你的硬盘已经格式化过存有数据的话，你应该跳过这一小节的内容，直接跳转到下一小节参考硬盘挂载操作。</p>
-<p>首先你需要查看设备位置，输入</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo fdisk -l</span><br></pre></td></tr></table></figure>
-<p>然后找到你需要挂载的硬盘，例如我在这里要挂载<strong>Disk /dev/sdb: 7.3 TiB</strong>这块磁盘，记下它的位置，这里为/dev/sdb</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20160129.jpg" alt="查看硬盘设备"></p>
-<h2 id="格式化为EXT4格式"><a href="#格式化为EXT4格式" class="headerlink" title="格式化为EXT4格式"></a>格式化为EXT4格式</h2><p>如果需要格式化为EXT4格式，只需要执行下面语句即可，将/dev/sdb换成你需要进行格式化操作的设备路径。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo mkfs.ext4  &#x2F;dev&#x2F;sdb</span><br></pre></td></tr></table></figure></p>
-<h2 id="格式化为NTFS"><a href="#格式化为NTFS" class="headerlink" title="格式化为NTFS"></a>格式化为NTFS</h2><p>NTFS是windows的文件系统，在进行格式化操作之前需要安装一个工具，输入下面命令进行安装。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt -y install ntfsprogs</span><br></pre></td></tr></table></figure><br>安装完成后执行格式化语句，这里同样将/dev/sdb更改为你要执行格式化操作的设备路径。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo mkntfs -f &#x2F;dev&#x2F;sdb</span><br></pre></td></tr></table></figure><br>到此就将硬盘格式化完成了，接下来进行挂载操作</p>
-<h1 id="挂载硬盘"><a href="#挂载硬盘" class="headerlink" title="挂载硬盘"></a>挂载硬盘</h1><p>在进行挂载操作之前需要先查看硬盘的UUID值，输入sudo blkid进行查看</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20162314.jpg" alt="UUID值"></p>
-<p>这里假设我们要挂载/dev/sdb1: LABEL=”mybook” UUID=”21B724CC1FE1D190” TYPE=”ntfs” ···这块硬盘，我们选中UUID后面的值（不要双引号），在xshell中可以右键复制下来。</p>
-<p>然后创建一个挂载点，这个挂载点就是你以后打开查看硬盘内容的地方，这里假设我们需要将硬盘挂载到/mnt/sdb这个路径。你可以选择其他任何一个你觉得可以的地方进行挂载。<br>首先执行<strong>cd /mnt</strong>进入到mnt目录。<br>然后执行<strong>mkdir sdb</strong>创建一个名为sdb的文件夹，这个文件夹为我们需要挂载硬盘的地方。</p>
-<p>然后编辑系统挂载配置文件/etc/fstab</p>
-<p>执行<strong>vim /etc/fstab</strong>打开配置文件，可以看到下图所示的内容<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20163118.jpg" alt="fstab文件"></p>
-<p>这里的格式为<strong>设备名称 挂载点 分区类型 挂载选项 dump选项 fsck选项</strong><br>dump为0表示不进行备份<br>fsck为启动时检查顺序，0为不检查，/更目录为1，其他只能从2开始</p>
-<p>添加要挂载的内容到末行，这里我们以刚才的为例<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20163801.jpg" alt="挂载设置"><br>挂载点为我们刚才设置的挂载路径/mnt/sdb，格式为NTFS（如果你格式化为ext4，这里就填ext4），挂载选项默认defaults，不进行备份，开机不检查。</p>
-<p>挂载完成后执行<code>reboot</code>命令重启电脑，重启后我们就可以到/mnt/sdb目录下查看硬盘内容了</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20164125.jpg" alt="查看硬盘数据"></p>
-<h1 id="查看硬盘使用状态"><a href="#查看硬盘使用状态" class="headerlink" title="查看硬盘使用状态"></a>查看硬盘使用状态</h1><p>除了在WEB-UI管理界面中查看硬盘使用状态，我们也可以在命令行中输入<strong>df -h</strong>查看硬盘使用状态<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20164727.jpg" alt="硬盘使用状态"><br>Size为总分区大小<br>Used为已使用<br>Avail为可用容量<br>Use%为使用百分比<br>Mounted on为挂载点</p>
-]]></content>
-      <categories>
-        <category>家庭NAS、HTPC服务器</category>
-      </categories>
-      <tags>
-        <tag>NAS系统</tag>
-        <tag>家庭影音</tag>
-        <tag>HTPC服务器</tag>
-        <tag>linux硬盘挂载</tag>
-        <tag>ubuntu挂载硬盘</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>WEB-UI管理面板Cockpit(轻量简单)安装与使用</title>
     <url>/2019/12/28/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/6%E3%80%81WEB-UI%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BFCockpit(%E8%BD%BB%E9%87%8F%E7%AE%80%E5%8D%95)%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p>在前面我们介绍了管理面板Webmin的安装与使用，这次我们来看Cockpit的安装与使用，Webmin与Cockoit都属于轻量级的管理面板，但是Cockpit的功能较Webmin有了更多的减少，提供了更多的图表可视化功能，对中文的支持也比Webmin要好得多。</p>
@@ -736,6 +762,177 @@
         <tag>HTPC服务器</tag>
         <tag>linux管理面板</tag>
         <tag>Cockpit</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SSH工具Xshell的安装以及使用</title>
+    <url>/2019/12/26/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/4%E3%80%81SSH%E5%B7%A5%E5%85%B7Xshell%E7%9A%84%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>在原本的计划中并没有准备专门写一篇关于SSH远程连接的教程，但想了想，该专栏文章应该致力于让所有读者都能看懂，即使你是从未使用过Linux操作系统的小白。</p>
+<p>当然，本文仅介绍了XShell的试用，你也可以选择其他软件，这都一样，并不影响你的使用。</p>
+<p>如果你已经有相关的使用经验，那么你可以直接跳过本章，毕竟下面的内容会浪费你宝贵生命中的几分钟。</p>
+<p>就这样，请拥有，并享受。<br><a id="more"></a></p>
+<h1 id="下载Xshell"><a href="#下载Xshell" class="headerlink" title="下载Xshell"></a>下载Xshell</h1><p>首先到XShell的官网：<a href="https://www.netsarang.com/zh/xshell/" target="_blank" rel="noopener">点击这里</a>点击<strong>下载</strong>按钮，之后会跳转到一个信息填写页面，可以申请30天的免费试用。作为学校和家庭用户，点击右边的<a href="https://www.netsarang.com/zh/free-for-home-school/" target="_blank" rel="noopener"><strong>免费授权页面</strong></a>可以申请免费使用。</p>
+<p>填写完信息后下载链接会发送到你所填写的邮箱中，点击里面的下载链接即可下载。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20060647.jpg" alt="Xshell主页"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20060720.jpg" alt="信息填写"></p>
+<h1 id="使用Xshell"><a href="#使用Xshell" class="headerlink" title="使用Xshell"></a>使用Xshell</h1><p>下载完成安装后，打开软件可以看到下图所示的页面。<br>（我这里以及添加有很多连接，可以忽略）</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/Xshell%E5%90%AF%E5%8A%A8%E7%95%8C%E9%9D%A2.jpg" alt="XShell软件启动"></p>
+<p>然后点击对话框左上角添加按钮，在弹出的对话框<strong>名称</strong>处输入你想要的名称，<strong>主机</strong>一栏输入你在<strong>第一篇文章中</strong>所查看的主机<strong>IP</strong></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%B7%BB%E5%8A%A0%E4%B8%BB%E6%9C%BA.jpg" alt="IP输入"></p>
+<p>然后点击界面左边的<strong>用户身份验证</strong>，进入后输入<strong>用户名</strong>和<strong>密码</strong>，该用户名和密码为你在安装Ubuntu时设置的用户名以及密码。</p>
+<p>然后点击连接，中途会跳出是否保存用户名密码，自己根据情况选择；在跳出密钥接收保存询问框的时候选择接收并保存。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81.jpg" alt="用户名密码输入"></p>
+<p>然后看到下如所示的提示信息即说明连接成功。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20062918.jpg" alt="连接成功"></p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>整个NAS的前期准备工作到此就结束了，在接下来的文章中我们将一同探讨大家比较关心的影音服务、管理面板、网盘工具等内容的搭建了。</p>
+<p>前面的文章看起来多少有些无趣，但这却是整个系统管理中不可获缺的。如上面提到的基本命令，这将是你使用频率非常高的命令，甚至可以说这些是你进行接下来的工作不可少的东西，如果你还没有掌握它的话，应该利用闲余的几分钟去了解一下它。</p>
+<p>使用Ubuntu的过程中，你或多或少会在搜索引擎中查找相应技术文章，再次过程中你将会感受到计算机专业的开源精神。</p>
+<p>但是，在寻求解决方案的时候<strong>请不要轻易尝试别人给你的命令，除非你想把之前的工作从头再来一遍</strong>。执行任何含有<strong>rm</strong>的命令你都应当十分小心地确认你的操作，尤其是在你的数据盘中。</p>
+<p>请牢记好上面的内容，<strong>必要的时候请先在虚拟机中验证它的正确性</strong>。</p>
+<h1 id="专栏导航"><a href="#专栏导航" class="headerlink" title="专栏导航"></a>专栏导航</h1>]]></content>
+      <categories>
+        <category>家庭NAS、HTPC服务器</category>
+      </categories>
+      <tags>
+        <tag>NAS系统</tag>
+        <tag>家庭影音</tag>
+        <tag>HTPC服务器</tag>
+        <tag>xshell配置</tag>
+        <tag>ssh安装及使用</tag>
+        <tag>xshell安装</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>影音服务jellyfin安装与使用</title>
+    <url>/2020/01/01/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/9%E3%80%81%E5%BD%B1%E9%9F%B3%E6%9C%8D%E5%8A%A1jellyfin%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>关于的jellyfin影音服务，已经有很多人对其做过介绍了，但在这里我任然要为其写一篇相关安装与使用的文章，因为在别的贴子里，很多人容易忽视掉设置硬件加速的一些必要步骤。</p>
+<p>本篇文章将会从本机安装以及docker安装两种安装方式来向大家介绍jellyfin的安装以及基本使用方法。</p>
+<a id="more"></a>
+<p>注意：你应该在看完文章后再决定你选用的安装方式</p>
+<p>就这样，请拥有，并享受</p>
+<h1 id="jellyfin介绍"><a href="#jellyfin介绍" class="headerlink" title="jellyfin介绍"></a>jellyfin介绍</h1><p>jellyfin是一个免费的媒体系统软件，可以让你控制媒体的管理和流式传输，是emby和plex的替代产品，可以通过多个应用程序将媒体从专用服务器提供给最终用户设备。Jellyfin是Emby 3.5.2发行版的衍生版本，并移植到.NET Core框架以实现全面的跨平台支持。</p>
+<p>jellyfin目前支持的平台有：Android、Android TV、Amazon Fire TV、UWP、 Apple iOS（目前正在测试阶段）等等平台，你可以参见<a href="http://jellyfin.org/docs/general/clients/index.html" target="_blank" rel="noopener">jellyfin支持平台</a>获得更多的信息。</p>
+<h1 id="查看是设备是否支持硬件加速"><a href="#查看是设备是否支持硬件加速" class="headerlink" title="查看是设备是否支持硬件加速"></a>查看是设备是否支持硬件加速</h1><p>Jellyfin支持使用<code>FFMpeg</code>的视频编码/解码的硬件加速。<code>FFMpeg</code>可通过视频加速<code>API（VAAPI）</code>支持多种硬件加速实现，例如<code>Intel Quicksync（QSV）</code>，<code>AMD AMF</code>，<code>OpenMax OMX</code>，<code>nVidia NVENC / NVDEC</code>等。<br>|操作系统|推荐的硬件加速|<br>|-|-|<br>|Linux / GNU|VAAPI（推荐），NVENC，QSV，AMF|<br>|Windows|QSV，NVENC，AMF，VAAPI|<br>|MacOS|None (videotoolbox support coming)|<br>|Android|MediaCodec, OMX|<br>|RPi|OMX|<br><a href="https://developer.nvidia.com/ffmpeg" target="_blank" rel="noopener">NVIDIA使用ffmpeg官方名单</a>，建议将这些<a href="https://github.com/keylase/nvidia-patch" target="_blank" rel="noopener">驱动程序</a>用于<code>Linux / GNU</code>和<code>Windows</code>。这是支持的编解码器的<a href="https://developer.nvidia.com/video-encode-decode-gpu-support-matrix" target="_blank" rel="noopener">NVIDIA图形卡</a>的官方列表。</p>
+<p>VAAPI支持的编解码器列表：<a href="http://jellyfin.org/docs/general/administration/hardware-acceleration.html" target="_blank" rel="noopener">点击这里查看</a><br>支持QSV的Intel处理器列表。<a href="https://ark.intel.com/content/www/us/en/ark.html#@Processors" target="_blank" rel="noopener">点击这里查看</a><br>FFmpeg硬件加速支持列表。<a href="https://trac.ffmpeg.org/wiki/HWAccelIntro" target="_blank" rel="noopener">点击这里查看</a><br>Ubuntu使用NVENC的示例。<a href="https://www.reddit.com/r/jellyfin/comments/amuyba/nvenc_nvdec_working_in_jellyfin_on_ubuntu_server/" target="_blank" rel="noopener">点击这里查看</a></p>
+<h2 id="启用硬件加速"><a href="#启用硬件加速" class="headerlink" title="启用硬件加速"></a>启用硬件加速</h2><p>硬件加速选项可在“管理仪表板”的“ 转码”部分下找到。从下拉菜单中选择有效的硬件加速选项，指示设备（如果适用），并检查enable hardware encoding以启用编码以及解码（如果您的硬件支持）。</p>
+<p>硬件加速可立即用于媒体播放。无需重新启动服务器。</p>
+<p>每种硬件加速类型以及每种Jellyfin安装类型在使用前都需要不同的设置选项。始终最好参考您选择的加速度类型的FFMpeg文档以获取最新信息。</p>
+<h3 id="Debian-Ubuntu上配置VAAPI加速"><a href="#Debian-Ubuntu上配置VAAPI加速" class="headerlink" title="Debian / Ubuntu上配置VAAPI加速"></a>Debian / Ubuntu上配置VAAPI加速</h3><p>在Debian / Ubuntu上配置VAAPI需要进行一些其他配置，以确保权限正确。</p>
+<ol>
+<li>验证render设备现在在中/dev/dri，并记下可写入该设备的权限和组，在这种情况下render：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ls -l &#x2F;dev&#x2F;dri</span><br></pre></td></tr></table></figure>
+查看是否有如下输出：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">total 0</span><br><span class="line">drwxr-xr-x 2 root root 100 Apr 13 16:37 by-path</span><br><span class="line">crw-rw---- 1 root video 226, 0 Apr 13 16:37 card0</span><br><span class="line">crw-rw---- 1 root video 226, 1 Apr 13 16:37 card1</span><br><span class="line">crw-rw---- 1 root render 226, 128 Apr 13 16:37 renderD128</span><br></pre></td></tr></table></figure>
+如果没有，在确保你的设备支持硬件加速的情况下通过<a href="http://jellyfin.org/docs/general/administration/hardware-acceleration.html" target="_blank" rel="noopener">指导文件</a>来进行相关设备的配置以及验证。不同的硬件平台配置方法不一样，在此不展开详述。</li>
+</ol>
+<ol>
+<li>将Jellyfin服务用户添加到上述组中，以允许Jellyfin的FFMpeg进程访问该设备，然后重新启动Jellyfin：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo usermod -aG render jellyfin</span><br><span class="line">sudo systemctl restart jellyfin</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>注意：在这里执行完第一条语句后可能会出现报错，这是因为在某些发行版本中，该组可能为video而不是render，将其更改过来即可。<br>在看了很多相关文章后，发现大家都没有配置这一步，这可能导致硬件转码没有办法正常工作。</p>
+<p>注意：以下两点请在安装完成jellyfin后在来看</p>
+<ol>
+<li><p>在管理控制台的“代码转换”页面中配置VAAPI加速。输入/dev/dri/renderD128上面的设备作为VA API Device值。</p>
+</li>
+<li><p>观看电影，并通过使用或类似工具观看ffmpeg-transcode-*.txt日志来验证是否正在进行转码。</p>
+</li>
+</ol>
+<h1 id="Ubuntu安装jellyfin"><a href="#Ubuntu安装jellyfin" class="headerlink" title="Ubuntu安装jellyfin"></a>Ubuntu安装jellyfin</h1><p>文章存在时效性，具体可参考<a href="http://jellyfin.org/docs/general/administration/installing.html#ubuntu" target="_blank" rel="noopener">官方指南</a></p>
+<h2 id="迁移至新仓库"><a href="#迁移至新仓库" class="headerlink" title="迁移至新仓库"></a>迁移至新仓库</h2><p>早期的jellyfin在ubuntu的官方<code>apt-get</code>源中，现在已将其拆分成自己的存储库，以更好地处理单独的二进制程序包。如果遇到ubuntu找不到该发行版的错误，并且以前配置了<code>ubuntu jellyfin.list</code>文件，请按照以下步骤操作。</p>
+<ol>
+<li>删除旧的<code>/etc/apt/sources.list.d/jellyfin.list</code>文件<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo rm &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;jellyfin.list</span><br></pre></td></tr></table></figure></li>
+<li>按照下面的方法步骤继续操作</li>
+</ol>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>Jellyfin团队提供了一个Ubuntu存储库，可以在<code>Ubuntu Xenial/Bionic/Cosmic/Disco</code>上进行安装。支持的架构<code>amd64、arm64</code>和<code>armhf</code>。<code>Ubuntu Xenial</code> 仅支持 <code>amd64</code>。</p>
+<p>注意：Microsoft不为32位x86 Linux系统提供.NET，因此<code>i386</code>体系结构不支持Jellyfin 。</p>
+<ol>
+<li><p>如果尚未安装APT的HTTPS传输，请执行以下操作：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install apt-transport-https</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启用Universe存储库以获取所有FFMpeg依赖项：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo add-apt-repository universe</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>导入GPG签名密钥：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget -O - https:&#x2F;&#x2F;repo.jellyfin.org&#x2F;ubuntu&#x2F;jellyfin_team.gpg.key | sudo apt-key add -</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在以下位置添加存储库配置<code>/etc/apt/sources.list.d/jellyfin.list</code>：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">echo &quot;deb [arch&#x3D;$( dpkg --print-architecture )] https:&#x2F;&#x2F;repo.jellyfin.org&#x2F;ubuntu $( lsb_release -c -s ) main&quot; | sudo tee &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;jellyfin.list</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>注意：支持的版本是：<code>xenial</code>，<code>bionic</code>，<code>cosmic</code>，和<code>disco</code>。</p>
+<ol>
+<li>更新APT存储库：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>安装Jellyfin：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install jellyfin</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用您选择的工具管理Jellyfin系统服务：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo systemctl restart jellyfin</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="Docker安装jellyfin"><a href="#Docker安装jellyfin" class="headerlink" title="Docker安装jellyfin"></a>Docker安装jellyfin</h1><p>你可以到<a href="https://registry.hub.docker.com/r/jellyfin/jellyfin" target="_blank" rel="noopener">jellyfin官方docker hub</a>查看该项目的最新动态以及获得相关支持。</p>
+<ol>
+<li>获取docker镜像<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker pull jellyfin&#x2F;jellyfin</span><br></pre></td></tr></table></figure></li>
+<li>运行jellyfin<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">-p 8096:8096 \</span><br><span class="line">--name jellyfin \</span><br><span class="line">--restart always \</span><br><span class="line">-v 配置文件路径:&#x2F;config \</span><br><span class="line">-v 缓存文件路径:&#x2F;cache \</span><br><span class="line">-v 媒体路径1:&#x2F;media \</span><br><span class="line">-v 媒体路径2:&#x2F;media \</span><br><span class="line">--device &#x2F;dev&#x2F;dri&#x2F;renderD128:&#x2F;dev&#x2F;dri&#x2F;renderD128 \</span><br><span class="line">--device &#x2F;dev&#x2F;dri&#x2F;card0:&#x2F;dev&#x2F;dri&#x2F;card0 \</span><br><span class="line">--privileged&#x3D;true \</span><br><span class="line">--env GIDLIST&#x3D;44 \</span><br><span class="line">jellyfin&#x2F;jellyfin:latest</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>到此，jellyfin的安装工作就算完成了。接下来进行相关的配置工作。</p>
+<h1 id="jellyfin配置与使用"><a href="#jellyfin配置与使用" class="headerlink" title="jellyfin配置与使用"></a>jellyfin配置与使用</h1><h2 id="启动配置"><a href="#启动配置" class="headerlink" title="启动配置"></a>启动配置</h2><p>在浏览器中输入<code>服务器IP:8096</code>即可进入到jellyfin的web端。</p>
+<ol>
+<li><p>选择语言<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174755.jpg" alt="选择语言"></p>
+</li>
+<li><p>用户设置<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174819.jpg" alt="添加用户"></p>
+</li>
+<li><p>设置媒体库<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174832.jpg" alt="媒体库设置"></p>
+</li>
+<li><p>选择地区与语言<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174851.jpg" alt="选择地区与语言"></p>
+</li>
+<li><p>远程访问（默认即可）<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174902.jpg" alt="远程访问权限"></p>
+</li>
+<li><p>完成配置<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174912.jpg" alt="完成配置"></p>
+</li>
+<li><p>登录<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174925.jpg" alt="用户登录"></p>
+</li>
+<li><p>进入界面<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174936.jpg" alt="主页面"></p>
+</li>
+</ol>
+<h2 id="界面配置"><a href="#界面配置" class="headerlink" title="界面配置"></a>界面配置</h2><p>点击右上角小人，进入如下界面</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20181402.jpg" alt="个人设置"></p>
+<p>选择显示菜单</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20181423.jpg" alt="显示配置"></p>
+<p>这里选择自己喜欢的主题可以进行配置在上个页面中你也可以进行更多配置</p>
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><p>选择左上角的<strong>三横图标</strong> —&gt; <strong>控制台</strong> —&gt; <strong>往下找到插件</strong> 来到下图所示的界面<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182002.jpg" alt="插件"></p>
+<p>我这里以及安装了很多插件了，如果你没有安装过，这里将显示空白。点击上方的目录可进入到插件目录</p>
+<h3 id="字幕插件"><a href="#字幕插件" class="headerlink" title="字幕插件"></a>字幕插件</h3><p>在元素据中找到Open Subtitles，进去点击安装</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182159.jpg" alt="字幕插件"></p>
+<p>然后回到我的插件，点开Open Subtitles进入配置页面</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182318.jpg" alt="Open Subtitles配置"><br>输入用户名密码登录，没有的话可以到<a href="http://www.opensubtitles.org/" target="_blank" rel="noopener">opensubtitles官网</a>进行注册。</p>
+<h3 id="KODI串流"><a href="#KODI串流" class="headerlink" title="KODI串流"></a>KODI串流</h3><p>在插件目录的常规栏目找到Kodi Sync Queue进行安装<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182711.jpg" alt="KODI"></p>
+<p>然后回到我的插件，进入KODI配置，全勾选上即可<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182644.jpg" alt="KODI"></p>
+<p>关于kodi的使用将在后期文章中进行介绍</p>
+<h3 id="其他插件"><a href="#其他插件" class="headerlink" title="其他插件"></a>其他插件</h3><p>其他插件可以根据自己的需要进行安装，可以参考其他同类文章，在此不进行详述。</p>
+<h2 id="添加媒体库"><a href="#添加媒体库" class="headerlink" title="添加媒体库"></a>添加媒体库</h2><p>在控制台中进入到媒体库，可以看到添加媒体库的按钮，如下图<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20183340.jpg" alt="媒体库管理"><br>然后点击添加媒体库<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20183444.jpg" alt="添加媒体库"><br>选择对应的类型与名称，在文件夹处选择刚才对应的媒体库，docker安装的话媒体目录被映射到/media目录下。</p>
+<p>点击左上角的显示高级设置<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20183808.jpg" alt="设置"></p>
+<p>把除了上图没勾选的之外的全面勾选上。然后确认。之后会自动扫描和下载字幕，该过程有些漫长。<br>然后在主页就可以看到添加的媒体了<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20184026.jpg" alt="媒体"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20184239.jpg" alt="电影"></p>
+<p>对于某些电影，会识别失败，这时我们需要手动识别，进入电影详情页面。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20184406.jpg" alt="电影详情"></p>
+<p>然后点击播放 预告片后面的更多<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20184517.jpg" alt="更多"><br>然后选择对应的菜单进入操作即可。</p>
+<h1 id="jellyfin播放设置"><a href="#jellyfin播放设置" class="headerlink" title="jellyfin播放设置"></a>jellyfin播放设置</h1><h2 id="硬件加速"><a href="#硬件加速" class="headerlink" title="硬件加速"></a>硬件加速</h2><p>硬件播放可以到控制台 —&gt; 播放进行设置<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20202112.jpg" alt="硬件加速"></p>
+<p>可以参考上面的平台推荐加速器进行相关设置，我这里设置为VAAPI<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20202312.jpg" alt="加速方式"></p>
+<p>VAAPI选择对应的硬件设备，确保你已依照上面的过程进行了相关的驱动设置。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20202427.jpg" alt="加速设备"></p>
+<p>其他参数可依照说明按需进行更改</p>
+<h2 id="流媒体传输设置"><a href="#流媒体传输设置" class="headerlink" title="流媒体传输设置"></a>流媒体传输设置</h2><p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20202647.jpg" alt="流媒体传输设置"><br>可依据自己的网络情况进行传输设置，这对于防止设备请求比 internet 连接所能处理的更高的比特率非常有用。这可能会导致服务器上的 CPU 负载增加, 以便将视频转码到较低的比特率。</p>
+<h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>本来想在一篇文章中对jellyfin做个详细的说明，但是发现那样文章就显得太过于长了。<br>下篇文章将对jellyfin的其他使用技巧做一个介绍，比如电影命名规范，格式选择等。<br>除此之外还会对jellyfin的使用过程中遇到的一些问题进行介绍，以及如何获取解决方案。</p>
+]]></content>
+      <categories>
+        <category>家庭NAS、HTPC服务器</category>
+      </categories>
+      <tags>
+        <tag>NAS系统</tag>
+        <tag>家庭影音</tag>
+        <tag>HTPC服务器</tag>
+        <tag>jellyfin</tag>
+        <tag>影音服务</tag>
       </tags>
   </entry>
   <entry>
@@ -837,6 +1034,224 @@
         <tag>HTPC服务器</tag>
         <tag>docker</tag>
         <tag>ubuntu安装docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>1、向量及其运算</title>
+    <url>/2020/06/01/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/1%E3%80%81%E5%90%91%E9%87%8F%E5%8F%8A%E5%85%B6%E8%BF%90%E7%AE%97/</url>
+    <content><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>线性代数的中心问题是求解线性方程组。</p>
+<p>假设给定一个线性方程组：</p>
+<script type="math/tex; mode=display">
+x_1+2x_2=4\\
+2x_1-3x_2=-2</script><a id="more"></a>
+<p>我们将$x_1$、$x_2$的系数以及结果单独提取出来，它能表示为：</p>
+<script type="math/tex; mode=display">
+x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}</script><p>由此可得此方程可解$\Longleftrightarrow$$\binom{4}{-2}$可表示为$\binom{1}{2}$和$\binom{2}{-3}$的线性组合。</p>
+<p>线性代数是建立在向量的加法和数乘这两种所谓<strong>线性运算</strong>上的.</p>
+<h1 id="n-维空间中的点"><a href="#n-维空间中的点" class="headerlink" title="$n$维空间中的点"></a>$n$维空间中的点</h1><h2 id="表示"><a href="#表示" class="headerlink" title="表示"></a>表示</h2><p>在一条直线上取定坐标原点后，每个实数一一对应表示直线上的一个点。</p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200601225945203.png" alt="image-20200601225945203"></p>
+<p>一个二元的有序数组$(x_1,x_2)$一一对应表示平面上的一个点。</p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200601230654410.png" alt="image-20200601230654410"></p>
+<p>一个三维有序数组$(x_1,x_2,x_3)$一一对应表示三维空间中的一个点。</p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200601231634293.png" alt="image-20200601231634293"></p>
+<p>同理，定义$n$维空间的点为一个$n$元有序数组$x=(x_1,\dots,x_n)$，称$x_i$为点$x$的第$i$个坐标.</p>
+<h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><ol>
+<li><p><strong>相等</strong></p>
+<p>对于$n$维空间的两个点$x=(x_1,\dots,x_n)$与$y=(y_1,\dots,y_n)$，若</p>
+<script type="math/tex; mode=display">
+x_i=y_i, \forall1\leq i \leq n.</script><p>则称$x$与$y$相等。</p>
+</li>
+</ol>
+<ol>
+<li><p><strong>相加</strong></p>
+<p>对于$n$维空间的两个点$x=(x_1,\dots,x_n)$与$y=(y_1,\dots,y_n)$，其<strong>加法</strong>规则为：</p>
+<script type="math/tex; mode=display">
+x+y:=(x_1+y_1,\dots,x_n+y_n)</script></li>
+<li><p><strong>数乘运算</strong></p>
+<p>对于$n$维空间的点$x=(x_1,\dots,x_n)$，以及$c\in R$其<strong>数乘运算</strong>规则为：</p>
+<script type="math/tex; mode=display">
+cx:=(cx_1,\dots,cx_n)</script></li>
+</ol>
+<p>这样定义的加法及数乘运算对于任意$n$维空间中的点$x,y,z$满足以下8条性质:</p>
+<ol>
+<li>$(x+y)+z=x+(y+z)$</li>
+<li>$x+y=y+x$</li>
+<li>若令$0=(0,\dots,0)$为一个点，则$0+x=x+0=x$</li>
+<li>若以$-x$表示$(-1)x$，则$x+(-x)=0$</li>
+<li>$1·x=x$</li>
+<li>$(c_1·c_2)x=c_1(c_2x)$</li>
+<li>$(c_1+c_2)x=c_1x+c_2x$</li>
+<li>$c(x+y)=cx+xy$</li>
+</ol>
+<h1 id="向量"><a href="#向量" class="headerlink" title="向量"></a>向量</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>向量指空间中具有一定<strong>长度</strong>及<strong>方向</strong>的直线段。通常记起点为$A$，终点为$B$的向量为$\overrightarrow{AB}$。</p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200602000139541.png" alt="image-20200602000139541"></p>
+<p>力、位移、速度、加速度等都是物理学中常出现的向量.</p>
+<p><strong>两个向量相等$\Longleftrightarrow$二者长度相等，方向相同。</strong></p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200602000520092.png" alt="image-20200602000520092"></p>
+<h2 id="向量的运算"><a href="#向量的运算" class="headerlink" title="向量的运算"></a>向量的运算</h2><h3 id="向量的加法-addition"><a href="#向量的加法-addition" class="headerlink" title="向量的加法(addition):"></a>向量的加法(addition):</h3><p>对于两个向量$\vec{a}=\overrightarrow{OA}$以及$b=\overrightarrow{OB}$，$\vec{a}+\vec{b}$的和为以向量$\vec{a}，\vec{b}$为邻边的平行四边形的对角线$\overrightarrow{OC}$代表的向量（平行四边形法则）。如下图所示：</p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200602001500849.png" alt="image-20200602001500849"></p>
+<p>向量的加法又满足三角形法则：</p>
+<script type="math/tex; mode=display">
+\overrightarrow{OA}+\overrightarrow{AC}=\overrightarrow{OC}</script><h3 id="向量的数乘-scalar-multiplication-："><a href="#向量的数乘-scalar-multiplication-：" class="headerlink" title="向量的数乘(scalar multiplication)："></a>向量的数乘(scalar multiplication)：</h3><p>向量的数乘即向量的方向不变，大小变为原来的$c(c\in R)$倍。如下图所示：</p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200602090359154.png" alt="image-20200602090359154"></p>
+<h3 id="向量的性质"><a href="#向量的性质" class="headerlink" title="向量的性质"></a>向量的性质</h3><ol>
+<li><p>向量的加法满足结合律，即对于任意的向量$\vec{a},\vec{b},\vec{c}$</p>
+<script type="math/tex; mode=display">
+\vec{a}+(\vec{b}+\vec{c})=(\vec{a}+\vec{b})+\vec{c}</script></li>
+<li><p>向量的加法满足交换律，即对于任意的向量$\vec{a},\vec{b}$</p>
+<script type="math/tex; mode=display">
+\vec{a}+\vec{b}=\vec{b}+\vec{a}</script></li>
+<li><p>当$A=B$时，称向量$\overrightarrow{AB}$为零向量，记作$\vec{0}$，则</p>
+<script type="math/tex; mode=display">
+\overrightarrow{AA}+\overrightarrow{AB}=\overrightarrow{AB}可表示为0+\vec{a}=\vec{a}对于任意向量\vec{a}成立</script></li>
+<li><p>对向量$a=\overrightarrow{AB}$，记向量$\overrightarrow{BA}=-a$，则$\overrightarrow{AB}+\overrightarrow{BA}=\overrightarrow{AA}$，即</p>
+<script type="math/tex; mode=display">
+\vec{a}+(-\vec{a})=0,\forall \vec{a}</script></li>
+<li><p>$1·\vec{a}=\vec{a}$</p>
+</li>
+<li><p>$(c_1·c_2)\vec{a}=c_1(c_2)\vec{a}$</p>
+</li>
+<li><p>$(c_1+c_2)\vec{a}=c_1\vec{a}+c_2\vec{a}$</p>
+</li>
+<li><p>$c(\vec{a}+\vec{b})=c\vec{a}+c\vec{b}$</p>
+</li>
+</ol>
+<h2 id="向量的表示"><a href="#向量的表示" class="headerlink" title="向量的表示"></a>向量的表示</h2><p>如果固定向量的起点，如记之为原点，则向量由其终点唯一确定，于是我们可以等同：</p>
+<ol>
+<li>$n$维空间中的点</li>
+<li>$n$元有序数组</li>
+<li>$n$维空间中由原点出发的向量</li>
+</ol>
+<p>我们将不加区分地使用向量的这三个身份。</p>
+<p>记$\vec{a}=\begin{pmatrix}a_1\\\vdots \\a_n \end{pmatrix}$为列向量，其中$a_i$为向量$\vec{a}$的第$i$个分量。</p>
+<p>则有向量的加法：</p>
+<script type="math/tex; mode=display">
+\vec{a}+\vec{b}:=\begin{pmatrix}a_1+b_! \\\vdots \\a_n+b_n\end{pmatrix}.</script><p>数乘：</p>
+<script type="math/tex; mode=display">
+c\vec{a}:=\begin{pmatrix}c\vec{a_1} \\\vdots \\c\vec{a_n}\end{pmatrix}.</script><h1 id="向量的空间定义"><a href="#向量的空间定义" class="headerlink" title="向量的空间定义"></a>向量的空间定义</h1><p>在由称为”向量“的元素构成的非空集合$V$中，若定义了加法和数乘运算，且对任意向量$\vec{a},\vec{b},\vec{c}$及数$k,l\in F$满足以下8条性质：</p>
+<ol>
+<li>$\vec{a}+(\vec{b}+\vec{c})=(\vec{a}+\vec{b})+\vec{c}$</li>
+<li>$\vec{a}+\vec{b}=\vec{b}+\vec{a}$</li>
+<li>存在$\vec{0}$，$\vec{a}+\vec{0}=\vec{a}$</li>
+<li>对于任意向量$\vec{a}$，存在唯一相反向量$-\vec{a}$，使得$\vec{a}+(-\vec{a})=\vec{0}$</li>
+<li>$1·\vec{a}=\vec{a}$</li>
+<li>$(kl)\vec{a}=k(l\vec{a})$</li>
+<li>$k(\vec{a}+\vec{b})=k\vec{a}+k\vec{b}$</li>
+<li>$(k+l)\vec{a}=k\vec{a}+l\vec{a}$</li>
+</ol>
+<p>则称$V$为定义在数域$F$上的向量空间(vector space).</p>
+<h1 id="向量的线性组合"><a href="#向量的线性组合" class="headerlink" title="向量的线性组合"></a>向量的线性组合</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>设$\vec{v_1},\cdots,\vec{v_m}$为$m$个$n$维向量，$c_1,\cdots,c_m \in R$，则称$c_1v_1,\cdots,c_mv_m$为向量$\vec{v_1},\cdots,\vec{v_m}$的一个线性组合。</p>
+<p>例：给定$\vec{i}=\begin{pmatrix}1 \\0 \\0\end{pmatrix}\vec{j}=\begin{pmatrix}0 \\1 \\0\end{pmatrix},\vec{k}=\begin{pmatrix}0 \\0 \\1\end{pmatrix}$，</p>
+<p>则$\vec{u}=\begin{pmatrix}1 \-1 \\1\end{pmatrix}=\vec{i}-\vec{j}+\vec{k}$是向量$\vec{i},\vec{j},\vec{k}$的一个线性组合。</p>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p>Q：给定一组向量$\vec{v_1},\cdots,\vec{v_m}$，则$\vec{v_1},\cdots,\vec{v_m}$的全部线性组合是怎样的集合？</p>
+<p>例1：向量$\vec{u}=\begin{pmatrix}1 \\1 \\1\end{pmatrix}$的全部线性组合$\left\{c\vec{u}|c\in R\right\}$为以$\vec{u}$为方向的一条直线。</p>
+<p>例2：向量$\vec{u}=\begin{pmatrix}1 \\1 \\0\end{pmatrix}$和$\vec{v}=\begin{pmatrix}0 \\1 \\1\end{pmatrix}$的全部线性组合为$c\vec{u}+d\vec{v}=\begin{pmatrix}c \\c+d \\d\end{pmatrix}$，其中$c,d$为任意实数，这是平面$x-y+z=0$。</p>
+<p>例3：向量$\vec{u}=\begin{pmatrix}1 \\1 \\0\end{pmatrix}$和$\vec{v}=\begin{pmatrix}\sqrt{2} \\\sqrt{2} \\0\end{pmatrix}$的全部线性组合为$c\vec{u}+d\vec{v}=\begin{pmatrix}c+\sqrt{2}d \\c+\sqrt{2}d\\0\end{pmatrix}$，其中$c,d$为任意实数，这是直线$\left\{\begin{aligned}x = y \\z = 0\end{aligned}\right.$</p>
+<p>例4：向量$\vec{u}=\begin{pmatrix}1 \\1 \\0\end{pmatrix}$，$\vec{v}=\begin{pmatrix}0 \\1 \\1\end{pmatrix}$，$\vec{w}=\begin{pmatrix}1 \\0 \\1\end{pmatrix}$的全部线性组合$\left\{c\vec{u}+d\vec{v}+e\vec{w}|c,d,e \in R\right\}$为整个三维空间.</p>
+<p>这是因为，任意三维向量$\begin{pmatrix}x \\y \\z\end{pmatrix}$都可以表示为$\vec{u},\vec{v},\vec{w}$的下列线性组合：</p>
+<script type="math/tex; mode=display">
+\begin{pmatrix}x \\y \\z\end{pmatrix}=\frac{x+y-z}{2}\vec{u}+\frac{y+z-x}{2}\vec{v}+\frac{z+x-y}{2}\vec{w}.</script><p>例5：向量$\vec{u}=\begin{pmatrix}1 \\1 \\0\end{pmatrix}$，$\vec{v}=\begin{pmatrix}0 \\1 \\1\end{pmatrix}$，$\vec{w}=\begin{pmatrix}1 \\2 \\1\end{pmatrix}$的全部线性组合$\left\{c\vec{u}+d\vec{v}+e\vec{w}=(c+e)\vec{u}+(d+e)\vec{v}|c,d,e \in R\right\}$为向量$\vec{u},\vec{w}$张成的平面$x-y+z=0$，这是因为$\vec{w}=\vec{u}|\vec{v}$在$\vec{u},\vec{v}$所张成的这张平面上。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在3维空间中， 一般而言，向量$\vec{u},\vec{u}和\vec{v},或\vec{u}、\vec{v}和\vec{w}$的所有线性组合分别是一条直线、一张平面或整个3维空间。</p>
+<h1 id="向量的点积、长度"><a href="#向量的点积、长度" class="headerlink" title="向量的点积、长度"></a>向量的点积、长度</h1><h2 id="向量长度"><a href="#向量长度" class="headerlink" title="向量长度"></a>向量长度</h2><p>向量$\vec{v}$的长度(length)或模(norm)定义为</p>
+<script type="math/tex; mode=display">
+|\vec{v}|=\sqrt{\vec{v}·\vec{v}}</script><p>若$\vec{v}=(v_1,\cdots,v_n)$，则$|\vec{v}|=\sqrt{v_1^2+\cdots+v_n^2}$。</p>
+<p>例：$\vec{v}=(1，2，3)$，则$|\vec{v}|=\sqrt{1+4+9}=\sqrt{14}$。</p>
+<h2 id="向量点积"><a href="#向量点积" class="headerlink" title="向量点积"></a>向量点积</h2><p>定义：若$|\vec{v}|=1$，则称$\vec{v}$为单位向量(unit vector)。</p>
+<p>单位化：任给一非零向量$\vec{v}$，则$\frac{\vec{v}}{|\vec{v}|}$是沿$\vec{v}$方向的单位向量。</p>
+<p>例1：$\vec{v}=(\cos\theta,\sin\theta)$，则$|\vec{v}|=1$。</p>
+<p>例2：$\vec{v}=(1，2，3)$，则沿$\vec{v}$方向的单位向量为$\frac{\vec{v}}{|\vec{v}|}=\frac{1}{\sqrt{14}}(1,2,3)$.</p>
+<p>向量点积的性质：</p>
+<ol>
+<li>$\vec{v}\cdot\vec{w}=\vec{w}\cdot\vec{v}$（对称性）</li>
+<li>$\vec{u}\cdot(c\vec{v}+d\vec{w})=c\vec{u}\cdot\vec{v}+d\vec{u}\cdot\vec{w}$（线性性）</li>
+<li>$\vec{v}\cdot\vec{v}=|\vec{v}|^2\ge0$，且等号成立当且仅当$\vec{v}=0$（正定性）</li>
+</ol>
+<h1 id="向量的夹角"><a href="#向量的夹角" class="headerlink" title="向量的夹角"></a>向量的夹角</h1><h2 id="向量垂直"><a href="#向量垂直" class="headerlink" title="向量垂直"></a>向量垂直</h2><p>若$\vec{v}\cdot\vec{w}=0$，则称向量$\vec{v}$和$\vec{w}$垂直(perpendicular)(或者称为正交(orthogonal))。记作$\vec{v}\perp\vec{w}$或$\vec{w}\perp\vec{v}$。</p>
+<p>在此规定，$\vec{0}$和任意向量垂直。</p>
+<p>这样定义的垂直的概念与几何直观是一致的，即</p>
+<script type="math/tex; mode=display">
+\vec{v}\perp\vec{w}\Longleftrightarrow\vec{v}\cdot\vec{w}=0</script><p>证明：设$\vec{v}\perp\vec{w}$，则$\vec{v},\vec{w},\vec{v}-\vec{w}$构成直角三角形的三条边，如下如所示：</p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200602144024402.png" alt="image-20200602144024402"></p>
+<p>于是由勾股定理可得：$|\vec{v}-\vec{w}|^2=|\vec{v}|^2+|\vec{w}|^2$，将式子左边展开得：</p>
+<script type="math/tex; mode=display">
+|\vec{v}-\vec{w}|^2=(\vec{v}-\vec{w})\cdot(\vec{v}-\vec{w})=|\vec{v}|^2-\vec{v}\cdot\vec{w}-\vec{w}\cdot\vec{v}+|\vec{w}|^2</script><p>故得 $\vec{v}\cdot\vec{w}=0$，反之亦然。</p>
+<h2 id="向量的夹角-1"><a href="#向量的夹角-1" class="headerlink" title="向量的夹角"></a>向量的夹角</h2><p>命题：两非零向量$\vec{v},\vec{w}$的夹角$\theta$满足$\cos\theta=\frac{\vec{v}\cdot\vec{w}}{|\vec{v}||\vec{w}|}$。</p>
+<p>证明：一般的，向量$\vec{v},\vec{w},\vec{v}-\vec{w}$构成三角形的三条边，由<strong>余弦定理</strong>得</p>
+<script type="math/tex; mode=display">
+|\vec{v}-\vec{w}|^2=|\vec{v}|^2+|\vec{w}|^2-2|\vec{v}||\vec{w}|\cos\theta</script><p>故有：</p>
+<script type="math/tex; mode=display">
+\cos\theta=\frac{|\vec{v}|^2+|\vec{w}|^2-|\vec{v}-\vec{w}|^2}{2|\vec{v}||\vec{w}|}=\frac{\vec{v}\cdot\vec{w}}{|\vec{v}||\vec{w}|}</script><ul>
+<li>若$\vec{v}\cdot\vec{w}&gt;0$，则$\cos\theta&gt;0$，取$0\leq\theta\leq\frac{\pi}{2}$</li>
+<li>若$\vec{v}\cdot\vec{w}&lt;0$，则$\cos\theta&lt;0$，取$\frac{\pi}{2}\leq\theta\leq\pi$</li>
+</ul>
+<p>例题：$\vec{v}=(1,1),\vec{w}=(-1,0)$，则$\cos\theta=\frac{\vec{v}\cdot\vec{w}}{|\vec{v}||\vec{w}|}=-\frac{1}{\sqrt{2}}$，则$\vec{v},\vec{w}$夹角$\theta=\frac{3}{4}\pi$</p>
+<h1 id="两个不等式"><a href="#两个不等式" class="headerlink" title="两个不等式"></a>两个不等式</h1><h2 id="Cauchy-Schwarz不等式"><a href="#Cauchy-Schwarz不等式" class="headerlink" title="Cauchy-Schwarz不等式"></a>Cauchy-Schwarz不等式</h2><p>Cauchy-Schwarz不等式首先由法国数学家Augustin-LouisCauchy(1789-1857)于1821年发现,再由俄国数学家Viktor YakovychBunyakovsky(1804-1889)于1859年重新发现, 后由德国数学家HermanSchwarz(1843-1921)于1886年再次重新发现.</p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200602151346208.png" alt="image-20200602151346208"></p>
+<p>该不等式为：</p>
+<script type="math/tex; mode=display">
+|\vec{v}\cdot\vec{w}|\leq|\vec{v}||\vec{w}|</script><p>等号成立当且仅当一个向量是另一个向量得倍数。</p>
+<h2 id="三角不等式-Triangle-inequality"><a href="#三角不等式-Triangle-inequality" class="headerlink" title="三角不等式(Triangle inequality)"></a>三角不等式(Triangle inequality)</h2><script type="math/tex; mode=display">
+|\vec{v}+\vec{w}|\leq|\vec{v}|+|\vec{w}|</script><p>等号成立当且仅当$\vec{v},\vec{w}$之一为另一向量得非负倍数</p>
+<p>证明：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+|\vec{v}+\vec{w}|&=(\vec{v}+\vec{w})\cdot(\vec{v}+\vec{w})=|\vec{v}|^2+2\vec{v}\cdot\vec{w}+|\vec{w}|^2 \\
+&\leq|\vec{v}|^2+|\vec{w}|^2+2|\vec{v}\cdot\vec{w}| \\
+&\leq|\vec{v}|^2+|\vec{w}|^2+2|\vec{v}|\cdot|\vec{w}| \\
+&=(|\vec{v}|+|\vec{w}|)^2
+\end{aligned}</script><p>等号成立当且仅当$\vec{v}\cdot\vec{w}=|\vec{v}|\cdot|\vec{w}|$，这等价于$\vec{v},\vec{w}$之一为另一个向量得非负倍数。</p>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><ol>
+<li><p>设$\vec{v}=(a,b),\vec{w}=(b,a)$,则由Cauchy-Schwarz不等式得</p>
+<script type="math/tex; mode=display">
+\vec{v}\cdot\vec{w}=2ab\leq a^2+b^2=|\vec{v}||\vec{w}|</script><p>若令$x=a^2,y=b^2$，则得到<strong>几何平均不大于算术平均</strong>：</p>
+<script type="math/tex; mode=display">
+\sqrt{xy}\leq\frac{x+y}{2}</script></li>
+<li><p>设$|\vec{v}|=5,|\vec{w}=3|$，求$|\vec{v}-\vec{w}|$的最小和最大可能长度</p>
+<p>解：首先，$|\vec{v}-\vec{w}|^2=|\vec{v}|^2-2\vec{v}\cdot\vec{w}+|\vec{w}|^2$,由Cauchy-Schwarz不等式得$-|\vec{v}||\vec{w}|\leq\vec{v}\cdot\vec{w}\leq|\vec{v}||\vec{w}|$，</p>
+<p>故$(|\vec{v}|-|\vec{w}|)^2\leq|\vec{v}-\vec{w}|^2\leq(|\vec{v}+\vec{w}|)^2$</p>
+<p>所以，$2\leq|\vec{v}-\vec{w}|\leq8$</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>线性代数</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Ubuntu挂载硬盘</title>
+    <url>/2019/12/29/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/7%E3%80%81Ubuntu%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/</url>
+    <content><![CDATA[<p>在开始下篇文章之前我觉得有必要讲解一下在linux中的硬盘挂载。这和Windows不同，Windows会自动扫描本地硬盘并为你自动挂载，但是linux不会值么做，它需要你自己去挂载硬盘到系统中。</p>
+<a id="more"></a>
+<p>如果你是新硬盘，你需要对硬盘进行格式化才能正常使用，linux支持ext4、NTFS等文件系统，在此建议将硬盘格式化为NTFS格式，这样就算你把硬盘从linux移动Windows环境下也可以正常使用，Windows不知EXT4文件系统。</p>
+<p>但是格式化NTFS也会带来一个弊端，就是你无法对文件进行权限操作，这样你在使用的时候应该小心一些，避免误操作删除硬盘数据。</p>
+<h1 id="格式化硬盘"><a href="#格式化硬盘" class="headerlink" title="格式化硬盘"></a>格式化硬盘</h1><p>如果你的硬盘已经格式化过存有数据的话，你应该跳过这一小节的内容，直接跳转到下一小节参考硬盘挂载操作。</p>
+<p>首先你需要查看设备位置，输入</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo fdisk -l</span><br></pre></td></tr></table></figure>
+<p>然后找到你需要挂载的硬盘，例如我在这里要挂载<strong>Disk /dev/sdb: 7.3 TiB</strong>这块磁盘，记下它的位置，这里为/dev/sdb</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20160129.jpg" alt="查看硬盘设备"></p>
+<h2 id="格式化为EXT4格式"><a href="#格式化为EXT4格式" class="headerlink" title="格式化为EXT4格式"></a>格式化为EXT4格式</h2><p>如果需要格式化为EXT4格式，只需要执行下面语句即可，将/dev/sdb换成你需要进行格式化操作的设备路径。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo mkfs.ext4  &#x2F;dev&#x2F;sdb</span><br></pre></td></tr></table></figure></p>
+<h2 id="格式化为NTFS"><a href="#格式化为NTFS" class="headerlink" title="格式化为NTFS"></a>格式化为NTFS</h2><p>NTFS是windows的文件系统，在进行格式化操作之前需要安装一个工具，输入下面命令进行安装。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt -y install ntfsprogs</span><br></pre></td></tr></table></figure><br>安装完成后执行格式化语句，这里同样将/dev/sdb更改为你要执行格式化操作的设备路径。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo mkntfs -f &#x2F;dev&#x2F;sdb</span><br></pre></td></tr></table></figure><br>到此就将硬盘格式化完成了，接下来进行挂载操作</p>
+<h1 id="挂载硬盘"><a href="#挂载硬盘" class="headerlink" title="挂载硬盘"></a>挂载硬盘</h1><p>在进行挂载操作之前需要先查看硬盘的UUID值，输入sudo blkid进行查看</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20162314.jpg" alt="UUID值"></p>
+<p>这里假设我们要挂载/dev/sdb1: LABEL=”mybook” UUID=”21B724CC1FE1D190” TYPE=”ntfs” ···这块硬盘，我们选中UUID后面的值（不要双引号），在xshell中可以右键复制下来。</p>
+<p>然后创建一个挂载点，这个挂载点就是你以后打开查看硬盘内容的地方，这里假设我们需要将硬盘挂载到/mnt/sdb这个路径。你可以选择其他任何一个你觉得可以的地方进行挂载。<br>首先执行<strong>cd /mnt</strong>进入到mnt目录。<br>然后执行<strong>mkdir sdb</strong>创建一个名为sdb的文件夹，这个文件夹为我们需要挂载硬盘的地方。</p>
+<p>然后编辑系统挂载配置文件/etc/fstab</p>
+<p>执行<strong>vim /etc/fstab</strong>打开配置文件，可以看到下图所示的内容<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20163118.jpg" alt="fstab文件"></p>
+<p>这里的格式为<strong>设备名称 挂载点 分区类型 挂载选项 dump选项 fsck选项</strong><br>dump为0表示不进行备份<br>fsck为启动时检查顺序，0为不检查，/更目录为1，其他只能从2开始</p>
+<p>添加要挂载的内容到末行，这里我们以刚才的为例<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20163801.jpg" alt="挂载设置"><br>挂载点为我们刚才设置的挂载路径/mnt/sdb，格式为NTFS（如果你格式化为ext4，这里就填ext4），挂载选项默认defaults，不进行备份，开机不检查。</p>
+<p>挂载完成后执行<code>reboot</code>命令重启电脑，重启后我们就可以到/mnt/sdb目录下查看硬盘内容了</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20164125.jpg" alt="查看硬盘数据"></p>
+<h1 id="查看硬盘使用状态"><a href="#查看硬盘使用状态" class="headerlink" title="查看硬盘使用状态"></a>查看硬盘使用状态</h1><p>除了在WEB-UI管理界面中查看硬盘使用状态，我们也可以在命令行中输入<strong>df -h</strong>查看硬盘使用状态<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20164727.jpg" alt="硬盘使用状态"><br>Size为总分区大小<br>Used为已使用<br>Avail为可用容量<br>Use%为使用百分比<br>Mounted on为挂载点</p>
+]]></content>
+      <categories>
+        <category>家庭NAS、HTPC服务器</category>
+      </categories>
+      <tags>
+        <tag>NAS系统</tag>
+        <tag>家庭影音</tag>
+        <tag>HTPC服务器</tag>
+        <tag>linux硬盘挂载</tag>
+        <tag>ubuntu挂载硬盘</tag>
       </tags>
   </entry>
   <entry>
@@ -1024,412 +1439,6 @@
         <tag>浮点数</tag>
         <tag>IEEE754</tag>
         <tag>IEEE浮点数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>1、向量及其运算</title>
-    <url>/2020/06/01/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/1%E3%80%81%E5%90%91%E9%87%8F%E5%8F%8A%E5%85%B6%E8%BF%90%E7%AE%97/</url>
-    <content><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>线性代数的中心问题是求解线性方程组。</p>
-<p>假设给定一个线性方程组：</p>
-<script type="math/tex; mode=display">
-x_1+2x_2=4\\
-2x_1-3x_2=-2</script><a id="more"></a>
-<p>我们将$x_1$、$x_2$的系数以及结果单独提取出来，它能表示为：</p>
-<script type="math/tex; mode=display">
-x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}</script><p>由此可得此方程可解$\Longleftrightarrow$$\binom{4}{-2}$可表示为$\binom{1}{2}$和$\binom{2}{-3}$的线性组合。</p>
-<p>线性代数是建立在向量的加法和数乘这两种所谓<strong>线性运算</strong>上的.</p>
-<h1 id="n-维空间中的点"><a href="#n-维空间中的点" class="headerlink" title="$n$维空间中的点"></a>$n$维空间中的点</h1><h2 id="表示"><a href="#表示" class="headerlink" title="表示"></a>表示</h2><p>在一条直线上取定坐标原点后，每个实数一一对应表示直线上的一个点。</p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200601225945203.png" alt="image-20200601225945203"></p>
-<p>一个二元的有序数组$(x_1,x_2)$一一对应表示平面上的一个点。</p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200601230654410.png" alt="image-20200601230654410"></p>
-<p>一个三维有序数组$(x_1,x_2,x_3)$一一对应表示三维空间中的一个点。</p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200601231634293.png" alt="image-20200601231634293"></p>
-<p>同理，定义$n$维空间的点为一个$n$元有序数组$x=(x_1,\dots,x_n)$，称$x_i$为点$x$的第$i$个坐标.</p>
-<h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><ol>
-<li><p><strong>相等</strong></p>
-<p>对于$n$维空间的两个点$x=(x_1,\dots,x_n)$与$y=(y_1,\dots,y_n)$，若</p>
-<script type="math/tex; mode=display">
-x_i=y_i, \forall1\leq i \leq n.</script><p>则称$x$与$y$相等。</p>
-</li>
-</ol>
-<ol>
-<li><p><strong>相加</strong></p>
-<p>对于$n$维空间的两个点$x=(x_1,\dots,x_n)$与$y=(y_1,\dots,y_n)$，其<strong>加法</strong>规则为：</p>
-<script type="math/tex; mode=display">
-x+y:=(x_1+y_1,\dots,x_n+y_n)</script></li>
-<li><p><strong>数乘运算</strong></p>
-<p>对于$n$维空间的点$x=(x_1,\dots,x_n)$，以及$c\in R$其<strong>数乘运算</strong>规则为：</p>
-<script type="math/tex; mode=display">
-cx:=(cx_1,\dots,cx_n)</script></li>
-</ol>
-<p>这样定义的加法及数乘运算对于任意$n$维空间中的点$x,y,z$满足以下8条性质:</p>
-<ol>
-<li>$(x+y)+z=x+(y+z)$</li>
-<li>$x+y=y+x$</li>
-<li>若令$0=(0,\dots,0)$为一个点，则$0+x=x+0=x$</li>
-<li>若以$-x$表示$(-1)x$，则$x+(-x)=0$</li>
-<li>$1·x=x$</li>
-<li>$(c_1·c_2)x=c_1(c_2x)$</li>
-<li>$(c_1+c_2)x=c_1x+c_2x$</li>
-<li>$c(x+y)=cx+xy$</li>
-</ol>
-<h1 id="向量"><a href="#向量" class="headerlink" title="向量"></a>向量</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>向量指空间中具有一定<strong>长度</strong>及<strong>方向</strong>的直线段。通常记起点为$A$，终点为$B$的向量为$\overrightarrow{AB}$。</p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200602000139541.png" alt="image-20200602000139541"></p>
-<p>力、位移、速度、加速度等都是物理学中常出现的向量.</p>
-<p><strong>两个向量相等$\Longleftrightarrow$二者长度相等，方向相同。</strong></p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200602000520092.png" alt="image-20200602000520092"></p>
-<h2 id="向量的运算"><a href="#向量的运算" class="headerlink" title="向量的运算"></a>向量的运算</h2><h3 id="向量的加法-addition"><a href="#向量的加法-addition" class="headerlink" title="向量的加法(addition):"></a>向量的加法(addition):</h3><p>对于两个向量$\vec{a}=\overrightarrow{OA}$以及$b=\overrightarrow{OB}$，$\vec{a}+\vec{b}$的和为以向量$\vec{a}，\vec{b}$为邻边的平行四边形的对角线$\overrightarrow{OC}$代表的向量（平行四边形法则）。如下图所示：</p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200602001500849.png" alt="image-20200602001500849"></p>
-<p>向量的加法又满足三角形法则：</p>
-<script type="math/tex; mode=display">
-\overrightarrow{OA}+\overrightarrow{AC}=\overrightarrow{OC}</script><h3 id="向量的数乘-scalar-multiplication-："><a href="#向量的数乘-scalar-multiplication-：" class="headerlink" title="向量的数乘(scalar multiplication)："></a>向量的数乘(scalar multiplication)：</h3><p>向量的数乘即向量的方向不变，大小变为原来的$c(c\in R)$倍。如下图所示：</p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200602090359154.png" alt="image-20200602090359154"></p>
-<h3 id="向量的性质"><a href="#向量的性质" class="headerlink" title="向量的性质"></a>向量的性质</h3><ol>
-<li><p>向量的加法满足结合律，即对于任意的向量$\vec{a},\vec{b},\vec{c}$</p>
-<script type="math/tex; mode=display">
-\vec{a}+(\vec{b}+\vec{c})=(\vec{a}+\vec{b})+\vec{c}</script></li>
-<li><p>向量的加法满足交换律，即对于任意的向量$\vec{a},\vec{b}$</p>
-<script type="math/tex; mode=display">
-\vec{a}+\vec{b}=\vec{b}+\vec{a}</script></li>
-<li><p>当$A=B$时，称向量$\overrightarrow{AB}$为零向量，记作$\vec{0}$，则</p>
-<script type="math/tex; mode=display">
-\overrightarrow{AA}+\overrightarrow{AB}=\overrightarrow{AB}可表示为0+\vec{a}=\vec{a}对于任意向量\vec{a}成立</script></li>
-<li><p>对向量$a=\overrightarrow{AB}$，记向量$\overrightarrow{BA}=-a$，则$\overrightarrow{AB}+\overrightarrow{BA}=\overrightarrow{AA}$，即</p>
-<script type="math/tex; mode=display">
-\vec{a}+(-\vec{a})=0,\forall \vec{a}</script></li>
-<li><p>$1·\vec{a}=\vec{a}$</p>
-</li>
-<li><p>$(c_1·c_2)\vec{a}=c_1(c_2)\vec{a}$</p>
-</li>
-<li><p>$(c_1+c_2)\vec{a}=c_1\vec{a}+c_2\vec{a}$</p>
-</li>
-<li><p>$c(\vec{a}+\vec{b})=c\vec{a}+c\vec{b}$</p>
-</li>
-</ol>
-<h2 id="向量的表示"><a href="#向量的表示" class="headerlink" title="向量的表示"></a>向量的表示</h2><p>如果固定向量的起点，如记之为原点，则向量由其终点唯一确定，于是我们可以等同：</p>
-<ol>
-<li>$n$维空间中的点</li>
-<li>$n$元有序数组</li>
-<li>$n$维空间中由原点出发的向量</li>
-</ol>
-<p>我们将不加区分地使用向量的这三个身份。</p>
-<p>记$\vec{a}=\begin{pmatrix}a_1\\\vdots \\a_n \end{pmatrix}$为列向量，其中$a_i$为向量$\vec{a}$的第$i$个分量。</p>
-<p>则有向量的加法：</p>
-<script type="math/tex; mode=display">
-\vec{a}+\vec{b}:=\begin{pmatrix}a_1+b_! \\\vdots \\a_n+b_n\end{pmatrix}.</script><p>数乘：</p>
-<script type="math/tex; mode=display">
-c\vec{a}:=\begin{pmatrix}c\vec{a_1} \\\vdots \\c\vec{a_n}\end{pmatrix}.</script><h1 id="向量的空间定义"><a href="#向量的空间定义" class="headerlink" title="向量的空间定义"></a>向量的空间定义</h1><p>在由称为”向量“的元素构成的非空集合$V$中，若定义了加法和数乘运算，且对任意向量$\vec{a},\vec{b},\vec{c}$及数$k,l\in F$满足以下8条性质：</p>
-<ol>
-<li>$\vec{a}+(\vec{b}+\vec{c})=(\vec{a}+\vec{b})+\vec{c}$</li>
-<li>$\vec{a}+\vec{b}=\vec{b}+\vec{a}$</li>
-<li>存在$\vec{0}$，$\vec{a}+\vec{0}=\vec{a}$</li>
-<li>对于任意向量$\vec{a}$，存在唯一相反向量$-\vec{a}$，使得$\vec{a}+(-\vec{a})=\vec{0}$</li>
-<li>$1·\vec{a}=\vec{a}$</li>
-<li>$(kl)\vec{a}=k(l\vec{a})$</li>
-<li>$k(\vec{a}+\vec{b})=k\vec{a}+k\vec{b}$</li>
-<li>$(k+l)\vec{a}=k\vec{a}+l\vec{a}$</li>
-</ol>
-<p>则称$V$为定义在数域$F$上的向量空间(vector space).</p>
-<h1 id="向量的线性组合"><a href="#向量的线性组合" class="headerlink" title="向量的线性组合"></a>向量的线性组合</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>设$\vec{v_1},\cdots,\vec{v_m}$为$m$个$n$维向量，$c_1,\cdots,c_m \in R$，则称$c_1v_1,\cdots,c_mv_m$为向量$\vec{v_1},\cdots,\vec{v_m}$的一个线性组合。</p>
-<p>例：给定$\vec{i}=\begin{pmatrix}1 \\0 \\0\end{pmatrix}\vec{j}=\begin{pmatrix}0 \\1 \\0\end{pmatrix},\vec{k}=\begin{pmatrix}0 \\0 \\1\end{pmatrix}$，</p>
-<p>则$\vec{u}=\begin{pmatrix}1 \-1 \\1\end{pmatrix}=\vec{i}-\vec{j}+\vec{k}$是向量$\vec{i},\vec{j},\vec{k}$的一个线性组合。</p>
-<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p>Q：给定一组向量$\vec{v_1},\cdots,\vec{v_m}$，则$\vec{v_1},\cdots,\vec{v_m}$的全部线性组合是怎样的集合？</p>
-<p>例1：向量$\vec{u}=\begin{pmatrix}1 \\1 \\1\end{pmatrix}$的全部线性组合$\left\{c\vec{u}|c\in R\right\}$为以$\vec{u}$为方向的一条直线。</p>
-<p>例2：向量$\vec{u}=\begin{pmatrix}1 \\1 \\0\end{pmatrix}$和$\vec{v}=\begin{pmatrix}0 \\1 \\1\end{pmatrix}$的全部线性组合为$c\vec{u}+d\vec{v}=\begin{pmatrix}c \\c+d \\d\end{pmatrix}$，其中$c,d$为任意实数，这是平面$x-y+z=0$。</p>
-<p>例3：向量$\vec{u}=\begin{pmatrix}1 \\1 \\0\end{pmatrix}$和$\vec{v}=\begin{pmatrix}\sqrt{2} \\\sqrt{2} \\0\end{pmatrix}$的全部线性组合为$c\vec{u}+d\vec{v}=\begin{pmatrix}c+\sqrt{2}d \\c+\sqrt{2}d\\0\end{pmatrix}$，其中$c,d$为任意实数，这是直线$\left\{\begin{aligned}x = y \\z = 0\end{aligned}\right.$</p>
-<p>例4：向量$\vec{u}=\begin{pmatrix}1 \\1 \\0\end{pmatrix}$，$\vec{v}=\begin{pmatrix}0 \\1 \\1\end{pmatrix}$，$\vec{w}=\begin{pmatrix}1 \\0 \\1\end{pmatrix}$的全部线性组合$\left\{c\vec{u}+d\vec{v}+e\vec{w}|c,d,e \in R\right\}$为整个三维空间.</p>
-<p>这是因为，任意三维向量$\begin{pmatrix}x \\y \\z\end{pmatrix}$都可以表示为$\vec{u},\vec{v},\vec{w}$的下列线性组合：</p>
-<script type="math/tex; mode=display">
-\begin{pmatrix}x \\y \\z\end{pmatrix}=\frac{x+y-z}{2}\vec{u}+\frac{y+z-x}{2}\vec{v}+\frac{z+x-y}{2}\vec{w}.</script><p>例5：向量$\vec{u}=\begin{pmatrix}1 \\1 \\0\end{pmatrix}$，$\vec{v}=\begin{pmatrix}0 \\1 \\1\end{pmatrix}$，$\vec{w}=\begin{pmatrix}1 \\2 \\1\end{pmatrix}$的全部线性组合$\left\{c\vec{u}+d\vec{v}+e\vec{w}=(c+e)\vec{u}+(d+e)\vec{v}|c,d,e \in R\right\}$为向量$\vec{u},\vec{w}$张成的平面$x-y+z=0$，这是因为$\vec{w}=\vec{u}|\vec{v}$在$\vec{u},\vec{v}$所张成的这张平面上。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在3维空间中， 一般而言，向量$\vec{u},\vec{u}和\vec{v},或\vec{u}、\vec{v}和\vec{w}$的所有线性组合分别是一条直线、一张平面或整个3维空间。</p>
-<h1 id="向量的点积、长度"><a href="#向量的点积、长度" class="headerlink" title="向量的点积、长度"></a>向量的点积、长度</h1><h2 id="向量长度"><a href="#向量长度" class="headerlink" title="向量长度"></a>向量长度</h2><p>向量$\vec{v}$的长度(length)或模(norm)定义为</p>
-<script type="math/tex; mode=display">
-|\vec{v}|=\sqrt{\vec{v}·\vec{v}}</script><p>若$\vec{v}=(v_1,\cdots,v_n)$，则$|\vec{v}|=\sqrt{v_1^2+\cdots+v_n^2}$。</p>
-<p>例：$\vec{v}=(1，2，3)$，则$|\vec{v}|=\sqrt{1+4+9}=\sqrt{14}$。</p>
-<h2 id="向量点积"><a href="#向量点积" class="headerlink" title="向量点积"></a>向量点积</h2><p>定义：若$|\vec{v}|=1$，则称$\vec{v}$为单位向量(unit vector)。</p>
-<p>单位化：任给一非零向量$\vec{v}$，则$\frac{\vec{v}}{|\vec{v}|}$是沿$\vec{v}$方向的单位向量。</p>
-<p>例1：$\vec{v}=(\cos\theta,\sin\theta)$，则$|\vec{v}|=1$。</p>
-<p>例2：$\vec{v}=(1，2，3)$，则沿$\vec{v}$方向的单位向量为$\frac{\vec{v}}{|\vec{v}|}=\frac{1}{\sqrt{14}}(1,2,3)$.</p>
-<p>向量点积的性质：</p>
-<ol>
-<li>$\vec{v}\cdot\vec{w}=\vec{w}\cdot\vec{v}$（对称性）</li>
-<li>$\vec{u}\cdot(c\vec{v}+d\vec{w})=c\vec{u}\cdot\vec{v}+d\vec{u}\cdot\vec{w}$（线性性）</li>
-<li>$\vec{v}\cdot\vec{v}=|\vec{v}|^2\ge0$，且等号成立当且仅当$\vec{v}=0$（正定性）</li>
-</ol>
-<h1 id="向量的夹角"><a href="#向量的夹角" class="headerlink" title="向量的夹角"></a>向量的夹角</h1><h2 id="向量垂直"><a href="#向量垂直" class="headerlink" title="向量垂直"></a>向量垂直</h2><p>若$\vec{v}\cdot\vec{w}=0$，则称向量$\vec{v}$和$\vec{w}$垂直(perpendicular)(或者称为正交(orthogonal))。记作$\vec{v}\perp\vec{w}$或$\vec{w}\perp\vec{v}$。</p>
-<p>在此规定，$\vec{0}$和任意向量垂直。</p>
-<p>这样定义的垂直的概念与几何直观是一致的，即</p>
-<script type="math/tex; mode=display">
-\vec{v}\perp\vec{w}\Longleftrightarrow\vec{v}\cdot\vec{w}=0</script><p>证明：设$\vec{v}\perp\vec{w}$，则$\vec{v},\vec{w},\vec{v}-\vec{w}$构成直角三角形的三条边，如下如所示：</p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200602144024402.png" alt="image-20200602144024402"></p>
-<p>于是由勾股定理可得：$|\vec{v}-\vec{w}|^2=|\vec{v}|^2+|\vec{w}|^2$，将式子左边展开得：</p>
-<script type="math/tex; mode=display">
-|\vec{v}-\vec{w}|^2=(\vec{v}-\vec{w})\cdot(\vec{v}-\vec{w})=|\vec{v}|^2-\vec{v}\cdot\vec{w}-\vec{w}\cdot\vec{v}+|\vec{w}|^2</script><p>故得 $\vec{v}\cdot\vec{w}=0$，反之亦然。</p>
-<h2 id="向量的夹角-1"><a href="#向量的夹角-1" class="headerlink" title="向量的夹角"></a>向量的夹角</h2><p>命题：两非零向量$\vec{v},\vec{w}$的夹角$\theta$满足$\cos\theta=\frac{\vec{v}\cdot\vec{w}}{|\vec{v}||\vec{w}|}$。</p>
-<p>证明：一般的，向量$\vec{v},\vec{w},\vec{v}-\vec{w}$构成三角形的三条边，由<strong>余弦定理</strong>得</p>
-<script type="math/tex; mode=display">
-|\vec{v}-\vec{w}|^2=|\vec{v}|^2+|\vec{w}|^2-2|\vec{v}||\vec{w}|\cos\theta</script><p>故有：</p>
-<script type="math/tex; mode=display">
-\cos\theta=\frac{|\vec{v}|^2+|\vec{w}|^2-|\vec{v}-\vec{w}|^2}{2|\vec{v}||\vec{w}|}=\frac{\vec{v}\cdot\vec{w}}{|\vec{v}||\vec{w}|}</script><ul>
-<li>若$\vec{v}\cdot\vec{w}&gt;0$，则$\cos\theta&gt;0$，取$0\leq\theta\leq\frac{\pi}{2}$</li>
-<li>若$\vec{v}\cdot\vec{w}&lt;0$，则$\cos\theta&lt;0$，取$\frac{\pi}{2}\leq\theta\leq\pi$</li>
-</ul>
-<p>例题：$\vec{v}=(1,1),\vec{w}=(-1,0)$，则$\cos\theta=\frac{\vec{v}\cdot\vec{w}}{|\vec{v}||\vec{w}|}=-\frac{1}{\sqrt{2}}$，则$\vec{v},\vec{w}$夹角$\theta=\frac{3}{4}\pi$</p>
-<h1 id="两个不等式"><a href="#两个不等式" class="headerlink" title="两个不等式"></a>两个不等式</h1><h2 id="Cauchy-Schwarz不等式"><a href="#Cauchy-Schwarz不等式" class="headerlink" title="Cauchy-Schwarz不等式"></a>Cauchy-Schwarz不等式</h2><p>Cauchy-Schwarz不等式首先由法国数学家Augustin-LouisCauchy(1789-1857)于1821年发现,再由俄国数学家Viktor YakovychBunyakovsky(1804-1889)于1859年重新发现, 后由德国数学家HermanSchwarz(1843-1921)于1886年再次重新发现.</p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200602151346208.png" alt="image-20200602151346208"></p>
-<p>该不等式为：</p>
-<script type="math/tex; mode=display">
-|\vec{v}\cdot\vec{w}|\leq|\vec{v}||\vec{w}|</script><p>等号成立当且仅当一个向量是另一个向量得倍数。</p>
-<h2 id="三角不等式-Triangle-inequality"><a href="#三角不等式-Triangle-inequality" class="headerlink" title="三角不等式(Triangle inequality)"></a>三角不等式(Triangle inequality)</h2><script type="math/tex; mode=display">
-|\vec{v}+\vec{w}|\leq|\vec{v}|+|\vec{w}|</script><p>等号成立当且仅当$\vec{v},\vec{w}$之一为另一向量得非负倍数</p>
-<p>证明：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-|\vec{v}+\vec{w}|&=(\vec{v}+\vec{w})\cdot(\vec{v}+\vec{w})=|\vec{v}|^2+2\vec{v}\cdot\vec{w}+|\vec{w}|^2 \\
-&\leq|\vec{v}|^2+|\vec{w}|^2+2|\vec{v}\cdot\vec{w}| \\
-&\leq|\vec{v}|^2+|\vec{w}|^2+2|\vec{v}|\cdot|\vec{w}| \\
-&=(|\vec{v}|+|\vec{w}|)^2
-\end{aligned}</script><p>等号成立当且仅当$\vec{v}\cdot\vec{w}=|\vec{v}|\cdot|\vec{w}|$，这等价于$\vec{v},\vec{w}$之一为另一个向量得非负倍数。</p>
-<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><ol>
-<li><p>设$\vec{v}=(a,b),\vec{w}=(b,a)$,则由Cauchy-Schwarz不等式得</p>
-<script type="math/tex; mode=display">
-\vec{v}\cdot\vec{w}=2ab\leq a^2+b^2=|\vec{v}||\vec{w}|</script><p>若令$x=a^2,y=b^2$，则得到<strong>几何平均不大于算术平均</strong>：</p>
-<script type="math/tex; mode=display">
-\sqrt{xy}\leq\frac{x+y}{2}</script></li>
-<li><p>设$|\vec{v}|=5,|\vec{w}=3|$，求$|\vec{v}-\vec{w}|$的最小和最大可能长度</p>
-<p>解：首先，$|\vec{v}-\vec{w}|^2=|\vec{v}|^2-2\vec{v}\cdot\vec{w}+|\vec{w}|^2$,由Cauchy-Schwarz不等式得$-|\vec{v}||\vec{w}|\leq\vec{v}\cdot\vec{w}\leq|\vec{v}||\vec{w}|$，</p>
-<p>故$(|\vec{v}|-|\vec{w}|)^2\leq|\vec{v}-\vec{w}|^2\leq(|\vec{v}+\vec{w}|)^2$</p>
-<p>所以，$2\leq|\vec{v}-\vec{w}|\leq8$</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>线性代数</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>影音服务jellyfin安装与使用</title>
-    <url>/2020/01/01/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/9%E3%80%81%E5%BD%B1%E9%9F%B3%E6%9C%8D%E5%8A%A1jellyfin%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>关于的jellyfin影音服务，已经有很多人对其做过介绍了，但在这里我任然要为其写一篇相关安装与使用的文章，因为在别的贴子里，很多人容易忽视掉设置硬件加速的一些必要步骤。</p>
-<p>本篇文章将会从本机安装以及docker安装两种安装方式来向大家介绍jellyfin的安装以及基本使用方法。</p>
-<a id="more"></a>
-<p>注意：你应该在看完文章后再决定你选用的安装方式</p>
-<p>就这样，请拥有，并享受</p>
-<h1 id="jellyfin介绍"><a href="#jellyfin介绍" class="headerlink" title="jellyfin介绍"></a>jellyfin介绍</h1><p>jellyfin是一个免费的媒体系统软件，可以让你控制媒体的管理和流式传输，是emby和plex的替代产品，可以通过多个应用程序将媒体从专用服务器提供给最终用户设备。Jellyfin是Emby 3.5.2发行版的衍生版本，并移植到.NET Core框架以实现全面的跨平台支持。</p>
-<p>jellyfin目前支持的平台有：Android、Android TV、Amazon Fire TV、UWP、 Apple iOS（目前正在测试阶段）等等平台，你可以参见<a href="http://jellyfin.org/docs/general/clients/index.html" target="_blank" rel="noopener">jellyfin支持平台</a>获得更多的信息。</p>
-<h1 id="查看是设备是否支持硬件加速"><a href="#查看是设备是否支持硬件加速" class="headerlink" title="查看是设备是否支持硬件加速"></a>查看是设备是否支持硬件加速</h1><p>Jellyfin支持使用<code>FFMpeg</code>的视频编码/解码的硬件加速。<code>FFMpeg</code>可通过视频加速<code>API（VAAPI）</code>支持多种硬件加速实现，例如<code>Intel Quicksync（QSV）</code>，<code>AMD AMF</code>，<code>OpenMax OMX</code>，<code>nVidia NVENC / NVDEC</code>等。<br>|操作系统|推荐的硬件加速|<br>|-|-|<br>|Linux / GNU|VAAPI（推荐），NVENC，QSV，AMF|<br>|Windows|QSV，NVENC，AMF，VAAPI|<br>|MacOS|None (videotoolbox support coming)|<br>|Android|MediaCodec, OMX|<br>|RPi|OMX|<br><a href="https://developer.nvidia.com/ffmpeg" target="_blank" rel="noopener">NVIDIA使用ffmpeg官方名单</a>，建议将这些<a href="https://github.com/keylase/nvidia-patch" target="_blank" rel="noopener">驱动程序</a>用于<code>Linux / GNU</code>和<code>Windows</code>。这是支持的编解码器的<a href="https://developer.nvidia.com/video-encode-decode-gpu-support-matrix" target="_blank" rel="noopener">NVIDIA图形卡</a>的官方列表。</p>
-<p>VAAPI支持的编解码器列表：<a href="http://jellyfin.org/docs/general/administration/hardware-acceleration.html" target="_blank" rel="noopener">点击这里查看</a><br>支持QSV的Intel处理器列表。<a href="https://ark.intel.com/content/www/us/en/ark.html#@Processors" target="_blank" rel="noopener">点击这里查看</a><br>FFmpeg硬件加速支持列表。<a href="https://trac.ffmpeg.org/wiki/HWAccelIntro" target="_blank" rel="noopener">点击这里查看</a><br>Ubuntu使用NVENC的示例。<a href="https://www.reddit.com/r/jellyfin/comments/amuyba/nvenc_nvdec_working_in_jellyfin_on_ubuntu_server/" target="_blank" rel="noopener">点击这里查看</a></p>
-<h2 id="启用硬件加速"><a href="#启用硬件加速" class="headerlink" title="启用硬件加速"></a>启用硬件加速</h2><p>硬件加速选项可在“管理仪表板”的“ 转码”部分下找到。从下拉菜单中选择有效的硬件加速选项，指示设备（如果适用），并检查enable hardware encoding以启用编码以及解码（如果您的硬件支持）。</p>
-<p>硬件加速可立即用于媒体播放。无需重新启动服务器。</p>
-<p>每种硬件加速类型以及每种Jellyfin安装类型在使用前都需要不同的设置选项。始终最好参考您选择的加速度类型的FFMpeg文档以获取最新信息。</p>
-<h3 id="Debian-Ubuntu上配置VAAPI加速"><a href="#Debian-Ubuntu上配置VAAPI加速" class="headerlink" title="Debian / Ubuntu上配置VAAPI加速"></a>Debian / Ubuntu上配置VAAPI加速</h3><p>在Debian / Ubuntu上配置VAAPI需要进行一些其他配置，以确保权限正确。</p>
-<ol>
-<li>验证render设备现在在中/dev/dri，并记下可写入该设备的权限和组，在这种情况下render：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ls -l &#x2F;dev&#x2F;dri</span><br></pre></td></tr></table></figure>
-查看是否有如下输出：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">total 0</span><br><span class="line">drwxr-xr-x 2 root root 100 Apr 13 16:37 by-path</span><br><span class="line">crw-rw---- 1 root video 226, 0 Apr 13 16:37 card0</span><br><span class="line">crw-rw---- 1 root video 226, 1 Apr 13 16:37 card1</span><br><span class="line">crw-rw---- 1 root render 226, 128 Apr 13 16:37 renderD128</span><br></pre></td></tr></table></figure>
-如果没有，在确保你的设备支持硬件加速的情况下通过<a href="http://jellyfin.org/docs/general/administration/hardware-acceleration.html" target="_blank" rel="noopener">指导文件</a>来进行相关设备的配置以及验证。不同的硬件平台配置方法不一样，在此不展开详述。</li>
-</ol>
-<ol>
-<li>将Jellyfin服务用户添加到上述组中，以允许Jellyfin的FFMpeg进程访问该设备，然后重新启动Jellyfin：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo usermod -aG render jellyfin</span><br><span class="line">sudo systemctl restart jellyfin</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>注意：在这里执行完第一条语句后可能会出现报错，这是因为在某些发行版本中，该组可能为video而不是render，将其更改过来即可。<br>在看了很多相关文章后，发现大家都没有配置这一步，这可能导致硬件转码没有办法正常工作。</p>
-<p>注意：以下两点请在安装完成jellyfin后在来看</p>
-<ol>
-<li><p>在管理控制台的“代码转换”页面中配置VAAPI加速。输入/dev/dri/renderD128上面的设备作为VA API Device值。</p>
-</li>
-<li><p>观看电影，并通过使用或类似工具观看ffmpeg-transcode-*.txt日志来验证是否正在进行转码。</p>
-</li>
-</ol>
-<h1 id="Ubuntu安装jellyfin"><a href="#Ubuntu安装jellyfin" class="headerlink" title="Ubuntu安装jellyfin"></a>Ubuntu安装jellyfin</h1><p>文章存在时效性，具体可参考<a href="http://jellyfin.org/docs/general/administration/installing.html#ubuntu" target="_blank" rel="noopener">官方指南</a></p>
-<h2 id="迁移至新仓库"><a href="#迁移至新仓库" class="headerlink" title="迁移至新仓库"></a>迁移至新仓库</h2><p>早期的jellyfin在ubuntu的官方<code>apt-get</code>源中，现在已将其拆分成自己的存储库，以更好地处理单独的二进制程序包。如果遇到ubuntu找不到该发行版的错误，并且以前配置了<code>ubuntu jellyfin.list</code>文件，请按照以下步骤操作。</p>
-<ol>
-<li>删除旧的<code>/etc/apt/sources.list.d/jellyfin.list</code>文件<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo rm &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;jellyfin.list</span><br></pre></td></tr></table></figure></li>
-<li>按照下面的方法步骤继续操作</li>
-</ol>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>Jellyfin团队提供了一个Ubuntu存储库，可以在<code>Ubuntu Xenial/Bionic/Cosmic/Disco</code>上进行安装。支持的架构<code>amd64、arm64</code>和<code>armhf</code>。<code>Ubuntu Xenial</code> 仅支持 <code>amd64</code>。</p>
-<p>注意：Microsoft不为32位x86 Linux系统提供.NET，因此<code>i386</code>体系结构不支持Jellyfin 。</p>
-<ol>
-<li><p>如果尚未安装APT的HTTPS传输，请执行以下操作：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install apt-transport-https</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>启用Universe存储库以获取所有FFMpeg依赖项：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo add-apt-repository universe</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>导入GPG签名密钥：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget -O - https:&#x2F;&#x2F;repo.jellyfin.org&#x2F;ubuntu&#x2F;jellyfin_team.gpg.key | sudo apt-key add -</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在以下位置添加存储库配置<code>/etc/apt/sources.list.d/jellyfin.list</code>：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">echo &quot;deb [arch&#x3D;$( dpkg --print-architecture )] https:&#x2F;&#x2F;repo.jellyfin.org&#x2F;ubuntu $( lsb_release -c -s ) main&quot; | sudo tee &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;jellyfin.list</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>注意：支持的版本是：<code>xenial</code>，<code>bionic</code>，<code>cosmic</code>，和<code>disco</code>。</p>
-<ol>
-<li>更新APT存储库：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol>
-<li><p>安装Jellyfin：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install jellyfin</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用您选择的工具管理Jellyfin系统服务：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo systemctl restart jellyfin</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="Docker安装jellyfin"><a href="#Docker安装jellyfin" class="headerlink" title="Docker安装jellyfin"></a>Docker安装jellyfin</h1><p>你可以到<a href="https://registry.hub.docker.com/r/jellyfin/jellyfin" target="_blank" rel="noopener">jellyfin官方docker hub</a>查看该项目的最新动态以及获得相关支持。</p>
-<ol>
-<li>获取docker镜像<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker pull jellyfin&#x2F;jellyfin</span><br></pre></td></tr></table></figure></li>
-<li>运行jellyfin<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">-p 8096:8096 \</span><br><span class="line">--name jellyfin \</span><br><span class="line">--restart always \</span><br><span class="line">-v 配置文件路径:&#x2F;config \</span><br><span class="line">-v 缓存文件路径:&#x2F;cache \</span><br><span class="line">-v 媒体路径1:&#x2F;media \</span><br><span class="line">-v 媒体路径2:&#x2F;media \</span><br><span class="line">--device &#x2F;dev&#x2F;dri&#x2F;renderD128:&#x2F;dev&#x2F;dri&#x2F;renderD128 \</span><br><span class="line">--device &#x2F;dev&#x2F;dri&#x2F;card0:&#x2F;dev&#x2F;dri&#x2F;card0 \</span><br><span class="line">--privileged&#x3D;true \</span><br><span class="line">--env GIDLIST&#x3D;44 \</span><br><span class="line">jellyfin&#x2F;jellyfin:latest</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>到此，jellyfin的安装工作就算完成了。接下来进行相关的配置工作。</p>
-<h1 id="jellyfin配置与使用"><a href="#jellyfin配置与使用" class="headerlink" title="jellyfin配置与使用"></a>jellyfin配置与使用</h1><h2 id="启动配置"><a href="#启动配置" class="headerlink" title="启动配置"></a>启动配置</h2><p>在浏览器中输入<code>服务器IP:8096</code>即可进入到jellyfin的web端。</p>
-<ol>
-<li><p>选择语言<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174755.jpg" alt="选择语言"></p>
-</li>
-<li><p>用户设置<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174819.jpg" alt="添加用户"></p>
-</li>
-<li><p>设置媒体库<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174832.jpg" alt="媒体库设置"></p>
-</li>
-<li><p>选择地区与语言<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174851.jpg" alt="选择地区与语言"></p>
-</li>
-<li><p>远程访问（默认即可）<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174902.jpg" alt="远程访问权限"></p>
-</li>
-<li><p>完成配置<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174912.jpg" alt="完成配置"></p>
-</li>
-<li><p>登录<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174925.jpg" alt="用户登录"></p>
-</li>
-<li><p>进入界面<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20174936.jpg" alt="主页面"></p>
-</li>
-</ol>
-<h2 id="界面配置"><a href="#界面配置" class="headerlink" title="界面配置"></a>界面配置</h2><p>点击右上角小人，进入如下界面</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20181402.jpg" alt="个人设置"></p>
-<p>选择显示菜单</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20181423.jpg" alt="显示配置"></p>
-<p>这里选择自己喜欢的主题可以进行配置在上个页面中你也可以进行更多配置</p>
-<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><p>选择左上角的<strong>三横图标</strong> —&gt; <strong>控制台</strong> —&gt; <strong>往下找到插件</strong> 来到下图所示的界面<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182002.jpg" alt="插件"></p>
-<p>我这里以及安装了很多插件了，如果你没有安装过，这里将显示空白。点击上方的目录可进入到插件目录</p>
-<h3 id="字幕插件"><a href="#字幕插件" class="headerlink" title="字幕插件"></a>字幕插件</h3><p>在元素据中找到Open Subtitles，进去点击安装</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182159.jpg" alt="字幕插件"></p>
-<p>然后回到我的插件，点开Open Subtitles进入配置页面</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182318.jpg" alt="Open Subtitles配置"><br>输入用户名密码登录，没有的话可以到<a href="http://www.opensubtitles.org/" target="_blank" rel="noopener">opensubtitles官网</a>进行注册。</p>
-<h3 id="KODI串流"><a href="#KODI串流" class="headerlink" title="KODI串流"></a>KODI串流</h3><p>在插件目录的常规栏目找到Kodi Sync Queue进行安装<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182711.jpg" alt="KODI"></p>
-<p>然后回到我的插件，进入KODI配置，全勾选上即可<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20182644.jpg" alt="KODI"></p>
-<p>关于kodi的使用将在后期文章中进行介绍</p>
-<h3 id="其他插件"><a href="#其他插件" class="headerlink" title="其他插件"></a>其他插件</h3><p>其他插件可以根据自己的需要进行安装，可以参考其他同类文章，在此不进行详述。</p>
-<h2 id="添加媒体库"><a href="#添加媒体库" class="headerlink" title="添加媒体库"></a>添加媒体库</h2><p>在控制台中进入到媒体库，可以看到添加媒体库的按钮，如下图<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20183340.jpg" alt="媒体库管理"><br>然后点击添加媒体库<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20183444.jpg" alt="添加媒体库"><br>选择对应的类型与名称，在文件夹处选择刚才对应的媒体库，docker安装的话媒体目录被映射到/media目录下。</p>
-<p>点击左上角的显示高级设置<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20183808.jpg" alt="设置"></p>
-<p>把除了上图没勾选的之外的全面勾选上。然后确认。之后会自动扫描和下载字幕，该过程有些漫长。<br>然后在主页就可以看到添加的媒体了<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20184026.jpg" alt="媒体"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20184239.jpg" alt="电影"></p>
-<p>对于某些电影，会识别失败，这时我们需要手动识别，进入电影详情页面。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20184406.jpg" alt="电影详情"></p>
-<p>然后点击播放 预告片后面的更多<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20184517.jpg" alt="更多"><br>然后选择对应的菜单进入操作即可。</p>
-<h1 id="jellyfin播放设置"><a href="#jellyfin播放设置" class="headerlink" title="jellyfin播放设置"></a>jellyfin播放设置</h1><h2 id="硬件加速"><a href="#硬件加速" class="headerlink" title="硬件加速"></a>硬件加速</h2><p>硬件播放可以到控制台 —&gt; 播放进行设置<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20202112.jpg" alt="硬件加速"></p>
-<p>可以参考上面的平台推荐加速器进行相关设置，我这里设置为VAAPI<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20202312.jpg" alt="加速方式"></p>
-<p>VAAPI选择对应的硬件设备，确保你已依照上面的过程进行了相关的驱动设置。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20202427.jpg" alt="加速设备"></p>
-<p>其他参数可依照说明按需进行更改</p>
-<h2 id="流媒体传输设置"><a href="#流媒体传输设置" class="headerlink" title="流媒体传输设置"></a>流媒体传输设置</h2><p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-31%20202647.jpg" alt="流媒体传输设置"><br>可依据自己的网络情况进行传输设置，这对于防止设备请求比 internet 连接所能处理的更高的比特率非常有用。这可能会导致服务器上的 CPU 负载增加, 以便将视频转码到较低的比特率。</p>
-<h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>本来想在一篇文章中对jellyfin做个详细的说明，但是发现那样文章就显得太过于长了。<br>下篇文章将对jellyfin的其他使用技巧做一个介绍，比如电影命名规范，格式选择等。<br>除此之外还会对jellyfin的使用过程中遇到的一些问题进行介绍，以及如何获取解决方案。</p>
-]]></content>
-      <categories>
-        <category>家庭NAS、HTPC服务器</category>
-      </categories>
-      <tags>
-        <tag>NAS系统</tag>
-        <tag>家庭影音</tag>
-        <tag>HTPC服务器</tag>
-        <tag>jellyfin</tag>
-        <tag>影音服务</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C++类和对象基础知识</title>
-    <url>/2020/07/08/C++/C-%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
-    <content><![CDATA[<h1 id="类和对象"><a href="#类和对象" class="headerlink" title="类和对象"></a>类和对象</h1><p>在c语言中，程序是由若干的函数以及变量组成的，它们之间并没有很严格的关系，这就导致了当程序规模逐渐变大之后，就不易于程序的扩充以及维护。另外，当我们想要复用之前程序中的一些代码片段时，函数中的变量使得我们很难将其从程序中抽离出来。总之，结构化程序设计使得我们的程序难以扩充、难以维护、难以重用。</p>
-<p>c++在c语言的基础上增加了<strong>面向对象程序设计</strong>（Object-oriented programming，OOP）的机制，而面向对象的这种机制恰好解决了c语言结构化设计的这种缺陷。简单来说，在面向对象程序设计中，我们可以依照以下的设计方法：</p>
-<ol>
-<li>我们将某类客观事物的共同特点（属性）归纳出来，形成一个数据结构，可以用多个变量描述事物的属性。</li>
-<li>将这类事物所能进行的行为也归纳出来，形成函数，这些函数就用来操作数据结构。</li>
-<li>然后通过某种方式将这些数据结构与函数捆绑<strong>封装</strong>起来，从而形成一个类。</li>
-</ol>
-<p>需要注意的是，被封装的函数只能访问与它封装在一起的数据结构，反之，这些数据结构也只能被与它封装在一起的函数所操作。这样就使得某一类事物的数据结构只能由与之封装的函数进行操作，而其它函数是无法访问其数据结构的。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% note info %&#125;</span><br><span class="line">案例</span><br><span class="line">假设我们现在要实现一个矩形类，该如何表示呢？</span><br><span class="line">+ 矩形有长(length)和宽(weight)两个属性</span><br><span class="line">作为一个矩形，可以有哪些行为呢？</span><br><span class="line">1. 设置长和宽</span><br><span class="line">2. 计算面积</span><br><span class="line">3. 计算周长</span><br><span class="line">&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="类的定义"><a href="#类的定义" class="headerlink" title="类的定义"></a>类的定义</h1><p>我们将上面的矩形属性长(length)和宽(weight)以及与之对应的行为封装在一起，就能形成一个矩形类。</p>
-<p>矩形属性成为“<strong>成员变量</strong>”，3个函数成为该类的“<strong>成员函数</strong>”，成员变量与成员函数统称为类的成员。</p>
-<p>实际上，类看上去就像带函数的结构。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">double</span> length;<span class="comment">//长</span></span><br><span class="line">	<span class="keyword">double</span> weight;<span class="comment">//宽</span></span><br><span class="line">    </span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">double</span> length_,<span class="keyword">double</span> weight_)</span> </span>&#123;<span class="comment">//设置长和宽</span></span><br><span class="line">		length = length_;<span class="comment">//设置长</span></span><br><span class="line">		weight = weight_;<span class="comment">//设置宽</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">Area</span><span class="params">()</span></span>&#123;<span class="comment">//计算面积</span></span><br><span class="line">		<span class="keyword">return</span> length * weight;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">Perimeter</span><span class="params">()</span> </span>&#123;<span class="comment">//计算周长</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">2</span> * (length + weight);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;<span class="comment">//分号不可省略</span></span><br></pre></td></tr></table></figure>
-<p>关键字 <strong>public</strong> 确定了类成员的访问属性。在类对象作用域内，公共成员在类的外部是可访问的。除了<strong>public</strong>，我们还可以指定成员为<strong>private</strong> 或 <strong>protected</strong>，我们将在后续进行讲解。</p>
-<p>这样我们就得到了一个矩形类。</p>
-<ul>
-<li><strong>length</strong> 和 <strong>weight</strong> 分别为矩形的长和宽</li>
-<li><strong>init</strong>、<strong>Area</strong>、<strong>Perimeter</strong>分别为类的成员函数，函数中的<strong>length</strong> 和 <strong>weight</strong> 指的是成员变量的<strong>length</strong> 和 <strong>weight</strong> 。</li>
-</ul>
-<h1 id="定义-C-对象"><a href="#定义-C-对象" class="headerlink" title="定义 C++ 对象"></a>定义 C++ 对象</h1><h2 id="普通定义"><a href="#普通定义" class="headerlink" title="普通定义"></a>普通定义</h2><p>我们有了<strong>Rectangle</strong>类之后就要去使用它，声明类的对象，就像声明基本数据类型的变量一样，如下代码所示：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Rectangle r;<span class="comment">//声明一个对象</span></span><br><span class="line">	<span class="keyword">double</span> length = <span class="number">10.0</span>;</span><br><span class="line">	<span class="keyword">double</span> weight = <span class="number">10.0</span>;</span><br><span class="line">	r.init(length, weight);<span class="comment">//初始化对象</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"矩形面积为："</span> &lt;&lt; r.Area() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"矩形周长为："</span> &lt;&lt; r.Perimeter() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们声明了一个对象<code>r</code>,类型为<code>Rectangle</code>。<strong>我们通过<code>.</code>运算符可以访问类的成员</strong>，通过<code>r.init(length, weight);</code>来初始化对象，此时调用了类的成员函数<code>void init(double length_,double weight_)</code>，设置了矩形的长和宽。</p>
-<p>接下来，通过<code>r.Area()</code>以及<code>r.Perimeter()</code>计算矩形的面积以及周长，并通过<code>cout</code>输出，运行上面的代码，我们可以得到如下结果:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">矩形面积为：100</span><br><span class="line">矩形周长为：40</span><br></pre></td></tr></table></figure>
-<h2 id="通过指针定义"><a href="#通过指针定义" class="headerlink" title="通过指针定义"></a>通过指针定义</h2><p>除了上面所展示的普通定义之外，我们还可以通过指针来定义类的对象，其用法与基本数据类型的指针定义相同。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">double</span> length;<span class="comment">//长</span></span><br><span class="line">	<span class="keyword">double</span> weight;<span class="comment">//宽</span></span><br><span class="line">	Rectangle *r;<span class="comment">//声明一个对象指针</span></span><br><span class="line">	r = <span class="keyword">new</span> Rectangle;<span class="comment">//为对象动态分配内存空间</span></span><br><span class="line">	r-&gt;init(length, weight);<span class="comment">//初始化对象</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"矩形面积为："</span> &lt;&lt; r-&gt;Area() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"矩形周长为："</span> &lt;&lt; r-&gt;Perimeter() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">delete</span> r;<span class="comment">//释放动态分配的空间</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>对象指针的创建与基本数据类型的指针定义相同，通过<code>Rectangle *r;</code>创建一个对象指针，并通过<code>new</code>运算符为其动态分配内存空间，值得注意的是，在访问对象的成员时，需要使用<code>-&gt;</code>运算符进行访问，而不再是<code>.</code>运算符。</p>
-<p>执行上面代码，我们可以获得与普通定义相同的结果：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">矩形面积为：100</span><br><span class="line">矩形周长为：40</span><br></pre></td></tr></table></figure>
-<p>最后，在使用完之后，我们需要使用<code>delete</code>运算符来释放动态分配的空间。</p>
-<p>通过类可以定义变量，类定义出来的<strong>变量</strong>，也成为类的实例，就是我们所说的<strong>对象</strong>。</p>
-<h1 id="访问数据成员"><a href="#访问数据成员" class="headerlink" title="访问数据成员"></a>访问数据成员</h1><p>类的对象的公共数据成员(<strong>public</strong>)可以使用直接成员访问运算符<code>.</code>或<code>-&gt;</code>来访问。</p>
-<h2 id="使用-访问"><a href="#使用-访问" class="headerlink" title="使用.访问"></a>使用<code>.</code>访问</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Rectangle r;<span class="comment">//声明一个对象</span></span><br><span class="line">	<span class="keyword">double</span> length = <span class="number">10.0</span>;</span><br><span class="line">	<span class="keyword">double</span> weight = <span class="number">10.0</span>;</span><br><span class="line">	r.init(length, weight);<span class="comment">//初始化对象</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"矩形长为："</span> &lt;&lt; r.length &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"矩形宽为："</span> &lt;&lt; r.weight &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>通过<code>r.init(length, weight);</code>，我们调用了初始化函数初始化了矩形的长和宽。</p>
-</li>
-<li><p>通过<code>r.length</code>，得到了矩形的长。</p>
-</li>
-<li><p>通过<code>r.weight</code>，得到了矩形的宽。</p>
-</li>
-</ul>
-<p>执行上面的代码，得到如下结果：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">矩形长为：10</span><br><span class="line">矩形宽为：10</span><br></pre></td></tr></table></figure>
-<h2 id="使用-gt-访问"><a href="#使用-gt-访问" class="headerlink" title="使用-&gt;访问"></a>使用<code>-&gt;</code>访问</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">double</span> length;<span class="comment">//长</span></span><br><span class="line">	<span class="keyword">double</span> weight;<span class="comment">//宽</span></span><br><span class="line">	Rectangle *r;<span class="comment">//声明一个对象指针</span></span><br><span class="line">	r = <span class="keyword">new</span> Rectangle;<span class="comment">//为对象动态分配内存空间</span></span><br><span class="line">	r-&gt;init(length, weight);<span class="comment">//初始化对象</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"矩形长为："</span> &lt;&lt; r-&gt;length &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"矩形宽为："</span> &lt;&lt; r-&gt;weight &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">delete</span> r;<span class="comment">//释放动态分配的空间</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>执行代码，得到下面结果：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">矩形长为：10</span><br><span class="line">矩形宽为：10</span><br></pre></td></tr></table></figure>
-<p>与使用<code>.</code>运算符的结果一致。</p>
-<h1 id="对象的内存分配"><a href="#对象的内存分配" class="headerlink" title="对象的内存分配"></a>对象的内存分配</h1><p>一般的，我们认为对象所占用的内存大小为，等于<strong>所有成员变量的大小之和</strong>。</p>
-<p>对于上面的<code>Rectangle</code>类，<code>sizeof(Rectangle)=16</code></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">double</span> length;<span class="comment">//长</span></span><br><span class="line">	<span class="keyword">double</span> weight;<span class="comment">//宽</span></span><br><span class="line">	Rectangle r;<span class="comment">//声明一个对象</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"sizeof(Rectangle)="</span> &lt;&lt; <span class="keyword">sizeof</span>(Rectangle) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行上面代码，得到如下结果：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sizeof(Rectangle)=16</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% note warning %&#125;</span><br><span class="line">注意</span><br><span class="line">+ 并不是所有的类所占内存空间大小都为成员变量之和，有时还需要考虑**对齐**等情况，会有所差异。</span><br><span class="line">+ 一个类的成员函数只有一份，为所有成员共享，故类的成员函数所占用内存空间没有计算。</span><br><span class="line">+ 每个对象都有自己的存储空间，一个对象的值改变了并不会影响另一个变量</span><br><span class="line">&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="类的成员函数和类的定义分开写"><a href="#类的成员函数和类的定义分开写" class="headerlink" title="类的成员函数和类的定义分开写"></a>类的成员函数和类的定义分开写</h1><p>当我们的类拥有很多的成员变量以及成员函数的时候，如果将所有的成员函数的实现都写在类的定义当中的话，就会显得十分的臃肿，不利于代码的阅读。此时，我们可以将类的定义以及实现分类来写，类的定义当中仅写成员函数的定义，而成员函数的实现则写到类的外面。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">double</span> length;<span class="comment">//长</span></span><br><span class="line">	<span class="keyword">double</span> weight;<span class="comment">//宽</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">double</span> length_, <span class="keyword">double</span> weight_)</span></span>;<span class="comment">//设置长和宽</span></span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">Area</span><span class="params">()</span></span>;<span class="comment">//计算面积</span></span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">Perimeter</span><span class="params">()</span></span>; <span class="comment">//计算周长</span></span><br><span class="line">&#125;;<span class="comment">//分号不可省略</span></span><br></pre></td></tr></table></figure>
-<p>我们改写上面所示的代码，在类的实现当中仅写成员函数的定义。将成员函数写在类外，如下代码所示：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Rectangle::init</span><span class="params">(<span class="keyword">double</span> length_, <span class="keyword">double</span> weight_)</span> </span>&#123;</span><br><span class="line">	length = length_;</span><br><span class="line">	weight = weight_;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">Rectangle::Area</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> length * weight;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">Rectangle::Perimeter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">2</span> * (length * weight);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其基本格式为：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">返回值类型 类名::函数名(参数表)&#123;</span><br><span class="line">    函数体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>通过<code>类名::</code>说明后面的函数为类的成员函数，而非普通函数。</p>
-<h1 id="类成员的可访问范围"><a href="#类成员的可访问范围" class="headerlink" title="类成员的可访问范围"></a>类成员的可访问范围</h1><p>在类的定义中，用以下的关键字来说明类成员的访问范围：</p>
-<ul>
-<li><strong>private</strong>：私有成员，只能在成员函数内访问</li>
-<li><strong>public</strong>：公用成员，可以在任何地方访问</li>
-<li><strong>protected</strong>：保护成员，具体用法以后讨论</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% note info %&#125;</span><br><span class="line">+ 以上三种关键字出现次数和先后顺序没有限制</span><br><span class="line">+ 没有说明访问范围的默认为**private**</span><br><span class="line">&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> &#123;</span></span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">10</span>];<span class="comment">//默认为private</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">char</span> sex;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">printInfo</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> age;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">	<span class="keyword">time_t</span> birthday;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>例如在上面的学生类中，<strong>name</strong>属性没有指定访问范围，值默认缺省为<strong>private</strong>。</p>
-<p>对于上面的类，假设我们有如下外部调用：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Student stu;</span><br><span class="line">	stu.printInfo();<span class="comment">//OK</span></span><br><span class="line">	stu.sex;<span class="comment">//OK</span></span><br><span class="line">	stu.name;<span class="comment">//错误，不能访问私有成员</span></span><br><span class="line">	stu.birthday;<span class="comment">//错误，不能访问保护成员</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们仅能访问类的公有成员(<strong>public</strong>)，不能访问其它属性的成员。</p>
-<p>对于如下的内部调用：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Student::printInfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; age &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//OK</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; birthday &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//OK</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在类的成员函数内部，我们可以访问所有的成员。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% note info %&#125;</span><br><span class="line">+ **private**属性的成员只能通过类的成员函数访问，不能在类外部访问。</span><br><span class="line">+ 在类的成员函数内部，能够访问**当前对象的全部属性、函数**以及**同类其它对象的全部属性、函数**。</span><br><span class="line">+ 在类的成员函数以外的地方，就只能访问该类对象的公有成员(**public**)</span><br><span class="line">&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
-<p>设置私有成员的的机制叫“<strong>隐藏</strong>”，隐藏的目的时强制成员变量的访问一定要通过成员函数进行，使得成员变量不能被外部所访问到，确保了成员变量的安全，同时也易于以后的维护。</p>
-<h1 id="成员函数的重载与缺省"><a href="#成员函数的重载与缺省" class="headerlink" title="成员函数的重载与缺省"></a>成员函数的重载与缺省</h1><p>类的成员函数也可以进行重载以及缺省参数值，其用法与普通函数的重载与参数缺省相同。</p>
-]]></content>
-      <categories>
-        <category>C++</category>
-      </categories>
-      <tags>
-        <tag>c++对象</tag>
-        <tag>c++类</tag>
-        <tag>面向对象</tag>
-        <tag>构造函数</tag>
       </tags>
   </entry>
 </search>
