@@ -108,6 +108,44 @@
       </tags>
   </entry>
   <entry>
+    <title>C++ const关键字使用</title>
+    <url>/2020/05/31/C++/C-const%E5%85%B3%E9%94%AE%E5%AD%97%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="const定义常量"><a href="#const定义常量" class="headerlink" title="const定义常量"></a><code>const</code>定义常量</h1><p>在c语言中，我们学习过可以使用<code>#define</code>来定义常量。但是<code>#define</code>的原理是简单的替换，因此对于<code>#define</code>来说没有类型检查这回事。</p>
+<p>c++中提供了<code>const</code>关键字，用<code>const</code>关键字修饰的变量其值是不能修改的，因此可以使用<code>const</code>关键字来替换<code>#define</code>，这有益于编译器进行类型检查。</p>
+<a id="more"></a>
+<p><code>const</code>关键字定义变量如下代码所示:</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX = <span class="number">1000</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> PI = <span class="number">3.14</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> NAME[] = <span class="string">"yurui"</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	MAX = PI;<span class="comment">//报错</span></span><br><span class="line">	<span class="keyword">int</span> a = PI;<span class="comment">//警告</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如上程序所示，使用<code>const</code>关键字定义了<code>MAX</code>、<code>PI</code>、<code>NAME</code>三个全局变量。</p>
+<p>通过<code>MAX = PI;</code>对const修饰的变量进行赋值时会报错；通过<code>int a = PI;</code>进行赋值时编译系统会给出警告，提示类型不符合。</p>
+<p>通过上面的例子，我们可以看出，通过使用<code>const</code>关键字修饰常量，在使用时编译系统会进行类型检查。</p>
+<h1 id="const定义常量指针"><a href="#const定义常量指针" class="headerlink" title="const定义常量指针"></a><code>const</code>定义常量指针</h1><p>通过<code>const</code>关键字定义常量指针，这样就不能通过指针修改变量的值。</p>
+<p>例如：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span>* p = &amp;a;</span><br><span class="line">	*p = <span class="number">10</span>;<span class="comment">//报错</span></span><br><span class="line">    a = <span class="number">100</span>;<span class="comment">//正确</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如上面的程序，定义常指针<code>p</code>,当我们通过<code>p</code>去修改其所指向的值时，编译器就会对其报错。</p>
+<p>但通过变量名还是可以修改其值，如<code>a = 100;</code>。</p>
+<p>另外，观察下面代码：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span>* a;</span><br><span class="line">	<span class="keyword">int</span>* b;</span><br><span class="line">	a = b;<span class="comment">//正确</span></span><br><span class="line">	b = a;<span class="comment">//错误</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于常指针，我们可以直接对其赋值，如<code>a = b;</code>；对于非常量指针，我们不能使用常量指针对其进行赋值，如<code>b = a;</code>。</p>
+<h1 id="const修饰引用对象"><a href="#const修饰引用对象" class="headerlink" title="const修饰引用对象"></a><code>const</code>修饰引用对象</h1><p>引用也可以用<code>const</code>关键字修饰，这样就不能通过引用名来修改变量值了。</p>
+<p>如下代码所示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span>&amp; r = a;</span><br><span class="line">    a = <span class="number">10</span>;<span class="comment">//正常</span></span><br><span class="line">	r = <span class="number">10</span>;<span class="comment">//报错</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在执行到<code>r=10;</code>这条语句时编译器会报错，提示<strong>表达式必须是可修改的左值</strong>，因为我们再初始化引用时将其加上了了<code>const</code>关键字，我们就不能通过引用名来修改变量的值了。</p>
+<p>对于<code>a = 10;</code>这条语句则执行正常，因为a没有<code>const</code>关键字修饰。</p>
+<p>再考量下面的代码：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span>&amp; b = a;<span class="comment">//正确</span></span><br><span class="line">	<span class="keyword">int</span>&amp; r = a;<span class="comment">//错误</span></span><br><span class="line">	r = <span class="number">100</span>;<span class="comment">//错误</span></span><br><span class="line">	a = <span class="number">100</span>;<span class="comment">//错误</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于用<code>const</code>关键字修饰的变量，我们在为其创建引用对象时，任然需要创建<code>const</code>类型的引用对象，且无法通过变量名或引用名来修改变量的值。</p>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>const</tag>
+        <tag>const关键字</tag>
+        <tag>常引用</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++中cin.getline和cin.get函数的使用</title>
     <url>/2019/09/16/C++/C-%E4%B8%ADgetline%E5%92%8Cget%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>在C++中，我们通常使用<code>cin</code>作为输入函数来读取用户键盘输入的数据，由于不能通过键盘来输入空字符，因此<code>cin</code>需要用别的方法来确定字符串结尾位置。<code>cin</code>使用空白、空格、制表符和换行符来确定字符串的结束位置，这意味着<code>cin</code>在读入数据的时候只能截取上述结束符前的数据，对于结束符后的数据讲不能读入程序中。我们来考一个<code>cin</code>读入字符串的实例。<br><a id="more"></a><br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">30</span>];</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入您的姓名："</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; name;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您的名字是："</span> &lt;&lt; name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -147,25 +185,24 @@
       </tags>
   </entry>
   <entry>
-    <title>C++ const关键字使用</title>
-    <url>/2020/05/31/C++/C-const%E5%85%B3%E9%94%AE%E5%AD%97%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="const定义常量"><a href="#const定义常量" class="headerlink" title="const定义常量"></a><code>const</code>定义常量</h1><p>在c语言中，我们学习过可以使用<code>#define</code>来定义常量。但是<code>#define</code>的原理是简单的替换，因此对于<code>#define</code>来说没有类型检查这回事。</p>
-<p>c++中提供了<code>const</code>关键字，用<code>const</code>关键字修饰的变量其值是不能修改的，因此可以使用<code>const</code>关键字来替换<code>#define</code>，这有益于编译器进行类型检查。</p>
+    <title>C++引用</title>
+    <url>/2020/05/31/C++/C-%E5%BC%95%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="引用的概念"><a href="#引用的概念" class="headerlink" title="引用的概念"></a>引用的概念</h1><p>引用是变量的一个别名，相当于已经存在的变量的另一个名字。引用名与被引用的变量名都指向同一个内存地址。</p>
+<h1 id="引用的创建"><a href="#引用的创建" class="headerlink" title="引用的创建"></a>引用的创建</h1><p>引用创建的语法格式如下，其中<code>T</code>为任意类型：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">T &amp;引用名 = 变量名;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<p><code>const</code>关键字定义变量如下代码所示:</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX = <span class="number">1000</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> PI = <span class="number">3.14</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> NAME[] = <span class="string">"yurui"</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	MAX = PI;<span class="comment">//报错</span></span><br><span class="line">	<span class="keyword">int</span> a = PI;<span class="comment">//警告</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如上程序所示，使用<code>const</code>关键字定义了<code>MAX</code>、<code>PI</code>、<code>NAME</code>三个全局变量。</p>
-<p>通过<code>MAX = PI;</code>对const修饰的变量进行赋值时会报错；通过<code>int a = PI;</code>进行赋值时编译系统会给出警告，提示类型不符合。</p>
-<p>通过上面的例子，我们可以看出，通过使用<code>const</code>关键字修饰常量，在使用时编译系统会进行类型检查。</p>
-<h1 id="const定义常量指针"><a href="#const定义常量指针" class="headerlink" title="const定义常量指针"></a><code>const</code>定义常量指针</h1><p>通过<code>const</code>关键字定义常量指针，这样就不能通过指针修改变量的值。</p>
 <p>例如：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span>* p = &amp;a;</span><br><span class="line">	*p = <span class="number">10</span>;<span class="comment">//报错</span></span><br><span class="line">    a = <span class="number">100</span>;<span class="comment">//正确</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如上面的程序，定义常指针<code>p</code>,当我们通过<code>p</code>去修改其所指向的值时，编译器就会对其报错。</p>
-<p>但通过变量名还是可以修改其值，如<code>a = 100;</code>。</p>
-<p>另外，观察下面代码：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span>* a;</span><br><span class="line">	<span class="keyword">int</span>* b;</span><br><span class="line">	a = b;<span class="comment">//正确</span></span><br><span class="line">	b = a;<span class="comment">//错误</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>对于常指针，我们可以直接对其赋值，如<code>a = b;</code>；对于非常量指针，我们不能使用常量指针对其进行赋值，如<code>b = a;</code>。</p>
-<h1 id="const修饰引用对象"><a href="#const修饰引用对象" class="headerlink" title="const修饰引用对象"></a><code>const</code>修饰引用对象</h1><p>引用也可以用<code>const</code>关键字修饰，这样就不能通过引用名来修改变量值了。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">int</span> b = <span class="number">20</span>;</span><br><span class="line">	<span class="comment">//定义r引用a</span></span><br><span class="line">	<span class="keyword">int</span>&amp; r = a;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"a="</span> &lt;&lt; a &lt;&lt; <span class="string">"\tr="</span> &lt;&lt; r &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="comment">//修改a的值</span></span><br><span class="line">	a = <span class="number">100</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"a="</span> &lt;&lt; a &lt;&lt; <span class="string">"\tr="</span> &lt;&lt; r &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="comment">//修改r的值</span></span><br><span class="line">	r = <span class="number">1000</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"a="</span> &lt;&lt; a &lt;&lt; <span class="string">"\tr="</span> &lt;&lt; r &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="comment">//用已知变量对r赋值</span></span><br><span class="line">	r = b;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"a="</span> &lt;&lt; a &lt;&lt; <span class="string">"\tr="</span> &lt;&lt; r &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="comment">//输出a和r的地址</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"a的地址为："</span> &lt;&lt; (<span class="keyword">void</span>*)a &lt;&lt; <span class="string">"\tb的地址为："</span> &lt;&lt; (<span class="keyword">void</span>*)b;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行上面程序，可以得到如下所示的结果：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">a=10    r=10</span><br><span class="line">a=100   r=100</span><br><span class="line">a=1000  r=1000</span><br><span class="line">a=20    r=20</span><br><span class="line">a的地址为：0000000000000014     b的地址为：0000000000000014</span><br></pre></td></tr></table></figure>
+<p>通过观察上面的结果，我们可以得知</p>
+<ol>
+<li>引用必须在定义的时候初始化</li>
+<li>引用是始终如一的，即引用了一个变量后就不能再引用其它变量</li>
+<li>引用和被引用的变量都指向同一个内存地址</li>
+<li>引用只能引用同一种类型的变量，不能引用常量。<code>int a=10;double &amp;b=a;</code>这种引用是非法的，以及<code>int &amp;a=10;</code>也是非法的。</li>
+</ol>
+<h1 id="常引用（const-amp-）"><a href="#常引用（const-amp-）" class="headerlink" title="常引用（const &amp;）"></a>常引用（const &amp;）</h1><p>引用也可以用<code>const</code>关键字修饰，这样就不能通过引用名来修改变量值了。</p>
 <p>如下代码所示：</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span>&amp; r = a;</span><br><span class="line">    a = <span class="number">10</span>;<span class="comment">//正常</span></span><br><span class="line">	r = <span class="number">10</span>;<span class="comment">//报错</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在执行到<code>r=10;</code>这条语句时编译器会报错，提示<strong>表达式必须是可修改的左值</strong>，因为我们再初始化引用时将其加上了了<code>const</code>关键字，我们就不能通过引用名来修改变量的值了。</p>
@@ -173,15 +210,90 @@
 <p>再考量下面的代码：</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span>&amp; b = a;<span class="comment">//正确</span></span><br><span class="line">	<span class="keyword">int</span>&amp; r = a;<span class="comment">//错误</span></span><br><span class="line">	r = <span class="number">100</span>;<span class="comment">//错误</span></span><br><span class="line">	a = <span class="number">100</span>;<span class="comment">//错误</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>对于用<code>const</code>关键字修饰的变量，我们在为其创建引用对象时，任然需要创建<code>const</code>类型的引用对象，且无法通过变量名或引用名来修改变量的值。</p>
+<h1 id="引用的简单实例："><a href="#引用的简单实例：" class="headerlink" title="引用的简单实例："></a>引用的简单实例：</h1><p>在学习<code>C/C++</code>的过程中，我们难免会遇到交换两个变量值的题目。在没有学习引用之前，我们只能通过指针的方式来修改两个变量的值，如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>* a, <span class="keyword">int</span>* b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp = *a;</span><br><span class="line">	*a = *b;</span><br><span class="line">	*b = temp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">10</span>, b = <span class="number">20</span>;</span><br><span class="line">	swap(&amp;a, &amp;b);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样写显得很复杂，而且在调用的地方还要通过<code>&amp;</code>符号来对变量进行取地址操作。其实我们可以将函数的两个参数改写为引用，这样就可以简化我们的代码，增强可读性了，改写如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>&amp; a, <span class="keyword">int</span>&amp; b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp = a;</span><br><span class="line">	a = b;</span><br><span class="line">	b = temp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">10</span>, b = <span class="number">20</span>;</span><br><span class="line">	swap(a, b);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="引用作为函数返回值"><a href="#引用作为函数返回值" class="headerlink" title="引用作为函数返回值"></a>引用作为函数返回值</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">类型 &amp;函数名（形参列表）&#123; 函数体 &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>观察如下代码：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n = <span class="number">4</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span>&amp; <span class="title">setValue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"n="</span> &lt;&lt; n &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	setValue() = <span class="number">10</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"n="</span> &lt;&lt; n &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行后得到如下结果：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">n=4</span><br><span class="line">n=10</span><br></pre></td></tr></table></figure>
+<p>函数<code>setValue()</code>返回一个全局变量<code>n</code>的引用，然后将函数名作为左值修改n的值。</p>
+<p>用引用作函数的返回值的<strong>最大的好处是在内存中不产生返回值的副本</strong></p>
+<p>对于引用作为函数返回值，在这里我们可以先不明觉厉。以后会说到。</p>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>c++引用</tag>
+        <tag>函数返回值引用</tag>
+        <tag>变量引用</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++动态内存分类(new/delete)</title>
+    <url>/2020/05/31/C++/C-%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E7%B1%BB-new-delete/</url>
+    <content><![CDATA[<h1 id="使用new运算符分配一个变量"><a href="#使用new运算符分配一个变量" class="headerlink" title="使用new运算符分配一个变量"></a>使用<code>new</code>运算符分配一个变量</h1><p>格式：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">P = <span class="keyword">new</span> T;</span><br></pre></td></tr></table></figure>
+<p>其中<code>T</code>是任意类型名，<code>P</code>是类型为<code>T*</code>的指针。</p>
+<p>使用该表达式动态分配出一片大小为<code>sizeof(T)</code>字节的内存空间。并且将该内存空间的其实地址赋值给<code>P</code>。<br><a id="more"></a><br>例如：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line">	*p = <span class="number">5</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上述程序中，为<code>p</code>动态分配了<code>sizeof(int)</code>大小的空间，并将起始地址赋值给了<code>p</code>。</p>
+<h1 id="使用new运算符分配一个数组"><a href="#使用new运算符分配一个数组" class="headerlink" title="使用new运算符分配一个数组"></a>使用<code>new</code>运算符分配一个数组</h1><p>格式：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">P = <span class="keyword">new</span> T[N];</span><br></pre></td></tr></table></figure>
+<p>其中<code>T</code>是任意类型名，<code>P</code>是类型为<code>T*</code>的指针，<code>N</code>是要分配的数组元素的个数，<code>N</code>可以是表达式。</p>
+<p>使用该表达式动态分配出<code>N*sizeof(T)</code>字节的内存空间，并将起始地址渎职给<code>P</code>。</p>
+<p>例如：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line">	p[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	p[<span class="number">9</span>] = <span class="number">10</span>;</span><br><span class="line">	p[<span class="number">10</span>] = <span class="number">10</span>;<span class="comment">//越界</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上述程序中，为<code>p</code>动态分配了<code>10 * sizeof(int)</code>大小的空间，并将起始地址赋值给了<code>p</code>。</p>
+<p>为数组分配完空间后就可以像访问数组一样访问该指针。但是需要注意的是在执行<code>p[10] = 10;</code>时会导致数组越界，编译器又可能不会报错。</p>
+<h1 id="使用delete运算符释放动态分配的内存"><a href="#使用delete运算符释放动态分配的内存" class="headerlink" title="使用delete运算符释放动态分配的内存"></a>使用<code>delete</code>运算符释放动态分配的内存</h1><p>使用<code>new</code>运算符动态分配的内存空间，一定要使用<code>delete</code>运算符进行释放。</p>
+<h2 id="delete变量"><a href="#delete变量" class="headerlink" title="delete变量"></a><code>delete</code>变量</h2><p>格式：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">delete</span> 指针;<span class="comment">//该指针必须指向new出来的空间</span></span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line">	<span class="keyword">delete</span> p;</span><br><span class="line">	<span class="keyword">delete</span> p;<span class="comment">//报错，只能delete一次</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在使用<code>delete</code>时只能对同一片空间使用一次<code>delete</code>，否则将会报错，如上程序所示。</p>
+<h2 id="delete数组"><a href="#delete数组" class="headerlink" title="delete数组"></a><code>delete</code>数组</h2><p>格式：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">delete</span> []指针;<span class="comment">//该指针必须指向new出来的空间</span></span><br></pre></td></tr></table></figure>
+<p><strong>使用<code>delete</code>释放动态分配的数组时，要添加<code>[]</code>。</strong></p>
+<p>例如：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line">	<span class="keyword">delete</span> []p;</span><br><span class="line">	<span class="keyword">delete</span> p;<span class="comment">//错误,只会释放第一个元素的空间</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用<code>delete []p;</code>来正确释放动态分配的内存空间，指针前有<code>[]</code>符；当使用<code>delete p;</code>时，将导致该数组的首元素空间被释放，而其余空间未被释放，形成“野指针”。</p>
 ]]></content>
       <categories>
         <category>C++</category>
       </categories>
       <tags>
         <tag>c++</tag>
-        <tag>const</tag>
-        <tag>const关键字</tag>
-        <tag>常引用</tag>
+        <tag>内存分配</tag>
+        <tag>new关键字</tag>
+        <tag>delete关键字</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>c++内联函数inline</title>
+    <url>/2020/06/01/C++/c-%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0inline/</url>
+    <content><![CDATA[<h1 id="inline概念"><a href="#inline概念" class="headerlink" title="inline概念"></a><code>inline</code>概念</h1><p>在<code>c++</code>中，函数调用是会产生额外的时间开销的，如果函数本身代码很短，执行很快，并且该函数被反复调用。相比之下调用函数所产生的开销就会很大，甚至超过执行代码所产生的开销。</p>
+<p>为了减少函数调用的开销，<code>c++</code>引入了<code>内联函数</code>的机制。编译器在处理内联函数的调用语句时，直接将整个内联函数代码插入到调用语句处，从而减少函数调用产生的开销。<br><a id="more"></a></p>
+<h1 id="inline定义"><a href="#inline定义" class="headerlink" title="inline定义"></a><code>inline</code>定义</h1><p><code>inline</code>关键字的使用比较简单，只需要在函数的定义头部加上<code>inline</code>关键字即可，如下所示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> 返回值类型 函数名(参数)&#123;</span><br><span class="line">	函数体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>内联函数的具体使用如下代码所示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//返回两数中的最大值</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="built_in">max</span>(<span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如上代码所示，定义一个内联函数<code>max</code>，该函数返回两个数中的最大值，只需要在函数定义时加入<code>inline</code>关键字即可，在对<code>max</code>函数进行调用时，编译器直接将<code>max</code>的函数代码嵌入到调用的地方，以此来节省函数调用产生的额外开销。</p>
+<h1 id="inline函数注意事项"><a href="#inline函数注意事项" class="headerlink" title="inline函数注意事项"></a><code>inline</code>函数注意事项</h1><p>通过上面的例子，我们了解了<code>inline</code>关键字的基本使用方法，内联函数虽然节省了函数调用产生的开销，但并不是所有的地方都能使用内联函数定义。</p>
+<p>当函数代码过长时，使用内联函数会使得程序变得臃肿。此时就不应该使用内联函数。</p>
+<p>另外，当函数中包含循环控制语句时，也不应该使用内联函数。</p>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>inline函数</tag>
+        <tag>内联函数</tag>
       </tags>
   </entry>
   <entry>
@@ -254,46 +366,6 @@
       <tags>
         <tag>c++</tag>
         <tag>构造函数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C++动态内存分类(new/delete)</title>
-    <url>/2020/05/31/C++/C-%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E7%B1%BB-new-delete/</url>
-    <content><![CDATA[<h1 id="使用new运算符分配一个变量"><a href="#使用new运算符分配一个变量" class="headerlink" title="使用new运算符分配一个变量"></a>使用<code>new</code>运算符分配一个变量</h1><p>格式：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">P = <span class="keyword">new</span> T;</span><br></pre></td></tr></table></figure>
-<p>其中<code>T</code>是任意类型名，<code>P</code>是类型为<code>T*</code>的指针。</p>
-<p>使用该表达式动态分配出一片大小为<code>sizeof(T)</code>字节的内存空间。并且将该内存空间的其实地址赋值给<code>P</code>。<br><a id="more"></a><br>例如：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line">	*p = <span class="number">5</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在上述程序中，为<code>p</code>动态分配了<code>sizeof(int)</code>大小的空间，并将起始地址赋值给了<code>p</code>。</p>
-<h1 id="使用new运算符分配一个数组"><a href="#使用new运算符分配一个数组" class="headerlink" title="使用new运算符分配一个数组"></a>使用<code>new</code>运算符分配一个数组</h1><p>格式：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">P = <span class="keyword">new</span> T[N];</span><br></pre></td></tr></table></figure>
-<p>其中<code>T</code>是任意类型名，<code>P</code>是类型为<code>T*</code>的指针，<code>N</code>是要分配的数组元素的个数，<code>N</code>可以是表达式。</p>
-<p>使用该表达式动态分配出<code>N*sizeof(T)</code>字节的内存空间，并将起始地址渎职给<code>P</code>。</p>
-<p>例如：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line">	p[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	p[<span class="number">9</span>] = <span class="number">10</span>;</span><br><span class="line">	p[<span class="number">10</span>] = <span class="number">10</span>;<span class="comment">//越界</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在上述程序中，为<code>p</code>动态分配了<code>10 * sizeof(int)</code>大小的空间，并将起始地址赋值给了<code>p</code>。</p>
-<p>为数组分配完空间后就可以像访问数组一样访问该指针。但是需要注意的是在执行<code>p[10] = 10;</code>时会导致数组越界，编译器又可能不会报错。</p>
-<h1 id="使用delete运算符释放动态分配的内存"><a href="#使用delete运算符释放动态分配的内存" class="headerlink" title="使用delete运算符释放动态分配的内存"></a>使用<code>delete</code>运算符释放动态分配的内存</h1><p>使用<code>new</code>运算符动态分配的内存空间，一定要使用<code>delete</code>运算符进行释放。</p>
-<h2 id="delete变量"><a href="#delete变量" class="headerlink" title="delete变量"></a><code>delete</code>变量</h2><p>格式：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">delete</span> 指针;<span class="comment">//该指针必须指向new出来的空间</span></span><br></pre></td></tr></table></figure>
-<p>例如：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line">	<span class="keyword">delete</span> p;</span><br><span class="line">	<span class="keyword">delete</span> p;<span class="comment">//报错，只能delete一次</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在使用<code>delete</code>时只能对同一片空间使用一次<code>delete</code>，否则将会报错，如上程序所示。</p>
-<h2 id="delete数组"><a href="#delete数组" class="headerlink" title="delete数组"></a><code>delete</code>数组</h2><p>格式：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">delete</span> []指针;<span class="comment">//该指针必须指向new出来的空间</span></span><br></pre></td></tr></table></figure>
-<p><strong>使用<code>delete</code>释放动态分配的数组时，要添加<code>[]</code>。</strong></p>
-<p>例如：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line">	<span class="keyword">delete</span> []p;</span><br><span class="line">	<span class="keyword">delete</span> p;<span class="comment">//错误,只会释放第一个元素的空间</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用<code>delete []p;</code>来正确释放动态分配的内存空间，指针前有<code>[]</code>符；当使用<code>delete p;</code>时，将导致该数组的首元素空间被释放，而其余空间未被释放，形成“野指针”。</p>
-]]></content>
-      <categories>
-        <category>C++</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>内存分配</tag>
-        <tag>new关键字</tag>
-        <tag>delete关键字</tag>
       </tags>
   </entry>
   <entry>
@@ -398,55 +470,6 @@
       </tags>
   </entry>
   <entry>
-    <title>C++引用</title>
-    <url>/2020/05/31/C++/C-%E5%BC%95%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="引用的概念"><a href="#引用的概念" class="headerlink" title="引用的概念"></a>引用的概念</h1><p>引用是变量的一个别名，相当于已经存在的变量的另一个名字。引用名与被引用的变量名都指向同一个内存地址。</p>
-<h1 id="引用的创建"><a href="#引用的创建" class="headerlink" title="引用的创建"></a>引用的创建</h1><p>引用创建的语法格式如下，其中<code>T</code>为任意类型：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">T &amp;引用名 = 变量名;</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>例如：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">int</span> b = <span class="number">20</span>;</span><br><span class="line">	<span class="comment">//定义r引用a</span></span><br><span class="line">	<span class="keyword">int</span>&amp; r = a;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"a="</span> &lt;&lt; a &lt;&lt; <span class="string">"\tr="</span> &lt;&lt; r &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="comment">//修改a的值</span></span><br><span class="line">	a = <span class="number">100</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"a="</span> &lt;&lt; a &lt;&lt; <span class="string">"\tr="</span> &lt;&lt; r &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="comment">//修改r的值</span></span><br><span class="line">	r = <span class="number">1000</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"a="</span> &lt;&lt; a &lt;&lt; <span class="string">"\tr="</span> &lt;&lt; r &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="comment">//用已知变量对r赋值</span></span><br><span class="line">	r = b;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"a="</span> &lt;&lt; a &lt;&lt; <span class="string">"\tr="</span> &lt;&lt; r &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="comment">//输出a和r的地址</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"a的地址为："</span> &lt;&lt; (<span class="keyword">void</span>*)a &lt;&lt; <span class="string">"\tb的地址为："</span> &lt;&lt; (<span class="keyword">void</span>*)b;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行上面程序，可以得到如下所示的结果：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">a=10    r=10</span><br><span class="line">a=100   r=100</span><br><span class="line">a=1000  r=1000</span><br><span class="line">a=20    r=20</span><br><span class="line">a的地址为：0000000000000014     b的地址为：0000000000000014</span><br></pre></td></tr></table></figure>
-<p>通过观察上面的结果，我们可以得知</p>
-<ol>
-<li>引用必须在定义的时候初始化</li>
-<li>引用是始终如一的，即引用了一个变量后就不能再引用其它变量</li>
-<li>引用和被引用的变量都指向同一个内存地址</li>
-<li>引用只能引用同一种类型的变量，不能引用常量。<code>int a=10;double &amp;b=a;</code>这种引用是非法的，以及<code>int &amp;a=10;</code>也是非法的。</li>
-</ol>
-<h1 id="常引用（const-amp-）"><a href="#常引用（const-amp-）" class="headerlink" title="常引用（const &amp;）"></a>常引用（const &amp;）</h1><p>引用也可以用<code>const</code>关键字修饰，这样就不能通过引用名来修改变量值了。</p>
-<p>如下代码所示：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span>&amp; r = a;</span><br><span class="line">    a = <span class="number">10</span>;<span class="comment">//正常</span></span><br><span class="line">	r = <span class="number">10</span>;<span class="comment">//报错</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在执行到<code>r=10;</code>这条语句时编译器会报错，提示<strong>表达式必须是可修改的左值</strong>，因为我们再初始化引用时将其加上了了<code>const</code>关键字，我们就不能通过引用名来修改变量的值了。</p>
-<p>对于<code>a = 10;</code>这条语句则执行正常，因为a没有<code>const</code>关键字修饰。</p>
-<p>再考量下面的代码：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span>&amp; b = a;<span class="comment">//正确</span></span><br><span class="line">	<span class="keyword">int</span>&amp; r = a;<span class="comment">//错误</span></span><br><span class="line">	r = <span class="number">100</span>;<span class="comment">//错误</span></span><br><span class="line">	a = <span class="number">100</span>;<span class="comment">//错误</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>对于用<code>const</code>关键字修饰的变量，我们在为其创建引用对象时，任然需要创建<code>const</code>类型的引用对象，且无法通过变量名或引用名来修改变量的值。</p>
-<h1 id="引用的简单实例："><a href="#引用的简单实例：" class="headerlink" title="引用的简单实例："></a>引用的简单实例：</h1><p>在学习<code>C/C++</code>的过程中，我们难免会遇到交换两个变量值的题目。在没有学习引用之前，我们只能通过指针的方式来修改两个变量的值，如下：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>* a, <span class="keyword">int</span>* b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp = *a;</span><br><span class="line">	*a = *b;</span><br><span class="line">	*b = temp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">10</span>, b = <span class="number">20</span>;</span><br><span class="line">	swap(&amp;a, &amp;b);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样写显得很复杂，而且在调用的地方还要通过<code>&amp;</code>符号来对变量进行取地址操作。其实我们可以将函数的两个参数改写为引用，这样就可以简化我们的代码，增强可读性了，改写如下：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>&amp; a, <span class="keyword">int</span>&amp; b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp = a;</span><br><span class="line">	a = b;</span><br><span class="line">	b = temp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">10</span>, b = <span class="number">20</span>;</span><br><span class="line">	swap(a, b);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="引用作为函数返回值"><a href="#引用作为函数返回值" class="headerlink" title="引用作为函数返回值"></a>引用作为函数返回值</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">类型 &amp;函数名（形参列表）&#123; 函数体 &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>观察如下代码：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n = <span class="number">4</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span>&amp; <span class="title">setValue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"n="</span> &lt;&lt; n &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	setValue() = <span class="number">10</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"n="</span> &lt;&lt; n &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>执行后得到如下结果：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">n=4</span><br><span class="line">n=10</span><br></pre></td></tr></table></figure>
-<p>函数<code>setValue()</code>返回一个全局变量<code>n</code>的引用，然后将函数名作为左值修改n的值。</p>
-<p>用引用作函数的返回值的<strong>最大的好处是在内存中不产生返回值的副本</strong></p>
-<p>对于引用作为函数返回值，在这里我们可以先不明觉厉。以后会说到。</p>
-]]></content>
-      <categories>
-        <category>C++</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-        <tag>c++引用</tag>
-        <tag>函数返回值引用</tag>
-        <tag>变量引用</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>c++函数的缺省参数</title>
     <url>/2020/06/01/C++/c-%E5%87%BD%E6%95%B0%E7%9A%84%E7%BC%BA%E7%9C%81%E5%8F%82%E6%95%B0/</url>
     <content><![CDATA[<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>c++中，定义函数的时候可以让<strong>最右边的连续若干个</strong>参数有缺省值，在调用函数的时候，如果不写相应位置的参数，则调用的参数就为缺省值。</p>
@@ -477,29 +500,6 @@
         <tag>c++</tag>
         <tag>参数缺省</tag>
         <tag>函数参数缺省</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>c++内联函数inline</title>
-    <url>/2020/06/01/C++/c-%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0inline/</url>
-    <content><![CDATA[<h1 id="inline概念"><a href="#inline概念" class="headerlink" title="inline概念"></a><code>inline</code>概念</h1><p>在<code>c++</code>中，函数调用是会产生额外的时间开销的，如果函数本身代码很短，执行很快，并且该函数被反复调用。相比之下调用函数所产生的开销就会很大，甚至超过执行代码所产生的开销。</p>
-<p>为了减少函数调用的开销，<code>c++</code>引入了<code>内联函数</code>的机制。编译器在处理内联函数的调用语句时，直接将整个内联函数代码插入到调用语句处，从而减少函数调用产生的开销。<br><a id="more"></a></p>
-<h1 id="inline定义"><a href="#inline定义" class="headerlink" title="inline定义"></a><code>inline</code>定义</h1><p><code>inline</code>关键字的使用比较简单，只需要在函数的定义头部加上<code>inline</code>关键字即可，如下所示：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> 返回值类型 函数名(参数)&#123;</span><br><span class="line">	函数体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>内联函数的具体使用如下代码所示：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//返回两数中的最大值</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="built_in">max</span>(<span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如上代码所示，定义一个内联函数<code>max</code>，该函数返回两个数中的最大值，只需要在函数定义时加入<code>inline</code>关键字即可，在对<code>max</code>函数进行调用时，编译器直接将<code>max</code>的函数代码嵌入到调用的地方，以此来节省函数调用产生的额外开销。</p>
-<h1 id="inline函数注意事项"><a href="#inline函数注意事项" class="headerlink" title="inline函数注意事项"></a><code>inline</code>函数注意事项</h1><p>通过上面的例子，我们了解了<code>inline</code>关键字的基本使用方法，内联函数虽然节省了函数调用产生的开销，但并不是所有的地方都能使用内联函数定义。</p>
-<p>当函数代码过长时，使用内联函数会使得程序变得臃肿。此时就不应该使用内联函数。</p>
-<p>另外，当函数中包含循环控制语句时，也不应该使用内联函数。</p>
-]]></content>
-      <categories>
-        <category>C++</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>inline函数</tag>
-        <tag>内联函数</tag>
       </tags>
   </entry>
   <entry>
@@ -663,81 +663,6 @@
       </tags>
   </entry>
   <entry>
-    <title>SSH工具Xshell的安装以及使用</title>
-    <url>/2019/12/26/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/4%E3%80%81SSH%E5%B7%A5%E5%85%B7Xshell%E7%9A%84%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>在原本的计划中并没有准备专门写一篇关于SSH远程连接的教程，但想了想，该专栏文章应该致力于让所有读者都能看懂，即使你是从未使用过Linux操作系统的小白。</p>
-<p>当然，本文仅介绍了XShell的试用，你也可以选择其他软件，这都一样，并不影响你的使用。</p>
-<p>如果你已经有相关的使用经验，那么你可以直接跳过本章，毕竟下面的内容会浪费你宝贵生命中的几分钟。</p>
-<p>就这样，请拥有，并享受。<br><a id="more"></a></p>
-<h1 id="下载Xshell"><a href="#下载Xshell" class="headerlink" title="下载Xshell"></a>下载Xshell</h1><p>首先到XShell的官网：<a href="https://www.netsarang.com/zh/xshell/" target="_blank" rel="noopener">点击这里</a>点击<strong>下载</strong>按钮，之后会跳转到一个信息填写页面，可以申请30天的免费试用。作为学校和家庭用户，点击右边的<a href="https://www.netsarang.com/zh/free-for-home-school/" target="_blank" rel="noopener"><strong>免费授权页面</strong></a>可以申请免费使用。</p>
-<p>填写完信息后下载链接会发送到你所填写的邮箱中，点击里面的下载链接即可下载。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20060647.jpg" alt="Xshell主页"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20060720.jpg" alt="信息填写"></p>
-<h1 id="使用Xshell"><a href="#使用Xshell" class="headerlink" title="使用Xshell"></a>使用Xshell</h1><p>下载完成安装后，打开软件可以看到下图所示的页面。<br>（我这里以及添加有很多连接，可以忽略）</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/Xshell%E5%90%AF%E5%8A%A8%E7%95%8C%E9%9D%A2.jpg" alt="XShell软件启动"></p>
-<p>然后点击对话框左上角添加按钮，在弹出的对话框<strong>名称</strong>处输入你想要的名称，<strong>主机</strong>一栏输入你在<strong>第一篇文章中</strong>所查看的主机<strong>IP</strong></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%B7%BB%E5%8A%A0%E4%B8%BB%E6%9C%BA.jpg" alt="IP输入"></p>
-<p>然后点击界面左边的<strong>用户身份验证</strong>，进入后输入<strong>用户名</strong>和<strong>密码</strong>，该用户名和密码为你在安装Ubuntu时设置的用户名以及密码。</p>
-<p>然后点击连接，中途会跳出是否保存用户名密码，自己根据情况选择；在跳出密钥接收保存询问框的时候选择接收并保存。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81.jpg" alt="用户名密码输入"></p>
-<p>然后看到下如所示的提示信息即说明连接成功。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20062918.jpg" alt="连接成功"></p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>整个NAS的前期准备工作到此就结束了，在接下来的文章中我们将一同探讨大家比较关心的影音服务、管理面板、网盘工具等内容的搭建了。</p>
-<p>前面的文章看起来多少有些无趣，但这却是整个系统管理中不可获缺的。如上面提到的基本命令，这将是你使用频率非常高的命令，甚至可以说这些是你进行接下来的工作不可少的东西，如果你还没有掌握它的话，应该利用闲余的几分钟去了解一下它。</p>
-<p>使用Ubuntu的过程中，你或多或少会在搜索引擎中查找相应技术文章，再次过程中你将会感受到计算机专业的开源精神。</p>
-<p>但是，在寻求解决方案的时候<strong>请不要轻易尝试别人给你的命令，除非你想把之前的工作从头再来一遍</strong>。执行任何含有<strong>rm</strong>的命令你都应当十分小心地确认你的操作，尤其是在你的数据盘中。</p>
-<p>请牢记好上面的内容，<strong>必要的时候请先在虚拟机中验证它的正确性</strong>。</p>
-<h1 id="专栏导航"><a href="#专栏导航" class="headerlink" title="专栏导航"></a>专栏导航</h1>]]></content>
-      <categories>
-        <category>家庭NAS、HTPC服务器</category>
-      </categories>
-      <tags>
-        <tag>NAS系统</tag>
-        <tag>家庭影音</tag>
-        <tag>HTPC服务器</tag>
-        <tag>xshell配置</tag>
-        <tag>ssh安装及使用</tag>
-        <tag>xshell安装</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ubuntu挂载硬盘</title>
-    <url>/2019/12/29/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/7%E3%80%81Ubuntu%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/</url>
-    <content><![CDATA[<p>在开始下篇文章之前我觉得有必要讲解一下在linux中的硬盘挂载。这和Windows不同，Windows会自动扫描本地硬盘并为你自动挂载，但是linux不会值么做，它需要你自己去挂载硬盘到系统中。</p>
-<a id="more"></a>
-<p>如果你是新硬盘，你需要对硬盘进行格式化才能正常使用，linux支持ext4、NTFS等文件系统，在此建议将硬盘格式化为NTFS格式，这样就算你把硬盘从linux移动Windows环境下也可以正常使用，Windows不知EXT4文件系统。</p>
-<p>但是格式化NTFS也会带来一个弊端，就是你无法对文件进行权限操作，这样你在使用的时候应该小心一些，避免误操作删除硬盘数据。</p>
-<h1 id="格式化硬盘"><a href="#格式化硬盘" class="headerlink" title="格式化硬盘"></a>格式化硬盘</h1><p>如果你的硬盘已经格式化过存有数据的话，你应该跳过这一小节的内容，直接跳转到下一小节参考硬盘挂载操作。</p>
-<p>首先你需要查看设备位置，输入</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo fdisk -l</span><br></pre></td></tr></table></figure>
-<p>然后找到你需要挂载的硬盘，例如我在这里要挂载<strong>Disk /dev/sdb: 7.3 TiB</strong>这块磁盘，记下它的位置，这里为/dev/sdb</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20160129.jpg" alt="查看硬盘设备"></p>
-<h2 id="格式化为EXT4格式"><a href="#格式化为EXT4格式" class="headerlink" title="格式化为EXT4格式"></a>格式化为EXT4格式</h2><p>如果需要格式化为EXT4格式，只需要执行下面语句即可，将/dev/sdb换成你需要进行格式化操作的设备路径。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo mkfs.ext4  &#x2F;dev&#x2F;sdb</span><br></pre></td></tr></table></figure></p>
-<h2 id="格式化为NTFS"><a href="#格式化为NTFS" class="headerlink" title="格式化为NTFS"></a>格式化为NTFS</h2><p>NTFS是windows的文件系统，在进行格式化操作之前需要安装一个工具，输入下面命令进行安装。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt -y install ntfsprogs</span><br></pre></td></tr></table></figure><br>安装完成后执行格式化语句，这里同样将/dev/sdb更改为你要执行格式化操作的设备路径。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo mkntfs -f &#x2F;dev&#x2F;sdb</span><br></pre></td></tr></table></figure><br>到此就将硬盘格式化完成了，接下来进行挂载操作</p>
-<h1 id="挂载硬盘"><a href="#挂载硬盘" class="headerlink" title="挂载硬盘"></a>挂载硬盘</h1><p>在进行挂载操作之前需要先查看硬盘的UUID值，输入sudo blkid进行查看</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20162314.jpg" alt="UUID值"></p>
-<p>这里假设我们要挂载/dev/sdb1: LABEL=”mybook” UUID=”21B724CC1FE1D190” TYPE=”ntfs” ···这块硬盘，我们选中UUID后面的值（不要双引号），在xshell中可以右键复制下来。</p>
-<p>然后创建一个挂载点，这个挂载点就是你以后打开查看硬盘内容的地方，这里假设我们需要将硬盘挂载到/mnt/sdb这个路径。你可以选择其他任何一个你觉得可以的地方进行挂载。<br>首先执行<strong>cd /mnt</strong>进入到mnt目录。<br>然后执行<strong>mkdir sdb</strong>创建一个名为sdb的文件夹，这个文件夹为我们需要挂载硬盘的地方。</p>
-<p>然后编辑系统挂载配置文件/etc/fstab</p>
-<p>执行<strong>vim /etc/fstab</strong>打开配置文件，可以看到下图所示的内容<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20163118.jpg" alt="fstab文件"></p>
-<p>这里的格式为<strong>设备名称 挂载点 分区类型 挂载选项 dump选项 fsck选项</strong><br>dump为0表示不进行备份<br>fsck为启动时检查顺序，0为不检查，/更目录为1，其他只能从2开始</p>
-<p>添加要挂载的内容到末行，这里我们以刚才的为例<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20163801.jpg" alt="挂载设置"><br>挂载点为我们刚才设置的挂载路径/mnt/sdb，格式为NTFS（如果你格式化为ext4，这里就填ext4），挂载选项默认defaults，不进行备份，开机不检查。</p>
-<p>挂载完成后执行<code>reboot</code>命令重启电脑，重启后我们就可以到/mnt/sdb目录下查看硬盘内容了</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20164125.jpg" alt="查看硬盘数据"></p>
-<h1 id="查看硬盘使用状态"><a href="#查看硬盘使用状态" class="headerlink" title="查看硬盘使用状态"></a>查看硬盘使用状态</h1><p>除了在WEB-UI管理界面中查看硬盘使用状态，我们也可以在命令行中输入<strong>df -h</strong>查看硬盘使用状态<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20164727.jpg" alt="硬盘使用状态"><br>Size为总分区大小<br>Used为已使用<br>Avail为可用容量<br>Use%为使用百分比<br>Mounted on为挂载点</p>
-]]></content>
-      <categories>
-        <category>家庭NAS、HTPC服务器</category>
-      </categories>
-      <tags>
-        <tag>NAS系统</tag>
-        <tag>家庭影音</tag>
-        <tag>HTPC服务器</tag>
-        <tag>linux硬盘挂载</tag>
-        <tag>ubuntu挂载硬盘</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Ubuntu18.04安装</title>
     <url>/2019/12/24/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/2%E3%80%81Ubuntu18.04%E7%9A%84%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文为系列文章的第二篇，关于本专栏相关文章可以到文末专栏目录查看。</p>
@@ -812,6 +737,131 @@
         <tag>HTPC服务器</tag>
         <tag>Ubuntu18.04安装</tag>
         <tag>Ubuntu安装</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SSH工具Xshell的安装以及使用</title>
+    <url>/2019/12/26/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/4%E3%80%81SSH%E5%B7%A5%E5%85%B7Xshell%E7%9A%84%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>在原本的计划中并没有准备专门写一篇关于SSH远程连接的教程，但想了想，该专栏文章应该致力于让所有读者都能看懂，即使你是从未使用过Linux操作系统的小白。</p>
+<p>当然，本文仅介绍了XShell的试用，你也可以选择其他软件，这都一样，并不影响你的使用。</p>
+<p>如果你已经有相关的使用经验，那么你可以直接跳过本章，毕竟下面的内容会浪费你宝贵生命中的几分钟。</p>
+<p>就这样，请拥有，并享受。<br><a id="more"></a></p>
+<h1 id="下载Xshell"><a href="#下载Xshell" class="headerlink" title="下载Xshell"></a>下载Xshell</h1><p>首先到XShell的官网：<a href="https://www.netsarang.com/zh/xshell/" target="_blank" rel="noopener">点击这里</a>点击<strong>下载</strong>按钮，之后会跳转到一个信息填写页面，可以申请30天的免费试用。作为学校和家庭用户，点击右边的<a href="https://www.netsarang.com/zh/free-for-home-school/" target="_blank" rel="noopener"><strong>免费授权页面</strong></a>可以申请免费使用。</p>
+<p>填写完信息后下载链接会发送到你所填写的邮箱中，点击里面的下载链接即可下载。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20060647.jpg" alt="Xshell主页"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20060720.jpg" alt="信息填写"></p>
+<h1 id="使用Xshell"><a href="#使用Xshell" class="headerlink" title="使用Xshell"></a>使用Xshell</h1><p>下载完成安装后，打开软件可以看到下图所示的页面。<br>（我这里以及添加有很多连接，可以忽略）</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/Xshell%E5%90%AF%E5%8A%A8%E7%95%8C%E9%9D%A2.jpg" alt="XShell软件启动"></p>
+<p>然后点击对话框左上角添加按钮，在弹出的对话框<strong>名称</strong>处输入你想要的名称，<strong>主机</strong>一栏输入你在<strong>第一篇文章中</strong>所查看的主机<strong>IP</strong></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%B7%BB%E5%8A%A0%E4%B8%BB%E6%9C%BA.jpg" alt="IP输入"></p>
+<p>然后点击界面左边的<strong>用户身份验证</strong>，进入后输入<strong>用户名</strong>和<strong>密码</strong>，该用户名和密码为你在安装Ubuntu时设置的用户名以及密码。</p>
+<p>然后点击连接，中途会跳出是否保存用户名密码，自己根据情况选择；在跳出密钥接收保存询问框的时候选择接收并保存。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81.jpg" alt="用户名密码输入"></p>
+<p>然后看到下如所示的提示信息即说明连接成功。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20062918.jpg" alt="连接成功"></p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>整个NAS的前期准备工作到此就结束了，在接下来的文章中我们将一同探讨大家比较关心的影音服务、管理面板、网盘工具等内容的搭建了。</p>
+<p>前面的文章看起来多少有些无趣，但这却是整个系统管理中不可获缺的。如上面提到的基本命令，这将是你使用频率非常高的命令，甚至可以说这些是你进行接下来的工作不可少的东西，如果你还没有掌握它的话，应该利用闲余的几分钟去了解一下它。</p>
+<p>使用Ubuntu的过程中，你或多或少会在搜索引擎中查找相应技术文章，再次过程中你将会感受到计算机专业的开源精神。</p>
+<p>但是，在寻求解决方案的时候<strong>请不要轻易尝试别人给你的命令，除非你想把之前的工作从头再来一遍</strong>。执行任何含有<strong>rm</strong>的命令你都应当十分小心地确认你的操作，尤其是在你的数据盘中。</p>
+<p>请牢记好上面的内容，<strong>必要的时候请先在虚拟机中验证它的正确性</strong>。</p>
+<h1 id="专栏导航"><a href="#专栏导航" class="headerlink" title="专栏导航"></a>专栏导航</h1>]]></content>
+      <categories>
+        <category>家庭NAS、HTPC服务器</category>
+      </categories>
+      <tags>
+        <tag>NAS系统</tag>
+        <tag>家庭影音</tag>
+        <tag>HTPC服务器</tag>
+        <tag>xshell配置</tag>
+        <tag>ssh安装及使用</tag>
+        <tag>xshell安装</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WEB-UI管理面板webmin（轻量级较全面）安装及使用</title>
+    <url>/2019/12/27/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/5%E3%80%81WEB-UI%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BFwebmin%EF%BC%88%E8%BD%BB%E9%87%8F%E7%BA%A7%E8%BE%83%E5%85%A8%E9%9D%A2%EF%BC%89%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>相信很多人选择黑群晖的原因之一是因为群晖有很好的图形化管理面板，其实Ubuntu，或者说linux也可以很好的图形化管理面板。</p>
+<p>本系列文章将介绍两种轻量级的管理面板<strong>Webmin(功能较全面)</strong>和<strong>Cockpit(功能简单)</strong>，对于那些功能全面的重量级面板，再次不做介绍，尽管那些工具开发得很完善，但是在家用nas上使用却显得有些臃肿了。</p>
+<p>就这样，请拥有，并享受。<br><a id="more"></a></p>
+<h1 id="Webmin安装"><a href="#Webmin安装" class="headerlink" title="Webmin安装"></a>Webmin安装</h1><p>对于Webmin的安装以及使用在它的官网中有详细的介绍，大家可以参考官网。</p>
+<p>传送门：<a href="http://www.webmin.com/" target="_blank" rel="noopener">点击这里</a></p>
+<ol>
+<li>打开xshell并连接到主机，然后切换到<strong>root</strong>用户，执行一下命令下载软件包<br>（我在写文章安装时的版本为1.930，安装时可到官网查看最新版本）<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget http:&#x2F;&#x2F;prdownloads.sourceforge.net&#x2F;webadmin&#x2F;webmin_1.930_all.deb</span><br></pre></td></tr></table></figure>
+执行dpkg命令进行安装<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dpkg --install webmin_1.930_all.deb</span><br></pre></td></tr></table></figure>
+提示：在输入时可以使用Tab键进行命令补全。</li>
+</ol>
+<p>在执行上面的语句时，你可能会得到下面的报错：</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20072855.jpg" alt="缺少编译环境"></p>
+<p>这是由于缺少编译环境导致的，输入以下命令安装相关相关工具<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt install perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python</span><br></pre></td></tr></table></figure><br>在输入完上述命令后，可能还会出现一个错误如下：</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20073439.jpg" alt="错误提示"></p>
+<p>此时我们按照提示运行输入<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt --fix-broken install</span><br></pre></td></tr></table></figure><br>然后再运行<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dpkg --install webmin_1.930_all.deb</span><br></pre></td></tr></table></figure><br>即可安装成功，安装完成后如下图</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20073838.jpg" alt="安装完成"></p>
+<p>Webmin默认安装到<code>/usr/share/webmin</code>目录下，我们可以通过<code>https://服务器ip:10000/</code>来登录管理面板；登录密码为<code>root</code>密码或者可以运行<code>sudo su</code>的管理者用户名密码来登录。</p>
+<p>（因为Ubuntu不允许使用<code>root</code>来作为默认登录用户，你可以使用其它可以执行<code>sudo su</code>切换到管理员权限的用户名密码来作为登录用户）</p>
+<h1 id="Webmin配置"><a href="#Webmin配置" class="headerlink" title="Webmin配置"></a>Webmin配置</h1><p>完成安装后我们用浏览器打开<code>https://服务器ip:10000/</code>来进入管理面板，打开后会跳出一个错误页面，点击提示中的URL链接即可正常进入。<br>（如果浏览器有安全警告，直接跳过继续前往即可）</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20084600.jpg" alt="打开跳转提示"></p>
+<p>之后便是登录界面，输入上面提到的用户名密码进行登录</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20084629.jpg" alt="登录"></p>
+<p>完成登录后就进入到管理面板的界面了</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20085032.jpg" alt="管理面板界面"></p>
+<p>现在界面显示的英文，我们可以到<code>Webmin -&gt; Webmin Configuration -&gt; Language and Locale</code>将语言改为中文，记得保存。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20085522.jpg" alt="更改语言"></p>
+<p>我们可以在面板中很直观地查看到系统的相关信息以及进行相关配置。</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20085758.jpg" alt="系统监视"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20085945.jpg" alt="网络管理"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20090041.jpg" alt="磁盘管理"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20090156.jpg" alt="开关机管理"></p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20090317.jpg" alt="进程管理"></p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>Webmin的功能还是比较全面的，可以通过安装模块来扩展功能，支持集群管理等。</p>
+<p>到这里本篇文章就结束了，以后就可以通过浏览器来查看以及管理nas了。</p>
+<h1 id="专栏目录"><a href="#专栏目录" class="headerlink" title="专栏目录"></a>专栏目录</h1>]]></content>
+      <categories>
+        <category>家庭NAS、HTPC服务器</category>
+      </categories>
+      <tags>
+        <tag>NAS系统</tag>
+        <tag>家庭影音</tag>
+        <tag>HTPC服务器</tag>
+        <tag>WEB-UI管理面板</tag>
+        <tag>webmin</tag>
+        <tag>linux管理面板</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu挂载硬盘</title>
+    <url>/2019/12/29/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/7%E3%80%81Ubuntu%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/</url>
+    <content><![CDATA[<p>在开始下篇文章之前我觉得有必要讲解一下在linux中的硬盘挂载。这和Windows不同，Windows会自动扫描本地硬盘并为你自动挂载，但是linux不会值么做，它需要你自己去挂载硬盘到系统中。</p>
+<a id="more"></a>
+<p>如果你是新硬盘，你需要对硬盘进行格式化才能正常使用，linux支持ext4、NTFS等文件系统，在此建议将硬盘格式化为NTFS格式，这样就算你把硬盘从linux移动Windows环境下也可以正常使用，Windows不知EXT4文件系统。</p>
+<p>但是格式化NTFS也会带来一个弊端，就是你无法对文件进行权限操作，这样你在使用的时候应该小心一些，避免误操作删除硬盘数据。</p>
+<h1 id="格式化硬盘"><a href="#格式化硬盘" class="headerlink" title="格式化硬盘"></a>格式化硬盘</h1><p>如果你的硬盘已经格式化过存有数据的话，你应该跳过这一小节的内容，直接跳转到下一小节参考硬盘挂载操作。</p>
+<p>首先你需要查看设备位置，输入</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo fdisk -l</span><br></pre></td></tr></table></figure>
+<p>然后找到你需要挂载的硬盘，例如我在这里要挂载<strong>Disk /dev/sdb: 7.3 TiB</strong>这块磁盘，记下它的位置，这里为/dev/sdb</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20160129.jpg" alt="查看硬盘设备"></p>
+<h2 id="格式化为EXT4格式"><a href="#格式化为EXT4格式" class="headerlink" title="格式化为EXT4格式"></a>格式化为EXT4格式</h2><p>如果需要格式化为EXT4格式，只需要执行下面语句即可，将/dev/sdb换成你需要进行格式化操作的设备路径。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo mkfs.ext4  &#x2F;dev&#x2F;sdb</span><br></pre></td></tr></table></figure></p>
+<h2 id="格式化为NTFS"><a href="#格式化为NTFS" class="headerlink" title="格式化为NTFS"></a>格式化为NTFS</h2><p>NTFS是windows的文件系统，在进行格式化操作之前需要安装一个工具，输入下面命令进行安装。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt -y install ntfsprogs</span><br></pre></td></tr></table></figure><br>安装完成后执行格式化语句，这里同样将/dev/sdb更改为你要执行格式化操作的设备路径。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo mkntfs -f &#x2F;dev&#x2F;sdb</span><br></pre></td></tr></table></figure><br>到此就将硬盘格式化完成了，接下来进行挂载操作</p>
+<h1 id="挂载硬盘"><a href="#挂载硬盘" class="headerlink" title="挂载硬盘"></a>挂载硬盘</h1><p>在进行挂载操作之前需要先查看硬盘的UUID值，输入sudo blkid进行查看</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20162314.jpg" alt="UUID值"></p>
+<p>这里假设我们要挂载/dev/sdb1: LABEL=”mybook” UUID=”21B724CC1FE1D190” TYPE=”ntfs” ···这块硬盘，我们选中UUID后面的值（不要双引号），在xshell中可以右键复制下来。</p>
+<p>然后创建一个挂载点，这个挂载点就是你以后打开查看硬盘内容的地方，这里假设我们需要将硬盘挂载到/mnt/sdb这个路径。你可以选择其他任何一个你觉得可以的地方进行挂载。<br>首先执行<strong>cd /mnt</strong>进入到mnt目录。<br>然后执行<strong>mkdir sdb</strong>创建一个名为sdb的文件夹，这个文件夹为我们需要挂载硬盘的地方。</p>
+<p>然后编辑系统挂载配置文件/etc/fstab</p>
+<p>执行<strong>vim /etc/fstab</strong>打开配置文件，可以看到下图所示的内容<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20163118.jpg" alt="fstab文件"></p>
+<p>这里的格式为<strong>设备名称 挂载点 分区类型 挂载选项 dump选项 fsck选项</strong><br>dump为0表示不进行备份<br>fsck为启动时检查顺序，0为不检查，/更目录为1，其他只能从2开始</p>
+<p>添加要挂载的内容到末行，这里我们以刚才的为例<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20163801.jpg" alt="挂载设置"><br>挂载点为我们刚才设置的挂载路径/mnt/sdb，格式为NTFS（如果你格式化为ext4，这里就填ext4），挂载选项默认defaults，不进行备份，开机不检查。</p>
+<p>挂载完成后执行<code>reboot</code>命令重启电脑，重启后我们就可以到/mnt/sdb目录下查看硬盘内容了</p>
+<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20164125.jpg" alt="查看硬盘数据"></p>
+<h1 id="查看硬盘使用状态"><a href="#查看硬盘使用状态" class="headerlink" title="查看硬盘使用状态"></a>查看硬盘使用状态</h1><p>除了在WEB-UI管理界面中查看硬盘使用状态，我们也可以在命令行中输入<strong>df -h</strong>查看硬盘使用状态<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-27%20164727.jpg" alt="硬盘使用状态"><br>Size为总分区大小<br>Used为已使用<br>Avail为可用容量<br>Use%为使用百分比<br>Mounted on为挂载点</p>
+]]></content>
+      <categories>
+        <category>家庭NAS、HTPC服务器</category>
+      </categories>
+      <tags>
+        <tag>NAS系统</tag>
+        <tag>家庭影音</tag>
+        <tag>HTPC服务器</tag>
+        <tag>linux硬盘挂载</tag>
+        <tag>ubuntu挂载硬盘</tag>
       </tags>
   </entry>
   <entry>
@@ -1096,105 +1146,6 @@
       </tags>
   </entry>
   <entry>
-    <title>WEB-UI管理面板webmin（轻量级较全面）安装及使用</title>
-    <url>/2019/12/27/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/5%E3%80%81WEB-UI%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BFwebmin%EF%BC%88%E8%BD%BB%E9%87%8F%E7%BA%A7%E8%BE%83%E5%85%A8%E9%9D%A2%EF%BC%89%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>相信很多人选择黑群晖的原因之一是因为群晖有很好的图形化管理面板，其实Ubuntu，或者说linux也可以很好的图形化管理面板。</p>
-<p>本系列文章将介绍两种轻量级的管理面板<strong>Webmin(功能较全面)</strong>和<strong>Cockpit(功能简单)</strong>，对于那些功能全面的重量级面板，再次不做介绍，尽管那些工具开发得很完善，但是在家用nas上使用却显得有些臃肿了。</p>
-<p>就这样，请拥有，并享受。<br><a id="more"></a></p>
-<h1 id="Webmin安装"><a href="#Webmin安装" class="headerlink" title="Webmin安装"></a>Webmin安装</h1><p>对于Webmin的安装以及使用在它的官网中有详细的介绍，大家可以参考官网。</p>
-<p>传送门：<a href="http://www.webmin.com/" target="_blank" rel="noopener">点击这里</a></p>
-<ol>
-<li>打开xshell并连接到主机，然后切换到<strong>root</strong>用户，执行一下命令下载软件包<br>（我在写文章安装时的版本为1.930，安装时可到官网查看最新版本）<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget http:&#x2F;&#x2F;prdownloads.sourceforge.net&#x2F;webadmin&#x2F;webmin_1.930_all.deb</span><br></pre></td></tr></table></figure>
-执行dpkg命令进行安装<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dpkg --install webmin_1.930_all.deb</span><br></pre></td></tr></table></figure>
-提示：在输入时可以使用Tab键进行命令补全。</li>
-</ol>
-<p>在执行上面的语句时，你可能会得到下面的报错：</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20072855.jpg" alt="缺少编译环境"></p>
-<p>这是由于缺少编译环境导致的，输入以下命令安装相关相关工具<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt install perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python</span><br></pre></td></tr></table></figure><br>在输入完上述命令后，可能还会出现一个错误如下：</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20073439.jpg" alt="错误提示"></p>
-<p>此时我们按照提示运行输入<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt --fix-broken install</span><br></pre></td></tr></table></figure><br>然后再运行<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dpkg --install webmin_1.930_all.deb</span><br></pre></td></tr></table></figure><br>即可安装成功，安装完成后如下图</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20073838.jpg" alt="安装完成"></p>
-<p>Webmin默认安装到<code>/usr/share/webmin</code>目录下，我们可以通过<code>https://服务器ip:10000/</code>来登录管理面板；登录密码为<code>root</code>密码或者可以运行<code>sudo su</code>的管理者用户名密码来登录。</p>
-<p>（因为Ubuntu不允许使用<code>root</code>来作为默认登录用户，你可以使用其它可以执行<code>sudo su</code>切换到管理员权限的用户名密码来作为登录用户）</p>
-<h1 id="Webmin配置"><a href="#Webmin配置" class="headerlink" title="Webmin配置"></a>Webmin配置</h1><p>完成安装后我们用浏览器打开<code>https://服务器ip:10000/</code>来进入管理面板，打开后会跳出一个错误页面，点击提示中的URL链接即可正常进入。<br>（如果浏览器有安全警告，直接跳过继续前往即可）</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20084600.jpg" alt="打开跳转提示"></p>
-<p>之后便是登录界面，输入上面提到的用户名密码进行登录</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20084629.jpg" alt="登录"></p>
-<p>完成登录后就进入到管理面板的界面了</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20085032.jpg" alt="管理面板界面"></p>
-<p>现在界面显示的英文，我们可以到<code>Webmin -&gt; Webmin Configuration -&gt; Language and Locale</code>将语言改为中文，记得保存。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20085522.jpg" alt="更改语言"></p>
-<p>我们可以在面板中很直观地查看到系统的相关信息以及进行相关配置。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20085758.jpg" alt="系统监视"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20085945.jpg" alt="网络管理"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20090041.jpg" alt="磁盘管理"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20090156.jpg" alt="开关机管理"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-25%20090317.jpg" alt="进程管理"></p>
-<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>Webmin的功能还是比较全面的，可以通过安装模块来扩展功能，支持集群管理等。</p>
-<p>到这里本篇文章就结束了，以后就可以通过浏览器来查看以及管理nas了。</p>
-<h1 id="专栏目录"><a href="#专栏目录" class="headerlink" title="专栏目录"></a>专栏目录</h1>]]></content>
-      <categories>
-        <category>家庭NAS、HTPC服务器</category>
-      </categories>
-      <tags>
-        <tag>NAS系统</tag>
-        <tag>家庭影音</tag>
-        <tag>HTPC服务器</tag>
-        <tag>linux管理面板</tag>
-        <tag>WEB-UI管理面板</tag>
-        <tag>webmin</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数列极限的定义及应用</title>
-    <url>/2020/06/04/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%8A%E5%BA%94%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="数列极限的定义"><a href="#数列极限的定义" class="headerlink" title="数列极限的定义"></a>数列极限的定义</h1><h2 id="概念引入"><a href="#概念引入" class="headerlink" title="概念引入"></a>概念引入</h2><p>我们先来看一个数列$x_n=\frac{1}{n}$</p>
-<p>当$n=1$时，$x_1=\frac{1}{1}=1$</p>
-<p>当$n=2$时，$x_2=\frac{1}{2}$</p>
-<a id="more"></a>
-<p>$\cdots$</p>
-<p>当$n=1000$时，$x_{1000}=\frac{1}{1000}$</p>
-<p>$\cdots$</p>
-<p>当$n\to\infty$时，数列$x_n$的值无限接近$0$。如下图所示：</p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200604165314460.png" alt="image-20200604165314460"></p>
-<p>此时我们就可以说$\underset{n\to \infty }{\text{lim}}\frac{1}{n}=0$。这样我们就可以给出数列极限的一个直观定义：</p>
-<script type="math/tex; mode=display">
-\underset{n\to \infty }{\text{lim}}x_n=A\Longleftrightarrow n\to \infty ,x_n\rightarrow A</script><blockquote>
-<p>当$n$趋近于无穷大时，数列极限$x_n$<strong>无限接近</strong>于一个值$A$。</p>
-</blockquote>
-<p>用<strong>无限接近</strong>来描述这个定义是不严谨的，我们需要找到一种更加精确的语言来描述这段话。那么如何用数学语言来描述这一变化呢？？</p>
-<h2 id="数列极限定义"><a href="#数列极限定义" class="headerlink" title="数列极限定义"></a>数列极限定义</h2><h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><p>分析数列$a_n=\frac{(-1)^n }{n}\sin \left(\frac{1}{n}\right)$的变化趋势</p>
-<p>我们任意给定一个$\varepsilon&gt;0$，$\varepsilon$为一个任意小的值，总存在一个$N$(这里的$N$指数列的第$N$项)，当$n&gt;N$时，总存在$|a_n-0|&lt;\frac{1}{n}$，如下</p>
-<ul>
-<li>取$\varepsilon=\frac{1}{2}$，当$n&gt;2$，有$|a_n-0|&lt;\frac{1}{n}&lt;\varepsilon\Longrightarrow n&gt;N_1=2,|a_n-0|&lt;\frac{1}{2}$。</li>
-<li>取$\varepsilon=\frac{1}{2^2}$，当$n&gt;2^2$，有$|a_n-0|&lt;\frac{1}{n}&lt;\varepsilon\Longrightarrow n&gt;N_2=2^2,|a_n-0|&lt;\frac{1}{2^2}$。</li>
-<li>取$\varepsilon=\frac{1}{2^k}$，当$n&gt;2^k$，有$|a_n-0|&lt;\frac{1}{n}&lt;\varepsilon\Longrightarrow n&gt;N_k=2^k,|a_n-0|&lt;\frac{1}{2^k}$。</li>
-</ul>
-<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>给定数列$\left \{a_n \right\}$，$a$为常数，如果对于任意的$\varepsilon&gt;0$，都存在一个自然数$N$，使得当$n&gt;N$时，成立</p>
-<script type="math/tex; mode=display">
-|a_n-a|<\varepsilon</script><p>则称数列$\left \{a_n \right\}$以$a$为极限，记作$\underset{n\to \infty }{\text{lim}}a_n=a$</p>
-<p>如果该数列没有极限，则称该数列是<strong>发散</strong>的。</p>
-<p>需要注意</p>
-<ul>
-<li>定义中的$\varepsilon$刻画了$x_n$与$a$的逼近程度，定义中的$\varepsilon$可以限制$\varepsilon &lt; a$</li>
-<li>定义中的$N$和$\varepsilon$有关，仅要求存在，一般$\varepsilon$越小，$N$越大。</li>
-</ul>
-<h3 id="数学符号描述"><a href="#数学符号描述" class="headerlink" title="数学符号描述"></a>数学符号描述</h3><script type="math/tex; mode=display">
-\forall \varepsilon > 0,\exists N(\varepsilon)\in N^*,\forall n>N:|x_n-a|<\varepsilon</script><p>其中“$\forall$”表示任意的，“$\exists$”表示存在，“$:$”表示满足</p>
-<h3 id="几何解释"><a href="#几何解释" class="headerlink" title="几何解释"></a>几何解释</h3><p>推论$\underset{n\to \infty }{\text{lim}}a_n=a\Longleftrightarrow$当$n&gt;N$时，所有的点$x_n$都落在$(a-\varepsilon,a+\varepsilon)$内，只有有限个(最多$N$个落在其外)。</p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200605001400184.png" alt="image-20200605001400184"></p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200605001429236.png" alt="image-20200605001429236"></p>
-]]></content>
-      <categories>
-        <category>数学分析</category>
-      </categories>
-      <tags>
-        <tag>数列极限</tag>
-        <tag>数列极限定义</tag>
-        <tag>数列极限应用</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>1、向量及其运算</title>
     <url>/2020/06/01/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/1%E3%80%81%E5%90%91%E9%87%8F%E5%8F%8A%E5%85%B6%E8%BF%90%E7%AE%97/</url>
     <content><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>线性代数的中心问题是求解线性方程组。</p>
@@ -1374,6 +1325,55 @@ c\vec{a}:=\begin{pmatrix}c\vec{a_1} \\\vdots \\c\vec{a_n}\end{pmatrix}.</script>
       <categories>
         <category>线性代数</category>
       </categories>
+  </entry>
+  <entry>
+    <title>数列极限的定义及应用</title>
+    <url>/2020/06/04/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%8A%E5%BA%94%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="数列极限的定义"><a href="#数列极限的定义" class="headerlink" title="数列极限的定义"></a>数列极限的定义</h1><h2 id="概念引入"><a href="#概念引入" class="headerlink" title="概念引入"></a>概念引入</h2><p>我们先来看一个数列$x_n=\frac{1}{n}$</p>
+<p>当$n=1$时，$x_1=\frac{1}{1}=1$</p>
+<p>当$n=2$时，$x_2=\frac{1}{2}$</p>
+<a id="more"></a>
+<p>$\cdots$</p>
+<p>当$n=1000$时，$x_{1000}=\frac{1}{1000}$</p>
+<p>$\cdots$</p>
+<p>当$n\to\infty$时，数列$x_n$的值无限接近$0$。如下图所示：</p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200604165314460.png" alt="image-20200604165314460"></p>
+<p>此时我们就可以说$\underset{n\to \infty }{\text{lim}}\frac{1}{n}=0$。这样我们就可以给出数列极限的一个直观定义：</p>
+<script type="math/tex; mode=display">
+\underset{n\to \infty }{\text{lim}}x_n=A\Longleftrightarrow n\to \infty ,x_n\rightarrow A</script><blockquote>
+<p>当$n$趋近于无穷大时，数列极限$x_n$<strong>无限接近</strong>于一个值$A$。</p>
+</blockquote>
+<p>用<strong>无限接近</strong>来描述这个定义是不严谨的，我们需要找到一种更加精确的语言来描述这段话。那么如何用数学语言来描述这一变化呢？？</p>
+<h2 id="数列极限定义"><a href="#数列极限定义" class="headerlink" title="数列极限定义"></a>数列极限定义</h2><h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><p>分析数列$a_n=\frac{(-1)^n }{n}\sin \left(\frac{1}{n}\right)$的变化趋势</p>
+<p>我们任意给定一个$\varepsilon&gt;0$，$\varepsilon$为一个任意小的值，总存在一个$N$(这里的$N$指数列的第$N$项)，当$n&gt;N$时，总存在$|a_n-0|&lt;\frac{1}{n}$，如下</p>
+<ul>
+<li>取$\varepsilon=\frac{1}{2}$，当$n&gt;2$，有$|a_n-0|&lt;\frac{1}{n}&lt;\varepsilon\Longrightarrow n&gt;N_1=2,|a_n-0|&lt;\frac{1}{2}$。</li>
+<li>取$\varepsilon=\frac{1}{2^2}$，当$n&gt;2^2$，有$|a_n-0|&lt;\frac{1}{n}&lt;\varepsilon\Longrightarrow n&gt;N_2=2^2,|a_n-0|&lt;\frac{1}{2^2}$。</li>
+<li>取$\varepsilon=\frac{1}{2^k}$，当$n&gt;2^k$，有$|a_n-0|&lt;\frac{1}{n}&lt;\varepsilon\Longrightarrow n&gt;N_k=2^k,|a_n-0|&lt;\frac{1}{2^k}$。</li>
+</ul>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>给定数列$\left \{a_n \right\}$，$a$为常数，如果对于任意的$\varepsilon&gt;0$，都存在一个自然数$N$，使得当$n&gt;N$时，成立</p>
+<script type="math/tex; mode=display">
+|a_n-a|<\varepsilon</script><p>则称数列$\left \{a_n \right\}$以$a$为极限，记作$\underset{n\to \infty }{\text{lim}}a_n=a$</p>
+<p>如果该数列没有极限，则称该数列是<strong>发散</strong>的。</p>
+<p>需要注意</p>
+<ul>
+<li>定义中的$\varepsilon$刻画了$x_n$与$a$的逼近程度，定义中的$\varepsilon$可以限制$\varepsilon &lt; a$</li>
+<li>定义中的$N$和$\varepsilon$有关，仅要求存在，一般$\varepsilon$越小，$N$越大。</li>
+</ul>
+<h3 id="数学符号描述"><a href="#数学符号描述" class="headerlink" title="数学符号描述"></a>数学符号描述</h3><script type="math/tex; mode=display">
+\forall \varepsilon > 0,\exists N(\varepsilon)\in N^*,\forall n>N:|x_n-a|<\varepsilon</script><p>其中“$\forall$”表示任意的，“$\exists$”表示存在，“$:$”表示满足</p>
+<h3 id="几何解释"><a href="#几何解释" class="headerlink" title="几何解释"></a>几何解释</h3><p>推论$\underset{n\to \infty }{\text{lim}}a_n=a\Longleftrightarrow$当$n&gt;N$时，所有的点$x_n$都落在$(a-\varepsilon,a+\varepsilon)$内，只有有限个(最多$N$个落在其外)。</p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200605001400184.png" alt="image-20200605001400184"></p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200605001429236.png" alt="image-20200605001429236"></p>
+]]></content>
+      <categories>
+        <category>数学分析</category>
+      </categories>
+      <tags>
+        <tag>数列极限</tag>
+        <tag>数列极限定义</tag>
+        <tag>数列极限应用</tag>
+      </tags>
   </entry>
   <entry>
     <title>计算机浮点数表示</title>

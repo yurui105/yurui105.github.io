@@ -486,11 +486,11 @@ x_1+2x_2=4\\
     
       <category term="HTPC服务器" scheme="http://www.yurui.tech/tags/HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
-      <category term="linux管理面板" scheme="http://www.yurui.tech/tags/linux%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BF/"/>
-    
       <category term="WEB-UI管理面板" scheme="http://www.yurui.tech/tags/WEB-UI%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BF/"/>
     
       <category term="webmin" scheme="http://www.yurui.tech/tags/webmin/"/>
+    
+      <category term="linux管理面板" scheme="http://www.yurui.tech/tags/linux%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BF/"/>
     
   </entry>
   
