@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.yurui.tech/"/>
-  <updated>2020-07-11T06:01:47.000Z</updated>
+  <updated>2020-07-12T06:49:02.000Z</updated>
   <id>http://www.yurui.tech/</id>
   
   <author>
@@ -15,6 +15,91 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>静态成员变量以及静态成员函数</title>
+    <link href="http://www.yurui.tech/2020/07/12/C++/%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E4%BB%A5%E5%8F%8A%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0/"/>
+    <id>http://www.yurui.tech/2020/07/12/C++/%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E4%BB%A5%E5%8F%8A%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0/</id>
+    <published>2020-07-12T06:49:02.000Z</published>
+    <updated>2020-07-12T06:49:02.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot; title=&quot;基本概念&quot;&gt;&lt;/a&gt;基本概念&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;静态成员：在说明前加上&lt;code&gt;static&lt;/code&gt;关键字的成员为静态成员。&lt;/li&gt;
+&lt;li&gt;静态函数：在函数声明前加上&lt;code&gt;static&lt;/code&gt;关键字的函数就是静态成员函数。&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="c++" scheme="http://www.yurui.tech/categories/c/"/>
+    
+    
+      <category term="c++" scheme="http://www.yurui.tech/tags/c/"/>
+    
+      <category term="static" scheme="http://www.yurui.tech/tags/static/"/>
+    
+      <category term="静态成员" scheme="http://www.yurui.tech/tags/%E9%9D%99%E6%80%81%E6%88%90%E5%91%98/"/>
+    
+      <category term="静态函数" scheme="http://www.yurui.tech/tags/%E9%9D%99%E6%80%81%E5%87%BD%E6%95%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>this 指针</title>
+    <link href="http://www.yurui.tech/2020/07/12/C++/this-%E6%8C%87%E9%92%88/"/>
+    <id>http://www.yurui.tech/2020/07/12/C++/this-%E6%8C%87%E9%92%88/</id>
+    <published>2020-07-12T06:20:46.000Z</published>
+    <updated>2020-07-12T06:20:46.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h1&gt;&lt;p&gt;&lt;code&gt;this&lt;/code&gt;指针是c++程序中的一个关键字，&lt;code&gt;this&lt;/code&gt;指向当前对象，通过&lt;code&gt;this&lt;/code&gt;指针可以访问当前对象的所有成员。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;this&lt;/code&gt; 只能用在类的内部，通过 &lt;code&gt;this&lt;/code&gt; 可以访问类的所有成员，包括 &lt;code&gt;private&lt;/code&gt;、&lt;code&gt;protected&lt;/code&gt;、&lt;code&gt;public&lt;/code&gt; 属性的成员。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="c++" scheme="http://www.yurui.tech/categories/c/"/>
+    
+    
+      <category term="this" scheme="http://www.yurui.tech/tags/this/"/>
+    
+      <category term="this指针" scheme="http://www.yurui.tech/tags/this%E6%8C%87%E9%92%88/"/>
+    
+      <category term="this关键字" scheme="http://www.yurui.tech/tags/this%E5%85%B3%E9%94%AE%E5%AD%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2.矩阵与线性方程组</title>
+    <link href="http://www.yurui.tech/2020/07/11/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/2-%E7%9F%A9%E9%98%B5%E4%B8%8E%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84/"/>
+    <id>http://www.yurui.tech/2020/07/11/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/2-%E7%9F%A9%E9%98%B5%E4%B8%8E%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84/</id>
+    <published>2020-07-11T14:20:11.000Z</published>
+    <updated>2020-07-11T14:20:11.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;矩阵-matrix-与向量的乘积&quot;&gt;&lt;a href=&quot;#矩阵-matrix-与向量的乘积&quot; class=&quot;headerlink&quot; title=&quot;矩阵(matrix)与向量的乘积&quot;&gt;&lt;/a&gt;矩阵(matrix)与向量的乘积&lt;/h1&gt;&lt;p&gt;例，我们有如下的线性方程组：&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+\left\{\begin{aligned}
+&amp;x_{1}&amp;+x_{2}&amp;-x_{3} &amp;=1 \\
+&amp;2 x_{1}&amp; &amp;+x_{3}&amp;=3 \\
+&amp;&amp;2 x_{2}&amp;+x_{3} &amp;=3
+\end{aligned}\right.&lt;/script&gt;
+    
+    </summary>
+    
+    
+      <category term="线性代数" scheme="http://www.yurui.tech/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
+    
+    
+      <category term="矩阵" scheme="http://www.yurui.tech/tags/%E7%9F%A9%E9%98%B5/"/>
+    
+      <category term="线性方程组" scheme="http://www.yurui.tech/tags/%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84/"/>
+    
+  </entry>
   
   <entry>
     <title>类型转换构造函数以及析构函数</title>
@@ -121,13 +206,13 @@
       <category term="c++" scheme="http://www.yurui.tech/categories/c/"/>
     
     
+      <category term="构造函数" scheme="http://www.yurui.tech/tags/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/"/>
+    
       <category term="c++对象" scheme="http://www.yurui.tech/tags/c-%E5%AF%B9%E8%B1%A1/"/>
     
       <category term="c++类" scheme="http://www.yurui.tech/tags/c-%E7%B1%BB/"/>
     
       <category term="面向对象" scheme="http://www.yurui.tech/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
-    
-      <category term="构造函数" scheme="http://www.yurui.tech/tags/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/"/>
     
   </entry>
   
@@ -170,7 +255,7 @@
       &lt;h1 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h1&gt;&lt;p&gt;线性代数的中心问题是求解线性方程组。&lt;/p&gt;
 &lt;p&gt;假设给定一个线性方程组：&lt;/p&gt;
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;
-x_1+2x_2=4\\
+x_1+2x_2=4 \\
 2x_1-3x_2=-2&lt;/script&gt;
     
     </summary>
@@ -414,8 +499,7 @@ x_1+2x_2=4\\
     
     <summary type="html">
     
-      &lt;p&gt;关于的jellyfin影音服务，已经有很多人对其做过介绍了，但在这里我任然要为其写一篇相关安装与使用的文章，因为在别的贴子里，很多人容易忽视掉设置硬件加速的一些必要步骤。&lt;/p&gt;
-&lt;p&gt;本篇文章将会从本机安装以及docker安装两种安装方式来向大家介绍jellyfin的安装以及基本使用方法。&lt;/p&gt;
+      Jellyfin puts you in control of managing and streaming your media. There are no strings attached, no premium licenses or features, and no hidden agendas.
     
     </summary>
     
@@ -444,9 +528,7 @@ x_1+2x_2=4\\
     
     <summary type="html">
     
-      &lt;p&gt;经过前面那么多期的铺垫，今天我们终于可以来安装使用我么的docker了。这是一个非常好用的工具，我们的NAS服务百分之九十都会部署在docker上运行。&lt;/p&gt;
-&lt;p&gt;有了docker以后，你不再需要小心翼翼地担心把系统配置搞乱无法恢复，在这里你可以通过几个简单地命令就可以将相关服务重新部署回来。&lt;/p&gt;
-&lt;p&gt;就这样，请拥有，并享受&lt;br&gt;
+      Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的镜像中，然后发布到任何流行的 Linux或Windows 机器上，也可以实现虚拟化。容器是完全使用沙箱机制，相互之间不会有任何接口。
     
     </summary>
     
@@ -475,7 +557,7 @@ x_1+2x_2=4\\
     
     <summary type="html">
     
-      &lt;p&gt;在开始下篇文章之前我觉得有必要讲解一下在linux中的硬盘挂载。这和Windows不同，Windows会自动扫描本地硬盘并为你自动挂载，但是linux不会值么做，它需要你自己去挂载硬盘到系统中。&lt;/p&gt;
+      介绍在ubuntu18.04下硬盘的挂载方法
     
     </summary>
     
@@ -492,103 +574,6 @@ x_1+2x_2=4\\
       <category term="linux硬盘挂载" scheme="http://www.yurui.tech/tags/linux%E7%A1%AC%E7%9B%98%E6%8C%82%E8%BD%BD/"/>
     
       <category term="ubuntu挂载硬盘" scheme="http://www.yurui.tech/tags/ubuntu%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>WEB-UI管理面板Cockpit(轻量简单)安装与使用</title>
-    <link href="http://www.yurui.tech/2019/12/28/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/6%E3%80%81WEB-UI%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BFCockpit(%E8%BD%BB%E9%87%8F%E7%AE%80%E5%8D%95)%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
-    <id>http://www.yurui.tech/2019/12/28/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/6%E3%80%81WEB-UI%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BFCockpit(%E8%BD%BB%E9%87%8F%E7%AE%80%E5%8D%95)%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</id>
-    <published>2019-12-28T04:49:49.000Z</published>
-    <updated>2019-12-28T04:49:49.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在前面我们介绍了管理面板Webmin的安装与使用，这次我们来看Cockpit的安装与使用，Webmin与Cockoit都属于轻量级的管理面板，但是Cockpit的功能较Webmin有了更多的减少，提供了更多的图表可视化功能，对中文的支持也比Webmin要好得多。&lt;/p&gt;
-&lt;p&gt;cockpit提供了几乎所有Linux发行版本的安装包，对各个Linux平台支持都很好，这在官方的宣传里可以看到。该软件为开源软件，并在官网提供了详细的开发者文档。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="家庭NAS、HTPC服务器" scheme="http://www.yurui.tech/categories/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
-    
-      <category term="NAS系统" scheme="http://www.yurui.tech/tags/NAS%E7%B3%BB%E7%BB%9F/"/>
-    
-      <category term="家庭影音" scheme="http://www.yurui.tech/tags/%E5%AE%B6%E5%BA%AD%E5%BD%B1%E9%9F%B3/"/>
-    
-      <category term="HTPC服务器" scheme="http://www.yurui.tech/tags/HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
-      <category term="linux管理面板" scheme="http://www.yurui.tech/tags/linux%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BF/"/>
-    
-      <category term="Cockpit" scheme="http://www.yurui.tech/tags/Cockpit/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>WEB-UI管理面板webmin（轻量级较全面）安装及使用</title>
-    <link href="http://www.yurui.tech/2019/12/27/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/5%E3%80%81WEB-UI%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BFwebmin%EF%BC%88%E8%BD%BB%E9%87%8F%E7%BA%A7%E8%BE%83%E5%85%A8%E9%9D%A2%EF%BC%89%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/"/>
-    <id>http://www.yurui.tech/2019/12/27/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/5%E3%80%81WEB-UI%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BFwebmin%EF%BC%88%E8%BD%BB%E9%87%8F%E7%BA%A7%E8%BE%83%E5%85%A8%E9%9D%A2%EF%BC%89%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</id>
-    <published>2019-12-27T04:49:49.000Z</published>
-    <updated>2019-12-27T04:49:49.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;相信很多人选择黑群晖的原因之一是因为群晖有很好的图形化管理面板，其实Ubuntu，或者说linux也可以很好的图形化管理面板。&lt;/p&gt;
-&lt;p&gt;本系列文章将介绍两种轻量级的管理面板&lt;strong&gt;Webmin(功能较全面)&lt;/strong&gt;和&lt;strong&gt;Cockpit(功能简单)&lt;/strong&gt;，对于那些功能全面的重量级面板，再次不做介绍，尽管那些工具开发得很完善，但是在家用nas上使用却显得有些臃肿了。&lt;/p&gt;
-&lt;p&gt;就这样，请拥有，并享受。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="家庭NAS、HTPC服务器" scheme="http://www.yurui.tech/categories/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
-    
-      <category term="NAS系统" scheme="http://www.yurui.tech/tags/NAS%E7%B3%BB%E7%BB%9F/"/>
-    
-      <category term="家庭影音" scheme="http://www.yurui.tech/tags/%E5%AE%B6%E5%BA%AD%E5%BD%B1%E9%9F%B3/"/>
-    
-      <category term="HTPC服务器" scheme="http://www.yurui.tech/tags/HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
-      <category term="WEB-UI管理面板" scheme="http://www.yurui.tech/tags/WEB-UI%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BF/"/>
-    
-      <category term="webmin" scheme="http://www.yurui.tech/tags/webmin/"/>
-    
-      <category term="linux管理面板" scheme="http://www.yurui.tech/tags/linux%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SSH工具Xshell的安装以及使用</title>
-    <link href="http://www.yurui.tech/2019/12/26/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/4%E3%80%81SSH%E5%B7%A5%E5%85%B7Xshell%E7%9A%84%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/"/>
-    <id>http://www.yurui.tech/2019/12/26/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/4%E3%80%81SSH%E5%B7%A5%E5%85%B7Xshell%E7%9A%84%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/</id>
-    <published>2019-12-26T04:49:49.000Z</published>
-    <updated>2019-12-26T04:49:49.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在原本的计划中并没有准备专门写一篇关于SSH远程连接的教程，但想了想，该专栏文章应该致力于让所有读者都能看懂，即使你是从未使用过Linux操作系统的小白。&lt;/p&gt;
-&lt;p&gt;当然，本文仅介绍了XShell的试用，你也可以选择其他软件，这都一样，并不影响你的使用。&lt;/p&gt;
-&lt;p&gt;如果你已经有相关的使用经验，那么你可以直接跳过本章，毕竟下面的内容会浪费你宝贵生命中的几分钟。&lt;/p&gt;
-&lt;p&gt;就这样，请拥有，并享受。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="家庭NAS、HTPC服务器" scheme="http://www.yurui.tech/categories/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
-    
-      <category term="NAS系统" scheme="http://www.yurui.tech/tags/NAS%E7%B3%BB%E7%BB%9F/"/>
-    
-      <category term="家庭影音" scheme="http://www.yurui.tech/tags/%E5%AE%B6%E5%BA%AD%E5%BD%B1%E9%9F%B3/"/>
-    
-      <category term="HTPC服务器" scheme="http://www.yurui.tech/tags/HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
-      <category term="xshell配置" scheme="http://www.yurui.tech/tags/xshell%E9%85%8D%E7%BD%AE/"/>
-    
-      <category term="ssh安装及使用" scheme="http://www.yurui.tech/tags/ssh%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/"/>
-    
-      <category term="xshell安装" scheme="http://www.yurui.tech/tags/xshell%E5%AE%89%E8%A3%85/"/>
     
   </entry>
   

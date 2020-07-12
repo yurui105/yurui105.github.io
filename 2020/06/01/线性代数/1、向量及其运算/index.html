@@ -23,12 +23,12 @@
     var CONFIG = {"hostname":"www.yurui.tech","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="引言线性代数的中心问题是求解线性方程组。 假设给定一个线性方程组：  x_1+2x_2&#x3D;4\\ 2x_1-3x_2&#x3D;-2">
+  <meta name="description" content="引言线性代数的中心问题是求解线性方程组。 假设给定一个线性方程组：  x_1+2x_2&#x3D;4 \\ 2x_1-3x_2&#x3D;-2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="1、向量及其运算">
 <meta property="og:url" content="http://www.yurui.tech/2020/06/01/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/1%E3%80%81%E5%90%91%E9%87%8F%E5%8F%8A%E5%85%B6%E8%BF%90%E7%AE%97/index.html">
 <meta property="og:site_name" content="余睿的博客">
-<meta property="og:description" content="引言线性代数的中心问题是求解线性方程组。 假设给定一个线性方程组：  x_1+2x_2&#x3D;4\\ 2x_1-3x_2&#x3D;-2">
+<meta property="og:description" content="引言线性代数的中心问题是求解线性方程组。 假设给定一个线性方程组：  x_1+2x_2&#x3D;4 \\ 2x_1-3x_2&#x3D;-2">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200601225945203.png">
 <meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200601230654410.png">
@@ -299,7 +299,7 @@
         <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>线性代数的中心问题是求解线性方程组。</p>
 <p>假设给定一个线性方程组：</p>
 <script type="math/tex; mode=display">
-x_1+2x_2=4\\
+x_1+2x_2=4 \\
 2x_1-3x_2=-2</script><a id="more"></a>
 <p>我们将$x_1$、$x_2$的系数以及结果单独提取出来，它能表示为：</p>
 <script type="math/tex; mode=display">
@@ -310,7 +310,7 @@ x_1\binom{1}{2}+x_2\binom{2}{-3}=\binom{4}{-2}</script><p>由此可得此方程�
 <p>一个二元的有序数组$(x_1,x_2)$一一对应表示平面上的一个点。</p>
 <p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200601230654410.png" alt="image-20200601230654410"></p>
 <p>一个三维有序数组$(x_1,x_2,x_3)$一一对应表示三维空间中的一个点。</p>
-<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200601231634293.png" alt="image-20200601231634293"></p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200601231634293.png" alt="三维空间中的点"></p>
 <p>同理，定义$n$维空间的点为一个$n$元有序数组$x=(x_1,\dots,x_n)$，称$x_i$为点$x$的第$i$个坐标.</p>
 <h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><ol>
 <li><p><strong>相等</strong></p>
@@ -383,7 +383,7 @@ cx:=(cx_1,\dots,cx_n)</script></li>
 <p>记$\vec{a}=\begin{pmatrix}a_1\\\vdots \\a_n \end{pmatrix}$为列向量，其中$a_i$为向量$\vec{a}$的第$i$个分量。</p>
 <p>则有向量的加法：</p>
 <script type="math/tex; mode=display">
-\vec{a}+\vec{b}:=\begin{pmatrix}a_1+b_! \\\vdots \\a_n+b_n\end{pmatrix}.</script><p>数乘：</p>
+\vec{a}+\vec{b}:=\begin{pmatrix}a_1+b_1 \\\vdots \\a_n+b_n\end{pmatrix}.</script><p>数乘：</p>
 <script type="math/tex; mode=display">
 c\vec{a}:=\begin{pmatrix}c\vec{a_1} \\\vdots \\c\vec{a_n}\end{pmatrix}.</script><h1 id="向量的空间定义"><a href="#向量的空间定义" class="headerlink" title="向量的空间定义"></a>向量的空间定义</h1><p>在由称为”向量“的元素构成的非空集合$V$中，若定义了加法和数乘运算，且对任意向量$\vec{a},\vec{b},\vec{c}$及数$k,l\in F$满足以下8条性质：</p>
 <ol>
@@ -622,7 +622,7 @@ c\vec{a}:=\begin{pmatrix}c\vec{a_1} \\\vdots \\c\vec{a_n}\end{pmatrix}.</script>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -635,7 +635,7 @@ c\vec{a}:=\begin{pmatrix}c\vec{a_1} \\\vdots \\c\vec{a_n}\end{pmatrix}.</script>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">72</span>
+        <span class="site-state-item-count">80</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -698,13 +698,13 @@ c\vec{a}:=\begin{pmatrix}c\vec{a_1} \\\vdots \\c\vec{a_n}\end{pmatrix}.</script>
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">59k</span>
+    <span title="站点总字数">68k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">54 分钟</span>
+    <span title="站点阅读时长">1:02</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>

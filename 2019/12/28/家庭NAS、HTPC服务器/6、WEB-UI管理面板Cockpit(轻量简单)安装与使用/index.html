@@ -23,31 +23,31 @@
     var CONFIG = {"hostname":"www.yurui.tech","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="在前面我们介绍了管理面板Webmin的安装与使用，这次我们来看Cockpit的安装与使用，Webmin与Cockoit都属于轻量级的管理面板，但是Cockpit的功能较Webmin有了更多的减少，提供了更多的图表可视化功能，对中文的支持也比Webmin要好得多。 cockpit提供了几乎所有Linux发行版本的安装包，对各个Linux平台支持都很好，这在官方的宣传里可以看到。该软件为开源软件，并在">
+  <meta name="description" content="Cockpit makes GNU&#x2F;Linux discoverable. See your server in a web browser and perform system tasks with a mouse. It’s easy to start containers, administer storage, configure networks, and inspect logs.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="WEB-UI管理面板Cockpit(轻量简单)安装与使用">
 <meta property="og:url" content="http://www.yurui.tech/2019/12/28/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/6%E3%80%81WEB-UI%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BFCockpit(%E8%BD%BB%E9%87%8F%E7%AE%80%E5%8D%95)%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="余睿的博客">
-<meta property="og:description" content="在前面我们介绍了管理面板Webmin的安装与使用，这次我们来看Cockpit的安装与使用，Webmin与Cockoit都属于轻量级的管理面板，但是Cockpit的功能较Webmin有了更多的减少，提供了更多的图表可视化功能，对中文的支持也比Webmin要好得多。 cockpit提供了几乎所有Linux发行版本的安装包，对各个Linux平台支持都很好，这在官方的宣传里可以看到。该软件为开源软件，并在">
+<meta property="og:description" content="Cockpit makes GNU&#x2F;Linux discoverable. See your server in a web browser and perform system tasks with a mouse. It’s easy to start containers, administer storage, configure networks, and inspect logs.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20141709.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20141314.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20141354.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E4%BB%AA%E8%A1%A8%E7%9B%98.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20143552.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20143743.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144009.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E6%B7%BB%E5%8A%A0%E7%BB%91%E5%AE%9A.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144216.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144227.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/ipv4.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144606.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144730.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144908.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-26%20141709.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-26%20141314.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-26%20141354.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E4%BB%AA%E8%A1%A8%E7%9B%98.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-26%20143552.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-26%20143743.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-26%20144009.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%B7%BB%E5%8A%A0%E7%BB%91%E5%AE%9A.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-26%20144216.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-26%20144227.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/ipv4.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-26%20144606.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-26%20144730.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-26%20144908.jpg">
 <meta property="article:published_time" content="2019-12-28T04:49:49.000Z">
 <meta property="article:modified_time" content="2019-12-28T04:49:49.000Z">
 <meta property="article:author" content="余睿">
@@ -57,7 +57,7 @@
 <meta property="article:tag" content="linux管理面板">
 <meta property="article:tag" content="Cockpit">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20141709.jpg">
+<meta name="twitter:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-26%20141709.jpg">
 
 <link rel="canonical" href="http://www.yurui.tech/2019/12/28/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/6%E3%80%81WEB-UI%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BFCockpit(%E8%BD%BB%E9%87%8F%E7%AE%80%E5%8D%95)%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/">
 
@@ -297,6 +297,7 @@
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               <span>1 分钟</span>
             </span>
+            <div class="post-description">Cockpit makes GNU/Linux discoverable. See your server in a web browser and perform system tasks with a mouse. It’s easy to start containers, administer storage, configure networks, and inspect logs.</div>
 
         </div>
       </header>
@@ -308,36 +309,37 @@
 
       
         <p>在前面我们介绍了管理面板Webmin的安装与使用，这次我们来看Cockpit的安装与使用，Webmin与Cockoit都属于轻量级的管理面板，但是Cockpit的功能较Webmin有了更多的减少，提供了更多的图表可视化功能，对中文的支持也比Webmin要好得多。</p>
-<p>cockpit提供了几乎所有Linux发行版本的安装包，对各个Linux平台支持都很好，这在官方的宣传里可以看到。该软件为开源软件，并在官网提供了详细的开发者文档。<br><a id="more"></a><br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20141709.jpg" alt="cockpit"></p>
+<p>cockpit提供了几乎所有Linux发行版本的安装包，对各个Linux平台支持都很好，这在官方的宣传里可以看到。该软件为开源软件，并在官网提供了详细的开发者文档。</p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-26%20141709.jpg" alt="cockpit"></p>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>cockpit的官网提供了各平台的安装方法以及相关的的使用文档，并且在Ubuntu17.04以及之后的Ubuntu版本中加入了官方的软件源中，这意味这我们可以很容易地安装Cockpit。</p>
 <p>只需要在终端中执行以下命令即可安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt -y install cockpit</span><br></pre></td></tr></table></figure><br>安装完成后没有给出任何地提示信息，我们只需要用浏览器打开<code>https://服务器IP:9090</code>即可打开监控界面，然后输入ubuntu的用户名密码就可以登录它。<br>（打开过程中浏览器可能会拦截该页面，允许访问即可）</p>
 <h1 id="功能介绍"><a href="#功能介绍" class="headerlink" title="功能介绍"></a>功能介绍</h1><p>在浏览器中打开<code>https://服务器IP:9090</code>后我们可以看到如下画面，输入用户名、密码登录即可。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20141314.jpg" alt="cockpit登录界面"></p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-26%20141314.jpg" alt="cockpit登录界面"></p>
 <p>登录成功后我们就进入道路cockpit的管理界面，在这里可以直观的看到NAS的运行状态，包括CPU使用率、内存使用率、硬盘使用率等。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20141354.jpg" alt="cockpit仪表盘"></p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-26%20141354.jpg" alt="cockpit仪表盘"></p>
 <p>下面我们来看看cockpit中有那些功能。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97.jpg" alt="系统日志"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86.jpg" alt="存储管理"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86.jpg" alt="网络管理"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1.jpg" alt="系统服务"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E4%BB%AA%E8%A1%A8%E7%9B%98.jpg" alt="仪表盘"></p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97.jpg" alt="系统日志"></p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86.jpg" alt="存储管理"></p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86.jpg" alt="网络管理"></p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1.jpg" alt="系统服务"></p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E4%BB%AA%E8%A1%A8%E7%9B%98.jpg" alt="仪表盘"></p>
 <h1 id="cockpit使用"><a href="#cockpit使用" class="headerlink" title="cockpit使用"></a>cockpit使用</h1><p>在cockpit中我们可以很方便的管理各系统服务，下面将介绍一些基本的管理功能</p>
 <h2 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h2><p>在磁盘管理中，为我们提供了图形化创建RAID设备，可支持RAID0、1、4、5、6、10。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20143552.jpg" alt="创建RAID设备"></p>
-<p>可以图形化创建磁盘分区表，格式化磁盘。可支持GPT以及MBR分区方式。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20143743.jpg" alt="创建磁盘分区表"></p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-26%20143552.jpg" alt="创建RAID设备"></p>
+<p>可以图形化创建磁盘分区表，格式化磁盘。可支持GPT以及MBR分区方式。<br><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-26%20143743.jpg" alt="创建磁盘分区表"></p>
 <p>更改磁盘挂载点等</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144009.jpg" alt="磁盘挂载点"></p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-26%20144009.jpg" alt="磁盘挂载点"></p>
 <h2 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h2><p>可以添加绑定、添加网桥、划分vlan的网络操作。</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%B7%BB%E5%8A%A0%E7%BB%91%E5%AE%9A.jpg" alt="添加绑定"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144216.jpg" alt="添加网桥"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144227.jpg" alt="VLAN划分"></p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%B7%BB%E5%8A%A0%E7%BB%91%E5%AE%9A.jpg" alt="添加绑定"></p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-26%20144216.jpg" alt="添加网桥"></p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-26%20144227.jpg" alt="VLAN划分"></p>
 <p>还可以进行ipv4、ipv6等设置，支持管理连接状态，实时日志查看等</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/ipv4.jpg" alt="IPV4设置"></p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/ipv4.jpg" alt="IPV4设置"></p>
 <h2 id="系统服务"><a href="#系统服务" class="headerlink" title="系统服务"></a>系统服务</h2><p>支持查看相关系统服务进程，并支持启用、禁用相关进程。支持定时任务管理等</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144606.jpg" alt="系统服务管理"></p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144730.jpg" alt="定时任务"></p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-26%20144606.jpg" alt="系统服务管理"></p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-26%20144730.jpg" alt="定时任务"></p>
 <p>除此之外，还提供了一个终端的功能，可直接在网页中打开终端</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-26%20144908.jpg" alt="终端"></p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-26%20144908.jpg" alt="终端"></p>
 <h1 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h1><p>cockpit比webmin要精简很多，去除了很多感觉不要的东西，在我看来是最适合做NAS管理面板的软件，其使用起来也很方便，不需要很复杂的操作就可以管理系统相关服务。对各种数据监控提供了很好的图形可视化支持，能很好的查看系统使用状态</p>
 <h1 id="专栏目录"><a href="#专栏目录" class="headerlink" title="专栏目录"></a>专栏目录</h1>
     </div>
@@ -500,7 +502,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -513,7 +515,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">72</span>
+        <span class="site-state-item-count">80</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -576,13 +578,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">59k</span>
+    <span title="站点总字数">68k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">54 分钟</span>
+    <span title="站点阅读时长">1:02</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>

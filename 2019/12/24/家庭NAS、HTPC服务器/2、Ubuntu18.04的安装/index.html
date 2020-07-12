@@ -23,42 +23,42 @@
     var CONFIG = {"hostname":"www.yurui.tech","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="前言本文为系列文章的第二篇，关于本专栏相关文章可以到文末专栏目录查看。 就这样，请拥有，并享受。">
+  <meta name="description" content="介绍家庭nas操作系统ubuntu18.04的基本安装">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu18.04安装">
 <meta property="og:url" content="http://www.yurui.tech/2019/12/24/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/2%E3%80%81Ubuntu18.04%E7%9A%84%E5%AE%89%E8%A3%85/index.html">
 <meta property="og:site_name" content="余睿的博客">
-<meta property="og:description" content="前言本文为系列文章的第二篇，关于本专栏相关文章可以到文末专栏目录查看。 就这样，请拥有，并享受。">
+<meta property="og:description" content="介绍家庭nas操作系统ubuntu18.04的基本安装">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/0.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/1.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/2.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/4%E3%80%81ultraiso.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/5.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115307.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115730.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115759.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115816.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115857.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20170625.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20170644.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20170709.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20170730.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20171232.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20171313.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20171349.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20171407.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20175101.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/0.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/1.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/2.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/4%E3%80%81ultraiso.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/5.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20115307.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20115730.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20115759.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20115816.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20115857.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20170625.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20170644.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20170709.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20170730.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20171232.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20171313.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20171349.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20171407.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20175101.jpg">
 <meta property="article:published_time" content="2019-12-24T06:10:49.000Z">
 <meta property="article:modified_time" content="2019-12-24T06:10:49.000Z">
 <meta property="article:author" content="余睿">
-<meta property="article:tag" content="Ubuntu18.04安装">
-<meta property="article:tag" content="Ubuntu安装">
 <meta property="article:tag" content="NAS系统">
 <meta property="article:tag" content="家庭影音">
 <meta property="article:tag" content="HTPC服务器">
+<meta property="article:tag" content="Ubuntu18.04安装">
+<meta property="article:tag" content="Ubuntu安装">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/yurui105/image/master/0.jpg">
+<meta name="twitter:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/0.jpg">
 
 <link rel="canonical" href="http://www.yurui.tech/2019/12/24/%E5%AE%B6%E5%BA%ADNAS%E3%80%81HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/2%E3%80%81Ubuntu18.04%E7%9A%84%E5%AE%89%E8%A3%85/">
 
@@ -298,6 +298,7 @@
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               <span>2 分钟</span>
             </span>
+            <div class="post-description">介绍家庭nas操作系统ubuntu18.04的基本安装</div>
 
         </div>
       </header>
@@ -309,53 +310,53 @@
 
       
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文为系列文章的第二篇，关于本专栏相关文章可以到文末专栏目录查看。</p>
-<p>就这样，请拥有，并享受。<br><a id="more"></a></p>
+<p>就这样，请拥有，并享受。</p>
 <h1 id="制作安装镜像"><a href="#制作安装镜像" class="headerlink" title="制作安装镜像"></a>制作安装镜像</h1><h2 id="下载操作系统镜像"><a href="#下载操作系统镜像" class="headerlink" title="下载操作系统镜像"></a>下载操作系统镜像</h2><p>首先到Ubuntu中国官网下载最新版本的Ubuntu18.04桌面版</p>
 <p>下载传送门：点击这里</p>
-<p>step1.点击桌面系统<br><img src="https://raw.githubusercontent.com/yurui105/image/master/0.jpg" alt="ubuntu首页"></p>
-<p>step2.点击下载Ubuntu<br><img src="https://raw.githubusercontent.com/yurui105/image/master/1.jpg" alt="桌面系统主页"></p>
-<p>step3.点击Ubuntu18.04.3 LTS后面的直接下载<br><img src="https://raw.githubusercontent.com/yurui105/image/master/2.jpg" alt="下载界面"></p>
+<p>step1.点击桌面系统<br><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/0.jpg" alt="ubuntu首页"></p>
+<p>step2.点击下载Ubuntu<br><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/1.jpg" alt="桌面系统主页"></p>
+<p>step3.点击Ubuntu18.04.3 LTS后面的直接下载<br><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/2.jpg" alt="下载界面"></p>
 <p>在写文章时的官方最新版本为18.04.3，具体可能会有变化。</p>
 <p>LTS为官方长期支持版本，你也可以选择下载最新的试用版本，具体看个人怎么选择，官方也对各版本有详细的说明。个人建议选择LTS版本。</p>
 <p>注！可以选择BT下载，这样下载速度会比较快。</p>
 <h2 id="下载启动盘制作工具"><a href="#下载启动盘制作工具" class="headerlink" title="下载启动盘制作工具"></a>下载启动盘制作工具</h2><p>制作启动盘的工具市面上有很多，可以参考网络上其他同类文章，这里选择用UltraISO作为制作工具。</p>
 <p>UltraISO传送门：点击这里</p>
-<p>step1.点击导航栏<strong>下载</strong><br><img src="https://raw.githubusercontent.com/yurui105/image/master/4%E3%80%81ultraiso.jpg" alt="UltraISO官网主页"></p>
-<p>step2.点击<strong>免费下载试用</strong><br><img src="https://raw.githubusercontent.com/yurui105/image/master/5.jpg" alt="下载界面"></p>
+<p>step1.点击导航栏<strong>下载</strong><br><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/4%E3%80%81ultraiso.jpg" alt="UltraISO官网主页"></p>
+<p>step2.点击<strong>免费下载试用</strong><br><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/5.jpg" alt="下载界面"></p>
 <p>step3.安装</p>
-<p>这里就部展开详述了，安装完成后打开，会跳出窗口订购，在这里点击下方的试用即可。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115307.jpg" alt="UltraISO订阅界面"></p>
+<p>这里就部展开详述了，安装完成后打开，会跳出窗口订购，在这里点击下方的试用即可。<br><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20115307.jpg" alt="UltraISO订阅界面"></p>
 <h2 id="制作镜像"><a href="#制作镜像" class="headerlink" title="制作镜像"></a>制作镜像</h2><p>重要！！！制作U盘安装工具会擦除U盘所有数据，请提前备份好U盘数据！！！</p>
-<p>step1.打开刚才下载的Ubuntu安装镜像<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115730.jpg" alt="UltraISO软件界面"><br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115759.jpg" alt="加载安装镜像后"></p>
+<p>step1.打开刚才下载的Ubuntu安装镜像<br><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20115730.jpg" alt="UltraISO软件界面"><br><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20115759.jpg" alt="加载安装镜像后"></p>
 <p>step2.安装镜像文件到U盘</p>
 <p>注：一下操作会擦除U盘数据，请做好备份。</p>
 <p>点击菜单栏启动—&gt;写入硬盘镜像</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115816.jpg" alt="制作镜像启动"></p>
-<p>之后会跳出一个窗口，磁盘驱动器处选择要作为启动盘的U盘，其它选项默认，然后点击写入，整个过程会持续几分钟，待进度条跑完后及完成（注意错误提示，并在网上寻求解决方案）。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20115857.jpg" alt="镜像写入"></p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20115816.jpg" alt="制作镜像启动"></p>
+<p>之后会跳出一个窗口，磁盘驱动器处选择要作为启动盘的U盘，其它选项默认，然后点击写入，整个过程会持续几分钟，待进度条跑完后及完成（注意错误提示，并在网上寻求解决方案）。<br><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20115857.jpg" alt="镜像写入"></p>
 <p>到此不出意外的话整个启动U盘就制作好了。</p>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>接下来你需要设置主板从U盘启动，不同的主板设置不一样，在此不做任何操作说明，具体你可以百度主板型号+U盘启动来寻找你主板对应的设置方法。</p>
 <p>从U盘启动后，会看到下图的界面，全部默认，点击install ubuntu（安装ubuntu）</p>
-<p>（你也可以选择其他语言，但是建议选择英文，中文安装后在后续的操作目录切换中特别麻烦，你还需要安装一个中文编译器，但是相信我，作为nas的操作系统，你需要中文输入的地方很少，尤其是对于linux，只会增加一些没用且繁琐的折腾，所以选择英文就好）<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20170625.jpg" alt="Welcome界面"></p>
-<p>之后选择键盘和布局，这里默认就好，然后点击continue（继续）。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20170644.jpg" alt="​选择键盘和布局"></p>
+<p>（你也可以选择其他语言，但是建议选择英文，中文安装后在后续的操作目录切换中特别麻烦，你还需要安装一个中文编译器，但是相信我，作为nas的操作系统，你需要中文输入的地方很少，尤其是对于linux，只会增加一些没用且繁琐的折腾，所以选择英文就好）<br><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20170625.jpg" alt="Welcome界面"></p>
+<p>之后选择键盘和布局，这里默认就好，然后点击continue（继续）。<br><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20170644.jpg" alt="​选择键盘和布局"></p>
 <p>之后跳转到​下图界面，选择Minimal installation（最小化安装）即可，Normal installation（正常安装）提供了较为完整的软件，但那些都是我们用不到的东西。</p>
 <p>Download updates while installing Ubuntu（安装过程中更新软件）选上这个会在安装的过程中更新软件包，会增加安装时间。可以在后续安装完成后更新。</p>
 <p>install third-party software······这个选项勾上，会为你安装硬件驱动等，减少后期工作量。</p>
 <p>完成后点击continue</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20170709.jpg" alt="​更新以及第三方软件"></p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20170709.jpg" alt="​更新以及第三方软件"></p>
 <p>之后选择安装类型，如果你懒得折腾，选择默认的即可，你也可以选择Something else来自定义安装，如果你没有相关linux基础，建议选择默认，如果你有相关基础，相信你会自己做出选择。</p>
-<p>然后点击continue<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20170730.jpg" alt="​安装类型"></p>
+<p>然后点击continue<br><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20170730.jpg" alt="​安装类型"></p>
 <p>这里提示你会擦除硬盘内容，叫你确认。</p>
-<p>没有其他任何问题的话这里选择continue<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20171232.jpg" alt="​确认框"></p>
-<p>之后选择时区，选择shanghai即可，然后continue。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20171313.jpg" alt="选择时区"></p>
+<p>没有其他任何问题的话这里选择continue<br><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20171232.jpg" alt="​确认框"></p>
+<p>之后选择时区，选择shanghai即可，然后continue。<br><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20171313.jpg" alt="选择时区"></p>
 <p>下面进行用户配置</p>
 <p>your name：用户名</p>
 <p>your computer name：计算机名</p>
 <p>pick a username：登录用户名（不要为中文）</p>
 <p>choose a password：密码</p>
 <p>confirm your password：确认密码</p>
-<p>然后勾选下面的log in automatically，点击continue<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20171349.jpg" alt="用户信息​"></p>
-<p>之后进入到漫长的安装过程，只需等待即可，整个过程看你的网络情况，从几十分到几小时不等，ubuntu服务器在国外，访问会比较慢，可以使用梯子。<br><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20171407.jpg" alt="安装过程"></p>
+<p>然后勾选下面的log in automatically，点击continue<br><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20171349.jpg" alt="用户信息​"></p>
+<p>之后进入到漫长的安装过程，只需等待即可，整个过程看你的网络情况，从几十分到几小时不等，ubuntu服务器在国外，访问会比较慢，可以使用梯子。<br><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20171407.jpg" alt="安装过程"></p>
 <p>安装完成后会跳出一个弹窗，这里选择restart now（重启）</p>
-<p><img src="https://raw.githubusercontent.com/yurui105/image/master/%E6%89%B9%E6%B3%A8%202019-12-23%20175101.jpg" alt="重启界面"></p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%89%B9%E6%B3%A8%202019-12-23%20175101.jpg" alt="重启界面"></p>
 <p>好了，到这里这个安装过程就结束了，而折腾的真个nas过程也就完成了60%了。</p>
 <p>是不是很兴奋。</p>
 <h1 id="专栏目录"><a href="#专栏目录" class="headerlink" title="专栏目录"></a>专栏目录</h1><p>注！[✔]表示已更新，[✖] 表示未更新</p>
@@ -436,11 +437,11 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/Ubuntu18-04%E5%AE%89%E8%A3%85/" rel="tag"><i class="fa fa-tag"></i> Ubuntu18.04安装</a>
-              <a href="/tags/Ubuntu%E5%AE%89%E8%A3%85/" rel="tag"><i class="fa fa-tag"></i> Ubuntu安装</a>
               <a href="/tags/NAS%E7%B3%BB%E7%BB%9F/" rel="tag"><i class="fa fa-tag"></i> NAS系统</a>
               <a href="/tags/%E5%AE%B6%E5%BA%AD%E5%BD%B1%E9%9F%B3/" rel="tag"><i class="fa fa-tag"></i> 家庭影音</a>
               <a href="/tags/HTPC%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag"><i class="fa fa-tag"></i> HTPC服务器</a>
+              <a href="/tags/Ubuntu18-04%E5%AE%89%E8%A3%85/" rel="tag"><i class="fa fa-tag"></i> Ubuntu18.04安装</a>
+              <a href="/tags/Ubuntu%E5%AE%89%E8%A3%85/" rel="tag"><i class="fa fa-tag"></i> Ubuntu安装</a>
           </div>
 
         
@@ -531,7 +532,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -544,7 +545,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">72</span>
+        <span class="site-state-item-count">80</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -607,13 +608,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">59k</span>
+    <span title="站点总字数">68k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">54 分钟</span>
+    <span title="站点阅读时长">1:02</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>

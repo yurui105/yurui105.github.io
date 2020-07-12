@@ -30,8 +30,8 @@
 <meta property="og:site_name" content="余睿的博客">
 <meta property="og:description" content="解决hexo博客next主题在markdown中插入图片之后不显示图片描述问题。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/blogs_image/%E6%9C%AA%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/yurui105/image/master/blogs_image/%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%9C%AA%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0.jpg">
+<meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0.jpg">
 <meta property="article:published_time" content="2019-07-11T16:49:52.000Z">
 <meta property="article:modified_time" content="2019-07-11T16:49:52.000Z">
 <meta property="article:author" content="余睿">
@@ -41,7 +41,7 @@
 <meta property="article:tag" content="markdown插入图片">
 <meta property="article:tag" content="hexo优化">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/yurui105/image/master/blogs_image/%E6%9C%AA%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0.jpg">
+<meta name="twitter:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%9C%AA%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0.jpg">
 
 <link rel="canonical" href="http://www.yurui.tech/2019/07/12/hexo%E5%8D%9A%E5%AE%A2/%E8%A7%A3%E5%86%B3hexo%E5%8D%9A%E5%AE%A2next%E4%B8%BB%E9%A2%98%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E6%8F%8F%E8%BF%B0/">
 
@@ -294,7 +294,7 @@
       
         <h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>最近在使用hexo博客next主题的时候发现kramed渲染器在处理插入的图片时不显示标题描述，仅仅显示图片。例如我通过<code>![描述](url连接)</code>的形式插入一张图片，kramed渲染器将其渲染为下面这样：</p>
 <a id="more"></a>
-<figure><img src="https://raw.githubusercontent.com/yurui105/image/master/blogs_image/%E6%9C%AA%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0.jpg" alt="未显示图片描述.jpg"><figcaption>"未显示图片描述"</figcaption></figure>
+<figure><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%9C%AA%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0.jpg" alt="未显示图片描述.jpg"><figcaption>"未显示图片描述"</figcaption></figure>
 
 <p>并未将图片的描述显示在下方，这对于在文中想要引用插入的图片变得尤为困难，搜索引擎也没有找到相关的问题以及解决办法（也许是我搜索引擎用的不是很好^^）。<br>在查看了渲染出来的网页后，发现kramed在渲染图片时将<code>[]</code>中的的图片描述渲染为了 <code>alt</code>属性，这是图片加载错误时显示的替补文字，按照 <a href="https://github.com/iissnan/hexo-theme-next/issues/436" target="_blank" rel="noopener">hexo-theme-next #436</a>中的方法找到<code>var imageTitle = $image.attr(&#39;title&#39;);</code>，将其中的<code>title</code>改为<code>alt</code>，但是任然无法解决问题。</p>
 <h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>查看其它网站的图片对于的<code>html</code>源码发现，在插入图片之后，图片的部分代码为：<br><code>&lt;figure&gt;&lt;img src=&quot;URL&quot; alt=&quot;未正常显示图片描述&quot;&gt;&lt;figcaption&gt;&quot;图片描述&quot;&lt;/figcaption&gt;&lt;figure&gt;</code>而kramed渲染出来的格式为：<br><code>&lt;img src=&quot;URL&quot; alt=&quot;未显示图片描述&quot;&gt;</code><br>发现少了一对<code>&lt;figure&gt;</code>和一对<code>&lt;figcaption&gt;</code>标签，从这个思路出发，Google后发现，<code>&lt;figure&gt;</code> 标签是 <code>HTML5</code> 中的新标签，用作文档中插图的图形，其基本用法为：</p>
@@ -323,7 +323,7 @@
 <li><code>text-align</code>为文字对齐方式，<code>center</code>为居中显示</li>
 </ul>
 <p>保存之后执行<code>hexo clean</code>清除，然后执行<code>hexo g</code>重新渲染，就可以看到图片的描述正常显示了。如下图：</p>
-<figure><img src="https://raw.githubusercontent.com/yurui105/image/master/blogs_image/%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0.jpg" alt="正常显示图片描述.jpg"><figcaption>"正常显示图片描述"</figcaption></figure>
+<figure><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/%E6%AD%A3%E5%B8%B8%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0.jpg" alt="正常显示图片描述.jpg"><figcaption>"正常显示图片描述"</figcaption></figure>
 
 <h1 id="参考内容"><a href="#参考内容" class="headerlink" title="参考内容"></a>参考内容</h1><p>[1]  <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/figure" target="_blank" rel="noopener">figure：可附标题内容元素</a></p>
 
@@ -487,7 +487,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -500,7 +500,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">72</span>
+        <span class="site-state-item-count">80</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -563,13 +563,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">59k</span>
+    <span title="站点总字数">68k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">54 分钟</span>
+    <span title="站点阅读时长">1:02</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
