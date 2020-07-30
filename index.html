@@ -202,7 +202,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.yurui.tech/2020/07/14/C++/%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD/">
+    <link itemprop="mainEntityOfPage" href="https://www.yurui.tech/2020/07/30/c-%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB%E5%92%8C%E5%A4%8D%E5%90%88%E5%85%B3%E7%B3%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://pbs.twimg.com/profile_images/1129394514383101958/6sUb0J4O_400x400.jpg">
@@ -216,7 +216,734 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/07/14/C++/%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD/" class="post-title-link" itemprop="url">c++赋值运算符的重载</a>
+            <a href="/2020/07/30/c-%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB%E5%92%8C%E5%A4%8D%E5%90%88%E5%85%B3%E7%B3%BB/" class="post-title-link" itemprop="url">c++继承关系和复合关系</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-30 23:10:54" itemprop="dateCreated datePublished" datetime="2020-07-30T23:10:54+08:00">2020-07-30</time>
+            </span>
+
+          
+            <span id="/2020/07/30/c-%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB%E5%92%8C%E5%A4%8D%E5%90%88%E5%85%B3%E7%B3%BB/" class="post-meta-item leancloud_visitors" data-flag-title="c++继承关系和复合关系" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/07/30/c-%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB%E5%92%8C%E5%A4%8D%E5%90%88%E5%85%B3%E7%B3%BB/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/30/c-%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB%E5%92%8C%E5%A4%8D%E5%90%88%E5%85%B3%E7%B3%BB/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>0</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.yurui.tech/2020/07/30/C++/23%E3%80%81c-%E7%BB%A7%E6%89%BF%E5%8F%8A%E6%B4%BE%E7%94%9F%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://pbs.twimg.com/profile_images/1129394514383101958/6sUb0J4O_400x400.jpg">
+      <meta itemprop="name" content="余睿">
+      <meta itemprop="description" content="个人技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="余睿的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/30/C++/23%E3%80%81c-%E7%BB%A7%E6%89%BF%E5%8F%8A%E6%B4%BE%E7%94%9F%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="post-title-link" itemprop="url">c++继承及派生基本概念</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-30 23:09:56" itemprop="dateCreated datePublished" datetime="2020-07-30T23:09:56+08:00">2020-07-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/07/30/C++/23%E3%80%81c-%E7%BB%A7%E6%89%BF%E5%8F%8A%E6%B4%BE%E7%94%9F%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="post-meta-item leancloud_visitors" data-flag-title="c++继承及派生基本概念" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/07/30/C++/23%E3%80%81c-%E7%BB%A7%E6%89%BF%E5%8F%8A%E6%B4%BE%E7%94%9F%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/30/C++/23%E3%80%81c-%E7%BB%A7%E6%89%BF%E5%8F%8A%E6%B4%BE%E7%94%9F%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>继承：在定义一个新的类<code>B</code>时，如果该类与某个已有的类<code>A</code>相似（<code>B</code>拥有<code>A</code>的全部特征），那么就可以把<code>A</code>作为一个<strong>基类</strong>，而把<code>B</code>作为基类的一个<strong>派生类</strong>（也成为子类）。</p>
+<ul>
+<li>派生类是通过对基类进行修改和扩充得到的。在派生类中，可以扩充新的成员变量或成员函数。</li>
+<li>派生类一旦定义后，可以独立使用，不依赖于基类。</li>
+<li>派生类拥有基类的全部成员函数和成员变量。不论是<code>public</code>、<code>protected</code>还是<code>private</code>。</li>
+<li>在派生类的各个成员函数中，不能访问基类的<code>private</code>成员</li>
+</ul>
+<h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><p>假设我们需要编写一个学生类，我们可以先将其基本信息抽象出来组成一个基类。</p>
+<p>所有学生都有的共同属性：</p>
+<ul>
+<li>姓名</li>
+<li>学号</li>
+<li>性别</li>
+<li>成绩</li>
+</ul>
+<p>所有学生都共有的方法：</p>
+<ul>
+<li>是否留级</li>
+<li>是否奖励</li>
+</ul>
+<p>而不同种类的学生，又有各自不同的种类和方法，例如：</p>
+<p>研究生</p>
+<ul>
+<li>导师</li>
+<li>系</li>
+</ul>
+<p>大学生</p>
+<ul>
+<li>系</li>
+</ul>
+<p>中学生</p>
+<ul>
+<li>特长加分</li>
+</ul>
+<p>此时我们可以将上面的学生类作为基类派生出研究生类、大学生类以及中学生类</p>
+<h1 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h1><h2 id="派生类基本写法格式"><a href="#派生类基本写法格式" class="headerlink" title="派生类基本写法格式"></a>派生类基本写法格式</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> 派生类名：<span class="title">public</span> 基类名&#123;</span></span><br><span class="line"></span><br><span class="line">&#125;；</span><br></pre></td></tr></table></figure>
+<h2 id="样例-1"><a href="#样例-1" class="headerlink" title="样例"></a>样例</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> age;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">string</span> name;</span><br><span class="line">	<span class="keyword">int</span> ID;</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">isThreeGood</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setName</span><span class="params">(<span class="built_in">string</span> name)</span> </span>&#123; <span class="keyword">this</span>-&gt;name = name; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UndergraduateStudent</span> :</span><span class="keyword">public</span> Student &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> department;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">isThreeGood</span><span class="params">()</span> </span>&#123;&#125;<span class="comment">//覆盖基类</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如上代码所示，<code>UndergraduateStudent</code>类从<code>Student</code>类派生得到，所以<code>UndergraduateStudent</code>拥有基类的全部属性。</p>
+<p>需要注意的是，在<code>UndergraduateStudent</code>类中，我们再次定义了函数<code>isThreeGood()</code>，与基类中的相同，此时派生类中的该函数会对基类中的该函数进行覆盖。也就是说，当我们直接调用<code>isThreeGood()</code>时调用的是派生类中的该函数，如果需要调用基类的<code>isThreeGood()</code>,我们需要将其写成<code>Student::isThreeGood()</code>。</p>
+<h1 id="派生类对象的内存空间"><a href="#派生类对象的内存空间" class="headerlink" title="派生类对象的内存空间"></a>派生类对象的内存空间</h1><p>派生类对象的体积，等于基类对象的体积，再加上派生类对象自己的成员变量的体积。<strong>在派生类对象中，包含着基类对象</strong>，而且基类对象的存储位置于派生类对象新增的成员变量之前。</p>
+<p>例如上面的学生类以及研究生类的存储关系可由下图表示：</p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20200730234817787.png" alt="派生类对象的内存空间"></p>
+<h1 id="派生类样例"><a href="#派生类样例" class="headerlink" title="派生类样例"></a>派生类样例</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> age;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">string</span> name;</span><br><span class="line">	<span class="keyword">int</span> ID;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setInfo</span><span class="params">(<span class="built_in">string</span> name, <span class="keyword">int</span> ID, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>-&gt;name = name;</span><br><span class="line">		<span class="keyword">this</span>-&gt;ID = ID;</span><br><span class="line">		<span class="keyword">this</span>-&gt;age = age;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"name:"</span> &lt;&lt; name &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"age:"</span> &lt;&lt; age &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"ID:"</span> &lt;&lt; ID &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UndergraduateStudent</span> :</span><span class="keyword">public</span> Student &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> department;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setInfo</span><span class="params">(<span class="built_in">string</span> name, <span class="keyword">int</span> ID, <span class="keyword">int</span> age, <span class="keyword">int</span> department)</span> </span>&#123;</span><br><span class="line">		Student::setInfo(name, ID, age);<span class="comment">//调用基类构造函数初始化</span></span><br><span class="line">		<span class="keyword">this</span>-&gt;department = department;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;<span class="comment">//覆盖基类print()</span></span><br><span class="line">		Student::<span class="built_in">print</span>();<span class="comment">//调用基类print()</span></span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"department:"</span> &lt;&lt; department &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	UndergraduateStudent stu;</span><br><span class="line">	stu.setInfo(<span class="string">"jack"</span>, <span class="number">1</span>, <span class="number">22</span>, <span class="number">5</span>);</span><br><span class="line">	stu.<span class="built_in">print</span>();<span class="comment">//调用派生类print()</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还是上面的学生类以及研究生类，我们通过<code>setInfo()</code>函数设置学生信息，通过<code>print()</code>函数打印出学生的信息。</p>
+<p>需要注意的是：</p>
+<ul>
+<li>当派生类中有成员函数或成员变量名与基类相同时，则基类的成员函数或变量将被覆盖。直接访问该成员函数或变量时访问的为派生类的成员函数或变量，需要访问基类的成员函数或变量时需要在成员函数或变量名前加上<code>基类名::</code>才能正常访问。</li>
+<li>在上面的样例中，基类以及派生类中均有<code>setInfo()</code>以及<code>print()</code>两种方法，直接访问时为派生类的方法，在派生类中通过<code>Student::</code>访问基类的方法。</li>
+</ul>
+<p>运行上面的程序，得到如下结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">name:jack</span><br><span class="line">age:22</span><br><span class="line">ID:1</span><br><span class="line">department:5</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.yurui.tech/2020/07/30/C++/22%E3%80%81c-%E8%87%AA%E5%A2%9E%E8%87%AA%E5%87%8F%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://pbs.twimg.com/profile_images/1129394514383101958/6sUb0J4O_400x400.jpg">
+      <meta itemprop="name" content="余睿">
+      <meta itemprop="description" content="个人技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="余睿的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/30/C++/22%E3%80%81c-%E8%87%AA%E5%A2%9E%E8%87%AA%E5%87%8F%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/" class="post-title-link" itemprop="url">c++自增自减运算符重载</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-30 22:05:51" itemprop="dateCreated datePublished" datetime="2020-07-30T22:05:51+08:00">2020-07-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/07/30/C++/22%E3%80%81c-%E8%87%AA%E5%A2%9E%E8%87%AA%E5%87%8F%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/" class="post-meta-item leancloud_visitors" data-flag-title="c++自增自减运算符重载" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/07/30/C++/22%E3%80%81c-%E8%87%AA%E5%A2%9E%E8%87%AA%E5%87%8F%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/30/C++/22%E3%80%81c-%E8%87%AA%E5%A2%9E%E8%87%AA%E5%87%8F%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>自增运算符<code>++</code>以及自减运算符<code>--</code>有前置、后置之分，为了区分该运算符为前置还是后置，<code>c++</code>有如下规定：</p>
+<ul>
+<li><p>前置运算符作为<strong>一元运算符</strong>重载</p>
+<p><strong>重载为成员函数:</strong></p>
+<p>（注意：<code>T</code>为任意类型）</p>
+<p><code>T &amp; operator++();</code></p>
+<p><code>T &amp; operator--();</code></p>
+<p><strong>重载为全局函数：</strong></p>
+<p><code>T &amp; operator++(T1);</code></p>
+<p><code>T &amp; operator--(T1);</code></p>
+</li>
+<li><p>后置运算符作为<strong>二元运算符</strong>重载，多写一个没用的参数。</p>
+<p><strong>重载为成员函数：</strong></p>
+<p><code>T &amp; operator++(int);</code></p>
+<p><code>T &amp; operator--(int);</code></p>
+<p><strong>重载为全局函数：</strong></p>
+<p><code>T &amp; operator++(T1,int);</code></p>
+<p><code>T &amp; operator--(T1,int);</code></p>
+</li>
+</ul>
+<p>通过多写一个参数来区分前置、后置的区别。</p>
+<h1 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Demo(<span class="keyword">int</span> i=<span class="number">0</span>):n(<span class="number">0</span>)&#123;&#125;</span><br><span class="line">	Demo&amp; <span class="keyword">operator</span>++();<span class="comment">//前置++</span></span><br><span class="line">	Demo <span class="keyword">operator</span>++(<span class="keyword">int</span>);<span class="comment">//后置++</span></span><br><span class="line">	<span class="function"><span class="keyword">operator</span> <span class="title">int</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> n; &#125;;<span class="comment">//重载强制类型转换运算符，用于直接输出结果</span></span><br><span class="line">	<span class="keyword">friend</span> Demo&amp; <span class="keyword">operator</span>--(Demo&amp; d);<span class="comment">//前置--</span></span><br><span class="line">	<span class="keyword">friend</span> Demo <span class="keyword">operator</span>--(Demo&amp;, <span class="keyword">int</span>);<span class="comment">//后置--</span></span><br><span class="line">&#125;;</span><br><span class="line">Demo&amp; Demo::<span class="keyword">operator</span>++()&#123;<span class="comment">//前置++</span></span><br><span class="line">	++n;</span><br><span class="line">	<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;<span class="comment">//++s即为s.operator++();</span></span><br><span class="line"></span><br><span class="line">Demo Demo::<span class="keyword">operator</span>++(<span class="keyword">int</span>)&#123;<span class="comment">//后置++</span></span><br><span class="line">	<span class="function">Demo <span class="title">temp</span><span class="params">(*<span class="keyword">this</span>)</span></span>;<span class="comment">//记录修改前内容</span></span><br><span class="line">	n++;</span><br><span class="line">	<span class="keyword">return</span> temp;<span class="comment">//返回修改前内容</span></span><br><span class="line">&#125;<span class="comment">//s++即为s.operator++(0)</span></span><br><span class="line"></span><br><span class="line">Demo&amp; <span class="keyword">operator</span>--(Demo&amp; d) &#123;<span class="comment">//前置--</span></span><br><span class="line">	d.n--;</span><br><span class="line">	<span class="keyword">return</span> d;</span><br><span class="line">&#125;<span class="comment">//--s即为operator--(s)</span></span><br><span class="line"></span><br><span class="line">Demo <span class="keyword">operator</span>--(Demo&amp; d, <span class="keyword">int</span>) &#123;<span class="comment">//后置--</span></span><br><span class="line">	<span class="function">Demo <span class="title">temp</span><span class="params">(d)</span></span>;<span class="comment">//记录操作前数据</span></span><br><span class="line">	d.n--;</span><br><span class="line">	<span class="keyword">return</span> temp;<span class="comment">//返回--前数据</span></span><br><span class="line">&#125;<span class="comment">//s--相当于operator--(d,0)</span></span><br></pre></td></tr></table></figure>
+<p>在上面的程序中，我们将<code>++</code>运算符重载为成员函数，将<code>--</code>运算符重载为全局函数。为了使得<code>--</code>运算符能访问私有变量，需要将其写为<code>Demo</code>类的友元函数。</p>
+<p>并且重载<code>int()</code>强制类型转换运算符，使得能直接输出<code>n</code>的值。</p>
+<p>需要注意的时，为了维持<code>c++</code>原有的计算特性，需要将前置<code>++/--</code>运算符的返回值写为同类对象的引用。</p>
+<p>对于上面的类，假设我们有如下调用：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="function">Demo <span class="title">d</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; (d++) &lt;&lt; <span class="string">","</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; d &lt;&lt; <span class="string">","</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; (++d) &lt;&lt; <span class="string">","</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; d &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; (d--) &lt;&lt; <span class="string">","</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; d &lt;&lt; <span class="string">","</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; (--d) &lt;&lt; <span class="string">","</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; d &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>得到结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0,1,2,2</span><br><span class="line">2,1,0,0</span><br></pre></td></tr></table></figure>
+<h1 id="运算符重载注意事项"><a href="#运算符重载注意事项" class="headerlink" title="运算符重载注意事项"></a>运算符重载注意事项</h1><ol>
+<li>c++不允许定义新的运算符</li>
+<li>重载后运算符的含义应当复合日常习惯</li>
+<li>运算符重载不改变运算符的优先级</li>
+<li>以下运算符不能被重载<code>&quot;.&quot;,&quot;.*&quot;,&quot;::&quot;,&quot;?:&quot;,&quot;sizeof&quot;</code></li>
+<li><code>()、[]、-&gt;、=</code>只能重载为成员函数</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.yurui.tech/2020/07/23/C++/21%E3%80%81c-%E9%87%8D%E8%BD%BD%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E8%BF%90%E7%AE%97%E7%AC%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://pbs.twimg.com/profile_images/1129394514383101958/6sUb0J4O_400x400.jpg">
+      <meta itemprop="name" content="余睿">
+      <meta itemprop="description" content="个人技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="余睿的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/23/C++/21%E3%80%81c-%E9%87%8D%E8%BD%BD%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E8%BF%90%E7%AE%97%E7%AC%A6/" class="post-title-link" itemprop="url">c++重载强制类型转换运算符</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-23 22:11:00" itemprop="dateCreated datePublished" datetime="2020-07-23T22:11:00+08:00">2020-07-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/07/23/C++/21%E3%80%81c-%E9%87%8D%E8%BD%BD%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E8%BF%90%E7%AE%97%E7%AC%A6/" class="post-meta-item leancloud_visitors" data-flag-title="c++重载强制类型转换运算符" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/07/23/C++/21%E3%80%81c-%E9%87%8D%E8%BD%BD%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E8%BF%90%E7%AE%97%E7%AC%A6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/23/C++/21%E3%80%81c-%E9%87%8D%E8%BD%BD%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E8%BF%90%E7%AE%97%E7%AC%A6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>562</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>强制类型转换运算符是单目运算符，也可以被重载，但<strong>只能重载为成员函数</strong>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">double</span> real, imag;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Complex(<span class="keyword">double</span> r = <span class="number">0</span>, <span class="keyword">double</span> i = <span class="number">0</span>) :real(r), imag(i) &#123;&#125;;</span><br><span class="line">    <span class="function"><span class="keyword">operator</span> <span class="title">double</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> real; &#125;  <span class="comment">//重载强制类型转换运算符 double</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">Complex <span class="title">c</span><span class="params">(<span class="number">1.2</span>, <span class="number">3.4</span>)</span></span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; (<span class="keyword">double</span>)c &lt;&lt; <span class="built_in">endl</span>;  <span class="comment">//输出 1.2</span></span><br><span class="line">    <span class="keyword">double</span> n = <span class="number">2</span> + c;  <span class="comment">//等价于 double n = 2 + c. operator double()</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; n;  <span class="comment">//输出 3.2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上面的程序中，我们重载了<code>double</code>类型强制转换运算符，可以将一个复数类强制转换为一个<code>double</code>类型的变量，具体做法是返回这个复数类的实部。</p>
+<p>需要注意的是</p>
+<ul>
+<li><p>因为强制类型转换运算符是单目运算符，重载为成员函数后其参数个数为目数减一，所以该函数没有参数。</p>
+</li>
+<li><p>强制类型转换运算符本身就指明了返回值类型，所以<strong>不需要返回值</strong></p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.yurui.tech/2020/07/19/C++/20%E3%80%81c-%E6%B5%81%E6%8F%92%E5%85%A5%E5%92%8C%E6%B5%81%E6%8F%90%E5%8F%96%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://pbs.twimg.com/profile_images/1129394514383101958/6sUb0J4O_400x400.jpg">
+      <meta itemprop="name" content="余睿">
+      <meta itemprop="description" content="个人技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="余睿的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/19/C++/20%E3%80%81c-%E6%B5%81%E6%8F%92%E5%85%A5%E5%92%8C%E6%B5%81%E6%8F%90%E5%8F%96%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD/" class="post-title-link" itemprop="url">c++流插入和流提取运算符的重载</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-19 14:48:26" itemprop="dateCreated datePublished" datetime="2020-07-19T14:48:26+08:00">2020-07-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/07/19/C++/20%E3%80%81c-%E6%B5%81%E6%8F%92%E5%85%A5%E5%92%8C%E6%B5%81%E6%8F%90%E5%8F%96%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD/" class="post-meta-item leancloud_visitors" data-flag-title="c++流插入和流提取运算符的重载" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/07/19/C++/20%E3%80%81c-%E6%B5%81%E6%8F%92%E5%85%A5%E5%92%8C%E6%B5%81%E6%8F%90%E5%8F%96%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/19/C++/20%E3%80%81c-%E6%B5%81%E6%8F%92%E5%85%A5%E5%92%8C%E6%B5%81%E6%8F%90%E5%8F%96%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h1><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="number">5</span>&lt;&lt;<span class="string">"this"</span>;</span><br></pre></td></tr></table></figure>
+<p>上面语句为什么可以成立？</p>
+<p><code>cout</code>是什么？<code>&lt;&lt;</code>为什么可以作用在<code>cout</code>上？</p>
+<h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><p><code>cout</code>是在<code>iostream</code>中定义的<code>ostream</code>类的对象。<code>&lt;&lt;</code>能作用在<code>cout</code>是因为在<code>iostream</code>里对<code>&lt;&lt;</code>进行了重载。</p>
+<p>考虑，怎样重载才能使得<code>cout&lt;&lt;5;</code>和<code>cout&lt;&lt;&quot;this&quot;;</code>都能成立。</p>
+<h1 id="重载-lt-lt-运算符"><a href="#重载-lt-lt-运算符" class="headerlink" title="重载&lt;&lt;运算符"></a>重载&lt;&lt;运算符</h1><p>假设按照以下的方法重载<code>&lt;&lt;</code>运算符</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="keyword">operator</span>&lt;&lt;(ostream&amp; os, <span class="keyword">int</span> n) &#123;</span><br><span class="line">	<span class="comment">//输出n</span></span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">void</span> <span class="keyword">operator</span>&lt;&lt;(ostream&amp; os, <span class="keyword">const</span> <span class="keyword">char</span>* str) &#123;</span><br><span class="line">	<span class="comment">//输出str</span></span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>看起了似乎没有什么问题，而且也能实现<code>cout&lt;&lt;5;</code>和<code>cout&lt;&lt;&quot;this&quot;;</code>两个语句。</p>
+<p><code>cout&lt;&lt;5</code>相当于<code>cout.operator&lt;&lt;(5);</code></p>
+<p><code>cout&lt;&lt;&quot;this&quot;</code>相当于<code>cout.operator&lt;&lt;(&quot;this&quot;);</code></p>
+<p>但是当我们想要输出<code>cout&lt;&lt;5&lt;&lt;&quot;this&quot;;</code>时，就会出现问题了，因此我们需要修改上面的代码。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream&amp; os, <span class="keyword">int</span> n) &#123;</span><br><span class="line">	<span class="comment">//输出n</span></span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream&amp; os, <span class="keyword">const</span> <span class="keyword">char</span>* str) &#123;</span><br><span class="line">	<span class="comment">//输出str</span></span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们将两个函数的返回值改为<code>ostream&amp;</code>，此时返回了一个<code>ostream</code>对象的引用，就可以识别<code>cout&lt;&lt;5&lt;&lt;&quot;this&quot;;</code>这样的语句了，相当于<code>cout.operator&lt;&lt;(5).operator&lt;&lt;(&quot;this&quot;);</code></p>
+<h1 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h1><p>假设<code>c</code>是<code>Complex</code>复数类的对象。现在希望写成<code>cout&lt;&lt;c;</code>就能以<code>a+bi</code>的形式输出<code>c</code>的值。写成<code>cin&gt;&gt;c;</code>就能接收<code>a+bi</code>形式的输入，并且<code>c.real=a</code>，<code>c.imag=b</code>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span> &#123;</span><span class="comment">//复数类</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">double</span> real, imag;<span class="comment">//实部、虚部</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Complex(<span class="keyword">int</span> r = <span class="number">0</span>, <span class="keyword">int</span> c = <span class="number">0</span>) &#123;</span><br><span class="line">		real = r;</span><br><span class="line">		imag = c;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">friend</span> ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream&amp; os, <span class="keyword">const</span> Complex&amp; c);</span><br><span class="line">	<span class="keyword">friend</span> istream&amp; <span class="keyword">operator</span>&gt;&gt;(istream&amp; is, Complex&amp; c);</span><br><span class="line">&#125;;</span><br><span class="line">ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream&amp; os, <span class="keyword">const</span> Complex&amp; c) &#123;</span><br><span class="line">	<span class="comment">//以a+bi的形式输出</span></span><br><span class="line">	os &lt;&lt; c.real &lt;&lt; <span class="string">"+"</span> &lt;&lt; c.imag &lt;&lt; <span class="string">"i"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> os;</span><br><span class="line">&#125;</span><br><span class="line">istream&amp; <span class="keyword">operator</span>&gt;&gt;(istream&amp; is, Complex&amp; c) &#123;</span><br><span class="line">	<span class="built_in">string</span> s;</span><br><span class="line">	is &gt;&gt; s;<span class="comment">//将a+bi以字符串形式读入</span></span><br><span class="line">	<span class="keyword">int</span> pos = s.<span class="built_in">find</span>(<span class="string">"+"</span>, <span class="number">0</span>);<span class="comment">//找到+号位置</span></span><br><span class="line">	<span class="built_in">string</span> real = s.substr(<span class="number">0</span>, pos);<span class="comment">//分离出代表实部的字符串</span></span><br><span class="line">	<span class="comment">//atof能将const char*的内容转换为float</span></span><br><span class="line">	c.real = atof(real.c_str());</span><br><span class="line">	<span class="comment">//分离出虚部字符串</span></span><br><span class="line">	<span class="built_in">string</span> imag = s.substr(pos + <span class="number">1</span>, s.length() - pos - <span class="number">2</span>);</span><br><span class="line">	c.imag = atof(imag.c_str());</span><br><span class="line">	<span class="keyword">return</span> is;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上面的类实现中，我们将<code>ostream&amp; operator&lt;&lt;(ostream&amp; os, const Complex&amp; c)</code>以及<code>istream&amp; operator&gt;&gt;(istream&amp; is, Complex&amp; c)</code>函数声明为类<code>Complex</code>类的友元，这样就能访问<code>Complex</code>类的私有成员了。</p>
+<p>主函数实现如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Complex c1;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; c1;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; c1;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行上面的代码，得到以下结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1+5i</span><br><span class="line">1+5i</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.yurui.tech/2020/07/14/C++/19%E3%80%81c-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E4%B8%BA%E5%8F%8B%E5%85%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://pbs.twimg.com/profile_images/1129394514383101958/6sUb0J4O_400x400.jpg">
+      <meta itemprop="name" content="余睿">
+      <meta itemprop="description" content="个人技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="余睿的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/14/C++/19%E3%80%81c-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E4%B8%BA%E5%8F%8B%E5%85%83/" class="post-title-link" itemprop="url">c++运算符重载为友元函数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-14 22:53:52" itemprop="dateCreated datePublished" datetime="2020-07-14T22:53:52+08:00">2020-07-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/07/14/C++/19%E3%80%81c-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E4%B8%BA%E5%8F%8B%E5%85%83/" class="post-meta-item leancloud_visitors" data-flag-title="c++运算符重载为友元函数" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/07/14/C++/19%E3%80%81c-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E4%B8%BA%E5%8F%8B%E5%85%83/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/14/C++/19%E3%80%81c-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E4%B8%BA%E5%8F%8B%E5%85%83/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一般情况下，将运算符重载为成员函数是比较好的选择。</p>
+<p>但有时候，重载为成员函数又不能满足需求，重载为普通函数，又不能访问类的私有成员，这时我们就需要将运算符重载为友元。</p>
+<p>下面来看一个例子。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span> &#123;</span><span class="comment">//复数类</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">double</span> real, imag;<span class="comment">//实部、虚部</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Complex(<span class="keyword">double</span> r = <span class="number">0.0</span>, <span class="keyword">double</span> i = <span class="number">0.0</span>) &#123;</span><br><span class="line">		real = r; imag = i;</span><br><span class="line">	&#125;</span><br><span class="line">	Complex <span class="keyword">operator</span>+(<span class="keyword">double</span> r) &#123;<span class="comment">//重载为成员函数</span></span><br><span class="line">		<span class="comment">//重载+运算符实现 c1+5</span></span><br><span class="line">		<span class="keyword">return</span> Complex(real + <span class="number">5</span>, imag);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>我们为上面的<code>Complex</code>重载了<code>+</code>运算符，使得能够实现对象加上一个数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="function">Complex <span class="title">c1</span><span class="params">(<span class="number">1</span>, <span class="number">2</span>)</span></span>;</span><br><span class="line">	Complex c2;</span><br><span class="line">	c2 = c1 + <span class="number">5</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里的<code>c2 = c1 + 5;</code>在重载了<code>+</code>运算符之后就能正常解释了。</p>
+<p>有时候我们希望不仅能实现<code>c1+5</code>，还能实现<code>5+c1</code>这种表达，这时简单地重载为成员函数就不能满足需求了，我们需要将<code>+</code>号重载为普通函数。如下所示：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Complex <span class="keyword">operator</span>+(<span class="keyword">double</span> r, <span class="keyword">const</span> Complex&amp; c2) &#123;</span><br><span class="line">	<span class="comment">//解释5+c这种情况</span></span><br><span class="line">	<span class="keyword">return</span> Complex(r + c2.real, c2.imag);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过上面地重载，看似可以解决问题，但是由于<code>real</code>和<code>imag</code>时私有成员变量，此时我们无法通过<code>c2</code>直接访问到私有成员变量。</p>
+<p>这是就需要我们将这个普通函数声明为类的友元函数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span> &#123;</span><span class="comment">//复数类</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">double</span> real, imag;<span class="comment">//实部、虚部</span></span><br><span class="line">	Complex(<span class="keyword">double</span> r = <span class="number">0.0</span>, <span class="keyword">double</span> i = <span class="number">0.0</span>) &#123;</span><br><span class="line">		real = r; imag = i;</span><br><span class="line">	&#125;</span><br><span class="line">	Complex <span class="keyword">operator</span>+(<span class="keyword">double</span> r) &#123;<span class="comment">//重载为成员函数</span></span><br><span class="line">		<span class="comment">//重载+运算符实现 c1+5</span></span><br><span class="line">		<span class="keyword">return</span> Complex(real + <span class="number">5</span>, imag);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">friend</span> Complex <span class="keyword">operator</span>+(<span class="keyword">double</span> r, <span class="keyword">const</span> Complex&amp; c2);<span class="comment">//声明为友元函数</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>此时我们就能实现<code>5+c</code>这种运算了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.yurui.tech/2020/07/14/C++/18%E3%80%81%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://pbs.twimg.com/profile_images/1129394514383101958/6sUb0J4O_400x400.jpg">
+      <meta itemprop="name" content="余睿">
+      <meta itemprop="description" content="个人技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="余睿的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/14/C++/18%E3%80%81%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD/" class="post-title-link" itemprop="url">c++赋值运算符的重载</a>
         </h2>
 
         <div class="post-meta">
@@ -239,7 +966,7 @@
             </span>
 
           
-            <span id="/2020/07/14/C++/%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD/" class="post-meta-item leancloud_visitors" data-flag-title="c++赋值运算符的重载" title="阅读次数">
+            <span id="/2020/07/14/C++/18%E3%80%81%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD/" class="post-meta-item leancloud_visitors" data-flag-title="c++赋值运算符的重载" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -254,8 +981,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/07/14/C++/%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/14/C++/%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/07/14/C++/18%E3%80%81%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/14/C++/18%E3%80%81%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -287,7 +1014,7 @@
           <h1 id="赋值运算符重载需求"><a href="#赋值运算符重载需求" class="headerlink" title="赋值运算符重载需求"></a>赋值运算符重载需求</h1><p>有时候我们希望运算符两边的类型可以不匹配。比如，把一个<code>int</code>类型的变量赋值给一个对象，或者把<code>char*</code>类型的字符串赋值给一个字符串对象，此时就需要重载赋值运算符<code>=</code>。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/07/14/C++/%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD/#more" rel="contents">
+              <a class="btn" href="/2020/07/14/C++/18%E3%80%81%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -311,7 +1038,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.yurui.tech/2020/07/14/C++/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
+    <link itemprop="mainEntityOfPage" href="https://www.yurui.tech/2020/07/14/C++/17%E3%80%81%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://pbs.twimg.com/profile_images/1129394514383101958/6sUb0J4O_400x400.jpg">
@@ -325,7 +1052,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/07/14/C++/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="post-title-link" itemprop="url">运算符重载基本概念</a>
+            <a href="/2020/07/14/C++/17%E3%80%81%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="post-title-link" itemprop="url">运算符重载基本概念</a>
         </h2>
 
         <div class="post-meta">
@@ -348,7 +1075,7 @@
             </span>
 
           
-            <span id="/2020/07/14/C++/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="post-meta-item leancloud_visitors" data-flag-title="运算符重载基本概念" title="阅读次数">
+            <span id="/2020/07/14/C++/17%E3%80%81%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="post-meta-item leancloud_visitors" data-flag-title="运算符重载基本概念" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -363,8 +1090,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/07/14/C++/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/14/C++/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/07/14/C++/17%E3%80%81%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/14/C++/17%E3%80%81%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -397,7 +1124,7 @@
 <p>有时候我们希望让对象也能通过运算符进行运算，这样代码更加简洁，容易理解。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/07/14/C++/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/#more" rel="contents">
+              <a class="btn" href="/2020/07/14/C++/17%E3%80%81%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -421,7 +1148,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.yurui.tech/2020/07/13/C++/c-%E5%8F%8B%E5%85%83-friend/">
+    <link itemprop="mainEntityOfPage" href="https://www.yurui.tech/2020/07/13/C++/14%E3%80%81c-%E5%8F%8B%E5%85%83-friend/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://pbs.twimg.com/profile_images/1129394514383101958/6sUb0J4O_400x400.jpg">
@@ -435,7 +1162,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/07/13/C++/c-%E5%8F%8B%E5%85%83-friend/" class="post-title-link" itemprop="url">c++友元(friends)</a>
+            <a href="/2020/07/13/C++/14%E3%80%81c-%E5%8F%8B%E5%85%83-friend/" class="post-title-link" itemprop="url">c++友元(friends)</a>
         </h2>
 
         <div class="post-meta">
@@ -458,7 +1185,7 @@
             </span>
 
           
-            <span id="/2020/07/13/C++/c-%E5%8F%8B%E5%85%83-friend/" class="post-meta-item leancloud_visitors" data-flag-title="c++友元(friends)" title="阅读次数">
+            <span id="/2020/07/13/C++/14%E3%80%81c-%E5%8F%8B%E5%85%83-friend/" class="post-meta-item leancloud_visitors" data-flag-title="c++友元(friends)" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -473,8 +1200,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/07/13/C++/c-%E5%8F%8B%E5%85%83-friend/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/13/C++/c-%E5%8F%8B%E5%85%83-friend/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/07/13/C++/14%E3%80%81c-%E5%8F%8B%E5%85%83-friend/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/13/C++/14%E3%80%81c-%E5%8F%8B%E5%85%83-friend/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -508,7 +1235,7 @@
 <p>友元函数不是类的成员函数，只是一个普通的函数，在类中加上<code>friend</code>声明后，变为这个类的友元函数。一个类的友元函数可以访问这个类的私有成员。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/07/13/C++/c-%E5%8F%8B%E5%85%83-friend/#more" rel="contents">
+              <a class="btn" href="/2020/07/13/C++/14%E3%80%81c-%E5%8F%8B%E5%85%83-friend/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -532,7 +1259,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.yurui.tech/2020/07/13/C++/%E5%B8%B8%E9%87%8F%E5%AF%B9%E8%B1%A1%E3%80%81%E5%B8%B8%E9%87%8F%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E4%BB%A5%E5%8F%8A%E5%B8%B8%E5%BC%95%E7%94%A8/">
+    <link itemprop="mainEntityOfPage" href="https://www.yurui.tech/2020/07/13/C++/15%E3%80%81%E5%B8%B8%E9%87%8F%E5%AF%B9%E8%B1%A1%E3%80%81%E5%B8%B8%E9%87%8F%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E4%BB%A5%E5%8F%8A%E5%B8%B8%E5%BC%95%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://pbs.twimg.com/profile_images/1129394514383101958/6sUb0J4O_400x400.jpg">
@@ -546,7 +1273,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/07/13/C++/%E5%B8%B8%E9%87%8F%E5%AF%B9%E8%B1%A1%E3%80%81%E5%B8%B8%E9%87%8F%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E4%BB%A5%E5%8F%8A%E5%B8%B8%E5%BC%95%E7%94%A8/" class="post-title-link" itemprop="url">c++常量对象、常量成员函数以及常引用</a>
+            <a href="/2020/07/13/C++/15%E3%80%81%E5%B8%B8%E9%87%8F%E5%AF%B9%E8%B1%A1%E3%80%81%E5%B8%B8%E9%87%8F%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E4%BB%A5%E5%8F%8A%E5%B8%B8%E5%BC%95%E7%94%A8/" class="post-title-link" itemprop="url">c++常量对象、常量成员函数以及常引用</a>
         </h2>
 
         <div class="post-meta">
@@ -569,7 +1296,7 @@
             </span>
 
           
-            <span id="/2020/07/13/C++/%E5%B8%B8%E9%87%8F%E5%AF%B9%E8%B1%A1%E3%80%81%E5%B8%B8%E9%87%8F%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E4%BB%A5%E5%8F%8A%E5%B8%B8%E5%BC%95%E7%94%A8/" class="post-meta-item leancloud_visitors" data-flag-title="c++常量对象、常量成员函数以及常引用" title="阅读次数">
+            <span id="/2020/07/13/C++/15%E3%80%81%E5%B8%B8%E9%87%8F%E5%AF%B9%E8%B1%A1%E3%80%81%E5%B8%B8%E9%87%8F%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E4%BB%A5%E5%8F%8A%E5%B8%B8%E5%BC%95%E7%94%A8/" class="post-meta-item leancloud_visitors" data-flag-title="c++常量对象、常量成员函数以及常引用" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -584,8 +1311,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/07/13/C++/%E5%B8%B8%E9%87%8F%E5%AF%B9%E8%B1%A1%E3%80%81%E5%B8%B8%E9%87%8F%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E4%BB%A5%E5%8F%8A%E5%B8%B8%E5%BC%95%E7%94%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/13/C++/%E5%B8%B8%E9%87%8F%E5%AF%B9%E8%B1%A1%E3%80%81%E5%B8%B8%E9%87%8F%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E4%BB%A5%E5%8F%8A%E5%B8%B8%E5%BC%95%E7%94%A8/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/07/13/C++/15%E3%80%81%E5%B8%B8%E9%87%8F%E5%AF%B9%E8%B1%A1%E3%80%81%E5%B8%B8%E9%87%8F%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E4%BB%A5%E5%8F%8A%E5%B8%B8%E5%BC%95%E7%94%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/13/C++/15%E3%80%81%E5%B8%B8%E9%87%8F%E5%AF%B9%E8%B1%A1%E3%80%81%E5%B8%B8%E9%87%8F%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E4%BB%A5%E5%8F%8A%E5%B8%B8%E5%BC%95%E7%94%A8/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -618,678 +1345,7 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">int</span> value;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setValue</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">		value = n;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/07/13/C++/%E5%B8%B8%E9%87%8F%E5%AF%B9%E8%B1%A1%E3%80%81%E5%B8%B8%E9%87%8F%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E4%BB%A5%E5%8F%8A%E5%B8%B8%E5%BC%95%E7%94%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.yurui.tech/2020/07/12/C++/%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E4%BB%A5%E5%8F%8A%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://pbs.twimg.com/profile_images/1129394514383101958/6sUb0J4O_400x400.jpg">
-      <meta itemprop="name" content="余睿">
-      <meta itemprop="description" content="个人技术博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="余睿的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/12/C++/%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E4%BB%A5%E5%8F%8A%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">c++静态成员变量以及静态成员函数</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-12 14:49:02" itemprop="dateCreated datePublished" datetime="2020-07-12T14:49:02+08:00">2020-07-12</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/07/12/C++/%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E4%BB%A5%E5%8F%8A%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0/" class="post-meta-item leancloud_visitors" data-flag-title="c++静态成员变量以及静态成员函数" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/07/12/C++/%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E4%BB%A5%E5%8F%8A%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/12/C++/%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E4%BB%A5%E5%8F%8A%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><ul>
-<li>静态成员：在说明前加上<code>static</code>关键字的成员为静态成员。</li>
-<li>静态函数：在函数声明前加上<code>static</code>关键字的函数就是静态成员函数。</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/07/12/C++/%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E4%BB%A5%E5%8F%8A%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.yurui.tech/2020/07/12/C++/this-%E6%8C%87%E9%92%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://pbs.twimg.com/profile_images/1129394514383101958/6sUb0J4O_400x400.jpg">
-      <meta itemprop="name" content="余睿">
-      <meta itemprop="description" content="个人技术博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="余睿的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/12/C++/this-%E6%8C%87%E9%92%88/" class="post-title-link" itemprop="url">c++ this 指针</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-12 14:20:46" itemprop="dateCreated datePublished" datetime="2020-07-12T14:20:46+08:00">2020-07-12</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/07/12/C++/this-%E6%8C%87%E9%92%88/" class="post-meta-item leancloud_visitors" data-flag-title="c++ this 指针" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/07/12/C++/this-%E6%8C%87%E9%92%88/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/12/C++/this-%E6%8C%87%E9%92%88/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p><code>this</code>指针是c++程序中的一个关键字，<code>this</code>指向当前对象，通过<code>this</code>指针可以访问当前对象的所有成员。</p>
-<p><code>this</code> 只能用在类的内部，通过 <code>this</code> 可以访问类的所有成员，包括 <code>private</code>、<code>protected</code>、<code>public</code> 属性的成员。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/07/12/C++/this-%E6%8C%87%E9%92%88/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.yurui.tech/2020/07/11/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/2-%E7%9F%A9%E9%98%B5%E4%B8%8E%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://pbs.twimg.com/profile_images/1129394514383101958/6sUb0J4O_400x400.jpg">
-      <meta itemprop="name" content="余睿">
-      <meta itemprop="description" content="个人技术博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="余睿的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/11/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/2-%E7%9F%A9%E9%98%B5%E4%B8%8E%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84/" class="post-title-link" itemprop="url">2.矩阵与线性方程组</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-11 22:20:11" itemprop="dateCreated datePublished" datetime="2020-07-11T22:20:11+08:00">2020-07-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">线性代数</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/07/11/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/2-%E7%9F%A9%E9%98%B5%E4%B8%8E%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84/" class="post-meta-item leancloud_visitors" data-flag-title="2.矩阵与线性方程组" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/07/11/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/2-%E7%9F%A9%E9%98%B5%E4%B8%8E%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/11/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/2-%E7%9F%A9%E9%98%B5%E4%B8%8E%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>5.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="矩阵-matrix-与向量的乘积"><a href="#矩阵-matrix-与向量的乘积" class="headerlink" title="矩阵(matrix)与向量的乘积"></a>矩阵(matrix)与向量的乘积</h1><p>例，我们有如下的线性方程组：</p>
-<script type="math/tex; mode=display">
-\left\{\begin{aligned}
-&x_{1}&+x_{2}&-x_{3} &=1 \\
-&2 x_{1}& &+x_{3}&=3 \\
-&&2 x_{2}&+x_{3} &=3
-\end{aligned}\right.</script>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/07/11/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/2-%E7%9F%A9%E9%98%B5%E4%B8%8E%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.yurui.tech/2020/07/11/C++/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://pbs.twimg.com/profile_images/1129394514383101958/6sUb0J4O_400x400.jpg">
-      <meta itemprop="name" content="余睿">
-      <meta itemprop="description" content="个人技术博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="余睿的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/11/C++/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">c++类型转换构造函数以及析构函数</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-11 14:01:47" itemprop="dateCreated datePublished" datetime="2020-07-11T14:01:47+08:00">2020-07-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/07/11/C++/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" class="post-meta-item leancloud_visitors" data-flag-title="c++类型转换构造函数以及析构函数" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/07/11/C++/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/11/C++/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="类型转换构造函数"><a href="#类型转换构造函数" class="headerlink" title="类型转换构造函数"></a>类型转换构造函数</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
-<li><p>定义类型转换构造函数的目的是实现类型的自动转化</p>
-</li>
-<li><p>只有一个参数，而且不是复制构造函数的构造函数，一般就可以看作是转换构造函数。</p>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/07/11/C++/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.yurui.tech/2020/07/10/C++/c++%E5%A4%8D%E5%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://pbs.twimg.com/profile_images/1129394514383101958/6sUb0J4O_400x400.jpg">
-      <meta itemprop="name" content="余睿">
-      <meta itemprop="description" content="个人技术博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="余睿的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/10/C++/c++%E5%A4%8D%E5%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">c++复制构造函数</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-10 15:32:38" itemprop="dateCreated datePublished" datetime="2020-07-10T15:32:38+08:00">2020-07-10</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/07/10/C++/c++%E5%A4%8D%E5%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" class="post-meta-item leancloud_visitors" data-flag-title="c++复制构造函数" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/07/10/C++/c++%E5%A4%8D%E5%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/10/C++/c++%E5%A4%8D%E5%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p><strong>复制构造函数</strong>(<strong>Copy constructor</strong>)是c++中的一个特殊构造函数，也称<strong>拷贝构造函数</strong>，它只有一个参数，参数类型为同类对象的引用。</p>
-<p>如果没有定义复制构造函数，那么编译器将生成默认的复制构造函数。默认的复制构造函数完成复制的功能。<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/07/10/C++/c++%E5%A4%8D%E5%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.yurui.tech/2020/07/09/C++/C-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://pbs.twimg.com/profile_images/1129394514383101958/6sUb0J4O_400x400.jpg">
-      <meta itemprop="name" content="余睿">
-      <meta itemprop="description" content="个人技术博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="余睿的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/09/C++/C-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">C++构造函数</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-09 21:11:16" itemprop="dateCreated datePublished" datetime="2020-07-09T21:11:16+08:00">2020-07-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/07/09/C++/C-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" class="post-meta-item leancloud_visitors" data-flag-title="C++构造函数" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/07/09/C++/C-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/09/C++/C-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h1><h1 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h1><p>在c++的类中，构造函数是一种特殊的成员函数，在每次创建创建一个类的时候会默认调用构造函数进行初始化工作。</p>
-<p>构造函数用来完成一些必要的初始化工作，有了构造函数之后，就无需再单独写初始化函数，并且也不必担心忘记调用初始化函数。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/07/09/C++/C-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/#more" rel="contents">
+              <a class="btn" href="/2020/07/13/C++/15%E3%80%81%E5%B8%B8%E9%87%8F%E5%AF%B9%E8%B1%A1%E3%80%81%E5%B8%B8%E9%87%8F%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E4%BB%A5%E5%8F%8A%E5%B8%B8%E5%BC%95%E7%94%A8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1380,7 +1436,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1393,7 +1449,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">89</span>
+        <span class="site-state-item-count">91</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1456,13 +1512,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">76k</span>
+    <span title="站点总字数">84k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:09</span>
+    <span title="站点阅读时长">1:16</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
@@ -1605,61 +1661,6 @@ window.addEventListener('pjax:success', () => {
   
 
   
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-          load: ['[tex]/mhchem'],
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-          packages: {'[+]': ['mhchem']},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
 
   
 
