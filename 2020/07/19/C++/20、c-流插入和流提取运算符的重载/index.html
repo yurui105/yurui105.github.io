@@ -23,12 +23,12 @@
     var CONFIG = {"hostname":"www.yurui.tech","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="引入问题1cout&lt;&lt;5&lt;&lt;&quot;this&quot;; 上面语句为什么可以成立？ cout是什么？&lt;&lt;为什么可以作用在cout上？ 解答cout是在iostream中定义的ostream类的对象。&lt;&lt;能作用在cout是因为在iostream里对&lt;&lt;进行了重载。 考虑，怎样重载才能使得cout&lt;&lt;5;和cout&lt;&lt;&quot;t">
+  <meta name="description" content="引入问题1cout&lt;&lt;5&lt;&lt;&quot;this&quot;; 上面语句为什么可以成立？ cout是什么？&lt;&lt;为什么可以作用在cout上？">
 <meta property="og:type" content="article">
 <meta property="og:title" content="c++流插入和流提取运算符的重载">
 <meta property="og:url" content="https://www.yurui.tech/2020/07/19/C++/20%E3%80%81c-%E6%B5%81%E6%8F%92%E5%85%A5%E5%92%8C%E6%B5%81%E6%8F%90%E5%8F%96%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD/index.html">
 <meta property="og:site_name" content="余睿的博客">
-<meta property="og:description" content="引入问题1cout&lt;&lt;5&lt;&lt;&quot;this&quot;; 上面语句为什么可以成立？ cout是什么？&lt;&lt;为什么可以作用在cout上？ 解答cout是在iostream中定义的ostream类的对象。&lt;&lt;能作用在cout是因为在iostream里对&lt;&lt;进行了重载。 考虑，怎样重载才能使得cout&lt;&lt;5;和cout&lt;&lt;&quot;t">
+<meta property="og:description" content="引入问题1cout&lt;&lt;5&lt;&lt;&quot;this&quot;; 上面语句为什么可以成立？ cout是什么？&lt;&lt;为什么可以作用在cout上？">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-19T06:48:26.000Z">
 <meta property="article:modified_time" content="2020-07-19T06:48:26.000Z">
@@ -291,6 +291,7 @@
         <h1 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h1><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="number">5</span>&lt;&lt;<span class="string">"this"</span>;</span><br></pre></td></tr></table></figure>
 <p>上面语句为什么可以成立？</p>
 <p><code>cout</code>是什么？<code>&lt;&lt;</code>为什么可以作用在<code>cout</code>上？</p>
+<a id="more"></a>
 <h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><p><code>cout</code>是在<code>iostream</code>中定义的<code>ostream</code>类的对象。<code>&lt;&lt;</code>能作用在<code>cout</code>是因为在<code>iostream</code>里对<code>&lt;&lt;</code>进行了重载。</p>
 <p>考虑，怎样重载才能使得<code>cout&lt;&lt;5;</code>和<code>cout&lt;&lt;&quot;this&quot;;</code>都能成立。</p>
 <h1 id="重载-lt-lt-运算符"><a href="#重载-lt-lt-运算符" class="headerlink" title="重载&lt;&lt;运算符"></a>重载&lt;&lt;运算符</h1><p>假设按照以下的方法重载<code>&lt;&lt;</code>运算符</p>

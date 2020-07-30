@@ -40,13 +40,13 @@
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h1 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot;
-        
-      
+      &lt;h1 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot; title=&quot;基本概念&quot;&gt;&lt;/a&gt;基本概念&lt;/h1&gt;&lt;p&gt;继承：在定义一个新的类&lt;code&gt;B&lt;/code&gt;时，如果该类与某个已有的类&lt;code&gt;A&lt;/code&gt;相似（&lt;code&gt;B&lt;/code&gt;拥有&lt;code&gt;A&lt;/code&gt;的全部特征），那么就可以把&lt;code&gt;A&lt;/code&gt;作为一个&lt;strong&gt;基类&lt;/strong&gt;，而把&lt;code&gt;B&lt;/code&gt;作为基类的一个&lt;strong&gt;派生类&lt;/strong&gt;（也成为子类）。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;派生类是通过对基类进行修改和扩充得到的。在派生类中，可以扩充新的成员变量或成员函数。&lt;/li&gt;
+&lt;li&gt;派生类一旦定义后，可以独立使用，不依赖于基类。&lt;/li&gt;
+&lt;li&gt;派生类拥有基类的全部成员函数和成员变量。不论是&lt;code&gt;public&lt;/code&gt;、&lt;code&gt;protected&lt;/code&gt;还是&lt;code&gt;private&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;在派生类的各个成员函数中，不能访问基类的&lt;code&gt;private&lt;/code&gt;成员&lt;/li&gt;
+&lt;/ul&gt;
     
     </summary>
     
@@ -71,13 +71,7 @@
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h1 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot;
-        
-      
+      &lt;h1 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot; title=&quot;基本概念&quot;&gt;&lt;/a&gt;基本概念&lt;/h1&gt;&lt;p&gt;自增运算符&lt;code&gt;++&lt;/code&gt;以及自减运算符&lt;code&gt;--&lt;/code&gt;有前置、后置之分，为了区分该运算符为前置还是后置，&lt;code&gt;c++&lt;/code&gt;有如下规定：&lt;/p&gt;
     
     </summary>
     
@@ -104,14 +98,8 @@
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;强制类型转换运算符是单目运算符，也可以被重载，但&lt;strong&gt;只能重载为成员函数&lt;/strong&gt;。&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
-        
-      
+      &lt;p&gt;强制类型转换运算符是单目运算符，也可以被重载，但&lt;strong&gt;只能重载为成员函数&lt;/strong&gt;。&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;meta-string&quot;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Complex&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;double&lt;/span&gt; real, imag;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Complex(&lt;span class=&quot;keyword&quot;&gt;double&lt;/span&gt; r = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;double&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;) :real(r), imag(i) &amp;#123;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;operator&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;double&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123; &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; real; &amp;#125;  &lt;span class=&quot;comment&quot;&gt;//重载强制类型转换运算符 double&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;Complex &lt;span class=&quot;title&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;number&quot;&gt;1.2&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;3.4&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;cout&lt;/span&gt; &amp;lt;&amp;lt; (&lt;span class=&quot;keyword&quot;&gt;double&lt;/span&gt;)c &amp;lt;&amp;lt; &lt;span class=&quot;built_in&quot;&gt;endl&lt;/span&gt;;  &lt;span class=&quot;comment&quot;&gt;//输出 1.2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;double&lt;/span&gt; n = &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt; + c;  &lt;span class=&quot;comment&quot;&gt;//等价于 double n = 2 + c. operator double()&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;cout&lt;/span&gt; &amp;lt;&amp;lt; n;  &lt;span class=&quot;comment&quot;&gt;//输出 3.2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
@@ -138,13 +126,9 @@
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h1 id=&quot;引入&quot;&gt;&lt;a href=&quot;#引入&quot; class=&quot;headerlink&quot; title=&quot;引入&quot;&gt;&lt;/a&gt;引入&lt;/h1&gt;&lt;h2 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot;
-        
-      
+      &lt;h1 id=&quot;引入&quot;&gt;&lt;a href=&quot;#引入&quot; class=&quot;headerlink&quot; title=&quot;引入&quot;&gt;&lt;/a&gt;引入&lt;/h1&gt;&lt;h2 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h2&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;cout&lt;/span&gt;&amp;lt;&amp;lt;&lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;&amp;lt;&amp;lt;&lt;span class=&quot;string&quot;&gt;&quot;this&quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;上面语句为什么可以成立？&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;cout&lt;/code&gt;是什么？&lt;code&gt;&amp;lt;&amp;lt;&lt;/code&gt;为什么可以作用在&lt;code&gt;cout&lt;/code&gt;上？&lt;/p&gt;
     
     </summary>
     
@@ -173,16 +157,8 @@
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;一般情况下，将运算符重载为成员函数是比较好的选择。&lt;/p&gt;
+      &lt;p&gt;一般情况下，将运算符重载为成员函数是比较好的选择。&lt;/p&gt;
 &lt;p&gt;但有时候，重载为成员函数又不能满足需求，重载为普通函数，又不能访问类的私有成员，这时我们就需要将运算符重载为友元。&lt;/p&gt;
-&lt;p&gt;下面来看一个例子。&lt;/p&gt;
-&lt;figure class=&quot;highlight
-        
-      
     
     </summary>
     

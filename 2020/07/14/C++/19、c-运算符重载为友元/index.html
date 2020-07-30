@@ -23,12 +23,12 @@
     var CONFIG = {"hostname":"www.yurui.tech","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="一般情况下，将运算符重载为成员函数是比较好的选择。 但有时候，重载为成员函数又不能满足需求，重载为普通函数，又不能访问类的私有成员，这时我们就需要将运算符重载为友元。 下面来看一个例子。 123456789101112class Complex &amp;#123;&#x2F;&#x2F;复数类private:    double real, imag;&#x2F;&#x2F;实部、虚部public:	Complex(double r &#x3D; 0.">
+  <meta name="description" content="一般情况下，将运算符重载为成员函数是比较好的选择。 但有时候，重载为成员函数又不能满足需求，重载为普通函数，又不能访问类的私有成员，这时我们就需要将运算符重载为友元。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="c++运算符重载为友元函数">
 <meta property="og:url" content="https://www.yurui.tech/2020/07/14/C++/19%E3%80%81c-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E4%B8%BA%E5%8F%8B%E5%85%83/index.html">
 <meta property="og:site_name" content="余睿的博客">
-<meta property="og:description" content="一般情况下，将运算符重载为成员函数是比较好的选择。 但有时候，重载为成员函数又不能满足需求，重载为普通函数，又不能访问类的私有成员，这时我们就需要将运算符重载为友元。 下面来看一个例子。 123456789101112class Complex &amp;#123;&#x2F;&#x2F;复数类private:    double real, imag;&#x2F;&#x2F;实部、虚部public:	Complex(double r &#x3D; 0.">
+<meta property="og:description" content="一般情况下，将运算符重载为成员函数是比较好的选择。 但有时候，重载为成员函数又不能满足需求，重载为普通函数，又不能访问类的私有成员，这时我们就需要将运算符重载为友元。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-14T14:53:52.000Z">
 <meta property="article:modified_time" content="2020-07-14T14:53:52.000Z">
@@ -288,6 +288,7 @@
       
         <p>一般情况下，将运算符重载为成员函数是比较好的选择。</p>
 <p>但有时候，重载为成员函数又不能满足需求，重载为普通函数，又不能访问类的私有成员，这时我们就需要将运算符重载为友元。</p>
+<a id="more"></a>
 <p>下面来看一个例子。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span> &#123;</span><span class="comment">//复数类</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">double</span> real, imag;<span class="comment">//实部、虚部</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Complex(<span class="keyword">double</span> r = <span class="number">0.0</span>, <span class="keyword">double</span> i = <span class="number">0.0</span>) &#123;</span><br><span class="line">		real = r; imag = i;</span><br><span class="line">	&#125;</span><br><span class="line">	Complex <span class="keyword">operator</span>+(<span class="keyword">double</span> r) &#123;<span class="comment">//重载为成员函数</span></span><br><span class="line">		<span class="comment">//重载+运算符实现 c1+5</span></span><br><span class="line">		<span class="keyword">return</span> Complex(real + <span class="number">5</span>, imag);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>我们为上面的<code>Complex</code>重载了<code>+</code>运算符，使得能够实现对象加上一个数。</p>
