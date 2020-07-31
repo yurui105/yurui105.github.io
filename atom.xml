@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.yurui.tech/"/>
-  <updated>2020-07-30T15:10:54.000Z</updated>
+  <updated>2020-07-31T06:39:32.000Z</updated>
   <id>https://www.yurui.tech/</id>
   
   <author>
@@ -17,17 +17,154 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>c++虚函数和多态的基本概念</title>
+    <link href="https://www.yurui.tech/2020/07/31/C++/28%E3%80%81c-%E8%99%9A%E5%87%BD%E6%95%B0%E5%92%8C%E5%A4%9A%E6%80%81%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"/>
+    <id>https://www.yurui.tech/2020/07/31/C++/28%E3%80%81c-%E8%99%9A%E5%87%BD%E6%95%B0%E5%92%8C%E5%A4%9A%E6%80%81%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</id>
+    <published>2020-07-31T06:39:32.000Z</published>
+    <updated>2020-07-31T06:39:32.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;虚函数&quot;&gt;&lt;a href=&quot;#虚函数&quot; class=&quot;headerlink&quot; title=&quot;虚函数&quot;&gt;&lt;/a&gt;虚函数&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;在类的定义中，前面由&lt;code&gt;virtual&lt;/code&gt;关键字的成员函数称为&lt;strong&gt;虚函数&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;virtual&lt;/code&gt;关键字只用在类定义里的函数声明中，写函数体时不用。&lt;/li&gt;
+&lt;li&gt;构造函数和静态成员函数不能是虚函数。&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="c++" scheme="https://www.yurui.tech/categories/c/"/>
+    
+    
+      <category term="c++" scheme="https://www.yurui.tech/tags/c/"/>
+    
+      <category term="虚函数" scheme="https://www.yurui.tech/tags/%E8%99%9A%E5%87%BD%E6%95%B0/"/>
+    
+      <category term="多态" scheme="https://www.yurui.tech/tags/%E5%A4%9A%E6%80%81/"/>
+    
+      <category term="virtual" scheme="https://www.yurui.tech/tags/virtual/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>c++公有继承的赋值兼容规则</title>
+    <link href="https://www.yurui.tech/2020/07/31/C++/27%E3%80%81c-%E5%85%AC%E6%9C%89%E7%BB%A7%E6%89%BF%E7%9A%84%E8%B5%8B%E5%80%BC%E5%85%BC%E5%AE%B9%E8%A7%84%E5%88%99/"/>
+    <id>https://www.yurui.tech/2020/07/31/C++/27%E3%80%81c-%E5%85%AC%E6%9C%89%E7%BB%A7%E6%89%BF%E7%9A%84%E8%B5%8B%E5%80%BC%E5%85%BC%E5%AE%B9%E8%A7%84%E5%88%99/</id>
+    <published>2020-07-31T06:39:17.000Z</published>
+    <updated>2020-07-31T06:39:17.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;赋值规则&quot;&gt;&lt;a href=&quot;#赋值规则&quot; class=&quot;headerlink&quot; title=&quot;赋值规则&quot;&gt;&lt;/a&gt;赋值规则&lt;/h1&gt;&lt;p&gt;假设有如下的类定义：&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Base&lt;/span&gt;&amp;#123;&lt;/span&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Derived&lt;/span&gt;:&lt;/span&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; Base&amp;#123;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Base b;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Derived d;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="c++" scheme="https://www.yurui.tech/categories/c/"/>
+    
+    
+      <category term="c++" scheme="https://www.yurui.tech/tags/c/"/>
+    
+      <category term="公有继承" scheme="https://www.yurui.tech/tags/%E5%85%AC%E6%9C%89%E7%BB%A7%E6%89%BF/"/>
+    
+      <category term="public" scheme="https://www.yurui.tech/tags/public/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>c++派生类的构造函数与析构函数</title>
+    <link href="https://www.yurui.tech/2020/07/31/C++/26%E3%80%81c-%E6%B4%BE%E7%94%9F%E7%B1%BB%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/"/>
+    <id>https://www.yurui.tech/2020/07/31/C++/26%E3%80%81c-%E6%B4%BE%E7%94%9F%E7%B1%BB%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/</id>
+    <published>2020-07-31T06:38:50.000Z</published>
+    <updated>2020-07-31T06:38:50.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot; title=&quot;基本概念&quot;&gt;&lt;/a&gt;基本概念&lt;/h1&gt;&lt;p&gt;在创建派生类对象时：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;先执行基类的构造函数，用来初始化派生类对象中从基类继承的成员&lt;/li&gt;
+&lt;li&gt;再执行成员对象类的构造函数，初始化派生类对象中的成员变量。&lt;/li&gt;
+&lt;li&gt;最后执行派生类自己的构造函数&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+      <category term="c++" scheme="https://www.yurui.tech/categories/c/"/>
+    
+    
+      <category term="构造函数" scheme="https://www.yurui.tech/tags/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/"/>
+    
+      <category term="c++" scheme="https://www.yurui.tech/tags/c/"/>
+    
+      <category term="析构函数" scheme="https://www.yurui.tech/tags/%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/"/>
+    
+      <category term="面向对象" scheme="https://www.yurui.tech/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
+    
+      <category term="派生类" scheme="https://www.yurui.tech/tags/%E6%B4%BE%E7%94%9F%E7%B1%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>c++覆盖和保护成员</title>
+    <link href="https://www.yurui.tech/2020/07/31/C++/25%E3%80%81c-%E8%A6%86%E7%9B%96%E5%92%8C%E4%BF%9D%E6%8A%A4%E6%88%90%E5%91%98/"/>
+    <id>https://www.yurui.tech/2020/07/31/C++/25%E3%80%81c-%E8%A6%86%E7%9B%96%E5%92%8C%E4%BF%9D%E6%8A%A4%E6%88%90%E5%91%98/</id>
+    <published>2020-07-31T06:38:27.000Z</published>
+    <updated>2020-07-31T06:38:27.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot; title=&quot;基本概念&quot;&gt;&lt;/a&gt;基本概念&lt;/h1&gt;&lt;p&gt;派生类可以定义一个和基类成员同名的成员，这就叫&lt;strong&gt;覆盖&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;在派生类中访问这类成员时，缺省的情况是访问派生类中定义的成员。要在派生类中访问由基类定义的同名成员时，要使用作用域符号&lt;code&gt;::&lt;/code&gt;。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="c++" scheme="https://www.yurui.tech/categories/c/"/>
+    
+    
+      <category term="c++" scheme="https://www.yurui.tech/tags/c/"/>
+    
+      <category term="面向对象" scheme="https://www.yurui.tech/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
+    
+      <category term="保护成员" scheme="https://www.yurui.tech/tags/%E4%BF%9D%E6%8A%A4%E6%88%90%E5%91%98/"/>
+    
+      <category term="覆盖" scheme="https://www.yurui.tech/tags/%E8%A6%86%E7%9B%96/"/>
+    
+  </entry>
+  
+  <entry>
     <title>c++继承关系和复合关系</title>
-    <link href="https://www.yurui.tech/2020/07/30/c-%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB%E5%92%8C%E5%A4%8D%E5%90%88%E5%85%B3%E7%B3%BB/"/>
-    <id>https://www.yurui.tech/2020/07/30/c-%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB%E5%92%8C%E5%A4%8D%E5%90%88%E5%85%B3%E7%B3%BB/</id>
+    <link href="https://www.yurui.tech/2020/07/30/C++/24%E3%80%81c-%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB%E5%92%8C%E5%A4%8D%E5%90%88%E5%85%B3%E7%B3%BB/"/>
+    <id>https://www.yurui.tech/2020/07/30/C++/24%E3%80%81c-%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB%E5%92%8C%E5%A4%8D%E5%90%88%E5%85%B3%E7%B3%BB/</id>
     <published>2020-07-30T15:10:54.000Z</published>
     <updated>2020-07-30T15:10:54.000Z</updated>
     
     <summary type="html">
     
+      &lt;h1 id=&quot;类之间的关系&quot;&gt;&lt;a href=&quot;#类之间的关系&quot; class=&quot;headerlink&quot; title=&quot;类之间的关系&quot;&gt;&lt;/a&gt;类之间的关系&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;继承关系：“是”关系&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;基类为&lt;code&gt;A&lt;/code&gt;，&lt;code&gt;B&lt;/code&gt;是基类&lt;code&gt;A&lt;/code&gt;的派生类。&lt;/li&gt;
+&lt;li&gt;逻辑上要求：一个&lt;code&gt;B&lt;/code&gt;对象也是一个&lt;code&gt;A&lt;/code&gt;对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;例如：从&lt;code&gt;学生类&lt;/code&gt;派生出一个&lt;code&gt;研究生类&lt;/code&gt;，原则上来说，一个&lt;code&gt;研究生类&lt;/code&gt;也是一个&lt;code&gt;学生类&lt;/code&gt;。&lt;/p&gt;
+    
     </summary>
     
     
+      <category term="c++" scheme="https://www.yurui.tech/categories/c/"/>
+    
+    
+      <category term="c++" scheme="https://www.yurui.tech/tags/c/"/>
+    
+      <category term="面向对象" scheme="https://www.yurui.tech/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
+    
+      <category term="继承关系" scheme="https://www.yurui.tech/tags/%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB/"/>
+    
+      <category term="复合关系" scheme="https://www.yurui.tech/tags/%E5%A4%8D%E5%90%88%E5%85%B3%E7%B3%BB/"/>
     
   </entry>
   
@@ -452,110 +589,6 @@
       <category term="构造函数" scheme="https://www.yurui.tech/tags/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/"/>
     
       <category term="c++" scheme="https://www.yurui.tech/tags/c/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>C++类和对象基础知识</title>
-    <link href="https://www.yurui.tech/2020/07/08/C++/9%E3%80%81C-%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
-    <id>https://www.yurui.tech/2020/07/08/C++/9%E3%80%81C-%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</id>
-    <published>2020-07-08T13:30:18.000Z</published>
-    <updated>2020-07-08T13:30:18.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;类和对象&quot;&gt;&lt;a href=&quot;#类和对象&quot; class=&quot;headerlink&quot; title=&quot;类和对象&quot;&gt;&lt;/a&gt;类和对象&lt;/h1&gt;&lt;p&gt;在c语言中，程序是由若干的函数以及变量组成的，它们之间并没有很严格的关系，这就导致了当程序规模逐渐变大之后，就不易于程序的扩充以及维护。另外，当我们想要复用之前程序中的一些代码片段时，函数中的变量使得我们很难将其从程序中抽离出来。总之，结构化程序设计使得我们的程序难以扩充、难以维护、难以重用。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="c++" scheme="https://www.yurui.tech/categories/c/"/>
-    
-    
-      <category term="构造函数" scheme="https://www.yurui.tech/tags/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/"/>
-    
-      <category term="面向对象" scheme="https://www.yurui.tech/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
-    
-      <category term="c++对象" scheme="https://www.yurui.tech/tags/c-%E5%AF%B9%E8%B1%A1/"/>
-    
-      <category term="c++类" scheme="https://www.yurui.tech/tags/c-%E7%B1%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数列极限的定义及应用</title>
-    <link href="https://www.yurui.tech/2020/06/04/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/1%E3%80%81%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%8A%E5%BA%94%E7%94%A8/"/>
-    <id>https://www.yurui.tech/2020/06/04/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/1%E3%80%81%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%8A%E5%BA%94%E7%94%A8/</id>
-    <published>2020-06-04T08:31:36.000Z</published>
-    <updated>2020-06-04T08:31:36.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;数列极限的定义&quot;&gt;&lt;a href=&quot;#数列极限的定义&quot; class=&quot;headerlink&quot; title=&quot;数列极限的定义&quot;&gt;&lt;/a&gt;数列极限的定义&lt;/h1&gt;&lt;h2 id=&quot;概念引入&quot;&gt;&lt;a href=&quot;#概念引入&quot; class=&quot;headerlink&quot; title=&quot;概念引入&quot;&gt;&lt;/a&gt;概念引入&lt;/h2&gt;&lt;p&gt;我们先来看一个数列$x_n=\frac{1}{n}$&lt;/p&gt;
-&lt;p&gt;当$n=1$时，$x_1=\frac{1}{1}=1$&lt;/p&gt;
-&lt;p&gt;当$n=2$时，$x_2=\frac{1}{2}$&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="数学分析" scheme="https://www.yurui.tech/categories/%E6%95%B0%E5%AD%A6%E5%88%86%E6%9E%90/"/>
-    
-    
-      <category term="数列极限" scheme="https://www.yurui.tech/tags/%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90/"/>
-    
-      <category term="数列极限定义" scheme="https://www.yurui.tech/tags/%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90%E5%AE%9A%E4%B9%89/"/>
-    
-      <category term="数列极限应用" scheme="https://www.yurui.tech/tags/%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90%E5%BA%94%E7%94%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>1、向量及其运算</title>
-    <link href="https://www.yurui.tech/2020/06/01/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/1%E3%80%81%E5%90%91%E9%87%8F%E5%8F%8A%E5%85%B6%E8%BF%90%E7%AE%97/"/>
-    <id>https://www.yurui.tech/2020/06/01/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/1%E3%80%81%E5%90%91%E9%87%8F%E5%8F%8A%E5%85%B6%E8%BF%90%E7%AE%97/</id>
-    <published>2020-06-01T14:15:24.000Z</published>
-    <updated>2020-06-01T14:15:24.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h1&gt;&lt;p&gt;线性代数的中心问题是求解线性方程组。&lt;/p&gt;
-&lt;p&gt;假设给定一个线性方程组：&lt;/p&gt;
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;
-x_1+2x_2=4 \\
-2x_1-3x_2=-2&lt;/script&gt;
-    
-    </summary>
-    
-    
-      <category term="线性代数" scheme="https://www.yurui.tech/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>c++函数的缺省参数</title>
-    <link href="https://www.yurui.tech/2020/06/01/C++/7%E3%80%81c-%E5%87%BD%E6%95%B0%E7%9A%84%E7%BC%BA%E7%9C%81%E5%8F%82%E6%95%B0/"/>
-    <id>https://www.yurui.tech/2020/06/01/C++/7%E3%80%81c-%E5%87%BD%E6%95%B0%E7%9A%84%E7%BC%BA%E7%9C%81%E5%8F%82%E6%95%B0/</id>
-    <published>2020-06-01T03:31:00.000Z</published>
-    <updated>2020-06-01T03:31:00.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h1&gt;&lt;p&gt;c++中，定义函数的时候可以让&lt;strong&gt;最右边的连续若干个&lt;/strong&gt;参数有缺省值，在调用函数的时候，如果不写相应位置的参数，则调用的参数就为缺省值。&lt;/p&gt;
-&lt;p&gt;例如：&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;fun&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; a, &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; b = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; c = &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;built_in&quot;&gt;cout&lt;/span&gt; &amp;lt;&amp;lt; &lt;span class=&quot;string&quot;&gt;&quot;a=&quot;&lt;/span&gt; &amp;lt;&amp;lt; a &amp;lt;&amp;lt; &lt;span class=&quot;string&quot;&gt;&quot;\tb=&quot;&lt;/span&gt; &amp;lt;&amp;lt; b &amp;lt;&amp;lt; &lt;span class=&quot;string&quot;&gt;&quot;\tc=&quot;&lt;/span&gt; &amp;lt;&amp;lt; c &amp;lt;&amp;lt; &lt;span class=&quot;built_in&quot;&gt;endl&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="c++" scheme="https://www.yurui.tech/categories/c/"/>
-    
-    
-      <category term="c++" scheme="https://www.yurui.tech/tags/c/"/>
-    
-      <category term="参数缺省" scheme="https://www.yurui.tech/tags/%E5%8F%82%E6%95%B0%E7%BC%BA%E7%9C%81/"/>
-    
-      <category term="函数参数缺省" scheme="https://www.yurui.tech/tags/%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E7%BC%BA%E7%9C%81/"/>
     
   </entry>
   
