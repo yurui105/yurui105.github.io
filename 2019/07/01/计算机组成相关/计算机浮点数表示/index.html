@@ -351,21 +351,21 @@ b=\sum_{i=-n}^m2^i \times b_i \tag{1.2}</script><p>此时，数字的权的定�
 </table>
 </div>
 <h1 id="IEEE754浮点表示"><a href="#IEEE754浮点表示" class="headerlink" title="IEEE754浮点表示"></a>IEEE754浮点表示</h1><p>像前一节中谈到的位置表示法不能很有效地表示很大地数字。例如。$5 \times 2^{100}$的表示是由$101$后跟$100$的位模式组成。相反的，我们希望通过给定$x$和$y$的值来表示形如$x \times 2^y$的数。<br>IEEE（读作“eye-Triple-ee”）浮点标准用</p>
-<p><script type="math/tex">V=(-1)^s \times M \times 2^E \tag{2.1}</script>来表示一个数。对于$(2.1)$式，有如下解释：</p>
+<script type="math/tex; mode=display">V=(-1)^s \times M \times 2^E \tag{2.1}</script><p>来表示一个数。对于$(2.1)$式，有如下解释：</p>
 <ul>
-<li><strong> 符号$s$（sign）决定该数是正数（$s=0$）还是负数（$s=1$），对于数值$0$的符号位解释作为特殊情况处理。 </strong></li>
+<li><strong>符号$s$（sign）决定该数是正数（$s=0$）还是负数（$s=1$），对于数值$0$的符号位解释作为特殊情况处理。</strong></li>
 </ul>
 <ul>
-<li><strong> 有效数$M$（significand）是一个二进制小数，它的范围在$1 \sim 2-\epsilon$之间，或者在$0\sim 1-\epsilon$之间。 </strong></li>
+<li><strong>有效数$M$（significand）是一个二进制小数，它的范围在$1 \sim 2-\epsilon$之间，或者在$0\sim 1-\epsilon$之间。</strong></li>
 </ul>
 <ul>
-<li><strong> 指数$E$（exponent）是$2$的幂（可能为负数），它的作用是对浮点数加权。</strong></li>
+<li><strong>指数$E$（exponent）是$2$的幂（可能为负数），它的作用是对浮点数加权。</strong></li>
 </ul>
 <p>浮点数的位表示被划分为三个部分，以编码这些值：</p>
 <ul>
-<li><strong> 一个单独的符号位$s$直接编码符号$s$。 </strong></li>
-<li><strong> $k$位的指数部分$exp=e_{k-1}···e_1e_0$编码指数E。 </strong></li>
-<li><strong> $n$位的小数部分$frac=f_{n-1}···f_1f_0$编码有效数M，但是被编码的值也依赖于指数部分的值是否等于$0$。 </strong></li>
+<li><strong>一个单独的符号位$s$直接编码符号$s$。</strong></li>
+<li><strong>​位的指数部分$exp=e_{k-1}···e_1e_0$编码指数E。 </strong></li>
+<li><strong>​位的小数部分$frac=f_{n-1}···f_1f_0$编码有效数M，但是被编码的值也依赖于指数部分的值是否等于$0$。 </strong></li>
 </ul>
 <p>在单精度浮点格式（$C$语言中的$float$）中，$s$、$exp$、$frac$部分分别为$1$位，$k=8$位和$n=23$位，产生一个32位的表示。在双精度浮点格式（$C$语言中的$double$）中，$s$、$exp$、$frac$部分分别为$1$位、$k=11$位和$n=52$位，产生一个64位的表示。如下示意图所示：</p>
 <center>32位浮点格式</center>
@@ -573,20 +573,20 @@ b=\sum_{i=-n}^m2^i \times b_i \tag{1.2}</script><p>此时，数字的权的定�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">113</span>
+        <span class="site-state-item-count">121</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -649,13 +649,13 @@ b=\sum_{i=-n}^m2^i \times b_i \tag{1.2}</script><p>此时，数字的权的定�
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">106k</span>
+    <span title="站点总字数">120k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:36</span>
+    <span title="站点阅读时长">1:49</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>

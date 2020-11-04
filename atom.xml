@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.yurui.tech/"/>
-  <updated>2020-09-21T14:33:32.000Z</updated>
+  <updated>2020-10-21T07:00:10.000Z</updated>
   <id>https://www.yurui.tech/</id>
   
   <author>
@@ -15,6 +15,169 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>归并排序</title>
+    <link href="https://www.yurui.tech/2020/10/21/%E6%8E%92%E5%BA%8F/2%E3%80%81%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/"/>
+    <id>https://www.yurui.tech/2020/10/21/%E6%8E%92%E5%BA%8F/2%E3%80%81%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/</id>
+    <published>2020-10-21T07:00:10.000Z</published>
+    <updated>2020-10-21T07:00:10.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;原理&quot;&gt;&lt;a href=&quot;#原理&quot; class=&quot;headerlink&quot; title=&quot;原理&quot;&gt;&lt;/a&gt;原理&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;归并排序（MergeSort）&lt;/strong&gt;采用了&lt;strong&gt;分治的思想（Divide And Conquer）&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;总的来说，整个排序思想可分为如下几部分：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;将待排序序列一分为二&lt;code&gt;O(1)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;子序列递归排序&lt;code&gt;O(log n)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;合并有序子序列&lt;code&gt;O(n)&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+      <category term="排序" scheme="https://www.yurui.tech/categories/%E6%8E%92%E5%BA%8F/"/>
+    
+    
+      <category term="排序" scheme="https://www.yurui.tech/tags/%E6%8E%92%E5%BA%8F/"/>
+    
+      <category term="归并排序" scheme="https://www.yurui.tech/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/"/>
+    
+      <category term="mergesort" scheme="https://www.yurui.tech/tags/mergesort/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>冒泡排序</title>
+    <link href="https://www.yurui.tech/2020/10/21/%E6%8E%92%E5%BA%8F/1%E3%80%81%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/"/>
+    <id>https://www.yurui.tech/2020/10/21/%E6%8E%92%E5%BA%8F/1%E3%80%81%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/</id>
+    <published>2020-10-21T06:59:23.000Z</published>
+    <updated>2020-10-21T06:59:23.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;构思&quot;&gt;&lt;a href=&quot;#构思&quot; class=&quot;headerlink&quot; title=&quot;构思&quot;&gt;&lt;/a&gt;构思&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;问题：给定任意一个数组，内含&lt;code&gt;n&lt;/code&gt;个可比较的元素，将它们按升序排列。&lt;/li&gt;
+&lt;li&gt;观察：在该数组中，对于任意两个相邻的元素，其关系总为顺序/逆序。&lt;/li&gt;
+&lt;li&gt;扫描交换：依次比较每一对相邻的元素，如有必要，将其交换&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="排序" scheme="https://www.yurui.tech/categories/%E6%8E%92%E5%BA%8F/"/>
+    
+    
+      <category term="排序" scheme="https://www.yurui.tech/tags/%E6%8E%92%E5%BA%8F/"/>
+    
+      <category term="冒泡排序" scheme="https://www.yurui.tech/tags/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/"/>
+    
+      <category term="bubble sort" scheme="https://www.yurui.tech/tags/bubble-sort/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>面向对象设计原则</title>
+    <link href="https://www.yurui.tech/2020/09/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/1.%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/"/>
+    <id>https://www.yurui.tech/2020/09/22/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/1.%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/</id>
+    <published>2020-09-22T13:09:35.000Z</published>
+    <updated>2020-09-22T13:09:35.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;依赖倒置原则（Dependency-Inversion-Principle，DIP）&quot;&gt;&lt;a href=&quot;#依赖倒置原则（Dependency-Inversion-Principle，DIP）&quot; class=&quot;headerlink&quot; title=&quot;依赖倒置原则（Dependency Inversion Principle，DIP）&quot;&gt;&lt;/a&gt;依赖倒置原则（Dependency Inversion Principle，DIP）&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;高层模块（稳定）不应该依赖低层模块（变化），二者都应该依赖抽象（稳定）。&lt;/li&gt;
+&lt;li&gt;抽象（稳定）不应该依赖于抽象细节（变化），实现细节应该依赖于抽象（稳定）。&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="设计模式" scheme="https://www.yurui.tech/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="c++" scheme="https://www.yurui.tech/tags/c/"/>
+    
+      <category term="设计模式" scheme="https://www.yurui.tech/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>c++ list容器的使用</title>
+    <link href="https://www.yurui.tech/2020/09/22/c-list%E5%AE%B9%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>https://www.yurui.tech/2020/09/22/c-list%E5%AE%B9%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
+    <published>2020-09-22T13:04:50.000Z</published>
+    <updated>2020-09-22T13:04:50.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>c++ array容器的使用</title>
+    <link href="https://www.yurui.tech/2020/09/22/c-array%E5%AE%B9%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>https://www.yurui.tech/2020/09/22/c-array%E5%AE%B9%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
+    <published>2020-09-22T13:04:41.000Z</published>
+    <updated>2020-09-22T13:04:41.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;构造函数&quot;&gt;&lt;a href=&quot;#构造函数&quot; class=&quot;headerlink&quot; title=&quot;构造函数&quot;&gt;&lt;/a&gt;构造函数&lt;/h1&gt;&lt;p&gt;&lt;code&gt;array&lt;/code&gt;的初始化使用聚合初始化（aggregate
+        
+      
+    
+    </summary>
+    
+    
+      <category term="STL" scheme="https://www.yurui.tech/categories/STL/"/>
+    
+    
+      <category term="c++" scheme="https://www.yurui.tech/tags/c/"/>
+    
+      <category term="STL" scheme="https://www.yurui.tech/tags/STL/"/>
+    
+      <category term="array" scheme="https://www.yurui.tech/tags/array/"/>
+    
+      <category term="容器" scheme="https://www.yurui.tech/tags/%E5%AE%B9%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>c++ vector容器的使用</title>
+    <link href="https://www.yurui.tech/2020/09/22/STL%E5%89%96%E6%9E%90/3%E3%80%81c-vector%E5%AE%B9%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>https://www.yurui.tech/2020/09/22/STL%E5%89%96%E6%9E%90/3%E3%80%81c-vector%E5%AE%B9%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
+    <published>2020-09-22T13:04:27.000Z</published>
+    <updated>2020-09-22T13:04:27.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;构造函数&quot;&gt;&lt;a href=&quot;#构造函数&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="STL" scheme="https://www.yurui.tech/categories/STL/"/>
+    
+    
+      <category term="c++" scheme="https://www.yurui.tech/tags/c/"/>
+    
+      <category term="vector" scheme="https://www.yurui.tech/tags/vector/"/>
+    
+  </entry>
   
   <entry>
     <title>STL容器的基本结构</title>
@@ -36,7 +199,7 @@
     </summary>
     
     
-      <category term="c++" scheme="https://www.yurui.tech/categories/c/"/>
+      <category term="STL" scheme="https://www.yurui.tech/categories/STL/"/>
     
     
       <category term="c++" scheme="https://www.yurui.tech/tags/c/"/>
@@ -70,7 +233,7 @@
     </summary>
     
     
-      <category term="c++" scheme="https://www.yurui.tech/categories/c/"/>
+      <category term="STL" scheme="https://www.yurui.tech/categories/STL/"/>
     
     
       <category term="c++" scheme="https://www.yurui.tech/tags/c/"/>
@@ -78,35 +241,6 @@
       <category term="STL" scheme="https://www.yurui.tech/tags/STL/"/>
     
       <category term="stl体系结构" scheme="https://www.yurui.tech/tags/stl%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>面向对象设计原则</title>
-    <link href="https://www.yurui.tech/2020/09/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/1.%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/"/>
-    <id>https://www.yurui.tech/2020/09/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/1.%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/</id>
-    <published>2020-09-20T02:09:35.000Z</published>
-    <updated>2020-09-20T02:09:35.000Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;设计模式&quot;&gt;&lt;a href=&quot;#设计模式&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="设计模式" scheme="https://www.yurui.tech/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-      <category term="c++" scheme="https://www.yurui.tech/tags/c/"/>
-    
-      <category term="设计模式" scheme="https://www.yurui.tech/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
@@ -449,143 +583,6 @@
       <category term="继承和派生" scheme="https://www.yurui.tech/tags/%E7%BB%A7%E6%89%BF%E5%92%8C%E6%B4%BE%E7%94%9F/"/>
     
       <category term="面向对象" scheme="https://www.yurui.tech/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>c++自增自减运算符重载</title>
-    <link href="https://www.yurui.tech/2020/07/30/C++/22%E3%80%81c-%E8%87%AA%E5%A2%9E%E8%87%AA%E5%87%8F%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/"/>
-    <id>https://www.yurui.tech/2020/07/30/C++/22%E3%80%81c-%E8%87%AA%E5%A2%9E%E8%87%AA%E5%87%8F%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/</id>
-    <published>2020-07-30T14:05:51.000Z</published>
-    <updated>2020-07-30T14:05:51.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot; title=&quot;基本概念&quot;&gt;&lt;/a&gt;基本概念&lt;/h1&gt;&lt;p&gt;自增运算符&lt;code&gt;++&lt;/code&gt;以及自减运算符&lt;code&gt;--&lt;/code&gt;有前置、后置之分，为了区分该运算符为前置还是后置，&lt;code&gt;c++&lt;/code&gt;有如下规定：&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="c++" scheme="https://www.yurui.tech/categories/c/"/>
-    
-    
-      <category term="c++" scheme="https://www.yurui.tech/tags/c/"/>
-    
-      <category term="运算符重载" scheme="https://www.yurui.tech/tags/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/"/>
-    
-      <category term="自增运算符" scheme="https://www.yurui.tech/tags/%E8%87%AA%E5%A2%9E%E8%BF%90%E7%AE%97%E7%AC%A6/"/>
-    
-      <category term="自减运算符" scheme="https://www.yurui.tech/tags/%E8%87%AA%E5%87%8F%E8%BF%90%E7%AE%97%E7%AC%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>c++重载强制类型转换运算符</title>
-    <link href="https://www.yurui.tech/2020/07/23/C++/21%E3%80%81c-%E9%87%8D%E8%BD%BD%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E8%BF%90%E7%AE%97%E7%AC%A6/"/>
-    <id>https://www.yurui.tech/2020/07/23/C++/21%E3%80%81c-%E9%87%8D%E8%BD%BD%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E8%BF%90%E7%AE%97%E7%AC%A6/</id>
-    <published>2020-07-23T14:11:00.000Z</published>
-    <updated>2020-07-23T14:11:00.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;强制类型转换运算符是单目运算符，也可以被重载，但&lt;strong&gt;只能重载为成员函数&lt;/strong&gt;。&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;meta-string&quot;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Complex&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;double&lt;/span&gt; real, imag;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Complex(&lt;span class=&quot;keyword&quot;&gt;double&lt;/span&gt; r = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;double&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;) :real(r), imag(i) &amp;#123;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;operator&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;double&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123; &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; real; &amp;#125;  &lt;span class=&quot;comment&quot;&gt;//重载强制类型转换运算符 double&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;Complex &lt;span class=&quot;title&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;number&quot;&gt;1.2&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;3.4&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;cout&lt;/span&gt; &amp;lt;&amp;lt; (&lt;span class=&quot;keyword&quot;&gt;double&lt;/span&gt;)c &amp;lt;&amp;lt; &lt;span class=&quot;built_in&quot;&gt;endl&lt;/span&gt;;  &lt;span class=&quot;comment&quot;&gt;//输出 1.2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;double&lt;/span&gt; n = &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt; + c;  &lt;span class=&quot;comment&quot;&gt;//等价于 double n = 2 + c. operator double()&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;cout&lt;/span&gt; &amp;lt;&amp;lt; n;  &lt;span class=&quot;comment&quot;&gt;//输出 3.2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="c++" scheme="https://www.yurui.tech/categories/c/"/>
-    
-    
-      <category term="c++" scheme="https://www.yurui.tech/tags/c/"/>
-    
-      <category term="运算符重载" scheme="https://www.yurui.tech/tags/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/"/>
-    
-      <category term="类型转换运算符重载" scheme="https://www.yurui.tech/tags/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/"/>
-    
-      <category term="()运算符重载" scheme="https://www.yurui.tech/tags/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>c++流插入和流提取运算符的重载</title>
-    <link href="https://www.yurui.tech/2020/07/19/C++/20%E3%80%81c-%E6%B5%81%E6%8F%92%E5%85%A5%E5%92%8C%E6%B5%81%E6%8F%90%E5%8F%96%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD/"/>
-    <id>https://www.yurui.tech/2020/07/19/C++/20%E3%80%81c-%E6%B5%81%E6%8F%92%E5%85%A5%E5%92%8C%E6%B5%81%E6%8F%90%E5%8F%96%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD/</id>
-    <published>2020-07-19T06:48:26.000Z</published>
-    <updated>2020-07-19T06:48:26.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;引入&quot;&gt;&lt;a href=&quot;#引入&quot; class=&quot;headerlink&quot; title=&quot;引入&quot;&gt;&lt;/a&gt;引入&lt;/h1&gt;&lt;h2 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h2&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;cout&lt;/span&gt;&amp;lt;&amp;lt;&lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;&amp;lt;&amp;lt;&lt;span class=&quot;string&quot;&gt;&quot;this&quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;上面语句为什么可以成立？&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;cout&lt;/code&gt;是什么？&lt;code&gt;&amp;lt;&amp;lt;&lt;/code&gt;为什么可以作用在&lt;code&gt;cout&lt;/code&gt;上？&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="c++" scheme="https://www.yurui.tech/categories/c/"/>
-    
-    
-      <category term="运算符重载" scheme="https://www.yurui.tech/tags/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/"/>
-    
-      <category term="左移运算符重载" scheme="https://www.yurui.tech/tags/%E5%B7%A6%E7%A7%BB%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/"/>
-    
-      <category term="右移运算符重载" scheme="https://www.yurui.tech/tags/%E5%8F%B3%E7%A7%BB%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/"/>
-    
-      <category term="流插入运算符" scheme="https://www.yurui.tech/tags/%E6%B5%81%E6%8F%92%E5%85%A5%E8%BF%90%E7%AE%97%E7%AC%A6/"/>
-    
-      <category term="流提取运算符" scheme="https://www.yurui.tech/tags/%E6%B5%81%E6%8F%90%E5%8F%96%E8%BF%90%E7%AE%97%E7%AC%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>c++运算符重载为友元函数</title>
-    <link href="https://www.yurui.tech/2020/07/14/C++/19%E3%80%81c-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E4%B8%BA%E5%8F%8B%E5%85%83/"/>
-    <id>https://www.yurui.tech/2020/07/14/C++/19%E3%80%81c-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E4%B8%BA%E5%8F%8B%E5%85%83/</id>
-    <published>2020-07-14T14:53:52.000Z</published>
-    <updated>2020-07-14T14:53:52.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;一般情况下，将运算符重载为成员函数是比较好的选择。&lt;/p&gt;
-&lt;p&gt;但有时候，重载为成员函数又不能满足需求，重载为普通函数，又不能访问类的私有成员，这时我们就需要将运算符重载为友元。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="c++" scheme="https://www.yurui.tech/categories/c/"/>
-    
-    
-      <category term="c++" scheme="https://www.yurui.tech/tags/c/"/>
-    
-      <category term="友元" scheme="https://www.yurui.tech/tags/%E5%8F%8B%E5%85%83/"/>
-    
-      <category term="运算符重载" scheme="https://www.yurui.tech/tags/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>c++赋值运算符的重载</title>
-    <link href="https://www.yurui.tech/2020/07/14/C++/18%E3%80%81%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD/"/>
-    <id>https://www.yurui.tech/2020/07/14/C++/18%E3%80%81%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD/</id>
-    <published>2020-07-14T06:23:09.000Z</published>
-    <updated>2020-07-14T06:23:09.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;赋值运算符重载需求&quot;&gt;&lt;a href=&quot;#赋值运算符重载需求&quot; class=&quot;headerlink&quot; title=&quot;赋值运算符重载需求&quot;&gt;&lt;/a&gt;赋值运算符重载需求&lt;/h1&gt;&lt;p&gt;有时候我们希望运算符两边的类型可以不匹配。比如，把一个&lt;code&gt;int&lt;/code&gt;类型的变量赋值给一个对象，或者把&lt;code&gt;char*&lt;/code&gt;类型的字符串赋值给一个字符串对象，此时就需要重载赋值运算符&lt;code&gt;=&lt;/code&gt;。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="c++" scheme="https://www.yurui.tech/categories/c/"/>
-    
-    
-      <category term="c++" scheme="https://www.yurui.tech/tags/c/"/>
-    
-      <category term="赋值运算符重载" scheme="https://www.yurui.tech/tags/%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/"/>
-    
-      <category term="运算符重载" scheme="https://www.yurui.tech/tags/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/"/>
     
   </entry>
   
