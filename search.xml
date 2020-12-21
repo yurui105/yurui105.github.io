@@ -3223,4 +3223,107 @@ b_{3}
         <tag>c++类</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Qt信号槽</title>
+    <url>/2020/12/21/Qt6/2%E3%80%81Qt%E4%BF%A1%E5%8F%B7%E6%A7%BD/</url>
+    <content><![CDATA[<h1 id="信号槽原理"><a href="#信号槽原理" class="headerlink" title="信号槽原理"></a>信号槽原理</h1><p>在<code>Qt</code>中，提供了信号槽来处理对象间的通信。信号槽机制是<code>Qt</code>中的主要特征，同时也是<code>Qt</code>不同于其它框架的最大特点。</p>
+<p>信号槽有些类似windows中的消息机制，通过回调函数来处理对象间的通信。但是回调函数是一种紧耦合的设计，调用者必须知道该在什么时候调用哪个回调函数。</p>
+<p><code>Qt</code>中的信号槽机制主要有以下两类函数实现：</p>
+<ul>
+<li>信号函数：只管发出信号，不需要知道信号的接收者。例如按钮点击事件。</li>
+<li>槽函数：只管接收，不管是谁发出的信号。例如响应一个点击事件。</li>
+</ul>
+<p>信号函数与槽函数之间的联系通过<code>QObject</code>对象来绑定。</p>
+<a id="more"></a>
+<p><code>Qt</code>信号槽的运行原理大致如下：</p>
+<ol>
+<li>绑定信号函数和槽函数。</li>
+<li>调用信号函数，发出信号（将信号写入队列中）</li>
+<li>主线程从队列中获取信号。</li>
+</ol>
+<p>需要注意的是，由于主线程是直接从队列中获取信号，所以信号的响应是依次执行的。当进行网络编程等响应时间过长的处理时，应该将信号的处理放到新线程中执行，否则会阻塞主线程。</p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20201221203738417.png" alt="信号槽关系图"></p>
+<h1 id="通过Qt设计器-Qt-designer-设置信号槽"><a href="#通过Qt设计器-Qt-designer-设置信号槽" class="headerlink" title="通过Qt设计器(Qt designer)设置信号槽"></a>通过Qt设计器(Qt designer)设置信号槽</h1><h2 id="拖拽添加信号槽"><a href="#拖拽添加信号槽" class="headerlink" title="拖拽添加信号槽"></a>拖拽添加信号槽</h2><ul>
+<li><p>首先，我们打开Qt设计器界面，拖动一个按钮到界面中，并命名为关闭窗口，我们希望点击这个按钮可以关闭当前窗口。<br><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20201221212821852.png" alt="关闭窗口按钮"></p>
+</li>
+<li><p>然后选中下图所示的编辑信号槽按钮（左上角第二个图标）<br><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20201221212950812.png" alt="编辑信号槽"></p>
+</li>
+<li><p>选中按钮，按住左键将其拖到窗体边缘。在弹出的对话框中选择<code>clicked()</code>事件，勾选下方的<code>显示从Qwidget继承的槽</code>，选中<code>close()</code>事件。<br><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20201221213327131.png" alt="绑定信号槽事件"><br>通过上图，我们可以看到，<code>pushButton</code>作为信号发出的对象，发出一个<code>clicked()</code>信号。<code>MainWindow</code>作为接收的对象，执行<code>close()</code>操作。</p>
+</li>
+<li><p>然后单击<code>OK</code><br><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20201221213431524.png" alt="创建成功信号槽"></p>
+</li>
+</ul>
+<p>编译运行后，我们单击该按钮即可关闭窗口。</p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/关闭窗口.gif" alt="关闭窗口"></p>
+<h2 id="信号槽编辑器添加"><a href="#信号槽编辑器添加" class="headerlink" title="信号槽编辑器添加"></a>信号槽编辑器添加</h2><p>除了上面的拖拽添加信号槽，我们还可以在Qt设计器中的信号槽编辑器中添加信号槽。</p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20201221214212087.png" alt="信号槽编辑器"></p>
+<p>同样我们再拖动一个按钮到界面设计器中，并命名为最大化，通过单击该按钮实现最大化窗口。</p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20201221214409569.png" alt="最大化按钮"></p>
+<p>添加一个按钮，并将对象名字改为<code>max</code>，如上图右边所示。</p>
+<p>然后在信号槽编辑器中添加如下规则：</p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20201221214605599.png" alt="信号槽编辑器"></p>
+<p>其中，发送者为<code>max</code>按钮，发送<code>clicked()</code>信号，接收者为<code>MainWindow</code>，响应的槽为<code>showMaximized()</code>。</p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/最大化.gif" alt="最大化"></p>
+<p>通过上面的信号槽编辑器不难发现，拖拽的添加方法和信号槽编辑器添加是一样的。</p>
+<h1 id="通过代码绑定信号槽"><a href="#通过代码绑定信号槽" class="headerlink" title="通过代码绑定信号槽"></a>通过代码绑定信号槽</h1><p>通过界面设计器，我们可以很方便的添加信号槽，但是在实际应用中，我们往往需要自己定义要发送的信号以及处理的槽函数，此时就需要通过代码来实现信号以及槽函数，并对他们进行绑定。</p>
+<h2 id="Q-OBJECT"><a href="#Q-OBJECT" class="headerlink" title="Q_OBJECT"></a>Q_OBJECT</h2><p>对于所有需要添加信号槽的类，我们都需要定义<code>Q_OBJECT</code>这个宏，这个宏本身没有任何作用，只是用来告诉<code>moc</code>程序，下面来对比以下添加和不添加<code>Q_OBJECT</code>宏的编译输出。</p>
+<p>未添加<code>Q_OBJECT</code>时的编译输出如下：</p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20201221223704446.png" alt="未添加`Q_OBJECT`输出"></p>
+<p>添加<code>Q_OBJECT</code>后编译输出如下：</p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20201221223842944.png" alt="添加`Q_OBJECT`后编译输出"></p>
+<p>我们可以看到，在添加了<code>Q_OBJECT</code>后编译输出多了<code>moc_*</code>的内容。</p>
+<h2 id="信号函数"><a href="#信号函数" class="headerlink" title="信号函数"></a>信号函数</h2><p>我们在<code>mainwindow.h</code>中新增加一个信号函数<code>mySignal()</code>，我只要定义这个信号就可以了，不需要去实现它，<code>moc</code>程序会帮我们实现。</p>
+<p>需要注意的是，信号函数需要有<code>signals:</code>声明。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> MAINWINDOW_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAINWINDOW_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QMainWindow&gt;</span></span></span><br><span class="line"></span><br><span class="line">QT_BEGIN_NAMESPACE</span><br><span class="line"><span class="keyword">namespace</span> Ui &#123; <span class="class"><span class="keyword">class</span> <span class="title">MainWindow</span>;</span> &#125;</span><br><span class="line">QT_END_NAMESPACE</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainWindow</span> :</span> <span class="keyword">public</span> QMainWindow</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    MainWindow(QWidget *parent = <span class="literal">nullptr</span>);</span><br><span class="line">    ~MainWindow();</span><br><span class="line"></span><br><span class="line">signals:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">mySignal</span><span class="params">()</span></span>;</span><br><span class="line">#        ^^^^^^^^^^^</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Ui::MainWindow *ui;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// MAINWINDOW_H</span></span></span><br></pre></td></tr></table></figure>
+<p>编译后，我们可以在<code>moc_mainwindow.cpp</code>文件中找到如下内容，<code>moc</code>程序帮我们完成了信号的定义，并可以将其加入到消息队列中。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// SIGNAL 0</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MainWindow::mySignal</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    QMetaObject::activate(<span class="keyword">this</span>, &amp;staticMetaObject, <span class="number">0</span>, <span class="literal">nullptr</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="槽函数"><a href="#槽函数" class="headerlink" title="槽函数"></a>槽函数</h2><p>下面我们来编写一个槽函数。槽函数可以申明多种访问权限，这里我们指定为<code>public</code>。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> MAINWINDOW_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAINWINDOW_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QMainWindow&gt;</span></span></span><br><span class="line"></span><br><span class="line">QT_BEGIN_NAMESPACE</span><br><span class="line"><span class="keyword">namespace</span> Ui &#123; <span class="class"><span class="keyword">class</span> <span class="title">MainWindow</span>;</span> &#125;</span><br><span class="line">QT_END_NAMESPACE</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainWindow</span> :</span> <span class="keyword">public</span> QMainWindow</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    MainWindow(QWidget *parent = <span class="literal">nullptr</span>);</span><br><span class="line">    ~MainWindow();</span><br><span class="line"></span><br><span class="line">signals:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">mySignal</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span> slots:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">mySlots</span><span class="params">()</span></span>;</span><br><span class="line">#        ^^^^^^^^^^</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Ui::MainWindow *ui;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// MAINWINDOW_H</span></span></span><br></pre></td></tr></table></figure>
+<p>需要注意的是，信号函数会自动生产定义，但是槽函数不会，槽函数需要我们自己添加定义。</p>
+<p>我们实现槽函数的定义如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MainWindow::mySlots</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;<span class="string">"mySlots()"</span>&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过控制台输出<code>mySlots()</code>，此时需要在pro文件中增加<code>CONFIG += console</code>来打开控制台。</p>
+<h2 id="信号槽的绑定"><a href="#信号槽的绑定" class="headerlink" title="信号槽的绑定"></a>信号槽的绑定</h2><h3 id="界面绑定"><a href="#界面绑定" class="headerlink" title="界面绑定"></a>界面绑定</h3><p>我们可以在Qt设计器中通过拖拽来绑定事件，但是没有显示我们的槽函数，我们需要手动添加槽函数。</p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20201221230403532.png" alt="信号槽"></p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20201221230347012.png" alt="添加槽"></p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20201221230511061.png" alt="绑定"></p>
+<p>完成后，可以看到如下的结果：</p>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/信号槽响应.gif" alt="信号槽响应"></p>
+<p>可以看到，信号函数和槽函数绑定成功，槽函数响应了我们的点击事件。</p>
+<h3 id="手动添加槽函数"><a href="#手动添加槽函数" class="headerlink" title="手动添加槽函数"></a>手动添加槽函数</h3><p>上面演示了用Qt设计器绑定信号槽，下面通过代码来绑定信号槽。</p>
+<p>通过观察上面生成的<code>ui_mainwindow.h</code>文件，可以看到程序为我们绑定了信号槽，并且所有的界面元素对象以及样式都在该文件中进行了定义。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">QObject::<span class="built_in">connect</span>(pushButton, SIGNAL(clicked()), MainWindow, SLOT(mySlots()));</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第一个参数<code>pushButton</code>为信号的发出者</li>
+<li>第二个参数<code>SIGNAL(clicked())</code>表示<code>clicked()</code>信号</li>
+<li>第三个参数<code>MainWindow</code>为接收者</li>
+<li>第四个参数<code>SLOT(mySlots())</code>为定义的槽函数</li>
+</ul>
+<p>需要注意的是，<code>QObject</code>为多有Qt对象的基类，正常可以不写，但当进行socket编程时需注意区分开来。</p>
+<p>下面我们手动编写信号槽的连接。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">MainWindow::MainWindow(QWidget *parent)</span><br><span class="line">    : QMainWindow(parent)</span><br><span class="line">    , ui(<span class="keyword">new</span> Ui::MainWindow)</span><br><span class="line">&#123;</span><br><span class="line">    ui-&gt;setupUi(<span class="keyword">this</span>);</span><br><span class="line">    QObject::<span class="built_in">connect</span>(ui-&gt;pushButton,SIGNAL(clicked()),<span class="keyword">this</span>,SLOT(mySlots()));</span><br><span class="line">#            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>ui-&gt;pushButton</code>为信号发出对象</li>
+<li><code>SIGNAL(clicked())</code>表示<code>clicked()</code>信号</li>
+<li><code>this</code>表示当前窗体为信号接收者</li>
+<li><code>SLOT(mySlots())</code>为定义的槽函数</li>
+</ul>
+<p>除了上面的写法，信号槽函数还可以写成如下形式：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">QObject::<span class="built_in">connect</span>(ui-&gt;pushButton,&amp;QPushButton::clicked,<span class="keyword">this</span>,&amp;MainWindow::mySlots);</span><br></pre></td></tr></table></figure>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/手动绑定信号槽.gif" alt="手动绑定信号槽"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>信号函数只需要声明，不用定义。</li>
+<li>槽函数需要声明且定义。</li>
+<li>一个信号可以绑定多个槽函数</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Qt6</category>
+      </categories>
+      <tags>
+        <tag>Qt6</tag>
+        <tag>c++</tag>
+        <tag>信号槽</tag>
+      </tags>
+  </entry>
 </search>

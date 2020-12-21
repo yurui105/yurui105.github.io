@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.yurui.tech/"/>
-  <updated>2020-12-21T02:58:48.000Z</updated>
+  <updated>2020-12-21T12:12:06.000Z</updated>
   <id>https://www.yurui.tech/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Qt信号槽</title>
+    <link href="https://www.yurui.tech/2020/12/21/Qt6/2%E3%80%81Qt%E4%BF%A1%E5%8F%B7%E6%A7%BD/"/>
+    <id>https://www.yurui.tech/2020/12/21/Qt6/2%E3%80%81Qt%E4%BF%A1%E5%8F%B7%E6%A7%BD/</id>
+    <published>2020-12-21T12:12:06.000Z</published>
+    <updated>2020-12-21T12:12:06.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;信号槽原理&quot;&gt;&lt;a href=&quot;#信号槽原理&quot; class=&quot;headerlink&quot; title=&quot;信号槽原理&quot;&gt;&lt;/a&gt;信号槽原理&lt;/h1&gt;&lt;p&gt;在&lt;code&gt;Qt&lt;/code&gt;中，提供了信号槽来处理对象间的通信。信号槽机制是&lt;code&gt;Qt&lt;/code&gt;中的主要特征，同时也是&lt;code&gt;Qt&lt;/code&gt;不同于其它框架的最大特点。&lt;/p&gt;
+&lt;p&gt;信号槽有些类似windows中的消息机制，通过回调函数来处理对象间的通信。但是回调函数是一种紧耦合的设计，调用者必须知道该在什么时候调用哪个回调函数。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Qt&lt;/code&gt;中的信号槽机制主要有以下两类函数实现：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;信号函数：只管发出信号，不需要知道信号的接收者。例如按钮点击事件。&lt;/li&gt;
+&lt;li&gt;槽函数：只管接收，不管是谁发出的信号。例如响应一个点击事件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;信号函数与槽函数之间的联系通过&lt;code&gt;QObject&lt;/code&gt;对象来绑定。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Qt6" scheme="https://www.yurui.tech/categories/Qt6/"/>
+    
+    
+      <category term="Qt6" scheme="https://www.yurui.tech/tags/Qt6/"/>
+    
+      <category term="c++" scheme="https://www.yurui.tech/tags/c/"/>
+    
+      <category term="信号槽" scheme="https://www.yurui.tech/tags/%E4%BF%A1%E5%8F%B7%E6%A7%BD/"/>
+    
+  </entry>
   
   <entry>
     <title>Qt6引入第三方opencv库</title>
@@ -542,39 +574,6 @@
       <category term="保护成员" scheme="https://www.yurui.tech/tags/%E4%BF%9D%E6%8A%A4%E6%88%90%E5%91%98/"/>
     
       <category term="覆盖" scheme="https://www.yurui.tech/tags/%E8%A6%86%E7%9B%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>c++继承关系和复合关系</title>
-    <link href="https://www.yurui.tech/2020/07/30/C++/24%E3%80%81c-%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB%E5%92%8C%E5%A4%8D%E5%90%88%E5%85%B3%E7%B3%BB/"/>
-    <id>https://www.yurui.tech/2020/07/30/C++/24%E3%80%81c-%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB%E5%92%8C%E5%A4%8D%E5%90%88%E5%85%B3%E7%B3%BB/</id>
-    <published>2020-07-30T15:10:54.000Z</published>
-    <updated>2020-07-30T15:10:54.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;类之间的关系&quot;&gt;&lt;a href=&quot;#类之间的关系&quot; class=&quot;headerlink&quot; title=&quot;类之间的关系&quot;&gt;&lt;/a&gt;类之间的关系&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;继承关系：“是”关系&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;基类为&lt;code&gt;A&lt;/code&gt;，&lt;code&gt;B&lt;/code&gt;是基类&lt;code&gt;A&lt;/code&gt;的派生类。&lt;/li&gt;
-&lt;li&gt;逻辑上要求：一个&lt;code&gt;B&lt;/code&gt;对象也是一个&lt;code&gt;A&lt;/code&gt;对象。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;例如：从&lt;code&gt;学生类&lt;/code&gt;派生出一个&lt;code&gt;研究生类&lt;/code&gt;，原则上来说，一个&lt;code&gt;研究生类&lt;/code&gt;也是一个&lt;code&gt;学生类&lt;/code&gt;。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="c++" scheme="https://www.yurui.tech/categories/c/"/>
-    
-    
-      <category term="c++" scheme="https://www.yurui.tech/tags/c/"/>
-    
-      <category term="继承关系" scheme="https://www.yurui.tech/tags/%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB/"/>
-    
-      <category term="复合关系" scheme="https://www.yurui.tech/tags/%E5%A4%8D%E5%90%88%E5%85%B3%E7%B3%BB/"/>
-    
-      <category term="面向对象" scheme="https://www.yurui.tech/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
     
   </entry>
   
