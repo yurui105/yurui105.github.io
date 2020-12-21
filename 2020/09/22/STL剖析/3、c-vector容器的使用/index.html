@@ -23,12 +23,12 @@
     var CONFIG = {"hostname":"www.yurui.tech","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="构造函数vector的构造函数有以下几种重载  默认无参构造函数 使用{}内的内容初始化 使用一个以及存在的容器初始化 初始化为指定个数指定的内容 用数组进行初始化  注：所有的初始化方法都可以指定分配器，如下代码所示： 123456789101112131415161718192021222324252627282930313233#include&lt;iostream&gt;#include">
+  <meta name="description" content="构造函数vector的构造函数有以下几种重载  默认无参构造函数 使用{}内的内容初始化 使用一个以及存在的容器初始化 初始化为指定个数指定的内容 用数组进行初始化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="c++ vector容器的使用">
 <meta property="og:url" content="https://www.yurui.tech/2020/09/22/STL%E5%89%96%E6%9E%90/3%E3%80%81c-vector%E5%AE%B9%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="余睿的博客">
-<meta property="og:description" content="构造函数vector的构造函数有以下几种重载  默认无参构造函数 使用{}内的内容初始化 使用一个以及存在的容器初始化 初始化为指定个数指定的内容 用数组进行初始化  注：所有的初始化方法都可以指定分配器，如下代码所示： 123456789101112131415161718192021222324252627282930313233#include&lt;iostream&gt;#include">
+<meta property="og:description" content="构造函数vector的构造函数有以下几种重载  默认无参构造函数 使用{}内的内容初始化 使用一个以及存在的容器初始化 初始化为指定个数指定的内容 用数组进行初始化">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/range-rbegin-rend.svg">
 <meta property="article:published_time" content="2020-09-22T13:04:27.000Z">
@@ -295,6 +295,7 @@
 <li>初始化为指定个数指定的内容</li>
 <li>用数组进行初始化</li>
 </ol>
+<a id="more"></a>
 <p>注：所有的初始化方法都可以指定分配器，如下代码所示：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="built_in">std</span>::ostream&amp; <span class="keyword">operator</span>&lt;&lt;(<span class="built_in">std</span>::ostream&amp; s, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&amp; v)</span><br><span class="line">&#123;</span><br><span class="line">	s.<span class="built_in">put</span>(<span class="string">'['</span>);</span><br><span class="line">	<span class="keyword">char</span> comma[<span class="number">3</span>] = &#123; <span class="string">'\0'</span>, <span class="string">' '</span>, <span class="string">'\0'</span> &#125;;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; e : v) &#123;</span><br><span class="line">		s &lt;&lt; comma &lt;&lt; e;</span><br><span class="line">		comma[<span class="number">0</span>] = <span class="string">','</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> s &lt;&lt; <span class="string">']'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">/**************构造函数***************/</span></span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a;<span class="comment">//默认无参构造函数，不含任何元素</span></span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; b&#123; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> &#125;;<span class="comment">//使用1,2,3,4,5去初始化</span></span><br><span class="line">	<span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">c</span><span class="params">(b)</span></span>;<span class="comment">//使用 b 初始化c</span></span><br><span class="line">	<span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">d</span><span class="params">(<span class="number">10</span>, <span class="number">1</span>)</span></span>;<span class="comment">//初始化10个1</span></span><br><span class="line">	<span class="keyword">int</span> arr[<span class="number">5</span>] = &#123; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> &#125;;</span><br><span class="line">	<span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">e</span><span class="params">(arr,arr+<span class="number">3</span>)</span></span>;<span class="comment">//使用数组arr的前3个元素初始化</span></span><br><span class="line">	<span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">f</span><span class="params">(allocator&lt;<span class="keyword">int</span>&gt;)</span></span>;<span class="comment">//指定分配器</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"a="</span> &lt;&lt; a &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"b="</span> &lt;&lt; b &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"c="</span> &lt;&lt; c &lt;&lt; <span class="string">'\n'</span>; </span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"d="</span> &lt;&lt; d &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"e="</span> &lt;&lt; e &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出：</p>
@@ -429,8 +430,8 @@
       <i class="fa fa-chevron-left"></i> STL容器的基本结构
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/09/22/c-array%E5%AE%B9%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="next" title="c++ array容器的使用">
-      c++ array容器的使用 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/09/22/STL%E5%89%96%E6%9E%90/c-array%E5%AE%B9%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="next" title="STL剖析/c-array容器的使用">
+      STL剖析/c-array容器的使用 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -507,20 +508,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">56</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">121</span>
+        <span class="site-state-item-count">123</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -583,13 +584,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">120k</span>
+    <span title="站点总字数">122k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:49</span>
+    <span title="站点阅读时长">1:51</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>

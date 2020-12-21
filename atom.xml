@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.yurui.tech/"/>
-  <updated>2020-10-21T07:00:10.000Z</updated>
+  <updated>2020-12-21T02:58:48.000Z</updated>
   <id>https://www.yurui.tech/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Qt6引入第三方opencv库</title>
+    <link href="https://www.yurui.tech/2020/12/21/Qt6/1%E3%80%81Qt6%E5%BC%95%E5%85%A5%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/"/>
+    <id>https://www.yurui.tech/2020/12/21/Qt6/1%E3%80%81Qt6%E5%BC%95%E5%85%A5%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/</id>
+    <published>2020-12-21T02:58:48.000Z</published>
+    <updated>2020-12-21T02:58:48.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;创建项目&quot;&gt;&lt;a href=&quot;#创建项目&quot; class=&quot;headerlink&quot; title=&quot;创建项目&quot;&gt;&lt;/a&gt;创建项目&lt;/h1&gt;&lt;p&gt;首先创建一个新的Qt6项目，选择&lt;code&gt;Qt Widgets Application&lt;/code&gt;，然后一路默认，创建一个最基本的Qt5项目。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/image-20201221172739602.png&quot; alt=&quot;创建qt项目&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Qt6" scheme="https://www.yurui.tech/categories/Qt6/"/>
+    
+    
+      <category term="Qt6" scheme="https://www.yurui.tech/tags/Qt6/"/>
+    
+      <category term="c++" scheme="https://www.yurui.tech/tags/c/"/>
+    
+      <category term="opencv" scheme="https://www.yurui.tech/tags/opencv/"/>
+    
+  </entry>
   
   <entry>
     <title>归并排序</title>
@@ -104,8 +130,8 @@
   
   <entry>
     <title>c++ list容器的使用</title>
-    <link href="https://www.yurui.tech/2020/09/22/c-list%E5%AE%B9%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>https://www.yurui.tech/2020/09/22/c-list%E5%AE%B9%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
+    <link href="https://www.yurui.tech/2020/09/22/STL%E5%89%96%E6%9E%90/c-list%E5%AE%B9%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>https://www.yurui.tech/2020/09/22/STL%E5%89%96%E6%9E%90/c-list%E5%AE%B9%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
     <published>2020-09-22T13:04:50.000Z</published>
     <updated>2020-09-22T13:04:50.000Z</updated>
     
@@ -118,21 +144,17 @@
   </entry>
   
   <entry>
-    <title>c++ array容器的使用</title>
-    <link href="https://www.yurui.tech/2020/09/22/c-array%E5%AE%B9%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>https://www.yurui.tech/2020/09/22/c-array%E5%AE%B9%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
+    <title>STL剖析/c-array容器的使用</title>
+    <link href="https://www.yurui.tech/2020/09/22/STL%E5%89%96%E6%9E%90/c-array%E5%AE%B9%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>https://www.yurui.tech/2020/09/22/STL%E5%89%96%E6%9E%90/c-array%E5%AE%B9%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
     <published>2020-09-22T13:04:41.000Z</published>
     <updated>2020-09-22T13:04:41.000Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h1 id=&quot;构造函数&quot;&gt;&lt;a href=&quot;#构造函数&quot; class=&quot;headerlink&quot; title=&quot;构造函数&quot;&gt;&lt;/a&gt;构造函数&lt;/h1&gt;&lt;p&gt;&lt;code&gt;array&lt;/code&gt;的初始化使用聚合初始化（aggregate
-        
-      
+      &lt;h1 id=&quot;构造函数&quot;&gt;&lt;a href=&quot;#构造函数&quot; class=&quot;headerlink&quot; title=&quot;构造函数&quot;&gt;&lt;/a&gt;构造函数&lt;/h1&gt;&lt;p&gt;&lt;code&gt;array&lt;/code&gt;的初始化使用聚合初始化（aggregate initialization），聚合初始内容如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;array&lt;/span&gt;&amp;lt;T,&lt;span class=&quot;built_in&quot;&gt;size&lt;/span&gt;&amp;gt; arr_name&amp;#123;aggregate initialization&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;其中，&lt;code&gt;T&lt;/code&gt;为任意类型（含基本类型以外的自定义类型）；&lt;code&gt;size&lt;/code&gt;为指定容器的大小；&lt;code&gt;arr_name&lt;/code&gt;为&lt;code&gt;array&lt;/code&gt;对象名；&lt;code&gt;aggregate initialization&lt;/code&gt;采用聚合初始化，更多内容见 [聚合初始化] (&lt;a href=&quot;https://zh.cppreference.com/w/cpp/language/aggregate_initialization/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://zh.cppreference.com/w/cpp/language/aggregate_initialization/&lt;/a&gt;)&lt;/p&gt;
     
     </summary>
     
@@ -159,13 +181,14 @@
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h1 id=&quot;构造函数&quot;&gt;&lt;a href=&quot;#构造函数&quot; class=&quot;headerlink&quot;
-        
-      
+      &lt;h1 id=&quot;构造函数&quot;&gt;&lt;a href=&quot;#构造函数&quot; class=&quot;headerlink&quot; title=&quot;构造函数&quot;&gt;&lt;/a&gt;构造函数&lt;/h1&gt;&lt;p&gt;&lt;code&gt;vector&lt;/code&gt;的构造函数有以下几种重载&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;默认无参构造函数&lt;/li&gt;
+&lt;li&gt;使用&lt;code&gt;{}&lt;/code&gt;内的内容初始化&lt;/li&gt;
+&lt;li&gt;使用一个以及存在的容器初始化&lt;/li&gt;
+&lt;li&gt;初始化为指定个数指定的内容&lt;/li&gt;
+&lt;li&gt;用数组进行初始化&lt;/li&gt;
+&lt;/ol&gt;
     
     </summary>
     
@@ -426,9 +449,9 @@
     
       <category term="c++" scheme="https://www.yurui.tech/tags/c/"/>
     
-      <category term="虚函数" scheme="https://www.yurui.tech/tags/%E8%99%9A%E5%87%BD%E6%95%B0/"/>
-    
       <category term="多态" scheme="https://www.yurui.tech/tags/%E5%A4%9A%E6%80%81/"/>
+    
+      <category term="虚函数" scheme="https://www.yurui.tech/tags/%E8%99%9A%E5%87%BD%E6%95%B0/"/>
     
       <category term="virtual" scheme="https://www.yurui.tech/tags/virtual/"/>
     
@@ -547,40 +570,9 @@
     
       <category term="c++" scheme="https://www.yurui.tech/tags/c/"/>
     
-      <category term="面向对象" scheme="https://www.yurui.tech/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
-    
       <category term="继承关系" scheme="https://www.yurui.tech/tags/%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB/"/>
     
       <category term="复合关系" scheme="https://www.yurui.tech/tags/%E5%A4%8D%E5%90%88%E5%85%B3%E7%B3%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>c++继承及派生基本概念</title>
-    <link href="https://www.yurui.tech/2020/07/30/C++/23%E3%80%81c-%E7%BB%A7%E6%89%BF%E5%8F%8A%E6%B4%BE%E7%94%9F%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"/>
-    <id>https://www.yurui.tech/2020/07/30/C++/23%E3%80%81c-%E7%BB%A7%E6%89%BF%E5%8F%8A%E6%B4%BE%E7%94%9F%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</id>
-    <published>2020-07-30T15:09:56.000Z</published>
-    <updated>2020-07-30T15:09:56.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot; title=&quot;基本概念&quot;&gt;&lt;/a&gt;基本概念&lt;/h1&gt;&lt;p&gt;继承：在定义一个新的类&lt;code&gt;B&lt;/code&gt;时，如果该类与某个已有的类&lt;code&gt;A&lt;/code&gt;相似（&lt;code&gt;B&lt;/code&gt;拥有&lt;code&gt;A&lt;/code&gt;的全部特征），那么就可以把&lt;code&gt;A&lt;/code&gt;作为一个&lt;strong&gt;基类&lt;/strong&gt;，而把&lt;code&gt;B&lt;/code&gt;作为基类的一个&lt;strong&gt;派生类&lt;/strong&gt;（也成为子类）。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;派生类是通过对基类进行修改和扩充得到的。在派生类中，可以扩充新的成员变量或成员函数。&lt;/li&gt;
-&lt;li&gt;派生类一旦定义后，可以独立使用，不依赖于基类。&lt;/li&gt;
-&lt;li&gt;派生类拥有基类的全部成员函数和成员变量。不论是&lt;code&gt;public&lt;/code&gt;、&lt;code&gt;protected&lt;/code&gt;还是&lt;code&gt;private&lt;/code&gt;。&lt;/li&gt;
-&lt;li&gt;在派生类的各个成员函数中，不能访问基类的&lt;code&gt;private&lt;/code&gt;成员&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="c++" scheme="https://www.yurui.tech/categories/c/"/>
-    
-    
-      <category term="c++" scheme="https://www.yurui.tech/tags/c/"/>
-    
-      <category term="继承和派生" scheme="https://www.yurui.tech/tags/%E7%BB%A7%E6%89%BF%E5%92%8C%E6%B4%BE%E7%94%9F/"/>
     
       <category term="面向对象" scheme="https://www.yurui.tech/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
     
