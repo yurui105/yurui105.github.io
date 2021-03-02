@@ -3326,4 +3326,37 @@ b_{3}
         <tag>信号槽</tag>
       </tags>
   </entry>
+  <entry>
+    <title>QWidget类</title>
+    <url>/2020/12/22/Qt6/3%E3%80%81QWidget%E7%B1%BB/</url>
+    <content><![CDATA[<h1 id="QWidget类"><a href="#QWidget类" class="headerlink" title="QWidget类"></a>QWidget类</h1><p><code>QWidget</code>类是所有用户界面类的基类，包括按钮、文本框、输入框等对象都是继承自<code>QWidget</code>。它接收鼠标、键盘等事件。    </p>
+<h1 id="槽函数"><a href="#槽函数" class="headerlink" title="槽函数"></a>槽函数</h1><p>对于<code>QWidget</code>类，Qt提供了以下的槽函数：</p>
+<ul>
+<li><code>bool close()</code>：关闭窗口，成功返回<code>true</code>，失败返回<code>false</code></li>
+<li><code>void hide()</code>：隐藏窗口</li>
+<li><code>void lower()</code>：将窗口切换到所有窗口的最底部。</li>
+<li><code>void raise()</code>：将窗口置顶</li>
+<li><code>void repaint()</code>：调用<code>paintEvent()</code>重新绘制窗口</li>
+<li><code>void setDisabled(bool disable)</code>：如果disable为true，则禁用小部件输入事件；否则启用输入事件。</li>
+<li><code>setEnabled(bool)</code>：已启用的窗口小部件处理键盘和鼠标事件。 禁用的小部件则不会。</li>
+<li><code>setFocus()</code>：如果此窗口或其父级之一是活动窗口，则将键盘输入焦点赋予此窗口</li>
+<li><code>setHidden(bool hidden)</code>：设置隐藏</li>
+<li><a href="https://doc.qt.io/qt-5/qwidget.html" target="_blank" rel="noopener">API文档</a></li>
+</ul>
+<p>需要注意的是，<code>QWidget</code>中的槽函数不能在主线程之外调用。</p>
+<p>如果需要在其它线程中调用，需要使用信号槽，将新线程的事件绑定到主线程中。</p>
+<p>例如：在一个新线程中移动窗口</p>
+<p>首先，我们在主线程中对窗口进行移动操作：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"mainwindow.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QApplication&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QThread&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">QApplication <span class="title">a</span><span class="params">(argc, argv)</span></span>;</span><br><span class="line">    MainWindow w;</span><br><span class="line">    w.show();</span><br><span class="line">    # 移动窗口</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">1000</span>;i++)&#123;</span><br><span class="line">        w.<span class="built_in">move</span>(i,i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> a.exec();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://yurui-blog.oss-cn-hangzhou.aliyuncs.com/blog-img/移动窗口.gif" alt="移动窗口"></p>
+<p>可以看到窗口可以正常地被移动</p>
+<p>接下来将该操作转到线程中执行</p>
+]]></content>
+      <categories>
+        <category>Qt6</category>
+      </categories>
+      <tags>
+        <tag>QWidget</tag>
+      </tags>
+  </entry>
 </search>

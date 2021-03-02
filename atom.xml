@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.yurui.tech/"/>
-  <updated>2020-12-21T12:12:06.000Z</updated>
+  <updated>2020-12-21T16:09:46.000Z</updated>
   <id>https://www.yurui.tech/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>QWidget类</title>
+    <link href="https://www.yurui.tech/2020/12/22/Qt6/3%E3%80%81QWidget%E7%B1%BB/"/>
+    <id>https://www.yurui.tech/2020/12/22/Qt6/3%E3%80%81QWidget%E7%B1%BB/</id>
+    <published>2020-12-21T16:09:46.000Z</published>
+    <updated>2020-12-21T16:09:46.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;QWidget类&quot;&gt;&lt;a href=&quot;#QWidget类&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Qt6" scheme="https://www.yurui.tech/categories/Qt6/"/>
+    
+    
+      <category term="QWidget" scheme="https://www.yurui.tech/tags/QWidget/"/>
+    
+  </entry>
   
   <entry>
     <title>Qt信号槽</title>
@@ -546,34 +573,6 @@
       <category term="面向对象" scheme="https://www.yurui.tech/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
     
       <category term="派生类" scheme="https://www.yurui.tech/tags/%E6%B4%BE%E7%94%9F%E7%B1%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>c++覆盖和保护成员</title>
-    <link href="https://www.yurui.tech/2020/07/31/C++/25%E3%80%81c-%E8%A6%86%E7%9B%96%E5%92%8C%E4%BF%9D%E6%8A%A4%E6%88%90%E5%91%98/"/>
-    <id>https://www.yurui.tech/2020/07/31/C++/25%E3%80%81c-%E8%A6%86%E7%9B%96%E5%92%8C%E4%BF%9D%E6%8A%A4%E6%88%90%E5%91%98/</id>
-    <published>2020-07-31T06:38:27.000Z</published>
-    <updated>2020-07-31T06:38:27.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot; title=&quot;基本概念&quot;&gt;&lt;/a&gt;基本概念&lt;/h1&gt;&lt;p&gt;派生类可以定义一个和基类成员同名的成员，这就叫&lt;strong&gt;覆盖&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;在派生类中访问这类成员时，缺省的情况是访问派生类中定义的成员。要在派生类中访问由基类定义的同名成员时，要使用作用域符号&lt;code&gt;::&lt;/code&gt;。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="c++" scheme="https://www.yurui.tech/categories/c/"/>
-    
-    
-      <category term="c++" scheme="https://www.yurui.tech/tags/c/"/>
-    
-      <category term="面向对象" scheme="https://www.yurui.tech/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
-    
-      <category term="保护成员" scheme="https://www.yurui.tech/tags/%E4%BF%9D%E6%8A%A4%E6%88%90%E5%91%98/"/>
-    
-      <category term="覆盖" scheme="https://www.yurui.tech/tags/%E8%A6%86%E7%9B%96/"/>
     
   </entry>
   
